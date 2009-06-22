@@ -1,5 +1,6 @@
 <?php
 require_once("dbinterface_pgsql.inc.php");
+require_once("dbinterface_mysql.inc.php");
 
 class DbInterface
 {
@@ -16,6 +17,11 @@ class DbInterface
         $this->dbConnector = new DbInterface_pgsql();
         break;
       }
+      case "mysql":
+      {
+	$this->dbConnector = new Dbinterface_mysql();
+	break;
+      } 
       default:
       {
         $this->dbConnector = new DbInterface_pgsql();
@@ -51,3 +57,4 @@ class DbInterface
 }
 
 ?>
+
