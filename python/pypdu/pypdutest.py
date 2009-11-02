@@ -11,9 +11,16 @@ class PyPduTest(unittest.TestCase):
         pass
 
     def testConvertAcsiiToPdu(self):
-        resHex = [0xE8, 0x32, 0x9B, 0xFD, 0x46, 0x97, 0xD9, 0xEC, 0x37]
+        resHex = "E8329BFD4697D9EC37"
         ascii = "hellohello"
         pdu = self.__pdu.convertAsciiToPdu(ascii)
         self.assert_(pdu != None)
+        print pdu
         self.assert_(pdu == resHex)
-        
+
+    def testConvertPduToAscii(self):
+        resAscii = "hellohello"
+        pdu = "E8329BFD4697D9EC37"
+        ascii = self.__pdu.convertPduToAscii(pdu)
+        self.assert_(ascii != None)
+        print ascii
