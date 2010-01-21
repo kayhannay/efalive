@@ -1,0 +1,70 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          efa
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Should-Start:	     console-screen acpid dbus hal
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: EFA - Elektronisches Fahrtenbuch
+# Description:       EFA ist ein elektronisches Fahrtenbuch 
+#		     fuer Rudervereine.
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/bin/xinit
+PIDDIR=/var/run/efa
+PIDFILE=$PIDDIR/efa.pid
+NAME=efa
+DAEMONUSER=efa
+DESC="Elektronisches Fahrtenbuch"
+DAEMON_OPTS="-- -br"
+
+. /lib/lsb/init-functions
+
+test -x $DAEMON || exit 0
+
+set -e
+
+do_start() {
+	if [ ! -d $PIDDIR ]; then
+		mkdir -p $PIDDIR
+		chown $DAEMONUSER:$DAEMONUSER $PIDDIR
+	fi
+	#stop_splashy
+	start-stop-daemon --start --oknodo -b -m --pidfile $PIDFILE -c $DAEMONUSER \
+		--name $NAME --startas $DAEMON -- $DAEMON_OPTS
+}
+
+do_stop() {
+	start-stop-daemon --stop --oknodo --quiet --pidfile $PIDFILE
+}
+
+case "$1" in
+  start)
+	log_daemon_msg "Starting $DESC" "$NAME"
+	do_start
+	log_end_msg $?
+	;;
+  stop)
+	log_daemon_msg "Stopping $DESC" "$NAME"
+	do_stop
+	log_end_msg $?
+	;;
+  restart|force-reload)
+	log_daemon_msg "Restarting $DESC" "$NAME"
+	do_stop
+	sleep 1
+	do_start
+	log_end_msg $?
+	;;
+  status)
+	status_of_proc -p $PIDFILE $DAEMON $NAME && exit 0 || exit $?
+	;;
+  *)
+	log_success_msg "Usage: $0 {start|stop|restart|force-reload|status}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
