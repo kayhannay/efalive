@@ -1,6 +1,8 @@
 default 0
 color green/blue cyan/red
 splashimage /boot/grub/efa.xpm.gz
+foreground 000000
+background adadad
 
 title		Live:
 root
