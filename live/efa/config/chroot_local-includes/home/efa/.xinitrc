@@ -4,3 +4,4 @@ export PATH=$JAVA_HOME/bin:$PATH
 matchbox-window-manager &
 #cd ~/efa
 /opt/efa/efadirekt.sh >> ~/efa.log 2>&1
+sudo /sbin/shutdown -h now
