@@ -185,6 +185,8 @@ tConfigVariable Config_Variables[] =
     {"fts_convert_space_into_underscore",        CV_TYPE_BOOL,&FTS_CONVERT_SPACE_INTO_UNDERSCORE         },
     {"rfs_convert_underscore_and_p20_into_space",CV_TYPE_BOOL,&RFS_CONVERT_UNDERSCORE_AND_P20_INTO_SPACE },
     {"rfs_convert_space_into_underscore",        CV_TYPE_BOOL,&RFS_CONVERT_SPACE_INTO_UNDERSCORE         },
+    {"rfs_convert_space_into_dash",              CV_TYPE_BOOL,&RFS_CONVERT_SPACE_INTO_DASH               },
+    {"rfs_convert_lowercase",                    CV_TYPE_BOOL,&RFS_CONVERT_LOWERCASE                     },
     {"pfs_dont_upper_some_words",                CV_TYPE_BOOL,&PFS_DONT_UPPER_SOME_WORDS                 },
     {"overwrite_tag_field",                     CV_TYPE_BOOL,    &OVERWRITE_TAG_FIELD                    },
     {"set_default_comment",                     CV_TYPE_BOOL,    &SET_DEFAULT_COMMENT                    },
@@ -451,6 +453,8 @@ void Init_Config_Variables (void)
     FTS_CONVERT_SPACE_INTO_UNDERSCORE         = 0;
     RFS_CONVERT_UNDERSCORE_AND_P20_INTO_SPACE = 1;
     RFS_CONVERT_SPACE_INTO_UNDERSCORE         = 0;
+    RFS_CONVERT_SPACE_INTO_DASH               = 0;
+    RFS_CONVERT_LOWERCASE                     = 0;
     PFS_DONT_UPPER_SOME_WORDS                 = 0;
     OVERWRITE_TAG_FIELD                       = 1;
     SET_DEFAULT_COMMENT                       = 0;
@@ -737,6 +741,8 @@ void Apply_Changes_Of_Preferences_Window (void)
         // Rename File Scanner
         RFS_CONVERT_UNDERSCORE_AND_P20_INTO_SPACE = GTK_TOGGLE_BUTTON(RFSConvertUnderscoreAndP20IntoSpace)->active;
         RFS_CONVERT_SPACE_INTO_UNDERSCORE         = GTK_TOGGLE_BUTTON(RFSConvertSpaceIntoUnderscore)->active;
+        RFS_CONVERT_SPACE_INTO_DASH               = GTK_TOGGLE_BUTTON(RFSConvertSpaceIntoDash)->active;
+        RFS_CONVERT_LOWERCASE                     = GTK_TOGGLE_BUTTON(RFSConvertLowercase)->active;
         // Process File Scanner
         PFS_DONT_UPPER_SOME_WORDS                 = GTK_TOGGLE_BUTTON(PFSDontUpperSomeWords)->active;
 

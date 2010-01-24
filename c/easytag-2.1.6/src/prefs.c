@@ -1030,6 +1030,23 @@ void Open_OptionsWindow (void)
     gtk_tooltips_set_tip(Tips,RFSConvertSpaceIntoUnderscore,_("If activated, this conversion "
         "will be used when applying a mask from the scanner for filenames."),NULL);
 
+    RFSConvertSpaceIntoDash = gtk_check_button_new_with_label(_("Convert space ' ' to dash '-'"));
+    RFSConvertLowercase = gtk_check_button_new_with_label(_("Convert all characters to lower case"));
+    gtk_box_pack_start(GTK_BOX(vbox),RFSConvertSpaceIntoDash,            FALSE,FALSE,0);
+    gtk_box_pack_start(GTK_BOX(vbox),RFSConvertLowercase,                FALSE,FALSE,0);
+    //g_signal_connect_swapped(G_OBJECT(RFSConvertSpaceIntoDash),"toggled",
+    //                       G_CALLBACK(Scanner_Convert_Check_Button_Toggled_1),G_OBJECT(RFSConvertUnderscoreAndP20IntoSpace));
+    //g_signal_connect_after(G_OBJECT(RFSConvertLowercase),"toggled",
+    //                       G_CALLBACK(Scanner_Convert_Check_Button_Toggled_1),NULL);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(RFSConvertSpaceIntoDash),
+        RFS_CONVERT_SPACE_INTO_DASH);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(RFSConvertLowercase),
+        RFS_CONVERT_LOWERCASE);
+    gtk_tooltips_set_tip(Tips,RFSConvertSpaceIntoDash,_("If activated, this conversion "
+        "will be used when applying a mask from the scanner for filenames."),NULL);
+    gtk_tooltips_set_tip(Tips,RFSConvertLowercase,_("If activated, this conversion "
+        "will be used when applying a mask from the scanner for filenames."),NULL);
+
     /* Character conversion for the 'Process Fields' scanner (=> PFS...) */
     Frame = gtk_frame_new (_("Process Fields Scanner - Character Conversion"));
     gtk_box_pack_start(GTK_BOX(VBox),Frame,FALSE,FALSE,0);

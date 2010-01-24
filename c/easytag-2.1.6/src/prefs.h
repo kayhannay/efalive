@@ -124,6 +124,8 @@ GtkWidget *PFSDontUpperSomeWords;
 GtkWidget *OverwriteTagField;
 GtkWidget *OpenScannerWindowOnStartup;
 GtkWidget *ScannerWindowOnTop;
+GtkWidget *RFSConvertSpaceIntoDash;
+GtkWidget *RFSConvertLowercase;
 
 GtkWidget *SetDefaultComment;
 GtkWidget *DefaultComment;

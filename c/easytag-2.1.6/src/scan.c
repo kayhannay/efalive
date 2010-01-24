@@ -798,6 +798,10 @@ gchar *Scan_Generate_New_Filename_From_Mask (ET_File *ETFile, gchar *mask, gbool
             }
             if (RFS_CONVERT_SPACE_INTO_UNDERSCORE)
                 Scan_Convert_Space_Into_Undescore(mask_item->string);
+            if (RFS_CONVERT_SPACE_INTO_DASH)
+                Scan_Convert_Space_Into_Dash(mask_item->string);
+            if (RFS_CONVERT_LOWERCASE)
+                Scan_Process_Fields_All_Downcase(mask_item->string);
         }else
         {
             mask_item->type = EMPTY_FIELD;
@@ -1715,6 +1719,14 @@ void Scan_Convert_Space_Into_Undescore (gchar *string)
         *tmp = '_';
 }
 
+void Scan_Convert_Space_Into_Dash (gchar *string)
+{
+    gchar *tmp;
+
+    while ((tmp=strchr(string,' '))!=NULL)
+        *tmp = '-';
+}
+
 /*
  * Replace something with something else ;)
  * Currently this only works with one character for each
@@ -1723,6 +1735,12 @@ void Scan_Convert_Character (gchar **string)
 {
     gchar *from = gtk_editable_get_chars(GTK_EDITABLE(ProcessFieldsConvertFrom),0,-1 );
     gchar *to   = gtk_editable_get_chars(GTK_EDITABLE(ProcessFieldsConvertTo),0,-1 );
+
+    Scan_Convert_Character_Impl(string, from, to);
+}
+
+void Scan_Convert_Character_Impl (gchar **string, gchar *from, gchar *to)
+{
     const gchar *s;
     const gchar *current;
     GSList *tokens_list, *list;

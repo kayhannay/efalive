@@ -76,9 +76,11 @@ void Scan_Process_Fields_Insert_Space            (gchar **string);
 void Scan_Process_Fields_Keep_One_Space          (gchar *string);
 
 void Scan_Convert_Underscore_Into_Space (gchar *string);
+void Scan_Convert_Space_Into_Dash       (gchar *string);
 void Scan_Convert_P20_Into_Space        (gchar *string);
 void Scan_Convert_Space_Into_Undescore  (gchar *string);
 void Scan_Convert_Character             (gchar **string);
+void Scan_Convert_Character_Impl        (gchar **string, gchar *from, gchar *to);
 
 void Init_ScannerWindow (void);
 void Open_ScannerWindow (gint scanner_type);
