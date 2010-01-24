@@ -802,6 +802,7 @@ gchar *Scan_Generate_New_Filename_From_Mask (ET_File *ETFile, gchar *mask, gbool
                 Scan_Convert_Space_Into_Dash(mask_item->string);
             if (RFS_CONVERT_LOWERCASE)
                 Scan_Process_Fields_All_Downcase(mask_item->string);
+            Scan_Convert_Special_Character(&(mask_item->string));
         }else
         {
             mask_item->type = EMPTY_FIELD;
@@ -1725,6 +1726,30 @@ void Scan_Convert_Space_Into_Dash (gchar *string)
 
     while ((tmp=strchr(string,' '))!=NULL)
         *tmp = '-';
+}
+
+void Scan_Convert_Special_Character (gchar **string)
+{
+    //ä
+    Scan_Convert_Character_Impl(string, "\xc3\xa4", "ae");
+    //ö
+    Scan_Convert_Character_Impl(string, "\xc3\xb6", "oe");
+    //ü
+    Scan_Convert_Character_Impl(string, "\xc3\xbc", "ue");
+    //Ä
+    Scan_Convert_Character_Impl(string, "\xc3\x84", "Ae");
+    //Ö
+    Scan_Convert_Character_Impl(string, "\xc3\x96", "Oe");
+    //Ü
+    Scan_Convert_Character_Impl(string, "\xc3\x9c", "Ue");
+    //ß
+    Scan_Convert_Character_Impl(string, "\xc3\x9f", "ss");
+    //&
+    Scan_Convert_Character_Impl(string, "&", "and");
+    //'
+    Scan_Convert_Character_Impl(string, "'", "");
+    //,
+    Scan_Convert_Character_Impl(string, ",", "");
 }
 
 /*
