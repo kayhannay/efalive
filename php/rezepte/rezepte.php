@@ -333,8 +333,8 @@ if(isset($_GET["viewRecipe"]))
 	<?php 
 	if($userRole > 4)
 	  {
-		 print("<a href=\"rezepte.php?modifyRecipe=". $recipe->getId() ."\">Rezept �ndern</a><br>\n");
-		 print("<a href=\"rezepte.php?addRecipe=1\">Rezept hinzuf�gen</a><br>\n");
+		 print("<a href=\"rezepte.php?modifyRecipe=". $recipe->getId() ."\">Rezept ändern</a><br>\n");
+		 print("<a href=\"rezepte.php?addRecipe=1\">Rezept hinzufügen</a><br>\n");
 	  }
   print("<a href=\"rezepte.php\">Rezeptliste</a>\n");
 
@@ -355,7 +355,7 @@ if(isset($_GET["viewRecipe"]))
 	  print("Rezept wurde geändert.<br><br>\n");
 	  ?>
 		<br><br>
-		<a href="rezepte.php?addRecipe=1">Rezept hinzuf&uuml;gen</a><br>
+		<a href="rezepte.php?addRecipe=1">Rezept hinzufügen</a><br>
 		<a href="rezepte.php">Rezeptliste</a>
 	  <?php
 		
@@ -544,7 +544,7 @@ if(isset($_GET["viewRecipe"]))
 	<?php
 	if($userRole > 4)
 	  {
-		 print("<a href=\"rezepte.php?addRecipe=1\">Rezept hinzuf&uuml;gen</a><br>\n");
+		 print("<a href=\"rezepte.php?addRecipe=1\">Rezept hinzufügen</a><br>\n");
 	  }
 }
 
