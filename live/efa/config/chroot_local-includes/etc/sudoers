@@ -1,0 +1,4 @@
+
+root    ALL=(ALL) ALL
+efa     ALL=NOPASSWD: /sbin/shutdown
+

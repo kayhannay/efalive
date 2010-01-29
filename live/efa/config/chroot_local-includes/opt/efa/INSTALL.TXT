@@ -1,0 +1,40 @@
+Installtaion von efa - elektronisches Fahrtenbuch
+-------------------------------------------------
+
+Dieses Dokument beschreibt die Installation von efa. Besonders
+Nutzer, die bereits eine ältere Version von efa benutzen, sollten
+diese Hinweise beachten!
+
+
+Hinweise zum Umstieg von Version 1.x.x auf die aktuelle Version
+---------------------------------------------------------------
+Wenn Du von Version 1.x.x auf die aktuelle Version umsteigst, so
+kannst Du die neue Version einfach über die alte Version
+"drüberinstallieren", d.h. sie in dasselbe Verzeichnis installieren,
+ohne die alte Version zuvor zu löschen. Deine Daten und Einstellungen
+bleiben dabei erhalten, es werden nur die Programmdateien ausgetauscht.
+
+Dennoch empfehle ich grundsätzlich vor einem Umstieg immer eine
+Sicherung aller eigenen Daten anzulegen! Eigene Daten befinden sich
+standardmäßig im Verzeichnis "daten" von efa.
+
+   
+Hinweise zur Erst-Installation von efa (Windows-Setup-Version)
+--------------------------------------------------------------
+Hierbei ist nichts zu beachten --- einfach auf das Setup-Programm
+klicken und den Anweisungen folgen.
+
+
+Hinweise zur Installation von efa (ZIP-Archiv)
+----------------------------------------------
+Ein automatisches Setup-Programm gibt es nur für Windows. Nutzer anderer
+Betriebssysteme müssen mit dem ZIP-Archiv vorlieb nehmen. Der Inhalt des
+ZIP-Archivs sollte in ein eigenes Verzeichnis entpackt werden. 
+Anschließend kann efa gestartet werden:
+./efa (unter Linux)
+efa.bat (unter Windows)
+Andere Betriebssysteme können diese beiden Dateien als Vorlage für eine
+angepaßte Startdatei verwenden.
+
+
+Nicolas Michael, software@nmichael.de

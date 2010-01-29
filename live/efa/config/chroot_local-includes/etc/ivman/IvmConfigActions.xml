@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivm:ActionsConfig version="0.2" xmlns:ivm="http://www.eikke.com/ivm">
+
+	<ivm:Match name="ivm.mountable" value="true">
+		<ivm:Option name="exec" value="/usr/bin/pmount $hal.block.device$ backup" />
+		<ivm:Option name="exec" value="/bin/run_backup.sh /media/backup" />
+	</ivm:Match>
+
+</ivm:ActionsConfig>
