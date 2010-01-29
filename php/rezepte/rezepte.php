@@ -4,9 +4,12 @@ require_once("checklogin.inc.php");
 require_once("dbinterface.inc.php");
 /* session_register("$recipes"); */
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+       "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>Rezeptdatenbank</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
 <body>
 
@@ -349,10 +352,10 @@ if(isset($_GET["viewRecipe"]))
 	  $recipe->setPreparation($_POST["Preparation"]);
 	  $recipe->setNumberPeople($_POST["NumberPeople"]);
 	  modifyRecipe($recipe);
-	  print("Rezept wurde geändert.<br><br>\n");
+	  print("Rezept wurde geÃ¤ndert.<br><br>\n");
 	  ?>
 		<br><br>
-		<a href="rezepte.php?addRecipe=1">Rezept hinzufügen</a><br>
+		<a href="rezepte.php?addRecipe=1">Rezept hinzuf&uuml;gen</a><br>
 		<a href="rezepte.php">Rezeptliste</a>
 	  <?php
 		
@@ -405,8 +408,8 @@ if(isset($_GET["viewRecipe"]))
 				<textarea name="Preparation" rows="10" cols="50"><?php print($recipe->getPreparation()) ?></textarea></p>
 				<p>Anzahl Personen: <input name="NumberPeople" size="2" maxlength="2" value=<?php print("\"". $recipe->getNumberPeople() ."\""); ?>></p>
 				<br>
-				<p><input name="Ok" type="submit" value="Rezept ändern">
-				<input name="Cancel" type="reset" value="Zurücksetzen"></p>
+				<p><input name="Ok" type="submit" value="Rezept Ã¤ndern">
+				<input name="Cancel" type="reset" value="ZurÃ¼cksetzen"></p>
 			</td></tr>
 		</table>
 		</td></tr>
@@ -428,10 +431,10 @@ if(isset($_GET["viewRecipe"]))
 	  $recipe->setPreparation($_POST["Preparation"]);
 	  $recipe->setNumberPeople($_POST["NumberPeople"]);
 	  addRecipe($recipe);
-	  print("Rezept wurde hinzugefügt.<br><br>\n");
+	  print("Rezept wurde hinzugefÃ¼gt.<br><br>\n");
 	  ?>
 		<br><br>
-		<a href="rezepte.php?addRecipe=1">Rezept hinzufügen</a><br>
+		<a href="rezepte.php?addRecipe=1">Rezept hinzufÃ¼gen</a><br>
 		<a href="rezepte.php">Rezeptliste</a>
 	  <?php
 
@@ -468,8 +471,8 @@ if(isset($_GET["viewRecipe"]))
 				<textarea name="Preparation" rows="10" cols="50"></textarea></p>
 				<p>Anzahl Personen: <input name="NumberPeople" size="2" maxlength="2" value="4"></p>
 				<br>
-				<p><input name="Ok" type="submit" value="Rezept hinzufügen">
-				<input name="Cancel" type="reset" value="Zurücksetzen"></p>
+				<p><input name="Ok" type="submit" value="Rezept hinzufÃ¼gen">
+				<input name="Cancel" type="reset" value="ZurÃ¼cksetzen"></p>
 				</form>
 			</td></tr>
 		</table>
@@ -541,7 +544,7 @@ if(isset($_GET["viewRecipe"]))
 	<?php
 	if($userRole > 4)
 	  {
-		 print("<a href=\"rezepte.php?addRecipe=1\">Rezept hinzufügen</a><br>\n");
+		 print("<a href=\"rezepte.php?addRecipe=1\">Rezept hinzuf&uuml;gen</a><br>\n");
 	  }
 }
 
