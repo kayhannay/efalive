@@ -22,8 +22,7 @@
 # Create backup of efa data to a ZIP file
 # Usage: run_backup.sh <PATH_TO_STORE_BACKUP>
 #
-EFA_DIR=/opt/efa
-EFA_BACKUP_PATHS="ausgabe/layout daten cfg"
+EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa/cfg /home/efa/efa/daten"
 BACKUP_FILE=Sicherung_`/bin/date +%Y%m%d_%k%M%S`.zip
 
 ### Sleep a while until the device is mounted completely
@@ -37,7 +36,7 @@ then
 	exit 1
 fi
 
-if [ -ne $1 ]
+if [ ! -d $1 ]
 then
 	/bin/echo "Error, specified path does not exist!"
 	/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
@@ -45,7 +44,7 @@ then
 fi
 
 ### Create backup
-cd $EFA_DIR
+cd /
 /usr/bin/zip -r $1/$BACKUP_FILE $EFA_BACKUP_PATHS
 ### Make sure that all data are transferred to the device
 /bin/sync

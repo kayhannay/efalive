@@ -14,7 +14,7 @@ LH_BINARY_INDICES="true"
 
 # $LH_BOOTAPPEND_LIVE: set boot parameters
 # (Default: empty)
-LH_BOOTAPPEND_LIVE="locale=de_DE.UTF-8 keyb=de persistent"
+LH_BOOTAPPEND_LIVE="locale=de_DE.UTF-8 keyb=de persistent noautologin"
 
 # $LH_BOOTAPPEND_INSTALL: set boot parameters
 # (Default: empty)

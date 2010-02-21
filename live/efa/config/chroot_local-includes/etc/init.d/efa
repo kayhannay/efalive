@@ -12,10 +12,11 @@
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/bin/xinit
+DAEMON=/usr/bin/startx
 PIDDIR=/var/run/efa
 PIDFILE=$PIDDIR/efa.pid
 NAME=efa
+PROCESS=xinit
 DAEMONUSER=efa
 DESC="Elektronisches Fahrtenbuch"
 DAEMON_OPTS="-- -br"
@@ -27,17 +28,19 @@ test -x $DAEMON || exit 0
 set -e
 
 do_start() {
-	if [ ! -d $PIDDIR ]; then
-		mkdir -p $PIDDIR
-		chown $DAEMONUSER:$DAEMONUSER $PIDDIR
-	fi
-	#stop_splashy
-	start-stop-daemon --start --oknodo -b -m --pidfile $PIDFILE -c $DAEMONUSER \
-		--name $NAME --startas $DAEMON -- $DAEMON_OPTS
+    x_running=`ps a | grep $PROCESS | grep -v grep | wc -l`
+    if [ $x_running -eq 0 ]
+    then
+        /bin/su -l $DAEMONUSER -c $DAEMON $DAEMON_OPTS >> /dev/null 2>&1 &
+    fi
 }
 
 do_stop() {
-	start-stop-daemon --stop --oknodo --quiet --pidfile $PIDFILE
+    x_running=`ps ax | grep $PROCESS | grep -v grep | wc -l`
+    if [ $x_running -gt 0 ]
+    then
+        killall $PROCESS >> /dev/null 2>&1
+    fi
 }
 
 case "$1" in
@@ -58,11 +61,8 @@ case "$1" in
 	do_start
 	log_end_msg $?
 	;;
-  status)
-	status_of_proc -p $PIDFILE $DAEMON $NAME && exit 0 || exit $?
-	;;
   *)
-	log_success_msg "Usage: $0 {start|stop|restart|force-reload|status}" >&2
+	log_success_msg "Usage: $0 {start|stop|restart|force-reload}" >&2
 	exit 1
 	;;
 esac

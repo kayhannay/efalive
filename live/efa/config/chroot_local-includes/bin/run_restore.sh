@@ -23,7 +23,7 @@
 # Usage: run_restore.sh <BACKUP_ZIP_FILE>
 #
 EFA_DIR=/opt/efa
-EFA_BACKUP_PATHS="ausgabe/layout daten cfg"
+EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa/cfg /home/efa/efa/daten"
 EFA_USER=efa
 EFA_GROUP=efa
 
@@ -33,7 +33,7 @@ then
 	exit 1
 fi
 
-if [ -ne $1 ]
+if [ ! -f $1 ]
 then
 	/bin/echo "Error, backup file does not exist!"
 	exit 1
@@ -47,15 +47,16 @@ fi
 
 ### Create backup of existing data
 /bin/mkdir $EFA_DIR/backup/restore_backup
-cd $EFA_DIR
+run_backup.sh $EFA_DIR/backup/restore_backup
+cd /
 /usr/bin/zip -r $EFA_DIR/backup/restore_backup/Restore_`/bin/date +%Y%m%d_%k%M%S`.zip $EFA_BACKUP_PATHS
 
 ### Remove old data
-cd $EFA_DIR
+cd /
 /bin/rm -Rf $EFA_BACKUP_PATHS
 
 ### Restore backup file to efa directory
-cd $EFA_DIR
+cd /
 /usr/bin/unzip $1
 /bin/chown -R $EFA_USER.$EFA_GROUP $EFA_BACKUP_PATHS
 

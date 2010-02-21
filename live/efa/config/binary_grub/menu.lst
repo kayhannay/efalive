@@ -8,11 +8,11 @@ title		Live system:
 root
 
 title		EFA live
-kernel		/live/vmlinuz-2.6.26-2-486 boot=live locale=de_DE.UTF-8 keyb=de persistent username=efa hostname=efa-live union=aufs
+kernel		/live/vmlinuz-2.6.26-2-486 boot=live locale=de_DE.UTF-8 keyb=de persistent username=efa hostname=efa-live union=aufs noautologin
 initrd		/live/initrd.img-2.6.26-2-486
 
 title		EFA live (fail-safe mode)
-kernel		/live/vmlinuz-2.6.26-2-486 boot=live locale=de_DE.UTF-8 keyb=de persistent username=efa hostname=efa-live union=aufs noapic noapm nodma nomce nolapic nosmp vga=normal
+kernel		/live/vmlinuz-2.6.26-2-486 boot=live locale=de_DE.UTF-8 keyb=de persistent username=efa hostname=efa-live union=aufs noautologin noapic noapm nodma nomce nolapic nosmp vga=normal
 initrd		/live/initrd.img-2.6.26-2-486
 
 title		Installer:
