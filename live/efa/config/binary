@@ -55,7 +55,7 @@ LH_ENCRYPTION="false"
 
 # $LH_GRUB_SPLASH: set custom grub splash
 # (Default: empty)
-LH_GRUB_SPLASH="config/binary_grub/efa.xpm.gz"
+LH_GRUB_SPLASH="config/binary_grub/efa_live.xpm.gz"
 
 # $LH_HOSTNAME: set hostname
 # (Default: debian)

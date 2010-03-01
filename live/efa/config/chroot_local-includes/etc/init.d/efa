@@ -31,7 +31,7 @@ do_start() {
     x_running=`ps a | grep $PROCESS | grep -v grep | wc -l`
     if [ $x_running -eq 0 ]
     then
-        /bin/su -l $DAEMONUSER -c $DAEMON $DAEMON_OPTS >> /dev/null 2>&1 &
+        /bin/su -l $DAEMONUSER -c "$DAEMON $DAEMON_OPTS" >> /dev/null 2>&1 &
     fi
 }
 

@@ -1,7 +1,7 @@
 export JAVA_HOME=/opt/jre
 export PATH=$JAVA_HOME/bin:$PATH
-#xterm
-matchbox-window-manager -use_dialog_mode free &
+exec openbox &
+
 start=`date +%s`
 /opt/efa/efadirekt.sh >> ~/efa.log 2>&1
 stop=`date +%s`
