@@ -1,5 +1,5 @@
                  efa - elektronisches Fahrtenbuch für Ruderer
-                   Copyright (c) 2001-09 by Nicolas Michael
+                   Copyright (c) 2001-10 by Nicolas Michael
 		 --------------------------------------------
 		 
 Nicolas Michael, Helmstr. 9, 10827 Berlin

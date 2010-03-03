@@ -26,10 +26,20 @@ Bitte wähle eine der drei folgenden Möglichkeiten:</p>
 </ul>
 <p>Sollten diese Download-Links nicht mehr funktionieren, so ist bereits eine neuere Version erschienen.
 Die Links zur aktuellen Version findest Du <a href="http://efa.nmichael.de/download.html">hier</a>.</p>
-<p><b>Hinweis zum Online-Update:</b> Seit Version 1.4.0 bietet efa ein Online-Update, welches Download der neuen
-Version, Sicherung der Daten und Installation der neuen Version vollautomatisch erledigt. Wenn Du efa bereits
-im Einsatz hast, kannst Du sämtliche hier beschriebenen Schritte ignorieren und stattdessen im efa-Hauptfenster
-aus dem Menü <i>Datei</i> den Punkt <i>efa Online-Update</i> auswählen.</p>
+<p><b>Hinweis zum Update von efa:</b></p>
+<ul>
+  <li><b>efa Online-Update:</b> Mit dem Online-Update kann efa mit wenigen Mausklicks die neueste Version von efa
+  aus dem Internet herunterladen und installieren. Wenn Du efa bereits im Einsatz hast und auf dem PC über einen
+  Internet-Zugang verfügst, kannst Du sämtliche hier beschriebenen Schritte ignorieren und stattdessen im 
+  efa-Hauptfenster aus dem Menü <i>Datei</i> den Punkt <i>efa Online-Update</i> auswählen.</li>
+  <li><b>manuelles efa-Update:</b> Wenn Du efa auf einem PC ohne Internet-Zugang aktualisieren möchtest, dann lade
+  bitte eine der oben stehenden Dateien herunter. Vor der Installation der neuen Version muß efa beendet werden. Es
+  empfielt sich, sicherheitshalber alle Daten im Ordner <i>daten</i> zu sichern (auch wenn dies normalerweise nicht
+  erforderlich ist). Anschließend kann die neue Version einfach über die alte Version &quot;drüberinstalliert&quot;
+  werden (also mittels des Installationsprogramms in denselben Ordner installiert werden, bzw. das ZIP-Archiv in
+  dasselbe Verzeichnis entpackt werden). Eine Deinstallation der alten Version ist nicht nötig. Die Einstellungen
+  und Daten bleiben dabei erhalten und können von der neuen Version weitergenutzt werden.</li>
+</ul>
 
 <br><h3>2. Schritt: Installationsvorbereitungen</h3>
 <p>Wenn Du bereits eine ältere Version von efa in Benutzung hast, lies bitte zuerst <a href="http://efa.nmichael.de/INSTALL.TXT">diese Hinweise</a> durch.</p>
@@ -61,77 +71,65 @@ Bezeichnungen für verschiedene Produkte gibt!</b><br>
 Anleitung nicht mehr stimmt, da sich die Seiten geändert haben, schreibe mir bitte eine <a href="mailto:software@nmichael.de">email</a>.</i></p>
 <ul>
   <li><b>Nutzer von Linux, Solaris und Windows XP/Server-2003/2000/Vista:</b>
-    <ul>
-      <li>Öffne die Seite <a href="http://java.sun.com/javase/downloads/index.jsp" target="_blank">http://java.sun.com/javase/downloads/index.jsp</a>
-          in einem Webbrowser.</li>
-      <li>Klicke in der Rubrik <i>Java SE Runtime Environment (JRE) 6 Update XX</i> auf <i>Download</i>.</li>
-      <li>Wähle aus der Auswahlliste <i>Platform</i> Dein Betriebssystem aus. Windows-Nutzer wählen hier den Punkt <i>Windows</i> 
-          aus (ohne <i>x64</i>, es sei denn, Du benutzt die 64-Bit Version von Windows). Linux-Nutzer wählen den Punkt
-	  <i>Linux</i> aus (ohne <i>x64</i>, es sei denn, Du benutzt eine 64-Bit Version von Linux).</li>
-      <li>Wähle aus der Auswahlliste <i>Language</i> den Punkt <i>Multi-language</i>.</li>
-      <li>Selektiere die Option <i>I agree to the Java SE Runtime Environment 6 License Agreement</i>.</li>
-      <li>Klicke <i>Continue</i>.</li>
-      <li>Klicke in der Rubrik <i>... Offline Installation</i> (bei Windows-Downloads: <i>Windows Offline Installation</i>)
-          auf den blau hinterlegten Link (bei Windows-Downloads z.B. <i>jre-6u10-windows-i586-p.exe</i> oder ähnlich).</li>
-      <li>Doppelklicke nach dem Download auf die heruntergeladene Datei, um das Java-Installationsprogramm zu starten.</li>
-      <li>Folge den Anweisungen des Installationsprogramms.</li>
-    </ul>
+        <ul>
+	  <li>Öffne die Seite <a href="http://java.sun.com/javase/downloads/index.jsp" target="_blank">http://java.sun.com/javase/downloads/index.jsp</a>
+              in einem Webbrowser.</li>
+          <li>Klicke in der Rubrik <i>Java Platform, Standard Edition</i> bei <i>JDK 6 Update XX (JDK or JRE)</i> auf <i>Download JRE</i>.</li>
+          <li>Wähle aus der Auswahlliste <i>Platform</i> Dein Betriebssystem aus. Windows-Nutzer wählen hier den Punkt <i>Windows</i> 
+              aus (ohne <i>x64</i>, selbst wenn Du 64-Bit Windows benutzt). Linux-Nutzer wählen den Punkt
+    	      <i>Linux</i> aus (ebenfalls ohne <i>x64</i>).</li>
+          <li>Selektiere die Option <i>I agree to the Java SE Runtime Environment ... License Agreement</i>.</li>
+          <li>Klicke <i>Continue</i>.</li>
+          <li>Klicke in der Rubrik <i>Available Files</i> auf den unterlegten Link, um Java herunterzuladen (falls
+	      mehrere Links angeboten werden, wähle Dein bevorzugtes Download-Format).</li>
+	  <li>Speichere den Download auf Deinem Computer.</li>
+          <li>Doppelklicke nach dem Download auf die heruntergeladene Datei, um das Java-Installationsprogramm zu
+	      starten. Du benötigst hierzu Administrator-Rechte auf Deinem Computer.</li>
+          <li>Folge den Anweisungen des Installationsprogramms.</li>
+	</ul>
   </li>
   <li><b>Nutzer älterer Windows-Betriebssysteme wie Windows 98SE/ME:</b>
-    <ul>
-      <li>Öffne die Seite <a href="http://java.sun.com/products/archive/" target="_blank">java.sun.com/products/archive</a>
-          in einem Webbrowser.</li>
-      <li>Wähle in der Rubrik <i>Java 2 Platform Standard Edition (J2SE)</i> bei <i>JDK/JRE - 5.0</i> den Punkt
-          <i>5.0 Update 15</i> aus (bzw. die neueste Version 5.0 Update x) und klicke dahinter auf <i>Go</i>.</li>
-      <li>Klicke in der Rubrik <i>JRE 5.0 Update x</i> auf <i>Download JRE</i>.</li>
-      <li>Wähle aus der Auswahlliste <i>Platform</i> den Punkt <i>Windows</i> aus (ohne <i>x64</i>).</li>
-      <li>Wähle aus der Auswahlliste <i>Language</i> den Punkt <i>Multi-language</i>.</li>
-      <li>Selektiere die Option <i>I agree to the Software License Agreement</i>.</li>
-      <li>Klicke <i>Continue</i>.</li>
-      <li>Klicke in der Rubrik <i>Windows Offline Installation</i> auf den blau hinterlegten Link
-          (z.B. <i>jre-1_5_0_15-windows-i586-p.exe</i> oder ähnlich).</li>
-      <li>Doppelklicke nach dem Download auf die heruntergeladene Datei, um das Java-Installationsprogramm zu starten.</li>
-      <li>Folge den Anweisungen des Installationsprogramms.</li>
-    </ul>
+        <ul>
+	  <li>Öffne die Seite <a href="http://java.sun.com/javase/downloads/index_jdk5.jsp" target="_blank">http://java.sun.com/javase/downloads/index_jdk5.jsp</a>
+              in einem Webbrowser.</li>
+          <li>Klicke in der Rubrik <i>Java Runtime Environment (JRE) 5.0 Update XX</i> auf <i>Download</i>.</li>
+          <li>Da Java 5 bereits das Ende des offiziellen Supports erreicht hat, mußt Du vor dem Download von Java 5
+	      ein Registrierungs-Formular ausfüllen, bevor Du zum Download gelangst.</li>
+	</ul>
   </li>
   <li><b>Nutzer noch älterer Windows-Betriebssysteme wie Windows 98 (nicht SE)/NT4-SP6a:</b><br>
       <i>Achtung: Für den optimalen Einsatz benötigt efa Java 5 oder neuer. efa funktioniert zwar weiterhin auch mit
       Java 1.4.2, jedoch werden einige Funktionen unter Java 1.4.2 nicht vollständig unterstützt.</i>
-    <ul>
-      <li>Öffne die Seite <a href="http://java.sun.com/products/archive/" target="_blank">java.sun.com/products/archive</a>
-          in einem Webbrowser.</li>
-      <li>Wähle in der Rubrik <i>Java 2 Platform Standard Edition (J2SE)</i> bei <i>J2SDK/J2RE - 1.4</i> den Punkt
-          <i>1.4.2_17</i> aus (bzw. die neueste Version 1.4.2_xx) und klicke dahinter auf <i>Go</i>.</li>
-      <li>Klicke in der Rubrik <i>J2RE 1.4.2_1x</i> auf <i>Download J2RE</i>.</li>
-      <li>Wähle aus der Auswahlliste <i>Platform</i> den Punkt <i>Windows</i> aus.</li>
-      <li>Wähle aus der Auswahlliste <i>Language</i> den Punkt <i>Multi-language</i>.</li>
-      <li>Selektiere die Option <i>I agree to the Software License Agreement</i>.</li>
-      <li>Klicke <i>Continue</i>.</li>
-      <li>Klicke in der Rubrik <i>Windows Offline Installation</i> auf den blau hinterlegten Link
-          (z.B. <i>j2re-1_4_2_17-windows-i586-p.exe</i> oder ähnlich).</li>
-      <li>Doppelklicke nach dem Download auf die heruntergeladene Datei, um das Java-Installationsprogramm zu starten.</li>
-      <li>Folge den Anweisungen des Installationsprogramms.</li>
-    </ul>
+        <ul>
+          <li>Öffne die Seite <a href="http://java.sun.com/products/archive/" target="_blank">java.sun.com/products/archive</a>
+              in einem Webbrowser.</li>
+          <li>Wähle in der Rubrik <i>Java Platform Standard Edition (Java SE)</i> bei <i>J2SDK/J2RE - 1.4</i> den Punkt
+              <i>1.4.2_19</i> aus (bzw. die neueste Version 1.4.2_xx) und klicke dahinter auf <i>Go</i>.</li>
+          <li>Klicke in der Rubrik <i>J2SE v 1.4.2_xx JRE</i> auf <i>Download J2SE JRE</i>.</li>
+          <li>Da Java 1.4.2 bereits das Ende des offiziellen Supports erreicht hat, mußt Du vor dem Download von Java 1.4.2
+	      ein Registrierungs-Formular ausfüllen, bevor Du zum Download gelangst.</li>
+        </ul>
   </li>
   <li><b>Nutzer ganz alter Windows-Betriebssysteme wie Windows 95/NT4-SP5:</b><br>
       <i>Achtung: Für den optimalen Einsatz benötigt efa Java 5 oder neuer. efa funktioniert zwar weiterhin auch mit
-      Java 1.4.0, jedoch werden einige Funktionen unter Java 1.4.2 nicht vollständig unterstützt und diese Konfiguration
-      auch nicht mehr getestet.</i>
-    <ul>
-      <li>Öffne die Seite <a href="http://java.sun.com/products/archive/" target="_blank">java.sun.com/products/archive</a>
-          in einem Webbrowser.</li>
-      <li>Wähle in der Rubrik <i>Java 2 Platform Standard Edition (J2SE)</i> bei <i>J2SDK/J2RE - 1.4</i> den Punkt
-          <i>1.4.0_04 + documentation</i> aus und klicke dahinter auf <i>Go</i>.</li>
-      <li>Klicke in der Rubrik <i>Download J2SE v 1.4.0_04</i> in der Spalte <i>JRE</i> in der Zeile
-          <i>Windows (U.S. English / all languages)</i> auf <i>Download</i>.</li>
-      <li>Wähle aus der Auswahlliste <i>Platform</i> den Punkt <i>Windows</i> aus.</li>
-      <li>Selektiere die Option <i>I agree to the Software License Agreement</i>.</li>
-      <li>Klicke <i>Continue</i>.</li>
-      <li>Klicke in der Rubrik <i>Windows (all languages, including English)</i> auf den blau hinterlegten Link
-          (z.B. <i>j2re-1_4_0_04-windows-i586-i.exe</i> oder ähnlich).</li>
-      <li>Doppelklicke nach dem Download auf die heruntergeladene Datei, um das Java-Installationsprogramm zu starten.</li>
-      <li>Folge den Anweisungen des Installationsprogramms.</li>
-    </ul>
+      Java 1.4.0, jedoch werden einige Funktionen unter Java 1.4.0 nicht vollständig unterstützt.</i>
+        <ul>
+          <li>Öffne die Seite <a href="http://java.sun.com/products/archive/" target="_blank">java.sun.com/products/archive</a>
+              in einem Webbrowser.</li>
+          <li>Wähle in der Rubrik <i>Java Platform Standard Edition (Java SE)</i> bei <i>J2SDK/J2RE - 1.4</i> den Punkt
+              <i>1.4.0_04 + documentation</i> aus und klicke dahinter auf <i>Go</i>.</li>
+          <li>Klicke in der Rubrik <i>Download J2SE v 1.4.0_04</i> in der Spalte <i>JRE</i> in der Zeile
+              <i>Windows (U.S. English / all languages)</i> auf <i>Download</i>.</li>
+          <li>Wähle aus der Auswahlliste <i>Platform</i> den Punkt <i>Windows</i> aus.</li>
+          <li>Selektiere die Option <i>I agree to the Software License Agreement</i>.</li>
+          <li>Klicke <i>Continue</i>.</li>
+          <li>Klicke in der Rubrik <i>Windows (all languages, including English)</i> auf den blau hinterlegten Link
+              (z.B. <i>j2re-1_4_0_04-windows-i586-i.exe</i> oder ähnlich).</li>
+	  <li>Speichere den Download auf Deinem Computer.</li>
+          <li>Doppelklicke nach dem Download auf die heruntergeladene Datei, um das Java-Installationsprogramm zu
+	      starten. Du benötigst hierzu Administrator-Rechte auf Deinem Computer.</li>
+          <li>Folge den Anweisungen des Installationsprogramms.</li>
+        </ul>
   </li>
 </ul>
 
@@ -153,7 +151,7 @@ Anleitung nicht mehr stimmt, da sich die Seiten geändert haben, schreibe mir bit
 
 <br><br><hr>
 <small><a href="http://efa.nmichael.de/" target="_new">efa - Elektronisches Fahrtenbuch</a>,
-Copyright &copy; 2001-09 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
+Copyright &copy; 2001-10 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
 &lt;<a href="mailto:software@nmichael.de">software@nmichael.de</a>&gt;</small>
 
 </body>

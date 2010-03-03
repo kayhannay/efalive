@@ -3129,3 +3129,21 @@ efa change log
 10.12.09	* Bugfix:    efaDirekt: Geändertes backup-Verzeichnis wurde beim Neustart von efa im Bootshaus ignoriert
 			     --- fixed.
 		* Version:   1.8.3_05
+
+27.01.10	* New:	     efa warnt jetzt beim Online-Update, wenn der OS-Benutzer keine Schreibrechte in dem Verzeichnis
+			     der efa-Installation hat.
+		* New:	     efa gibt jetzt beim Erstellen der Meldedatei für die Wanderruderstatistik auch sichtbar
+			     für den Benutzer die Anzahl der aktiven Mitglieder aus.
+		* New:	     Wettbewerbsbedingungen für LRV MVP angepaßt.
+06.02.10	* New:	     DRV: Anschreiben für Vereine angepaßt.
+		* Version:   1.8.3_06
+
+13.02.10	* Bugfix:    DRV: efa erzwingt jetzt die Eingabe eines Grundes, wenn eine Meldung zurückgewiesen werden
+		             soll.
+15.02.10	* New:       DRV: Das Zurückweisen einer Nachricht kann nun rückgängig gemacht werden.
+		* New:	     DRV: Testmode für alle Funktionen implementiert.
+		* Version:   1.8.3_07
+
+28.02.10	* Change:    efaDirekt: startMaximized ist jetzt als Standardkonfiguation voreingestellt (insb. auch
+			     für efa Live).
+02.03.10	* Version:   1.8.3_08
