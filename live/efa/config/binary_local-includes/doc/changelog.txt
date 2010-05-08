@@ -1,0 +1,4 @@
+Changelog file for EFA live
+
+1.0-1.8.3_11 (released 08.05.2010):
+	- Initial version of the EFA live CD

@@ -3147,3 +3147,17 @@ efa change log
 28.02.10	* Change:    efaDirekt: startMaximized ist jetzt als Standardkonfiguation voreingestellt (insb. auch
 			     für efa Live).
 02.03.10	* Version:   1.8.3_08
+
+07.03.10	* Bugfix:    Änderungen an Gruppenliste wurden beim Bearbeiten von Mitgliedern nicht immer gespeichert --
+			     fixed.
+		* New:	     Bei Wettbewerben gibt efa jetzt bei der Auflistung von Wanderfahrten, Zielfahren oder
+			     Winterfahrten einen Hinweis aus, falls weitere Fahrten aus die angezeigten vorliegen, damit
+			     Benutzer nicht irritiert sind, daß einige Fahrten nicht angezeigt werden.
+		* Version:   1.8.3_09
+
+23.04.10	* New:	     Zielbereiche 14 und 15 (LRV Berlin) werden unterstützt.
+		* Bugfix:    NullPointerException beim Laden von Statistikeinstellungen gefixed.
+		* Version:   1.8.3_10
+
+29.04.10	* New:	     efaDirekt: Für email-Versand kann jetzt auch der SMTP-Port konfiguriert werden.
+02.05.10	* Version:   1.8.3_11
