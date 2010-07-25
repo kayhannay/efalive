@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.5/template-install.dtd">
+<install version="1.5" type="template">
+   <name>WSVD Marielle</name>
+    <creationDate>1 July 2010</creationDate>
+    <author>Kay Hannay</author>
+    <authorEmail>klinux@hannay.de</authorEmail>
+    <authorUrl>http://www.hannay.de</authorUrl>
+    <copyright></copyright>
+    <license>GNU/GPL</license>
+    <version>0.0.1</version>
+    <description>WSVD Marielle template</description>
+    <positions>
+        <position>left</position>
+        <position>navi</position>
+        <position>header</position>
+        <position>footer</position>
+        <position>user1</position>
+        <position>user3</position>
+        <position>user4</position>
+    </positions>
+    <files></files>
+    <!--
+    <params>
+        <param name="width" type="text" default="950" label="Template Breite" description="Template Breite in Pixel" />
+    </params>
+    -->
+</install>
+

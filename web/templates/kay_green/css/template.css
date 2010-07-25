@@ -1,0 +1,288 @@
+/* ##### reset CSS ##### */
+/*
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 	margin:0;padding:0;}
+table { border-collapse:collapse; border-spacing:0;}
+fieldset,img { 	border:0;}
+address,caption,cite,code,dfn,em,strong,th,var {	font-style:normal;font-weight:normal; }
+ol,ul { list-style:none;}
+caption,th { text-align:left;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;font-weight:normal;}
+q:before,q:after {content:'';}
+abbr,acronym { border:0;}
+*/
+/* ##### fonts ##### */
+
+body {
+    background-color: #94a970 /* a8bd86 */;
+    font-family: Arial,sans-serif;
+    font-size: 10pt;
+    margin: 0;
+}
+/*
+h1 {
+    font-size:175%;
+    font-weight:bold;
+}
+
+h2 {
+    font-size:150%;
+    font-weight:bold;
+}
+
+h3 {
+    font-size:125%;
+    font-weight:bold;
+}
+*/
+.contentheading {
+  font-size:x-large;
+  font-weight:bold;
+}
+
+.contentpaneopen {
+  margin-top:20px;
+}
+
+a:link { color:#228B22; }
+a:visited { color:#006400; }
+a:hover { color:#006400; }
+a:active { color:#006400; }
+
+img { 
+    border: 0 none; 
+}
+
+/* ##### menu ##### */
+div.kayrounded_menu ul {
+	padding: 0;
+	margin: 0;
+	list-style-type:none;
+	list-style-position:inside;
+}
+
+div.kayrounded_menu ul li {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+div.kayrounded_menu ul li li {
+	padding-left: 10px;
+	background-image:url(../images/arrow.png); background-repeat:no-repeat;
+	background-position:left 5px;
+}
+
+div.kayrounded_menu ul li a:link, 
+div.kayrounded_menu ul li a:visited 
+{
+	font-weight: bold;
+	text-decoration:none;
+}
+
+div.kayrounded_menu ul li a:hover, 
+div.kayrounded_menu ul li a:active 
+{
+	font-weight: bold;
+	text-decoration:underline;
+}
+
+ul.menu li#current > a {
+    color:#FF8400; 
+    text-decoration:underline; 
+}
+
+
+/* ##### own CSS ##### */
+.page_wrapper {
+    background-color:white;
+	border: solid 0px #aaa;
+    margin:auto;
+	padding-left: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+	width:950px;
+}
+
+.content_wrapper {
+    float:right;
+    border:solid 0px #aaa;
+    padding: 25px 0 0 25px;
+    width:760px;
+}
+
+#breadcrumb {
+    clear:both;
+    float:none;
+    text-align:left;
+    position:relative;
+    /*padding-top:25px;*/
+    /*width:950px;*/
+    /*height:75px;*/
+}
+
+.header {
+    background-color:transparent;
+    background-image:url(../images/banner_hannay.png);
+    background-repeat:no-repeat;
+    /* background-attachment:fixed; */
+    background-position:center;
+    margin: 20px 0 0 0;
+    /*width:950px;*/
+    clear:both;
+    height:104px;
+}
+
+#left {
+	float:left;
+	/* left:700px; */
+	overflow:hidden; 
+	position:relative;
+	width:165px;
+    margin: 20px 0 0 0;
+}
+
+#main {
+	/* float:right; */
+	/* right:250px; */
+	overflow:hidden;
+	position:relative;
+    clear:both;
+	/*width:700px;*/
+}
+
+#top_right {
+    float:right;
+    /* right:100px; */
+    overflow:hidden;
+    position:relative;
+    /* width:240px; */
+    text-align:right;
+    /* height:300px; */
+}
+
+#top_left {
+    float:left;
+    /* right:100px; */
+    overflow:hidden;
+    position:relative;
+    /* width:710px; */
+    /* height:220px; */
+}
+
+#footer {
+    clear:both;
+    float:none;
+    text-align:center;
+    position:relative;
+    padding-top:25px;
+    /*width:950px;*/
+    /*height:75px;*/
+}
+
+/* ##### search box ##### */
+div.search input {
+	width: 120px;
+	border: 1px solid #ccc;
+	margin: 1px 0 0px 0;
+}
+
+div.box_body h3 {
+	margin: 0;
+}
+
+
+/* ##### modules ##### */
+div.kayrounded {
+    position:relative;
+    margin: 20px 0;
+}
+
+div.kayrounded div.box_corner_tl {
+    background:transparent url(../images/box_ecke_lo.png) no-repeat scroll 0 0;
+}
+
+div.kayrounded div.box_corner_tr {
+    background:transparent url(../images/box_ecke_ro.png) no-repeat scroll 100% 0;
+    padding:0 21px;
+}
+
+div.kayrounded div.box_border_t {
+    background:transparent url(../images/box_kante_o.png) repeat-x scroll 0 0;
+    height:21px;
+}
+
+div.kayrounded div.box_border_l {
+    background:transparent url(../images/box_kante_l.png) repeat-y scroll 0 0;
+}
+
+div.kayrounded div.box_border_r {
+    background:transparent url(../images/box_kante_r.png) repeat-y scroll 100% 0;
+    padding:0 4px;
+}
+
+div.kayrounded div.box_body {
+    background-color:#BCEE68;
+    padding:0 17px;
+}
+
+div.kayrounded div.box_corner_bl {
+    background:transparent url(../images/box_ecke_lu.png) no-repeat scroll 0 0;
+}
+
+div.kayrounded div.box_corner_br {
+    background:transparent url(../images/box_ecke_ru.png) no-repeat scroll 100% 0;
+    padding:0 21px;
+}
+
+div.kayrounded div.box_border_b {
+    background:transparent url(../images/box_kante_u.png) repeat-x scroll 0 0;
+    height:21px;
+}
+
+
+div.kayrounded {
+    position:relative;
+    margin: 20px 0;
+}
+
+div.kayrounded_menu div.box_corner_tl {
+    background:transparent url(../images/box_ecke_lo.png) no-repeat scroll 0 0;
+}
+
+div.kayrounded_menu div.box_corner_tr {
+    background:transparent url(../images/box_ecke_ro.png) no-repeat scroll 100% 0;
+    padding:0 21px;
+}
+
+div.kayrounded_menu div.box_border_t {
+    background:transparent url(../images/box_kante_o.png) repeat-x scroll 0 0;
+    height:21px;
+}
+
+div.kayrounded_menu div.box_border_l {
+    background:transparent url(../images/box_kante_l.png) repeat-y scroll 0 0;
+}
+
+div.kayrounded_menu div.box_border_r {
+    background:transparent url(../images/box_kante_r.png) repeat-y scroll 100% 0;
+    padding:0 4px;
+}
+
+div.kayrounded_menu div.box_body {
+    background-color:#BCEE68;
+    padding:0 17px;
+}
+
+div.kayrounded_menu div.box_corner_bl {
+    background:transparent url(../images/box_ecke_lu.png) no-repeat scroll 0 0;
+}
+
+div.kayrounded_menu div.box_corner_br {
+    background:transparent url(../images/box_ecke_ru.png) no-repeat scroll 100% 0;
+    padding:0 21px;
+}
+
+div.kayrounded_menu div.box_border_b {
+    background:transparent url(../images/box_kante_u.png) repeat-x scroll 0 0;
+    height:21px;
+}
+
