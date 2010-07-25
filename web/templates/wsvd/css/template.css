@@ -9,6 +9,24 @@ img {
     border:0;
 }
 
+h1 {
+    color:#006c96;
+}
+
+h2 {
+    color:#006c96;
+}
+
+h3 {
+    color:#006c96;
+}
+
+.contentheading {
+    font-size:15pt;
+    color:#006c96;
+    font-weight:bold;
+}
+
 .logo {
     background-image:url(../images/flagge.jpg);
     background-repeat:no-repeat;
@@ -21,7 +39,7 @@ img {
 .title {
     float:right;
     font-size:12pt;
-    margin:39px 22px 0 0;
+    margin:30px 22px 0 0;
 }
 
 .title1 {
@@ -37,54 +55,22 @@ img {
 }
 
 .menu_container {
-    width:950px;
+    width:930px;
     height:48px;
     clear:both;
-}
-
-.menu_left {
-    background:transparent url(../images/menu_left.jpg) no-repeat scroll 0 0;
     margin:0 10px;
-    /*
-    float:left;
-    height:48px;
-    width:950px;
-    */
-}
-
-/*
-.menu {
-    color:white;
-    background-color:#006c96;
-    height:46px;
-    
-    text-align:center;
-    
-}
-*/
-
-.menu_right {
-    background:transparent url(../images/menu_right.jpg) no-repeat scroll 100% 0;
-    padding:0 9px;
-    /*
-    height:48px;
-    width:8px;
-    */
+    position:relative;
 }
 
 #main_menu {
     color:white;
     background-color:#006c96;
-    height:23px;
-    /*
-  white-space: nowrap;
-  float: left;
-  */
+    height:24px;
 }
 
 #main_menu ul {
   margin: 0;
-  padding: 0 10px;
+  padding: 0 25px;
   list-style:none;
 }
 
@@ -99,47 +85,35 @@ img {
 
 #main_menu a {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 9pt;
+  font-size: 8.5pt;
   float:left;
   color: white;
   text-decoration: none;
 }
 
-
 #main_menu a#active_menu-nav {
 	background-position: 0 0;
 }
-/*
-#main_menu #current span {
-    font-weight:bold;
-}
-*/
+
 #main_menu span {
     color:white;
     font-weight: normal;
 }
 
 #sub_menu {
-    /*
-  white-space: nowrap;
-  float: left;
-  
-    color:white;
-    */
-    height:23px;
+    height:24px;
     background-color:#006c96;
-
 }
 
 #sub_menu ul {
   margin: 0;
-  padding: 1px 10px;
+  padding: 0;
   list-style:none;
 }
 
 #sub_menu li {
 	float: left;
-	background: url(../images/menu_separator.jpg) top right no-repeat;
+	background: url(../images/submenu_separator.jpg) top right no-repeat;
 	margin: 2px 0 0 0;
 	padding: 0 13px;
     color:white;
@@ -147,10 +121,8 @@ img {
 
 #sub_menu a {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 9pt;
-  /* font-weight: bold; */
+  font-size: 8.5pt;
   float:left;
-  /* display:block;*/
   color: white;
   text-decoration: none;
 }
@@ -184,18 +156,14 @@ img {
     background-color:#a0bed0; 
     top:0px;
     left:0px;
-    /* z-index:10;*/
-    /* background:transparent url(testbild1.jpg) no-repeat scroll 0 0; */
     margin:10px;
-    /*padding:10px;*/
-    /*width:950px;*/
     clear:both;
 }
 
 .images {
     /* For IE < 8 */
     zoom:1;
-    width:304px;
+    width:303px;
     float:left;
     overflow:hidden;
 }
@@ -211,14 +179,14 @@ img {
 .frontpage_top {
     background-color: white;
     width:930px;
-    height:199px;
+    height:200px;
     margin-bottom:10px;
 }
 
 .frontpage_bottom {
-    background: white url(../images/waves.jpg) no-repeat scroll 0 0;
+    background: #9fbdcf url(../images/waves.jpg) no-repeat scroll right bottom;
     width:930px;
-    height:199px;
+    height:200px;
 }
 
 .moduletable_left {
@@ -227,7 +195,7 @@ img {
 
 .moduletable_middle {
     float:left;
-    margin:0 8px;
+    margin:0 10px;
 }
 
 .moduletable_right {
@@ -236,19 +204,13 @@ img {
 
 .content {
     background: #dbe7ed url(../images/content_back.jpg) no-repeat scroll right bottom;
-    /*float:right;*/
     overflow:hidden;
     padding:25px 30px;
-    /*padding:10px;*/
-    /*width:950px;*/
-    /*width:556px;*/
     min-height:650px
 }
 
 .content_background {
     background-color:white;
-    /*width:626px;*/
-    /*float:right;*/
     overflow:hidden;
     padding-left:10px
 }
