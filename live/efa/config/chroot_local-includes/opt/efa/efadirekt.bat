@@ -62,6 +62,8 @@ IF "%OS%" == "Windows_NT" GOTO STARTNT
 GOTO START9X
 
 :STARTNT
+REM Path for Windows 7 (64 Bit)
+SET PATH=%PATH%;C:\Windows\SysWOW64
 echo Start: efa im Bootshaus (Windows NT)
 start /b javaw %EFA_JAVA_ARGUMENTS%
 GOTO ENDE

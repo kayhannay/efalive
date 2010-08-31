@@ -1,0 +1,165 @@
+INSTALLATION VON EFA - ELEKTRONISCHES FAHRTENBUCH FUER RUDERER
+==============================================================
+
+(Please scroll down for an English version of this text.)
+
+
+Hinweis zur aktuellen Version 2 (Entwicklerversion)
+---------------------------------------------------
+Die vorliegende Version von efa ist eine Entwicklerversion, die viele neue
+Funktionen enthaelt, jedoch noch nicht ausfuehrlich getestet ist. Sie richtet
+sich an Nutzer, die schon moeglichst frueh die neuen Funktionen der Version 2
+testen und ausprobieren moechten und durch ihr Feedback die weitere Entwicklung
+unterstuetzen moechten. Nutzer, die in erster Linie an einer stabilen Version
+interessiert sind, sollten im Produktiveinsatz die Version 1.8.3 einsetzen.
+
+
+Hinweise zum Umstieg von Version 1.x.x auf die aktuelle Version
+---------------------------------------------------------------
+Da es sich bei der vorliegenden Version um eine Entwicklerversion handelt,
+sollte diese Version in ein separates Verzeichnis installiert werden (also in
+ein anderes Verzeichnis als das der Version 1.x.x). Dies ermoeglicht es, im
+Falle von Problemen jederzeit wieder die alte Version zu verwenden.
+
+Um die Daten der Version 1.x.x in die neue Version zu uebernehmen sollten vor
+dem ersten Start die Inhalte des Verzeichnisses "daten" der alten Version in das
+Verzeichniss "data" der vorliegenden Version kopiert werden. Beim Start
+konvertiert efa dann alle Daten in die neuen Formate.
+
+ACHTUNG: Saemtliche Daten, die mit der vorliegenden Version modifiziert wurden,
+koennen von der Version 1.8.3 nicht mehr verarbeitet werden!
+
+
+Installation mittels Windows-Setup-Programm
+-------------------------------------------
+Wenn Du efa als Windows-Setup-Programm heruntergeladen hast, so starte einfach
+das Setup-Programm und folge den Schritten durch die Installation.
+
+Hinweis: Falls Du bereits eine fruehere Entwicklerversion von efa2 benutzt, so
+kannst Du die vorliegende Version einfach in dasselbe Verzeichnis
+"drueberinstallieren". Dabei wird die Version aktualisiert -- die Daten bleiben
+erhalten.
+
+
+Installation des ZIP-Archivs
+----------------------------
+Wenn Du efa als ZIP-Archiv heruntergeladen hast, so erstelle ein neues
+Verzeichnis fuer efa (z.B. c:\programme\efa2 unter Windows oder /opt/efa2 unter
+Linux) und entpacke den Inhalt des ZIP-Archivs in dieses Verzeichnis.
+
+Hinweis: Falls Du bereits eine fruehere Entwicklerversion von efa2 benutzt, so
+kannst Du die vorliegende Version einfach in dasselbe Verzeichnis
+"drueberinstallieren". Dabei wird die Version aktualisiert -- die Daten bleiben
+erhalten.
+
+
+Starten von efa
+---------------
+Je nach Einsatzzweck bietet efa zwei verschiedene Versionen (Modi) an, in denen
+efa betrieben werden kann:
+
+Die Basis-Version startet mit einer Administrations-Oberflaeche mit vollem
+Zugriff auf alle Daten und ist fuer den Einsatz eines Bootswarts, Administrators
+oder einer Privatperson gedacht.
+
+Die Bootshaus-Version startet mit einer vereinfachten Oberflaeche, die fuer den
+Einsatz im Bootshaus gedacht ist, bei der Vereinsmitglieder ihre Fahrten direkt
+in efa eintragen und saemtliche Administrationsaufgaben nur passwortgeschuetzt
+von einem Administrator durchgefuehrt werden koennen.
+
+Bei Verwendung des Windows-Setup-Programms werden automatisch Eintraege zum
+Starten von efa im Windows-Startmenue erzeugt.
+
+Ansonsten kann efa durch folgende Batch-Dateien bzw. Skripte gestartet werden:
+efa_base.sh      efa Basis-Version (Linux/UNIX)
+efa_base.bat     efa Basis-Version (Windows)
+efa_bh.sh        efa Bootshaus-Version (Linux/UNIX)
+efa_bh.bat       efa Bootshaus-Version (Windows)
+efa_cli.sh       efa Kommandozeilen-Programm (Linux/UNIX)
+efa_cli.bat      efa Kommandozeilen-Programm (Windows)
+eddi.sh          eddi - efa Datenlisten-Importeur (Linux/UNIX)
+eddi.bat         eddi - efa Datenlisten-Importeur (Windows)
+elwiz.sh         elwiz - efa Layout Wizard (Linux/UNIX)
+elwiz.bat        elwiz - efa Layout Wizard (Windows)
+emil.sh          emil - efa Meldedatei-Editor (Linux/UNIX)
+emil.bat         emil - efa Meldedatei-Editor (Windows)
+
+
+
+INSTALLATION OF EFA - ELECTRONIC LOGBOOK FOR ROWERS
+===================================================
+
+
+Notes about the current Version 2 (Development Version)
+--------------------------------------------------------
+This version of efa is a development version, which comes with lots of new
+features but has not yet been tested thoroughly. It is intended for users who
+want to try out the new features as early as possible and would like to support
+further development by supplying feedback. User who are mostly concerned about
+a stable version of efa should use the version 1.8.3 for productive environments
+instead.
+
+
+Notes for Migration from Version 1.x.x to this version
+------------------------------------------------------
+Since this version is a development version, it should be installed into a
+separate directory (a different directory as the installation directory of
+version 1.x.x). This allows a safe fallback to the old version at any time.
+
+In order to migrate the data of the old version to the current version of efa,
+you should copy all contents of the directory "daten" from the old version into
+the directory "data" of the new version prior to the first start of efa. efa
+will then convert all files to the new data formats during startup.
+
+WARNING: All data files which are modified with the current version of efa
+cannot be read by efa version 1.8.3 any more!
+
+
+Installation by Windows Setup Program
+-------------------------------------
+If you have downloaded efa as a Windows setup program, simply run the setup
+program and follow the steps through the installation.
+
+Note: If you are already using a previous development version of efa2, simply
+install this version into the same directory as the previous version. This way
+the previous version will be updated, but all data will be kept.
+
+
+Installation of the ZIP Archive
+-------------------------------
+If you have downloaded efa as a ZIP archive, please first create a new directoy
+for efa (e.g. c:\program files\efa2 under Windows or /opt/efa2 under Linux) and
+extract the content of the ZIP archive into that directory.
+
+Note: If you are already using a previous development version of efa2, simply
+install this version into the same directory as the previous version. This way
+the previous version will be updated, but all data will be kept.
+
+
+Starting efa
+------------
+efa comes in two different flavors depending on the intended use:
+
+The Basis Version starts up with an administrative user interface which allows
+full access to all data and is intended for use by administrators or private
+users.
+
+The Boathouse Version comes with a simplified user interface which is intended
+for the use in a boathouse where all rowers enter their outings directly into
+efa. All administrative tasks require an admin login with a password.
+
+If you have used the Windows setup program it has automatically created entries
+for starting efa in your Windows start menu.
+
+Otherwise you can start efa by running the following batch files or shell
+scrips:
+efa_base.sh      efa Base Version (Linux/UNIX)
+efa_base.bat     efa Base Version (Windows)
+efa_bh.sh        efa Boathouse Version (Linux/UNIX)
+efa_bh.bat       efa Boathouse Version (Windows)
+efa_cli.sh       efa Command Line Interface (Linux/UNIX)
+efa_cli.bat      efa Command Line Interface (Windows)
+eddi.sh          eddi - efa Datalist Importer (Linux/UNIX)
+eddi.bat         eddi - efa Datalist Importer (Windows)
+elwiz.sh         elwiz - efa Layout Wizard (Linux/UNIX)
+elwiz.bat        elwiz - efa Layout Wizard (Windows)

@@ -3161,3 +3161,16 @@ efa change log
 
 29.04.10	* New:	     efaDirekt: Für email-Versand kann jetzt auch der SMTP-Port konfiguriert werden.
 02.05.10	* Version:   1.8.3_11
+
+13.05.10	* Bugfix:    Texte Ausschreibung LRV Berlin korrigiert.
+24.05.10	* Bugfix:    Starten von efa unter Windows 7 64bit funktioniert jetzt.
+30.05.10	* Bugfix:    Java-Fehler wurden oft noch immer als efa-Fehler reported --- fixed.
+		* Bugfix:    Installationsanleitung korrigiert (Java-Download für Windows x64).
+		* Version:   1.8.3_12
+
+10.07.10	* Bugfix:    DRV: Die Eigenschaft "Meldung werten" wurde beim Unterbrechen der Berarbeitung einer
+		             Meldung nicht gespeichert, sondern ging verloren --- fixed.
+		* Version:   1.8.3_13
+
+18.07.10	* Change:    Neue email-Adressen für efa-Support.
+		* Version:   1.8.3_14

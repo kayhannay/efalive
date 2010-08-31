@@ -22,10 +22,19 @@
 # Restore efa backup
 # Usage: run_restore.sh <BACKUP_ZIP_FILE>
 #
+
 EFA_DIR=/opt/efa
-EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa/cfg /home/efa/efa/daten"
+EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa"
 EFA_USER=efa
 EFA_GROUP=efa
+
+. /home/efa/.efalive/backup.conf
+. /home/efa/.efalive/version.conf
+
+if [ $EFA_VERSION -eq 2 ]
+then
+    EFA_DIR=/opt/efa2
+fi
 
 if [ ! $1 ]
 then
@@ -61,3 +70,4 @@ cd /
 /bin/chown -R $EFA_USER.$EFA_GROUP $EFA_BACKUP_PATHS
 
 /bin/echo "Restore finished."
+

@@ -2,8 +2,23 @@ export JAVA_HOME=/opt/jre
 export PATH=$JAVA_HOME/bin:$PATH
 exec openbox &
 
+if [ ! -f ~/.efalive/version.conf ]
+then
+	sudo /opt/efalive/bin/efalive_setup.sh
+fi
+
+. ~/.efalive/version.conf
+
+#Set the correct efa start script
+if [ $EFA_VERSION -eq 2 ]
+then
+	EFA_PROG=/opt/efa2/efa_bh.sh
+else
+	EFA_PROG=/opt/efa/efadirekt.sh
+fi
+
 start=`date +%s`
-/opt/efa/efadirekt.sh >> ~/efa.log 2>&1
+$EFA_PROG >> ~/efa.log 2>&1
 stop=`date +%s`
 delta=$(($stop-$start))
 if [ $delta -lt 5 ]
@@ -14,4 +29,5 @@ then
         exit 0
     fi
 fi
-sudo /sbin/shutdown -h now
+#sudo /sbin/shutdown -h now
+

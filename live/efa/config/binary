@@ -26,7 +26,7 @@ LH_BOOTLOADER="grub"
 
 # $LH_CHECKSUMS: set checksums
 # (Default: true)
-LH_CHECKSUMS="true"
+LH_CHECKSUMS="md5"
 
 # ${LH_CHROOT_BUILD: control if we build binary images chrooted
 # (Default: true)

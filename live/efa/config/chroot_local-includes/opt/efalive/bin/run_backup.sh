@@ -22,8 +22,10 @@
 # Create backup of efa data to a ZIP file
 # Usage: run_backup.sh <PATH_TO_STORE_BACKUP>
 #
-EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa/cfg /home/efa/efa/daten"
+EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa"
 BACKUP_FILE=Sicherung_`/bin/date +%Y%m%d_%k%M%S`.zip
+
+. /home/efa/.efalive/backup.conf
 
 ### Sleep a while until the device is mounted completely
 /bin/sleep 5

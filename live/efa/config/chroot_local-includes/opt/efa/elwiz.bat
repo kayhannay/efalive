@@ -38,6 +38,8 @@ IF "%OS%" == "Windows_NT" GOTO STARTNT
 GOTO START9X
 
 :STARTNT
+REM Path for Windows 7 (64 Bit)
+SET PATH=%PATH%;C:\Windows\SysWOW64
 echo Start: elwiz (Windows NT)
 start /b javaw -cp %CP% de.nmichael.efa.elwiz.Elwiz %2 %3 %4 %5 %6 %7 %8 %9
 GOTO ENDE

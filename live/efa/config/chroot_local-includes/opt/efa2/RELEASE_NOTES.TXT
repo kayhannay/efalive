@@ -1,0 +1,28 @@
+             EFA - ELEKTRONISCHES FAHRTENBUCH FUER RUDERER
+                  EFA - ELECTRONIC LOGBOOK FOR ROWERS
+           -------------------------------------------------
+
+                           RELEASE NOTES
+
+
+
+Version 2.0_dev03                                        Release Date 18.07.2010
+--------------------------------------------------------------------------------
+Die vorliegende Version von efa ist eine Entwicklerversion, die viele neue
+Funktionen enthaelt, jedoch noch nicht ausfuehrlich getestet ist. Sie richtet
+sich an Nutzer, die schon moeglichst frueh die neuen Funktionen der Version 2
+testen und ausprobieren moechten und durch ihr Feedback die weitere Entwicklung
+unterstuetzen moechten. Nutzer, die in erster Linie an einer stabilen Version
+interessiert sind, sollten im Produktiveinsatz die Version 1.8.3 einsetzen.
+
+Fuer weitere Informationen, siehe: http://efa.nmichael.de/efa2
+
+
+This version of efa is a development version, which comes with lots of new
+features but has not yet been tested thoroughly. It is intended for users who
+want to try out the new features as early as possible and would like to support
+further development by supplying feedback. User who are mostly concerned about
+a stable version of efa should use the version 1.8.3 for productive environments
+instead.
+
+For further information visit: http://efa.nmichael.de/efa2
