@@ -1,0 +1,63 @@
+# German translations for efaLiveSetup package
+# German messages for efaLiveSetup.
+# Copyright (C) 2010 THE efaLiveSetup's COPYRIGHT HOLDER
+# This file is distributed under the same license as the efaLiveSetup package.
+# Kay Hannay <klinux@hannay.de>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-07 10:16+0200\n"
+"PO-Revision-Date: 2010-09-07 10:18+0200\n"
+"Last-Translator: Kay Hannay <klinux@hannay.de>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../efalivesetup/maingui.py:70
+msgid "efaLive setup"
+msgstr "efaLive Setup"
+
+#: ../efalivesetup/maingui.py:80
+msgid "efa version"
+msgstr "efa Version"
+
+#: ../efalivesetup/maingui.py:92
+msgid "Here you can choose the efa version that "
+msgstr "Hier können Sie auswählen, welche Version von efa "
+
+#: ../efalivesetup/maingui.py:93
+msgid "you would like to use. Please note that efa 2 is a development "
+msgstr "Sie benutzen wollen. Bitte beachten Sie, dass sich efa 2 noch "
+
+#: ../efalivesetup/maingui.py:94
+msgid "version, which might me unstable. If you need a stable version, "
+msgstr "in der Entwicklung befindet und daher instabil sein kann. Wenn Sie "
+
+#: ../efalivesetup/maingui.py:95
+msgid "choose efa 1."
+msgstr "eine stabile Version benötigen, wählen Sie efa 1."
+
+#: ../efalivesetup/maingui.py:104
+msgid "version"
+msgstr "Version"
+
+#: ../efalivesetup/maingui.py:116
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../efalivesetup/maingui.py:120
+msgid "Ok"
+msgstr "Ok"
+
+#: ../efalivesetup/maingui.py:144
+msgid "1 (stable)"
+msgstr "1 (Stabil)"
+
+#: ../efalivesetup/maingui.py:145
+msgid "2 (development)"
+msgstr "2 (Entwicklung)"
