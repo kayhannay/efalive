@@ -30,20 +30,19 @@ import gettext
 APP="efaLiveSetup"
 DIR="locale"
 gettext.install(APP, DIR, unicode=True)
-#locale.setlocale(locale.LC_ALL, '')
-#gettext.bindtextdomain(APP, DIR)
-#gettext.textdomain(APP)
-#_ = gettext.gettext
 
-#def getText(text):
-#    return gettext.gettext(text).decode('iso8859-1')
-#_ = getText
+import logging
+LOG_FILENAME = 'efaLiveSetup.log'
+logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
 
 class SetupModel(object):
     def __init__(self, confPath):
+        self._logger = logging.getLogger('efalivesetup.maingui.SetupModel')
         self._confPath=confPath
         self._versionFileName = os.path.join(self._confPath, "version.conf")
+        self._backupFileName = os.path.join(self._confPath, "backup.conf")
         self.efaVersion=Observable()
+        self.efaBackupPaths=None
 
     def initModel(self):
         self.efaVersion.updateData(1)
@@ -57,21 +56,31 @@ class SetupModel(object):
             if line.startswith("EFA_VERSION="):
                 versionStr=line[(line.index('=') + 1):]
                 self.setEfaVersion(int(versionStr))
-                print("Read file: " + versionStr)
+                self._logger.debug("Read file: " + versionStr)
 
     def save(self):
-        print("Saving file")
+        self._logger.debug("Saving files")
         versionFile=open(self._versionFileName, "w")
         versionFile.write("EFA_VERSION=%d\n" % self.efaVersion._data)
         versionFile.close()
+        backupFile=open(self._backupFileName, "w")
+        backupFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
+        backupFile.close()
 
     def setEfaVersion(self, version):
         self.efaVersion.updateData(version)
-        print("EFA version: %d" % version)
+        if version == 1:
+            self.efaBackupPaths = "/opt/efa/daten /home/efa/efa"
+        elif version == 2:
+            self.efaBackupPaths = "/opt/efa2/data /home/efa/efa"
+        else:
+            self._logger.error("Undefined version received: %d" % version)
+        self._logger.debug("EFA version: %d" % version)
 
 
 class SetupView(gtk.Window):
     def __init__(self, type):
+        self._logger = logging.getLogger('efalivesetup.maingui.SetupView')
         gtk.Window.__init__(self, type)
         self.set_title(_("efaLive setup"))
         self.set_border_width(5)
@@ -130,6 +139,7 @@ class SetupView(gtk.Window):
 
 class SetupController(object):
     def __init__(self, argv, model=None, view=None):
+        self._logger = logging.getLogger('efalivesetup.maingui.SetupController')
         if(len(argv) < 2):
             raise(BaseException("No arguments given"))
         confPath=argv[1]
@@ -165,7 +175,7 @@ class SetupController(object):
         gtk.main_quit()
 
     def close(self, widget, event, data=None):
-        print("Currently we have no implementation for quit.")
+        self._logger.info("Currently we have no implementation for quit.")
         return False
 
     def initEvents(self):
@@ -183,3 +193,4 @@ class SetupController(object):
 if __name__ == '__main__':
     controller = SetupController(sys.argv)
     gtk.main();
+
