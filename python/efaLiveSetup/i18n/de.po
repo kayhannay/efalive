@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: efaLiveSetup 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-07 10:16+0200\n"
+"POT-Creation-Date: 2010-09-13 17:20+0200\n"
 "PO-Revision-Date: 2010-09-07 10:18+0200\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -18,46 +18,76 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../efalivesetup/maingui.py:70
+#: maingui.py:97
 msgid "efaLive setup"
 msgstr "efaLive Setup"
 
-#: ../efalivesetup/maingui.py:80
+#: maingui.py:108
 msgid "efa version"
 msgstr "efa Version"
 
-#: ../efalivesetup/maingui.py:92
+#: maingui.py:120
 msgid "Here you can choose the efa version that "
 msgstr "Hier können Sie auswählen, welche Version von efa "
 
-#: ../efalivesetup/maingui.py:93
+#: maingui.py:121
 msgid "you would like to use. Please note that efa 2 is a development "
 msgstr "Sie benutzen wollen. Bitte beachten Sie, dass sich efa 2 noch "
 
-#: ../efalivesetup/maingui.py:94
+#: maingui.py:122
 msgid "version, which might me unstable. If you need a stable version, "
 msgstr "in der Entwicklung befindet und daher instabil sein kann. Wenn Sie "
 
-#: ../efalivesetup/maingui.py:95
+#: maingui.py:123
 msgid "choose efa 1."
 msgstr "eine stabile Version benötigen, wählen Sie efa 1."
 
-#: ../efalivesetup/maingui.py:104
+#: maingui.py:132
 msgid "version"
 msgstr "Version"
 
-#: ../efalivesetup/maingui.py:116
-msgid "Cancel"
-msgstr "Abbrechen"
+#: maingui.py:141
+msgid "Tools"
+msgstr "Werkzeuge"
 
-#: ../efalivesetup/maingui.py:120
-msgid "Ok"
-msgstr "Ok"
+#: maingui.py:153
+msgid "Terminal"
+msgstr "Kommandozeile"
 
-#: ../efalivesetup/maingui.py:144
+#: maingui.py:162
+msgid "Close"
+msgstr "Schließen"
+
+#: maingui.py:166
+msgid "Apply"
+msgstr "Anwenden"
+
+#: maingui.py:203
 msgid "1 (stable)"
 msgstr "1 (Stabil)"
 
-#: ../efalivesetup/maingui.py:145
+#: maingui.py:204
 msgid "2 (development)"
 msgstr "2 (Entwicklung)"
+
+#: maingui.py:236
+msgid ""
+"Could not save files!\n"
+"\n"
+msgstr ""
+"Die Einstellungen konnten nicht gespeichert werden!\n"
+"\n"
+
+#: maingui.py:237
+msgid "Please check the path you provided for "
+msgstr "Bitte überprüfen Sie den angegebenen Pfad auf "
+
+#: maingui.py:238
+msgid "user rights and existance."
+msgstr "Benutzerrechte und ob er existiert."
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"

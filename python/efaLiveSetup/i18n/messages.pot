@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-07 10:16+0200\n"
+"POT-Creation-Date: 2010-09-13 17:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,46 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../efalivesetup/maingui.py:70
+#: maingui.py:97
 msgid "efaLive setup"
 msgstr ""
 
-#: ../efalivesetup/maingui.py:80
+#: maingui.py:108
 msgid "efa version"
 msgstr ""
 
-#: ../efalivesetup/maingui.py:92
+#: maingui.py:120
 msgid "Here you can choose the efa version that "
 msgstr ""
 
-#: ../efalivesetup/maingui.py:93
+#: maingui.py:121
 msgid "you would like to use. Please note that efa 2 is a development "
 msgstr ""
 
-#: ../efalivesetup/maingui.py:94
+#: maingui.py:122
 msgid "version, which might me unstable. If you need a stable version, "
 msgstr ""
 
-#: ../efalivesetup/maingui.py:95
+#: maingui.py:123
 msgid "choose efa 1."
 msgstr ""
 
-#: ../efalivesetup/maingui.py:104
+#: maingui.py:132
 msgid "version"
 msgstr ""
 
-#: ../efalivesetup/maingui.py:116
-msgid "Cancel"
+#: maingui.py:141
+msgid "Tools"
 msgstr ""
 
-#: ../efalivesetup/maingui.py:120
-msgid "Ok"
+#: maingui.py:153
+msgid "Terminal"
 msgstr ""
 
-#: ../efalivesetup/maingui.py:144
+#: maingui.py:162
+msgid "Close"
+msgstr ""
+
+#: maingui.py:166
+msgid "Apply"
+msgstr ""
+
+#: maingui.py:203
 msgid "1 (stable)"
 msgstr ""
 
-#: ../efalivesetup/maingui.py:145
+#: maingui.py:204
 msgid "2 (development)"
+msgstr ""
+
+#: maingui.py:236
+msgid ""
+"Could not save files!\n"
+"\n"
+msgstr ""
+
+#: maingui.py:237
+msgid "Please check the path you provided for "
+msgstr ""
+
+#: maingui.py:238
+msgid "user rights and existance."
 msgstr ""

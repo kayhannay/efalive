@@ -22,22 +22,25 @@ pygtk.require('2.0')
 import gtk
 import sys
 import os
+import subprocess
 
 from observable import Observable
 
 import locale
 import gettext
 APP="efaLiveSetup"
-DIR="locale"
+LOCALEDIR=os.path.join(os.path.dirname(sys.argv[0]), "locale")
+DIR=os.path.realpath(LOCALEDIR)
 gettext.install(APP, DIR, unicode=True)
 
 import logging
 LOG_FILENAME = 'efaLiveSetup.log'
-logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
 
 class SetupModel(object):
     def __init__(self, confPath):
         self._logger = logging.getLogger('efalivesetup.maingui.SetupModel')
+        self._checkPath(confPath)
         self._confPath=confPath
         self._versionFileName = os.path.join(self._confPath, "version.conf")
         self._backupFileName = os.path.join(self._confPath, "backup.conf")
@@ -51,28 +54,37 @@ class SetupModel(object):
             self.parseVersionFile(self.versionFile)
             self.versionFile.close()
 
+    def _checkPath(self, path):
+        if not os.path.exists(path):
+            self._logger.debug("Creating directory: %s" % path)
+            os.makedirs(path, 0755)
+
     def parseVersionFile(self, file):
         for line in file:
             if line.startswith("EFA_VERSION="):
                 versionStr=line[(line.index('=') + 1):]
                 self.setEfaVersion(int(versionStr))
-                self._logger.debug("Read file: " + versionStr)
+                self._logger.debug("Read version file: " + versionStr)
 
     def save(self):
-        self._logger.debug("Saving files")
-        versionFile=open(self._versionFileName, "w")
-        versionFile.write("EFA_VERSION=%d\n" % self.efaVersion._data)
-        versionFile.close()
-        backupFile=open(self._backupFileName, "w")
-        backupFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
-        backupFile.close()
+        self._logger.debug("Saving files: %s, %s" % (self._versionFileName, self._backupFileName))
+        try:
+            versionFile=open(self._versionFileName, "w")
+            versionFile.write("EFA_VERSION=%d\n" % self.efaVersion._data)
+            versionFile.close()
+            backupFile=open(self._backupFileName, "w")
+            backupFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
+            backupFile.close()
+        except IOError, exception:
+            self._logger.error("Could not save files: %s" % exception)
+            raise Exception("Could not save files")
 
     def setEfaVersion(self, version):
         self.efaVersion.updateData(version)
         if version == 1:
             self.efaBackupPaths = "/opt/efa/daten /home/efa/efa"
         elif version == 2:
-            self.efaBackupPaths = "/opt/efa2/data /home/efa/efa"
+            self.efaBackupPaths = "/opt/efa2/data /home/efa/efa2"
         else:
             self._logger.error("Undefined version received: %d" % version)
         self._logger.debug("EFA version: %d" % version)
@@ -92,6 +104,7 @@ class SetupView(gtk.Window):
         self.add(self.mainBox)
         self.mainBox.show()
 
+        # version box
         self.versionFrame=gtk.Frame(_("efa version"))
         self.mainBox.pack_start(self.versionFrame, True, False, 2)
         self.versionFrame.show()
@@ -124,17 +137,48 @@ class SetupView(gtk.Window):
         self.versionHBox.pack_start(self.versionCombo, True, True, 2)
         self.versionCombo.show()
 
+        # tools box
+        self.toolsFrame=gtk.Frame(_("Tools"))
+        self.mainBox.pack_start(self.toolsFrame, True, False, 2)
+        self.toolsFrame.show()
+
+        self.toolsSpaceBox=gtk.HBox(False, 5)
+        self.toolsFrame.add(self.toolsSpaceBox)
+        self.toolsSpaceBox.show()
+
+        self.toolsVBox=gtk.VBox(False, 5)
+        self.toolsSpaceBox.pack_start(self.toolsVBox, False, False, 10)
+        self.toolsVBox.show()
+
+        self.terminalButton=gtk.Button(_("Terminal"))
+        self.toolsVBox.pack_start(self.terminalButton, False, False, 10)
+        self.terminalButton.show()
+        
+        # button box
         self.buttonBox=gtk.HBox(False, 0)
         self.mainBox.pack_start(self.buttonBox, False, False, 2)
         self.buttonBox.show()
 
-        self.cancelButton=gtk.Button(_("Cancel"))
-        self.buttonBox.pack_end(self.cancelButton, False, False, 2)
-        self.cancelButton.show()
+        self.closeButton=gtk.Button(_("Close"))
+        self.buttonBox.pack_end(self.closeButton, False, False, 2)
+        self.closeButton.show()
         
-        self.okButton=gtk.Button(_("Ok"))
-        self.buttonBox.pack_end(self.okButton, False, False, 2)
-        self.okButton.show()
+        self.applyButton=gtk.Button(_("Apply"))
+        self.buttonBox.pack_end(self.applyButton, False, False, 2)
+        self.applyButton.show()
+
+    def showError(self, text):
+        """
+        This Function is used to show an error dialog when
+        an error occurs.
+        error_string - The error string that will be displayed
+        on the dialog.
+        """
+        errorDialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR
+            , message_format=text
+            , buttons=gtk.BUTTONS_OK)
+        errorDialog.run()
+        errorDialog.destroy()
 
 
 class SetupController(object):
@@ -154,7 +198,6 @@ class SetupController(object):
 
         self.initEvents()
         self._view.connect("destroy", self.destroy)
-        self._view.connect("delete_event", self.close)
         self._view.show()
 
         self._view.versionCombo.append_text(_("1 (stable)"))
@@ -171,24 +214,28 @@ class SetupController(object):
             index=1
         self._view.versionCombo.set_active(index)
 
-    def destroy(self, widget, data=None):
+    def destroy(self, widget):
         gtk.main_quit()
 
-    def close(self, widget, event, data=None):
-        self._logger.info("Currently we have no implementation for quit.")
-        return False
-
     def initEvents(self):
-        self._view.cancelButton.connect("clicked", self.destroy, None)
-        self._view.okButton.connect("clicked", self.saveAndClose, None)
+        self._view.closeButton.connect("clicked", self.destroy)
+        self._view.applyButton.connect("clicked", self.save)
         self._view.versionCombo.connect("changed", self.setEfaVersion)
+        self._view.terminalButton.connect("clicked", self.runTerminal)
+
+    def runTerminal(self, widget):
+        subprocess.Popen(['xterm'])
 
     def setEfaVersion(self, widget):
         self._model.setEfaVersion(widget.get_active() + 1)
 
-    def saveAndClose(self, widget, data=None):
-        self._model.save()
-        self.destroy(None)
+    def save(self, widget):
+        try:
+            self._model.save()
+        except:
+            self._view.showError(_("Could not save files!\n\n")
+                + _("Please check the path you provided for ")
+                + _("user rights and existance."))
 
 if __name__ == '__main__':
     controller = SetupController(sys.argv)
