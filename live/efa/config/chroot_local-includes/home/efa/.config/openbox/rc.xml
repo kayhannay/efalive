@@ -272,6 +272,12 @@
     </action>
   </keybind>
   -->
+  <keybind key="C-F12">
+    <action name="Execute">
+        <command>xterm -e su -c /opt/efalive/bin/efaLiveSetup.sh efa</command>
+    </action>
+  </keybind>
+
 </keyboard>
 
 <mouse>

@@ -3,7 +3,7 @@
 
 	<ivm:Match name="ivm.mountable" value="true">
 		<ivm:Option name="exec" value="/usr/bin/pmount $hal.block.device$ backup" />
-		<ivm:Option name="exec" value="/bin/run_backup.sh /media/backup" />
+        <ivm:Option name="exec" value="/opt/efalive/bin/run_backup.sh /media/backup" />
 	</ivm:Match>
 
 </ivm:ActionsConfig>

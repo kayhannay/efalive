@@ -1,0 +1,4 @@
+# Default settings for ivman
+
+START_DAEMON=no
+VERBOSE=no

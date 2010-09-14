@@ -21,6 +21,9 @@ DAEMONUSER=efa
 DESC="Elektronisches Fahrtenbuch"
 DAEMON_OPTS="-- -br"
 
+IVMAN_DAEMON=/usr/bin/ivman
+IVMAN_PIDFILE=/tmp/ivman.pid
+
 . /lib/lsb/init-functions
 
 test -x $DAEMON || exit 0
@@ -31,11 +34,15 @@ do_start() {
     x_running=`ps a | grep $PROCESS | grep -v grep | wc -l`
     if [ $x_running -eq 0 ]
     then
+        start-stop-daemon --start --quiet --pidfile $IVMAN_PIDFILE \
+            --chuid $DAEMONUSER --exec $IVMAN_DAEMON -- $IVMAN_DAEMON_OPTS
         /bin/su -l $DAEMONUSER -c "$DAEMON $DAEMON_OPTS" >> /dev/null 2>&1 &
     fi
 }
 
 do_stop() {
+    start-stop-daemon --stop --oknodo --quiet --pidfile $IVMAN_PIDFILE \
+        --exec $IVMAN_DAEMON
     x_running=`ps ax | grep $PROCESS | grep -v grep | wc -l`
     if [ $x_running -gt 0 ]
     then

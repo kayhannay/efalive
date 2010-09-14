@@ -4,7 +4,7 @@ exec openbox &
 
 if [ ! -f ~/.efalive/version.conf ]
 then
-	sudo /opt/efalive/bin/efalive_setup.sh
+	/opt/efalive/bin/efaLiveSetup.sh
 fi
 
 . ~/.efalive/version.conf
@@ -29,5 +29,5 @@ then
         exit 0
     fi
 fi
-#sudo /sbin/shutdown -h now
+sudo /sbin/shutdown -h now
 
