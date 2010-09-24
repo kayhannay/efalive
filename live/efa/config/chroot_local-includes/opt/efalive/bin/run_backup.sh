@@ -37,14 +37,20 @@ fi
 if [ ! $1 ]
 then
 	/bin/echo "Error, no backup path specified!"
-	/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
+    if [ ! $QUIET ]
+    then
+	    /usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
+    fi
 	exit 1
 fi
 
 if [ ! -d $1 ]
 then
 	/bin/echo "Error, specified path does not exist!"
-	/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
+    if [ ! $QUIET ]
+    then
+	    /usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
+    fi
 	exit 1
 fi
 
@@ -61,11 +67,17 @@ cd /
 
 if [ -e $1/$BACKUP_FILE ]
 then
-	### Play a sound to inform that the backup is finished (3 short beep)
-	/usr/bin/beep -f 1000 -r 3 -d 50
+    if [ ! $QUIET ]
+    then
+	    ### Play a sound to inform that the backup is finished (3 short beep)
+	    /usr/bin/beep -f 1000 -r 3 -d 50
+    fi
 else
-	### Backup was not successfull, play error sound (5 long beep)
-	/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
+    if [ ! $QUIET ]
+    then
+	    ### Backup was not successfull, play error sound (5 long beep)
+	    /usr/bin/beep -f 2000 -r 5 -d 50 -l 1000
+    fi
 	/bin/echo "Error, backup was not successful"
 fi
 
