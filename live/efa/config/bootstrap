@@ -1,54 +1,73 @@
-# config/bootstrap - options for live-helper(7), bootstrap stage
+# config/bootstrap - options for live-build(7), bootstrap stage
 
-# $LH_ARCHITECTURE: select chroot architecture
+# $LB_ARCHITECTURE: select chroot architecture
 # (Default: autodetected)
-LH_ARCHITECTURE="i386"
+LB_ARCHITECTURE="i386"
 
-# $LH_BOOTSTRAP_CONFIG: set distribution config directory
+# $LB_BOOTSTRAP_CONFIG: set distribution config directory
 # (Default: empty)
-LH_BOOTSTRAP_CONFIG=""
+LB_BOOTSTRAP_CONFIG=""
 
-# $LH_BOOTSTRAP_INCLUDE: include packages on base
+# $LB_BOOTSTRAP_INCLUDE: include packages on base
 # (Default: empty)
-LH_BOOTSTRAP_INCLUDE=""
+LB_BOOTSTRAP_INCLUDE=""
 
-# $LH_BOOTSTRAP_EXCLUDE: exclude packages on base
+# $LB_BOOTSTRAP_EXCLUDE: exclude packages on base
 # (Default: empty)
-LH_BOOTSTRAP_EXCLUDE=""
+LB_BOOTSTRAP_EXCLUDE=""
 
-# $LH_BOOTSTRAP_FLAVOUR: select flavour to use
+# $LB_BOOTSTRAP_FLAVOUR: select flavour to use
 # (Default: empty)
-LH_BOOTSTRAP_FLAVOUR=""
+LB_BOOTSTRAP_FLAVOUR=""
 
-# $LH_BOOTSTRAP_KEYRING: set distribution keyring
+# $LB_BOOTSTRAP_KEYRING: set distribution keyring
 # (Default: empty)
-LH_BOOTSTRAP_KEYRING=""
+LB_BOOTSTRAP_KEYRING=""
 
-# $LH_DISTRIBUTION: select distribution to use
-# (Default: lenny)
-LH_DISTRIBUTION="lenny"
+# $LB_DISTRIBUTION: select distribution to use
+# (Default: squeeze)
+LB_DISTRIBUTION="squeeze"
 
-# $LH_MIRROR_BOOTSTRAP: set mirror to bootstrap from
+# $LB_MIRROR_BOOTSTRAP: set mirror to bootstrap from
 # (Default: http://ftp.de.debian.org/debian/)
-LH_MIRROR_BOOTSTRAP="http://ftp.de.debian.org/debian/"
+LB_MIRROR_BOOTSTRAP="http://ftp.de.debian.org/debian/"
 
-# $LH_MIRROR_CHROOT: set mirror to fetch packages from
+# $LB_MIRROR_CHROOT: set mirror to fetch packages from
 # (Default: http://ftp.de.debian.org/debian/)
-LH_MIRROR_CHROOT="http://ftp.de.debian.org/debian/"
+LB_MIRROR_CHROOT="http://ftp.de.debian.org/debian/"
 
-# $LH_MIRROR_CHROOT_SECURITY: set security mirror to fetch packages from
+# $LB_MIRROR_CHROOT_SECURITY: set security mirror to fetch packages from
 # (Default: http://security.debian.org/)
-LH_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
+LB_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
 
-# $LH_MIRROR_BINARY: set mirror which ends up in the image
+# $LB_MIRROR_CHROOT_VOLATILE: set volatile mirror to fetch packages from
+# (Default: none)
+LB_MIRROR_CHROOT_VOLATILE="none"
+
+# $LB_MIRROR_CHROOT_BACKPORTS: set backports mirror to fetch packages from
+# (Default: http://backports.debian.org/debian-backports/)
+LB_MIRROR_CHROOT_BACKPORTS="http://backports.debian.org/debian-backports/"
+
+# $LB_MIRROR_BINARY: set mirror which ends up in the image
 # (Default: http://cdn.debian.net/debian/)
-LH_MIRROR_BINARY="http://ftp.de.debian.org/debian/"
+LB_MIRROR_BINARY="http://cdn.debian.net/debian/"
 
-# $LH_MIRROR_BINARY_SECURITY: set security mirror which ends up in the image
+# $LB_MIRROR_BINARY_SECURITY: set security mirror which ends up in the image
 # (Default: http://security.debian.org/)
-LH_MIRROR_BINARY_SECURITY="http://security.debian.org/"
+LB_MIRROR_BINARY_SECURITY="http://security.debian.org/"
 
-# $LH_ARCHIVE_AREAS: select archive areas to use
+# $LB_MIRROR_BINARY_VOLATILE: set volatile mirror which ends up in the image
+# (Default: none)
+LB_MIRROR_BINARY_VOLATILE="none"
+
+# $LB_MIRROR_BINARY_BACKPORTS: set backports mirror which ends up in the image
+# (Default: http://backports.debian.org/debian-backports/)
+LB_MIRROR_BINARY_BACKPORTS="http://backports.debian.org/debian-backports/"
+
+# $LB_MIRROR_DEBIAN_INSTALLER: set debian-installer mirror
+# (Default: http://ftp.de.debian.org/debian/)
+LB_MIRROR_DEBIAN_INSTALLER="http://ftp.de.debian.org/debian/"
+
+# $LB_ARCHIVE_AREAS: select archive areas to use
 # (Default: main)
-LH_ARCHIVE_AREAS="main contrib non-free"
-LH_SECTIONS="main contrib non-free"
+LB_ARCHIVE_AREAS="main contrib non-free"

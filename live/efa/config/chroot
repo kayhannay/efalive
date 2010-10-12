@@ -1,65 +1,77 @@
-# config/chroot - options for live-helper(7), chroot stage
+# config/chroot - options for live-build(7), chroot stage
 
-# $LH_CHROOT_FILESYSTEM: set chroot filesystem
+# $LB_CHROOT_FILESYSTEM: set chroot filesystem
 # (Default: squashfs)
-LH_CHROOT_FILESYSTEM="squashfs"
+LB_CHROOT_FILESYSTEM="squashfs"
 
-# $LH_UNION_FILESYSTEM: set union filesystem
+# $LB_UNION_FILESYSTEM: set union filesystem
 # (Default: aufs)
-LH_UNION_FILESYSTEM="aufs"
+LB_UNION_FILESYSTEM="aufs"
 
-# $LH_VIRTUAL_ROOT_SIZE: set virtual-hdd filesystem size
+# $LB_VIRTUAL_ROOT_SIZE: set virtual-hdd filesystem size
 # (Default: 10000)
-LH_VIRTUAL_ROOT_SIZE="10000"
+LB_VIRTUAL_ROOT_SIZE="10000"
 
-# $LH_EXPOSED_ROOT: expose root as read only
+# $LB_EXPOSED_ROOT: expose root as read only
 # (Default: false)
-LH_EXPOSED_ROOT="false"
+LB_EXPOSED_ROOT="false"
 
-# $LH_HOOKS: set hook commands
+# $LB_HOOKS: set hook commands
 # (Default: empty)
-LH_HOOKS=""
+LB_HOOKS=""
 
-# $LH_INTERACTIVE: set interactive build
+# $LB_INTERACTIVE: set interactive build
 # (Default: false)
-LH_INTERACTIVE="false"
+LB_INTERACTIVE="false"
 
-# $LH_KEYRING_PACKAGES: set keyring packages
+# $LB_KEYRING_PACKAGES: set keyring packages
 # (Default: empty)
-LH_KEYRING_PACKAGES="debian-archive-keyring"
+LB_KEYRING_PACKAGES="debian-archive-keyring"
 
-# $LH_LANGUAGE: set language to use
+# $LB_LANGUAGE: set language to use
 # (Default: empty)
-LH_LANGUAGE="de"
+LB_LANGUAGE="en"
 
-# $LH_LINUX_FLAVOURS: set kernel flavour to use
+# $LB_LINUX_FLAVOURS: set kernel flavour to use
 # (Default: autodetected)
-LH_LINUX_FLAVOURS="486"
+LB_LINUX_FLAVOURS="486 686"
 
-# $LH_LINUX_PACKAGES: set kernel packages to use
+# $LB_LINUX_PACKAGES: set kernel packages to use
 # (Default: autodetected)
-LH_LINUX_PACKAGES="linux-image-2.6 ${LH_UNION_FILESYSTEM}-modules-2.6 squashfs-modules-2.6"
+LB_LINUX_PACKAGES="linux-image-2.6"
 
-# $LH_PACKAGES: set packages to install
+# $LB_REPOSITORIES: enable available third-party repositories
 # (Default: empty)
-LH_PACKAGES="xorg ivman gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils"
+LB_REPOSITORIES=""
 
-# $LH_PACKAGES_LISTS: set package list to install
+# $LB_PACKAGES: set packages to install
+# (Default: empty)
+LB_PACKAGES="xorg ivman halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils"
+
+# $LB_PACKAGES_LISTS: set package list to install
 # (Default: standard)
-LH_PACKAGES_LISTS="standard"
+LB_PACKAGES_LISTS="standard"
 
-# $LH_TASKS: set tasks to install
+# $LB_TASKS: set tasks to install
 # (Default: empty)
-LH_TASKS=""
+LB_TASKS=""
 
-# $LH_SECURITY: enable security updates
+# $LB_SECURITY: enable security updates
 # (Default: true)
-LH_SECURITY="true"
+LB_SECURITY="true"
 
-# $LH_SYMLINKS: enable symlink convertion
+# $LB_VOLATILE: enable volatile updates
 # (Default: false)
-LH_SYMLINKS="false"
+LB_VOLATILE="false"
 
-# $LH_SYSVINIT: enable sysvinit
+# $LB_BACKPORTS: enable backports updates
+# (Default: )
+LB_BACKPORTS=""
+
+# $LB_SYMLINKS: enable symlink convertion
 # (Default: false)
-LH_SYSVINIT="false"
+LB_SYMLINKS="false"
+
+# $LB_SYSVINIT: enable sysvinit
+# (Default: false)
+LB_SYSVINIT="false"
