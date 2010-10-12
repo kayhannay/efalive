@@ -28,10 +28,10 @@ EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa"
 EFA_USER=efa
 EFA_GROUP=efa
 
-if [ -f ~/.efalive/backup.conf ]
+if [ -f /home/efa/.efalive/backup.conf ]
 then
-    . ~/.efalive/backup.conf
-    . ~/.efalive/version.conf
+    . /home/efa/.efalive/backup.conf
+    . /home/efa/.efalive/version.conf
 fi
 
 if [ $EFA_VERSION -eq 2 ]

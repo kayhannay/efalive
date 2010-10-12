@@ -25,9 +25,9 @@
 EFA_BACKUP_PATHS="/opt/efa/ausgabe/layout /opt/efa/daten /home/efa/efa"
 BACKUP_FILE=Sicherung_`/bin/date +%Y%m%d_%k%M%S`.zip
 
-if [ -f ~/.efalive/backup.conf ]
+if [ -f /home/efa/.efalive/backup.conf ]
 then
-    . ~/.efalive/backup.conf
+    . /home/efa/.efalive/backup.conf
 fi
 
 ### Sleep a while until the device is mounted completely
