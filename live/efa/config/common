@@ -13,7 +13,7 @@ LB_APT_FTP_PROXY=""
 
 # $LB_APT_HTTP_PROXY: set apt/aptitude http proxy
 # (Default: autodetected or empty)
-LB_APT_HTTP_PROXY="http://http-proxy.psi.de:81/"
+LB_APT_HTTP_PROXY=""
 
 # $LB_APT_PDIFFS: set apt/aptitude pdiff indices
 # (Default: true)

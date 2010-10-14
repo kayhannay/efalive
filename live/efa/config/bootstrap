@@ -26,19 +26,19 @@ LB_BOOTSTRAP_KEYRING=""
 
 # $LB_DISTRIBUTION: select distribution to use
 # (Default: squeeze)
-LB_DISTRIBUTION="squeeze"
+LB_DISTRIBUTION="lenny"
 
 # $LB_MIRROR_BOOTSTRAP: set mirror to bootstrap from
 # (Default: http://ftp.de.debian.org/debian/)
-LB_MIRROR_BOOTSTRAP="http://ftp.de.debian.org/debian/"
+LB_MIRROR_BOOTSTRAP="http://localhost:3142/ftp.de.debian.org/debian/"
 
 # $LB_MIRROR_CHROOT: set mirror to fetch packages from
 # (Default: http://ftp.de.debian.org/debian/)
-LB_MIRROR_CHROOT="http://ftp.de.debian.org/debian/"
+LB_MIRROR_CHROOT="http://localhost:3142/ftp.de.debian.org/debian/"
 
 # $LB_MIRROR_CHROOT_SECURITY: set security mirror to fetch packages from
 # (Default: http://security.debian.org/)
-LB_MIRROR_CHROOT_SECURITY="http://security.debian.org/"
+LB_MIRROR_CHROOT_SECURITY="http://localhost:3142/security.debian.org/"
 
 # $LB_MIRROR_CHROOT_VOLATILE: set volatile mirror to fetch packages from
 # (Default: none)
@@ -46,15 +46,15 @@ LB_MIRROR_CHROOT_VOLATILE="none"
 
 # $LB_MIRROR_CHROOT_BACKPORTS: set backports mirror to fetch packages from
 # (Default: http://backports.debian.org/debian-backports/)
-LB_MIRROR_CHROOT_BACKPORTS="http://backports.debian.org/debian-backports/"
+LB_MIRROR_CHROOT_BACKPORTS="http://localhost:3142/backports.debian.org/debian-backports/"
 
 # $LB_MIRROR_BINARY: set mirror which ends up in the image
 # (Default: http://cdn.debian.net/debian/)
-LB_MIRROR_BINARY="http://cdn.debian.net/debian/"
+LB_MIRROR_BINARY="http://localhost:3142/cdn.debian.net/debian/"
 
 # $LB_MIRROR_BINARY_SECURITY: set security mirror which ends up in the image
 # (Default: http://security.debian.org/)
-LB_MIRROR_BINARY_SECURITY="http://security.debian.org/"
+LB_MIRROR_BINARY_SECURITY="http://localhost:3142/security.debian.org/"
 
 # $LB_MIRROR_BINARY_VOLATILE: set volatile mirror which ends up in the image
 # (Default: none)
@@ -62,11 +62,11 @@ LB_MIRROR_BINARY_VOLATILE="none"
 
 # $LB_MIRROR_BINARY_BACKPORTS: set backports mirror which ends up in the image
 # (Default: http://backports.debian.org/debian-backports/)
-LB_MIRROR_BINARY_BACKPORTS="http://backports.debian.org/debian-backports/"
+LB_MIRROR_BINARY_BACKPORTS="http://localhost:3142/backports.debian.org/debian-backports/"
 
 # $LB_MIRROR_DEBIAN_INSTALLER: set debian-installer mirror
 # (Default: http://ftp.de.debian.org/debian/)
-LB_MIRROR_DEBIAN_INSTALLER="http://ftp.de.debian.org/debian/"
+LB_MIRROR_DEBIAN_INSTALLER="http://localhost:3142/ftp.de.debian.org/debian/"
 
 # $LB_ARCHIVE_AREAS: select archive areas to use
 # (Default: main)

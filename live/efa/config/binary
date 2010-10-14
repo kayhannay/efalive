@@ -6,7 +6,7 @@ LB_BINARY_FILESYSTEM="fat16"
 
 # $LB_BINARY_IMAGES: set image type
 # (Default: iso-hybrid)
-LB_BINARY_IMAGES="iso-hybrid"
+LB_BINARY_IMAGES="iso"
 
 # $LB_BINARY_INDICES: set apt/aptitude generic indices
 # (Default: true)
@@ -22,7 +22,7 @@ LB_BOOTAPPEND_INSTALL="cdrom-detect/try-usb=true locale=de_DE.UTF-8 keyb=de"
 
 # $LB_BOOTLOADER: set bootloader
 # (Default: syslinux)
-LB_BOOTLOADER="syslinux"
+LB_BOOTLOADER="grub"
 
 # $LB_CHECKSUMS: set checksums
 # (Default: md5)
@@ -39,7 +39,7 @@ LB_DEBIAN_INSTALLER="live"
 
 # $LB_DEBIAN_INSTALLER_DISTRIBUTION: set debian-installer suite
 # (Default: empty)
-LB_DEBIAN_INSTALLER_DISTRIBUTION="squeeze"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="lenny"
 
 # $LB_DEBIAN_INSTALLER_PRESEEDFILE: set debian-installer preseed filename/url
 # (Default: )

@@ -46,7 +46,7 @@ LB_REPOSITORIES=""
 
 # $LB_PACKAGES: set packages to install
 # (Default: empty)
-LB_PACKAGES="xorg ivman halevt gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils"
+LB_PACKAGES="xorg ivman gpm xterm sudo beep zenity zip unzip openbox ssh mailutils anacron python-gtk2 sharutils"
 
 # $LB_PACKAGES_LISTS: set package list to install
 # (Default: standard)

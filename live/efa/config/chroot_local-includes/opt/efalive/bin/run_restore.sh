@@ -30,8 +30,8 @@ EFA_GROUP=efa
 
 if [ -f /home/efa/.efalive/backup.conf ]
 then
-    . /home/efa/.efalive/backup.conf
-    . /home/efa/.efalive/version.conf
+    . ~/.efalive/backup.conf
+    . ~/.efalive/version.conf
 fi
 
 if [ $EFA_VERSION -eq 2 ]

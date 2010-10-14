@@ -3,7 +3,7 @@
 RECIPIENT="user@example.local"
 
 /bin/mkdir /tmp/efa_backup > /var/log/efa_backup.log 2>&1
-QUIET=1 /opt/efalive/bin/run_backup.sh /tmp/efa_backup >> /var/log/efa_backup.log 2>&1
+/usr/bin/sudo -u efa QUIET=1 /opt/efalive/bin/run_backup.sh /tmp/efa_backup >> /var/log/efa_backup.log 2>&1
 for i in `/bin/ls /tmp/efa_backup`
 do
     (/bin/echo "Automatic efa backup"; /usr/bin/uuencode /tmp/efa_backup/$i $i) | /usr/bin/mail -s"efa backup `/bin/date '+%d.%m.%Y %k:%M:%S'`" -t "$RECIPIENT" >> /var/log/efa_backup.log 2>&1
