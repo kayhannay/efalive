@@ -34,11 +34,11 @@ LB_LANGUAGE="en"
 
 # $LB_LINUX_FLAVOURS: set kernel flavour to use
 # (Default: autodetected)
-LB_LINUX_FLAVOURS="486 686"
+LB_LINUX_FLAVOURS="486"
 
 # $LB_LINUX_PACKAGES: set kernel packages to use
 # (Default: autodetected)
-LB_LINUX_PACKAGES="linux-image-2.6"
+LB_LINUX_PACKAGES="linux-image-2.6 ${LB_UNION_FILESYSTEM}-modules-2.6 squashfs-modules-2.6"
 
 # $LB_REPOSITORIES: enable available third-party repositories
 # (Default: empty)
