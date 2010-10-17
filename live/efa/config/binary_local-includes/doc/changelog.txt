@@ -5,7 +5,7 @@ Changelog file for efaLive
 [F] Bugfix
 
 
-1.1-1.8.3_15 (released 17.10.2010):
+1.1-1.8.3_15 (released 18.10.2010):
 	- [N] SSH server and client
 	- [N] efaLive setup tool
 	- [N] cron template for automated backup via email
