@@ -18,19 +18,19 @@ initrd		/live/initrd.img-2.6.26-2-486
 title		Installer:
 root
 
-title       efa GUI install
+title       efaLive GUI install
 kernel      /install/gtk/vmlinuz video=vesa:ywrap,mtrr vga=788 quiet locale=de_DE.UTF-8 keyb=de  -- ${LH_BOOTAPPEND_LIVE}
 initrd      /install/gtk/initrd.gz
 
-title       efa GUI install (expert)
+title       efaLive GUI install (expert)
 kernel      /install/gtk/vmlinuz priority=low video=vesa:ywrap,mtrr vga=788 locale=de_DE.UTF-8 keyb=de  -- ${LH_BOOTAPPEND_LIVE}
 initrd      /install/gtk/initrd.gz
 
-title       efa Text install
+title       efaLive Text install
 kernel      /install/vmlinuz vga=normal quiet locale=de_DE.UTF-8 keyb=de  -- ${LH_BOOTAPPEND_LIVE}
 initrd      /install/initrd.gz
 
-title       efa Text install (expert)
+title       efaLive Text install (expert)
 kernel      /install/vmlinuz priority=low vga=normal locale=de_DE.UTF-8 keyb=de  -- ${LH_BOOTAPPEND_LIVE}
 initrd      /install/initrd.gz
 

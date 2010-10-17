@@ -1,4 +1,18 @@
-Changelog file for EFA live
+Changelog file for efaLive
+
+[N] New
+[E] Enhancement
+[F] Bugfix
+
+
+1.1-1.8.3_15 (released 17.10.2010):
+	- [N] SSH server and client
+	- [N] efaLive setup tool
+	- [N] cron template for automated backup via email
+	- [N] efa 2 included as option
+	- [N] basic network configuration documented
+	- [E] backup now runs as user efa
+	- [E] update efa to version 1.8.3_15
 
 1.0-1.8.3_11 (released 08.05.2010):
-	- Initial version of the EFA live CD
+	- [N] Initial version of the EFA live CD
