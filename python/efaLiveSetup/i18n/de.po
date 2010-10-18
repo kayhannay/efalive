@@ -28,19 +28,19 @@ msgstr "efa Version"
 
 #: maingui.py:120
 msgid "Here you can choose the efa version that "
-msgstr "Hier können Sie auswählen, welche Version von efa "
+msgstr "Hier kannst Du auswählen, welche Version von efa "
 
 #: maingui.py:121
 msgid "you would like to use. Please note that efa 2 is a development "
-msgstr "Sie benutzen wollen. Bitte beachten Sie, dass sich efa 2 noch "
+msgstr "Du benutzen willst. Bitte beachte, dass sich efa 2 noch "
 
 #: maingui.py:122
 msgid "version, which might me unstable. If you need a stable version, "
-msgstr "in der Entwicklung befindet und daher instabil sein kann. Wenn Sie "
+msgstr "in der Entwicklung befindet und daher instabil sein kann. Wenn Du "
 
 #: maingui.py:123
 msgid "choose efa 1."
-msgstr "eine stabile Version benötigen, wählen Sie efa 1."
+msgstr "eine stabile Version benötigst, wählen efa 1."
 
 #: maingui.py:132
 msgid "version"
@@ -80,7 +80,7 @@ msgstr ""
 
 #: maingui.py:237
 msgid "Please check the path you provided for "
-msgstr "Bitte überprüfen Sie den angegebenen Pfad auf "
+msgstr "Bitte überprüfe den angegebenen Pfad auf "
 
 #: maingui.py:238
 msgid "user rights and existance."

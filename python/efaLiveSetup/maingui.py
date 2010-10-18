@@ -49,7 +49,7 @@ class SetupModel(object):
 
     def initModel(self):
         self.efaVersion.updateData(1)
-        if os.path.isfile("version.conf"):
+        if os.path.isfile(self._versionFileName):
             self.versionFile=open(self._versionFileName, "r")
             self.parseVersionFile(self.versionFile)
             self.versionFile.close()
