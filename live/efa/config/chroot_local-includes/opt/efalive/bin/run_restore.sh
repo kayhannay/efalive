@@ -61,7 +61,7 @@ fi
 /bin/mkdir $EFA_DIR/backup/restore_backup
 run_backup.sh $EFA_DIR/backup/restore_backup
 cd /
-/usr/bin/zip -r $EFA_DIR/backup/restore_backup/Restore_`/bin/date +%Y%m%d_%k%M%S`.zip $EFA_BACKUP_PATHS
+/usr/bin/zip -r $EFA_DIR/backup/restore_backup/Restore_`/bin/date +%Y%m%d_%H%M%S`.zip $EFA_BACKUP_PATHS
 
 ### Remove old data
 cd /

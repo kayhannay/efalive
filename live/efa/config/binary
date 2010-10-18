@@ -71,7 +71,7 @@ LB_ISO_PREPARER="live-build $VERSION; http://packages.qa.debian.org/live-build"
 
 # $LB_ISO_PUBLISHER: set iso publisher
 # (Default: Debian Live project; http://live.debian.net/; debian-live@lists.debian.org)
-LB_ISO_PUBLISHER="EFA project (http://efa.nmichael.de/)"
+LB_ISO_PUBLISHER="efa project (http://efa.nmichael.de/)"
 
 # $LB_ISO_VOLUME: set iso volume (max 32 chars)
 # (Default: Debian squeeze $(date +%Y%m%d-%H:%M))
