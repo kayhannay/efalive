@@ -13,6 +13,7 @@ Changelog file for efaLive
 	- [N] basic network configuration documented
 	- [E] backup now runs as user efa
 	- [E] update efa to version 1.8.3_15
+	- [F] fix date formatting for backup files
 
 1.0-1.8.3_11 (released 08.05.2010):
 	- [N] Initial version of the EFA live CD

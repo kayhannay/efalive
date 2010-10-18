@@ -246,13 +246,13 @@
   -->
 
   <!-- Keybindings for window switching -->
-  <!--
   <keybind key="A-Tab">
     <action name="NextWindow"/>
   </keybind>
   <keybind key="A-S-Tab">
     <action name="PreviousWindow"/>
   </keybind>
+  <!--
   <keybind key="C-A-Tab">
     <action name="NextWindow">
       <panels>yes</panels><desktop>yes</desktop>
