@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>efa - elektronisches Fahrtenbuch</title>
+</head>
+<body bgcolor="#ffffff">
+<h1 align="center">Synonyme</h1>
+
+<br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Beschreibung</i></b></font></td></tr>
+</table>
+
+<p>efa ermöglicht es, für Mitglieder-, Boots- und Zielnamen sogenannte Synonyme festzulegen. Die Idee ist, daß sich bei der Eingabe von Fahrten mehrere Namen für dasselbe Mitglied/Boot/Ziel verwenden lassen. Bei der Statistik-Auswertung erscheinen dann alle diese Varianten unter einem einheitlichen Namen.</p>
+<p>Bei Booten werden Synonyme zur Realisierung von Kombi-Booten genutzt: In der Bootsliste werden zwei Boote angelegt (z.B. <i>Boot - 4er ohne Stm.</i> und <i>Boot - 3er mit Stm.</i>), die je nach Situation bei der Eingabe benutzt werden. Beide Bootsnamen sind zugleich Synonyme für das Boot <i>Boot</i> (welches sich nicht in der Bootsliste befindet). Bei der Ausgabe werden beide Boote mit dem Namen <i>Boot</i> ausgegeben.</p>
+<p>Bei Mitgliedern ist die Verwendung von Synonymen dann sinnvoll, wenn sich der Name eines Mitglieds ändert. Beispielsweise könnte <i>Manuela Musterfrau</i> einen Herrn Mustermann heiraten und anschließend <i>Manuela Mustermann</i> heißen. Damit Manuela auch ihre Kilometer vor ihrer Heirat unter ihrem neuen Namen gutgeschrieben bekommt, kann <i>Manuela Musterfrau</i> als Synonym für <i>Manuela Mustermann</i> festgelegt werden. Ähnlich verhält es sich, wenn ein Gast, der unter dem Namen <i>Kalle Kunze (Gast)</i> geführt wird, plötzlich dem Verein beitritt und nun <i>Kalle Kunze</i> heißt.</p>
+<p>Bei Zielen kann die Verwendung von Synonymen sinnvoll sein, wenn verschiedene Ruderer dasselbe Ziel anders nennen. So sind beispielsweise in Berlin <i>Alter Hof</i> und <i>Mückenwiese</i> dasselbe Ziel. Auch hier könnte ein Synonym sinnvoll sein.</p>
+<p>Beim Verwenden von Synonymen sollte beachtet werden, daß alle Synonymnamen als Einträge in den jeweiligen Boots-/Mitglieder- bzw. Ziellisten geführt werden sollten. Kalle sollte also sowohl als <i>Kalle Kunze (Gast)</i>, als auch als <i>Kalle Kunze</i> in der Mitgliederliste eingetragen sein. Auf diese Weise werden beispielsweise seine Kilometer unter dem Namen <i>Kalle Kunze (Gast)</i> als Gast-Kilometer gewertet. Wenn die Berechnung der Einträge für Gäste ausgeschlossen wird, werden nur seine Kilometer als Mitglied berechnet. Der Hauptname zu einem Synonymnamen kommt also erst bei der Ausgabe des Namens zum Tragen. Für die Entscheidung, welche Einträge berechnet werden sollen usw. benutzt efa die Daten zu dem Namen, so wie er konkret vorliegt.</p>
+<p>Um ein Synonym hinzuzufügen oder zu verändern, wähle aus dem Menü <i>Administration</i> den Punkt <i>Synonymlisten</i>, und anschließend <i>Mitglieder</i>, <i>Boote</i> oder <i>Ziele</i>.</p>
+
+<br clear="all">
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Erklï¿½rung der Buttons und Felder</i></b></font></td></tr>
+</table>
+
+<table width="100%">
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">vorhandene Einträge</font></b></td></tr></table></td>
+  <td>Hier sind alle Hauptnamen aufgelistet, zu denen es Synonyme gibt. Wenn Du einen Eintrag anklickst, werden rechts im Fenster die Synonyme angezeigt. Es lassen sich dann die Synonyme ändern oder neue hinzufügen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Neu...</b></td></tr></table></td>
+  <td>Beginnt eine neue Synonymdefinition. Nach dem Betätigen von <i>Neu...</i> können in die Eingabefelder <i>Hauptname</i> und <i>Synonyme</i> rechts ein neuer Hauptname sowie Synonymnamen eingegeben werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Löschen</b></td></tr></table></td>
+  <td>Löscht die Synonyme zu dem Hauptnamen, der in der Liste <i>vorhandene Einträge</i> ausgewählt wurde.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Hauptname</font></b></td></tr></table></td>
+  <td>Der Hauptname zu dem Synonymen. Dieser Name erscheint in der Ausgabe, wenn eines der Synonyme angetroffen wird.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Synonyme</font></b></td></tr></table></td>
+  <td>In diese Felder können Synonyme zu dem eingegebenen Hauptnamen eingetragen werden. Diese Synonyme sollten alle in der jeweiligen Mitglieder-/Boots-/Zielliste vorkommen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Neuen Eintrag hinzufügen</b></td></tr></table></td>
+  <td>Fügt die auf der rechten Seite definierten Synonyme zur Synonymliste hinzu. Dieser Button ist nur verfügbar, wenn Synonyme zu einem neuen Hauptnamen angelegt werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Änderungen speichern</b></td></tr></table></td>
+  <td>Speichert die Änderungen an den Synonymen zu einem Hauptnamen. Dieser Button ist nur verfügbar, wenn ein bestehender Eintrag geändert wird.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Schließen</b></td></tr></table></td>
+  <td>Schließt das Fenster.</td>
+</tr>
+</table>
+
+<br clear="all"><br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>siehe auch:</i></b></font></td></tr>
+</table>
+<ul>
+  <li><a href="NeuesBootFrame.html">Kombi-Boote</a></li>
+</ul>
+
+<p><a href="Frames.html">Zurï¿½ck zur ï¿½bersicht der Hilfeseiten</a></p>
+<br clear="all"><hr>
+<small><a href="index.html">efa - elektronisches Fahrtenbuch</a>,
+Copyright &copy; 2001-10 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
+&lt;<a href="mailto:software@nmichael.de">software@nmichael.de</a>&gt;</small>
+</body>
+</html>

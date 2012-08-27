@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>efa - elektronisches Fahrtenbuch</title>
+</head>
+<body bgcolor="#ffffff">
+<h1 align="center">eddi - efa Datenlisten-Importeur</h1>
+
+<br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Beschreibung</i></b></font></td></tr>
+</table>
+
+<p>eddi, der efa Datenlisten-Importeur, ist ein Zusatzprogramm von efa, welches dazu dient, Datenlisten (Mitglieder-, Boots- und Ziellisten) aus einer Tabellenkalkulation in efa zu importieren.</p>
+<p>Um Datenlisten nach efa zu übernehmen, gehe folgendermaßen vor:<br>Wenn noch kein Fahrtenbuch in efa erstellt wurde, so erstelle nun zunächst ein neues Fahrtenbuch (<a href="NeuesFahrtenbuchFrame.html">Neues Fahrtenbuch erstellen</a>). Wenn Du das Fahrtenbuch <i>2002.efb</i> genannt hast, so nennt efa die dazugehörigen Listen standardmäßig <i>2002.efbm</i> (Mitgliederliste), <i>2002.efbb</i> (Bootsliste) und <i>2002.efbz</i> (Zielliste). Nach dem Erstellen des Fahrtenbuchs und der dazugehörigen Datenlisten schließe efa nun wieder.</p>
+<p>Als nächstes müssen die zu importierenden Datenlisten von Deinem Tabellenkalkulationsprogramm als <i>CSV-Datei</i> (<i>comma separated values</i>) exportiert werden. Öffne dazu die Datei in der Tabellenkalkulation, wähle aus dem Menü <i>Datei</i> den Punkt <i>Speichern unter...</i> und wähle als <i>Dateityp</i> den Punkt <i>CSV-Datei (*.csv)</i> aus. Speichere die Liste nun ab (z.B. unter dem Namen <i>mitglieder.csv</i>). (Je nach verwendeter Software können die Bezeichnungen etwas variieren, u.U. kommt auch noch ein Hinweis, daß bei diesem Format Inhalt verloren gehen könnte.) Diese CSV-Datei dient als Eingabe für eddi.</p>
+<p>Starte nun eddi über den Eintrag im Startmenü und wähle die im vorigen Schritt erstellte CSV-Datei über das <i>Datei öffnen</i>-Symbol aus. Falls die blau unterlegt angezeigte Zeile nur eine Überschrift o.ä. enthält, springe mit dem Button <i>nächste</i> bis zu der ersten Zeile, die einen richtigen Eintrag enthält. In der Regel erkennt eddi das verwendete Trennzeichen, welches die einzelnen Felder voneinander trennt, automatisch. Sollte eddi ein falsches Zeichen erkannt haben, so gib im Feld <i>Trennzeichen</i> das korrekte Trennzeichen (z.B. einen Senkrechtstrich |) ein.<br>Wähle nun im rechten Bereich des Fensters aus, ob es sich bei der zu importierenden Liste um eine Mitglieder-, Boots- oder Zielliste handelt und ordne anschließend den einzelnen Werten (<i>Vorname</i>, <i>Nachname</i> usw.) jeweils ein Feld aus der CSV-Datei zu. Sollten manche Werte in der CSV-Datei fehlen, so ist keine Zuordnung erforderlich. Nachdem alle Werte zugeordnet wurden, klicke auf <i>Datenliste importieren</i>, um den Import zu beginnen. Als Dateinamen gib den Namen der (leeren) von efa im ersten Schritt erstellten Liste an (z.B. <i>2002.efbm</i>, falls es sich um eine Mitgliederliste für das Fahrtenbuch <i>2002.efb</i> handelt). Beim Import von unvollständigen oder fehlerhaften Einträgen fordert eddi automatisch zum Vervollständigen auf.</p>
+
+<br clear="all">
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Erklï¿½rung der Buttons und Felder</i></b></font></td></tr>
+</table>
+
+<table width="100%">
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Dateiname</font></b></td></tr></table></td>
+  <td>Name der zu importierenden Datei. Diese Datei muß im CSV-Format (comma separated values) vorliegen. Speichere dazu Deine Liste in Deiner Tabellenkalkulation als CSV-Datei ab.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>einlesen</b></td></tr></table></td>
+  <td>Die Datei, deren Name im Feld <i>Dateiname</i> angegeben ist, neu einlesen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>vorherige</b></td></tr></table></td>
+  <td>Eine Zeile zurückspringen. Wähle mit den Buttons <i>vorherige</i> und <i>nächste</i> die erste Zeile aus, die die zu importierenden Datensätze enthält. Der Import wird mit der ausgewählten Zeile begonnen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>nächste</b></td></tr></table></td>
+  <td>Eine Zeile vorspringen. Wähle mit den Buttons <i>vorherige</i> und <i>nächste</i> die erste Zeile aus, die die zu importierenden Datensätze enthält. Der Import wird mit der ausgewählten Zeile begonnen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Trennzeichen</font></b></td></tr></table></td>
+  <td>Gib in dieses Feld das Zeichen ein, welches die einzelnen Felder in der zu importierenden Datei trennt. Normalerweise erkennt eddi das Trennzeichen automatisch.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Datenliste importieren</b></td></tr></table></td>
+  <td>Startet den Import der Datenliste, wenn alle Werte den entsprechenden Feldern zugeordnet wurden. Als erstes wird nach dem Dateinamen der zu erstellenden Liste gefragt: Gib hier bspw. <i>2002.efbm</i> für eine Mitgliederliste für das Fahrtenbuch <i>2002.efb</i> an (siehe einleitende Erklärung).<br>Bei Mitgliederlisten wird zusätzlich nach der Liste der Status gefragt, die ein Mitglied im Verein haben kann. Diese muß mit der Liste, wie sie beim Erstellen des Fahrtenbuchs in efa angegeben wurde, übereinstimmen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Mitgliederliste</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Import einer Mitgliederliste</td>
+</tr>
+<tr>
+  <td colspan="2">Auf dieser Registerkarte werden die Zuordnungen der einzelnen Daten wie Vor- und Nachname zu den jeweiligen Feldern aus der Datei getroffen. Werte, die in der zu imporierenden Datei nicht vorkommen, müssen nicht zugeordnet werden. eddi fordert ggf. beim Import zum Vervollständigen der Einträge auf.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Vorname</font></b></td></tr></table></td>
+  <td>Vorname der Person.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Nachname</font></b></td></tr></table></td>
+  <td>Nachname der Person.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabekürzel</font></b></td></tr></table></td>
+  <td>Kürzel, welches zur schnelleren Eingabe (anstelle des Namens) verwendet werden kann.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Jahrgang</font></b></td></tr></table></td>
+  <td>Geburtsjahr der Person.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Geschlecht</font></b></td></tr></table></td>
+  <td>Geschlecht der Person.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Status</font></b></td></tr></table></td>
+  <td>Status der Person im Verein. Dieser Status muß in der Liste der Status, die beim Anlegen des Fahrtenbuchs in efa angegeben wurde, enthalten sein.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Verein</font></b></td></tr></table></td>
+  <td>Verein der Person, falls es sich um eine Person eines fremden Vereins handelt. Bei Mitgliedern sollte dieses Feld leer bleiben.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Behinderung</font></b></td></tr></table></td>
+  <td>Legt fest, ob die Person einen Behinderungsgrad von 50 oder mehr Prozent hat (für DRV-Fahrtenabzeichen nötig).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">MitglNr</font></b></td></tr></table></td>
+  <td>Mitgliedsnummer (wird derzeit von efa nicht ausgewertet).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Paßwort</font></b></td></tr></table></td>
+  <td>Paßwort, das zum Erstellen Personenbezogener Statistiken beim Einsatz im Bootshaus verwendet werden kann.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Frei x</font></b></td></tr></table></td>
+  <td>Felder zur freien Verwendung (werden von efa nicht ausgewertet).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Generiere Eingabekürzel</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, generiert efa für jedes zu importierende Mitglied ein Eingabekürzel nach dem angegebenen Format (siehe auch <a href="EfaConfigFrame.html">efa-Konfiguration</a>).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Bootsliste</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Import einer Bootsliste</td>
+</tr>
+<tr>
+  <td colspan="2">Auf dieser Registerkarte werden die Zuordnungen der einzelnen Daten wie Bootsname und -art zu den jeweiligen Feldern aus der Datei getroffen. Werte, die in der zu imporierenden Datei nicht vorkommen, müssen nicht zugeordnet werden. eddi fordert ggf. beim Import zum Vervollständigen der Einträge auf.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Bootsname</font></b></td></tr></table></td>
+  <td>Name des Bootes.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Verein</font></b></td></tr></table></td>
+  <td>Verein, dem das Boot gehört, falls es sich um ein fremdes Boot handelt. Bei eigenen Booten sollte dieses Feld leer bleiben.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Bootsart</font></b></td></tr></table></td>
+  <td>Art des Boots (z.B. <i>C-Gig</i>, <i>Rennboot</i> usw.).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Anzahl Ruderplätze</font></b></td></tr></table></td>
+  <td>Anzahl der Ruderplätze, z.B. <i>1er</i>, <i>2er</i> usw.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Riggerung</font></b></td></tr></table></td>
+  <td>Riggerung, <i>Skull</i> oder <i>Riemen</i>.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">mit/ohne Stm.</font></b></td></tr></table></td>
+  <td>gibt an, ob es sich um ein gesteuertes oder ungesteuertes Boot handelt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Gruppen</font></b></td></tr></table></td>
+  <td>Eine durch Semikolon getrennte Liste von Gruppen, die mit diesem Boot rudern darf (beim Einsatz im Bootshaus). Die Namen dieser Gruppen müssen in efa als Gruppen hinterlegt sein.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Mind. in Gruppe</font></b></td></tr></table></td>
+  <td>Eine Gruppe, aus der mindestens einer der Ruderer des Bootes kommen muß (beim Einsatz im Bootshaus). Der Name dieser Gruppe muß in efa als Gruppe hinterlegt sein.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Frei x</font></b></td></tr></table></td>
+  <td>Felder zur freien Verwendung (werden von efa nicht ausgewertet).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Zielliste</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Import einer Zielliste</td>
+</tr>
+<tr>
+  <td colspan="2">Auf dieser Registerkarte werden die Zuordnungen der einzelnen Daten wie Zielbezeichnung und Entfernung zu den jeweiligen Feldern aus der Datei getroffen. Werte, die in der zu imporierenden Datei nicht vorkommen, müssen nicht zugeordnet werden. eddi fordert ggf. beim Import zum Vervollständigen der Einträge auf.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Bezeichnung</font></b></td></tr></table></td>
+  <td>Bezeichnung (Name) des Ziels.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Entfernung</font></b></td></tr></table></td>
+  <td>Entfernung des Ziels (Hin- und Rückweg) in Kilometern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Zielbereiche</font></b></td></tr></table></td>
+  <td>Liste der erreichten Zielbereiche ohne den Startbereich (nur für Berliner Vereine).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Start/Ziel ist Bootshaus</font></b></td></tr></table></td>
+  <td>Legt fest, ob Start und Ziel für diese Fahrt das vereinseigene Bootshaus ist.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Gewässer</font></b></td></tr></table></td>
+  <td>Eine durch Kommata getrennte Liste von Gewässern, die bei der Fahrt befahren werden.</td>
+</tr>
+</table>
+
+<br clear="all"><br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>siehe auch:</i></b></font></td></tr>
+</table>
+<ul>
+  <li><a href="MitgliederFehlerFrame.html">Korrigieren von Werten beim Import von Mitgliedern</a></li>
+  <li><a href="BootFehlerFrame.html">Korrigieren von Werten beim Import von Booten</a></li>
+  <li><a href="ZielFehlerFrame.html">Korrigieren von Werten beim Import von Zielen</a></li>
+</ul>
+
+<p><a href="Frames.html">Zurï¿½ck zur ï¿½bersicht der Hilfeseiten</a></p>
+<br clear="all"><hr>
+<small><a href="index.html">efa - elektronisches Fahrtenbuch</a>,
+Copyright &copy; 2001-10 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
+&lt;<a href="mailto:software@nmichael.de">software@nmichael.de</a>&gt;</small>
+</body>
+</html>

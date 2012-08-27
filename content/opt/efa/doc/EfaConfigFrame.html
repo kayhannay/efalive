@@ -1,0 +1,399 @@
+<html>
+<head>
+<title>efa - elektronisches Fahrtenbuch</title>
+</head>
+<body bgcolor="#ffffff">
+<h1 align="center">Allgemeine Einstellungen</h1>
+
+<br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Beschreibung</i></b></font></td></tr>
+</table>
+
+<p>Im Fenster <i>Allgemeine Einstellungen</i> kannst Du diverse Einstellungen für das Verhalten von efa festlegen. Du gelangst zu diesen Einstellungen vom <a href="EfaFrame.html">efa-Hauptfenster</a> über den Menüpunkt <i>Allgemeine Einstellungen</i> im Menü <i>Administration</i>.</p>
+
+<br clear="all">
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Erklï¿½rung der Buttons und Felder</i></b></font></td></tr>
+</table>
+
+<table width="100%">
+<tr>
+  <td colspan="2">Das Fenster ist der Übersichtlichkeit halber in mehrere Registerkarten unterteilt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Speichern</b></td></tr></table></td>
+  <td>Einstellungen speichern und Fenster schließen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Allgemein</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Allgemeine Einstellungen</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabe-Kürzel automatisch generieren</font></b></td></tr></table></td>
+  <td>Für die Eingabe von Mitgliedsnamen kann anstelle des Namens auch ein Eingabe-Kürzel verwendet werden, welches von efa automatisch durch den Namen ersetzt wird. Wenn diese Option gesetzt ist, erstellt efa beim <a href="NeuesMitgliedFrame.html">Hinzufügen eines neuen Mitglieds zur Mitgliederliste</a> automatisch ein passendes Eingabekürzel nach dem unten angegebenen Format.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Format der Eingabe-Kürzel</font></b></td></tr></table></td>
+  <td>Wenn die Option <i>Eingabe-Kürzel automatisch generieren</i> gewählt ist, generiert efa ein Eingabe-Kürzel nach dem hier angegebenen Format.<br>Das Format hat folgenden Aufbau: Alle hier eingegebenen Zeichen werden exakt übernommen. Desweiteren sind Variablen möglich, deren Name in geschweifte Klammern eingefaßt ist. Der erste Buchstabe des Namens ist entweder <i>V</i> (Vorname), <i>N</i> (Nachname) oder <i>C</i> (Club/Verein) und gibt an, aus welchem Feld ein Zeichen zur Generierung des Eingabe-Kürzels verwendet werden soll. Hinter dem Buchstaben muß die Zeichenposition eingegeben werden (Zählung beginnt mit 1). Die Variable <i>{V1}</i> wählt den ersten Buchstaben des Vornamens aus, <i>{N2}</i> den zweiten Buchstaben des Nachnamens. Ein mögliches Format für die Eingabe-Kürzel wäre beispielsweise: <i>{V1}{V2}-{N1}</i>. Aus dem Namen <i>Heinz Kunze</i> würde dann das Eingabe-Kürzel <i>he-k</i> generiert.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>neu generieren</b></td></tr></table></td>
+  <td>Durch Klicken dieses Buttons werden in der aktuell geöffneten Mitgliederliste alle Eingabekürzel nach dem hier angegebenen Format neu generiert. Es wird dabei für alle Mitglieder/Gäste ein Eingabekürzel generiert und bereits bestehende Eingabekürzel durch die neuen ersetzt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Standardmannschaft automatisch eintragen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, wird eine <a href="MannschaftFrame.html">Standardmannschaft</a> (sofern vorhanden) automatisch bei der Eingabe von Fahrten eingetragen, sobald der Bootsname ausgewählt wurde.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Standard-Fahrtart</font></b></td></tr></table></td>
+  <td>Diese Option legt fest, welche Fahrtart standardmäßig vorgegeben werden soll, wenn ein neuer Fahrtenbucheintrag angelegt wird. Über Standardmannschaften für Boote läßt sich die Standard-Fahrtart auch bootsspezifisch festlegen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Obmann-Auswahlliste anzeigen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, wird bei der Eingabe von Fahrten eine Liste angezeigt, die es erlaubt, einen Obmann auszuwählen. Ist diese Option nicht gewählt, kann ein Obmann nur durch Anklicken der Feldbezeichner oder durch Drücken von <Strg>-<O> gewählt werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Obmann bei Eingabe automatisch auswählen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, wählt efa bei der Eingabe einer neuen Fahrt automatisch den Steuermann oder Bugmann als Obmann aus.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Standard-Obmann für ungesteuerte Boote</font></b></td></tr></table></td>
+  <td>Wenn die automatische Auswahl der Obleute durch efa aktiviert ist, so gibt dieses Auswahlfeld an, ob efa bei ungesteuerten Booten standardmäßig den Bugmann oder den Steuermann auswählen soll.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Beim Vervollständigen Popup-Liste anzeigen</font></b></td></tr></table></td>
+  <td>efa vervollständigt bei der Eingabe die Namen von bekannten Booten, Mitgliedern und Zielen. Standardmäßig wird im Eingabefeld der aktuell zur Eingabe passende Name angezeigt. Wenn die Option <i>Beim Vervollständigen Popup-Liste anzeigen</i> gewählt ist, so erscheint neben dem Eingabefeld eine sortierte Auswahlliste aller Namen. Durch diese kann mit den Pfeiltasten oder mit der Maus geblättert werden. Diese Art der Vervollständigung von Namen wird insb. für den Einsatz im Bootshaus empfohlen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Fahrtenbucheinträge auf Tippfehler prüfen für Mitglieder, Boote, Ziele</font></b></td></tr></table></td>
+  <td>Wenn diese Optionen gewählt sind, überprüft efa beim Abspeichern eines Eintrages alle Mitglieder-, Boots- und/oder Ziel-Namen auf Tippfehler. Wenn ein Tippfehler (z.B. ein Buchstabendreher) gefunden wurde, schlägt efa zur Korrektur den richtig geschriebenen Namen vor.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabefelder 'Uhrzeit' überspringen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, überspringt efa bei der Eingabe von Fahrten die Felder <i>Abfahrt</i> und <i>Ankunft</i>.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabefeld 'Ziel' überspringen (Ziel nicht erforderlich)</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, überspringt efa bei der Eingabe von Fahrten das Feld <i>Ziel</i>. Desweiteren verlangt efa auch beim Einsatz im Bootshaus nicht, daß zum Abschluß einer Fahrt immer ein Ziel eingegeben werden muß.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabefeld 'Mannsch.-Km' überspringen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, überspringt efa bei der Eingabe von Fahrten das Feld <i>Mannsch.-Km</i></i>.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabefeld 'Bemerkungen' überspringen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, überspringt efa bei der Eingabe von Fahrten das Feld <i>Bemerkungen</i></i>.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Tastenbelegungen für Bemerkungs-Feld</font></b></td></tr></table></td>
+  <td>In die folgenden Felder kann beliebiger Text eingetragen werden, der beim Betägigen einer der Funktionstasten F6 bis F12 in das <i>Bemerkung</i>s-Feld einer Fahrt eingefügt wird. Diese Schlagworte sollen in erster Linie zum Klassifizieren von Fahrten dienen. Anhand dieser Bemerkungen läßt sich in den <a href="StatistikErweitertFrame.html">erweiterten Statistikeinstellungen</a> die Auswertung auf bestimmte Fahrten einschränken, die diese Bemerkung enthalten. Ich empfehle, für diesen Zweck den Text mit Begrenzungszeichen abzuschließen: Für F6 könnte z.B. der Text <i>{DÄNEMARK}</i> definiert werden, um alle Dänemark-Fahrten damit zu markieren. Bei der Auswertung ließen sich dann auf Wunsch nur Dänemark-Fahrten auswerten.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Look & Feel</font></b></td></tr></table></td>
+  <td>Hier kann das <i>Look & Feel</i> (Aussehen) von efa festgelegt werden. Diese Einstellung wird erst nach einem Neustart von efa wirksam.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Berlin-spezifische Optionen anzeigen</font></b></td></tr></table></td>
+  <td>Es gibt einige Optionen und Funktionen, die speziell für Berliner Vereine entwickelt wurden (beispielsweise die Eingabe von Zielbereichen für Zielfahrten). Damit diese Funktionen genutzt werden können, muß diese Option aktiviert sein. Nicht-Berliner-Vereine können diese Option deaktivieren.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Backup</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Sicherungskopien erstellen</td>
+</tr>
+<tr>
+  <td colspan="2">efa kann zu bestimmten Zeitpunkten automatisch Sicherungskopien (Backups) von Fahrtenbuchdateien, Boot-, Mitglieder-, Ziellisten usw. erstellen. Sollten tatsächlich einmal Daten verloren gehen oder aus Versehen gelöscht werden, so können die erzeugten Backups über den Menüpunkt <i>Backups einspielen</i> im Menü <i>Datei</i> des <a href="EfaFrame.html">efa-Hauptfensters</a> wieder eingespielt werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Backup-Verzeichnis</font></b></td></tr></table></td>
+  <td>Legt fest, in welchem Verzeichnis die Sicherungskopien gespeichert werden sollen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">bei jedem Speichern</font></b></td></tr></table></td>
+  <td>Ist diese Option aktiviert, so erzeugt efa bei jedem Speichern einer Datei eine Sicherungskopie. Beim erneuten Speichern wird die alte Sicherungskopie überschrieben.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">jeden Monat</font></b></td></tr></table></td>
+  <td>Ist diese Option aktiviert, so erzeugt efa jeden Monat (beim ersten Speichern im Monat) eine Sicherungskopie. Diese Sicherungskopien werden nicht überschrieben und eignen sich daher besonders gut, im Falle von Datenverlust zumindest den Stand zu Monatsbeginn wiederherzustellen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">jeden Tag</font></b></td></tr></table></td>
+  <td>Ist diese Option aktiviert, so erzeugt efa jeden Tag (beim ersten Speichern an diesem Tag) eine Sicherungskopie. Diese Einstellung sollte beim Einsatz von efa im Bootshaus gewählt werden, da somit beim Datenverlust höchstens die Daten eines Tages verloren gehen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">beim Konvertieren</font></b></td></tr></table></td>
+  <td>Ist diese Option aktiviert, so erzeugt efa eine Sicherungskopie von Dateien, die aufgrund von neueren Programmversionen in ein neues Format konvertiert werden müssen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Drucken</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Seitenlayout für Druck</td>
+</tr>
+<tr>
+  <td colspan="2">Hier können die Standard-Einstellungen für das Seitenlayout beim Drucken im <a href="BrowserFrame.html">efa-Browser</a> angegeben werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Seitenbreite</font></b></td></tr></table></td>
+  <td>Breite der Seite in Millimetern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Seitenhöhe</font></b></td></tr></table></td>
+  <td>Höhe der Seite in Millimetern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">linker und rechter Rand</font></b></td></tr></table></td>
+  <td>Breite von linkem und rechtem Rand in Millimetern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">oberer und unterer Rand</font></b></td></tr></table></td>
+  <td>Breite von oberem und unterem Rand in Millimetern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Seitenüberlappung</font></b></td></tr></table></td>
+  <td>In diesem Feld kann festgelegt werden, um wie viele Millimeter sich zwei Seiten beim Druck von mehrseitigen Dokumenten überlappen sollen. Wenn in Deinem Ausdruck am Ende einer Seite <i>halbe Zeilen</i> gedruckt werden, die zu Beginn der nächsten Seite nicht oder ebenfalls nur halb erscheinen und damit nicht lesbar sind, so solltest Du diesen Wert heraufsetzen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>efa im Bootshaus - Allgemeine Einstellungen</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Einstellungen, die den Einsatz von efa im Botshaus betreffen</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Mitglieder dürfen Boote reservieren (einmalige Reservierungen)</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, dürfen Mitglieder Boote für ein festes Datum reservieren. Ist sie nicht gewählt, kann dies nur ein berechtigter Administrator tun.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Mitglieder dürfen Boote reservieren (wöchentliche Reservierungen)</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, dürfen Mitglieder Boote wiederkehrend immer für einen bestimmten Wochentag reservieren. Ist sie nicht gewählt, kann dies nur ein berechtigter Administrator tun.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Mitglieder dürfen Bootsreservierungen verändern und löschen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, dürfen normale Mitglieder vorhandene Reservierungen von Booten sowohl ändern, als auch löschen. Ist diese Option nicht gewählt, dürfen sie nur neue Reservierungen hinzufügen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Mitglieder dürfen Namen zur Mitgliederliste hinzufügen</font></b></td></tr></table></td>
+  <td>Normalerweise können Mitglieder keine Namen zur Mitgliederliste hinzufügen. Wenn dies gewünscht ist (etwa in SRR mit häufig neuen Mitgliedern), kann diese Option aktiviert werden. Sie ermöglicht es, daß jede Person einen neuen Namen zur Mitgliederliste hinzufügen kann. Der Admin wird über diese Aktion benachrichtigt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Reservierte Boote als 'nicht verfügbar' anzeigen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, wird ein Boot, für das zur Zeit eine Reservierung vorliegt, in der Liste der nicht verfügbaren Boote angezeigt. Ist diese Option nicht gewählt, so wird es in der Liste der verfügbaren Boote angezeigt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Boote auf Regatta, Trainingslager oder Mehrtagesfahrt als 'nicht verfügbar' anzeigen</font></b></td></tr></table></td>
+  <td>Normalerweise zeigt efa alle Boote, die gerade unterwegs sind, als <i>auf Fahrt</i> an. Wenn Boote, die auf Regatta, Trainingslager oder Mehrtagesfahrt unterwegs sind, also in der Regel mehrere Tage unterwegs sind, als <i>nicht verfügbar</i> angezeigt werden sollen, so aktiviere diese Option.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Mitglieder dürfen efa beenden</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, darf jedes normale Mitglied efa durch einen Klick auf das Schließen-Symbol beenden. Ist diese Option nicht gewählt, so dürfen nur berechtigte Administratoren efa beenden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Folgendes Kommando beim Beenden von efa durch Mitglieder ausführen</font></b></td></tr></table></td>
+  <td>Es ist möglich, hier ein Kommando einzugeben, welches immer ausgeführt wird, wenn efa durch ein Mitglied beendet wird (falls Mitglieder efa nicht beenden dürfen und dies nur den Administratoren erlaubt ist, wird dieses Kommando nicht ausgeführt). Beispielsweise könnte hier ein Programm gestartet werden, welches das Herunterfahren des Rechners veranlaßt, so daß der Computer automatisch ausgeschaltet wird, wenn efa beendet wird. Nähere Informationen hierzu gibt es auf der Seite zu <a href="efaDirekt.html">efa im Bootshaus</a>.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">efa automatisch um x Uhr beenden</font></b></td></tr></table></td>
+  <td>Wenn in dieses Feld eine Uhrzeit eingetragen ist, wird efa im Bootshaus automatisch zu dieser Zeit beendet. Bemerkungen: efa wird nur beendet, wenn mindestens fünf Minuten lang keine Aktion stattgefunden hat und efa mindestens eine Stunde lang bereits lief. efa versucht insgesamt eine Stunde lang, sich zu beenden. Ist diese Stunde übschritten, wird efa nicht mehr beendet.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Folgendes Kommando beim automatischen Beenden von efa ausführen</font></b></td></tr></table></td>
+  <td>Wie auch in dem anderen Eingabefeld kann hier ein Kommando eingegeben werden, welches efa ausführt, nachdem es sich automatisch beendet hat. Nähere Informationen hierzu gibt es auf der Seite zu <a href="efaDirekt.html">efa im Bootshaus</a>.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">efa automatisch um x Uhr neu starten</font></b></td></tr></table></td>
+  <td>Wenn in dieses Feld eine Uhrzeit eingetragen ist, wird efa im Bootshaus sich automatisch zu dieser Zeit neu starten. Ein einmal täglicher Neustart von efa im Bootshaus ist dringend angeraten, weil sich efa auf diese Weise von möglichen Fehlern oder Speicherengpässen befreien kann. Bemerkungen: efa wird nur dann neu gestartet, wenn mindestens fünf Minuten lang keine Aktion stattgefunden hat und efa mindestens eine Stunde lang bereits lief.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>efa im Bootshaus - Eintrag von Fahrten</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Einstellungen, die das Eintragen von Fahrten bei der Verwendung von efa im Bootshaus betreffen</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Nur für das Boot maximal mögliche Anzahl an Ruderern erlauben</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, verhindert efa, daß für ein Boot mehr Ruderer eingetragen werden als Ruderplätze zur Verfügung stehen. Bitte beachte: Wenn diese Option gewählt ist, können auch keine Kielschweine mehr eingetragen werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Obmann muß ausgewählt werden</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, erzwingt efa die Auswahl eines Obmanns für jede eingetragene Fahrt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Abfahrt: x Minuten zu aktueller Zeit addieren</font></b></td></tr></table></td>
+  <td>Beim Beginnen einer neuen Fahrt schlägt efa die Uhrzeit <i>aktuelle Zeit + x</i> (gerundet auf volle fünf Minuten) als Abfahrtszeit vor.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Ankunft: x Minuten von aktueller Zeit abziehen</font></b></td></tr></table></td>
+  <td>Beim Beenden einer Fahrt schlägt efa die Uhrzeit <i>aktuelle Zeit - x</i> (gerundet auf volle fünf Minuten) als Ankunftszeit vor.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Vorgeschlagene Uhrzeiten können nicht geändert werden</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, verhindert efa, daß ein Benutzer die von efa vorgeschlagenen Uhrzeiten für Abfahrt und Ankunft verändert.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Ziel muß bereits bei Fahrtbeginn angegeben werden</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, zwingt efa die Mitglieder, beim Beginnen einer neuen Fahrt bereits ein voraussichtliches Ziel einzugeben.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Vorgeschlagene Kilometer bei bekannten Zielen können nicht geändert werden</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, verhindert efa, daß ein Mitglied beim Eintragen einer Fahrt die für das Ziel in der Zielliste hinterlegten Kilometer im Fahrtenbucheintrag ändert.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Beim Eintrag von Fahrten nur bekannte Namen erlauben für Boote / Ruderer / Ziele</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, erlaubt efa beim Beginnen, Beenden und Nachtragen von Fahrten nur die Eingabe von Namen, die in der Boots-, Mitglieder- bzw. Zielliste hinterlegt sind.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>efa im Bootshaus - Erscheinungsbild</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Einstellungen, die das Erscheinungsbild von efa im Botshaus betreffen</td>
+</tr>
+<tr>
+  <td colspan="2">Auf dieser Registerkarte kann eingestellt werden, welche Buttons mit welchem Text und in welcher Farbe im Hauptfenster der Bootshaus-Version von efa erscheinen sollen. Ferner läßt sich ein Vereinslogo angeben, welches ganz oben angezeigt wird.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Erscheinungsbild der Buttons</font></b></td></tr></table></td>
+  <td>Durch Anklicken eines Buttons kann seine Farbe, in der er in efa erscheinen soll, geändert werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Text</b></td></tr></table></td>
+  <td>Durch Klicken von <i>Text</i> kann der Beschriftungstext des davorstehenden Buttons geändert werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">anzeigen</font></b></td></tr></table></td>
+  <td>Diese Eigenschaft bestimmt, ob der jeweilige Button angezeigt werden soll oder nicht.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">bei Click ausführen</font></b></td></tr></table></td>
+  <td>Für den letzten Button (<i>Spezial-Button</i>) kann ein beliebiges Betriebssystemkommando angegeben werden, welches ausgeführt wird, wenn dieser Button gedrückt wird. Wenn als Kommando <i>browser:&lt;url&gt;</i> angegeben wird, ruft efa die URL &lt;url&gt; im internen Browser auf.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Hotkeys für Buttons anzeigen</font></b></td></tr></table></td>
+  <td>Die Hauptfunktionen von efa sind über die Tasten &lt;F1&gt; bis &lt;F12&gt; möglich. Wenn diese Option gewählt ist, wird der jeweilige Hotkey auf dem Button mit der entsprechenden Funktionalität angezeigt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Fahrtziel in der Liste 'Boote auf Fahrt' anzeigen</font></b></td></tr></table></td>
+  <td>Wenn diese Option aktiviert ist, zeigt efa bei Booten, die gerade unterwegs sind, das eingetragene Fahrtziel hinter dem Bootsnamen in der Liste 'Boote auf Fahrt'.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Vereinslogo</font></b></td></tr></table></td>
+  <td>Hier kann ein Logo ausgewählt werden, welches oben im Hauptfenster angezeigt werden soll. Mögliche Formate für das Bild sind GIF oder JPEG, die maximale Größe beträgt 192 x 64 Punkte.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>auswählen</b></td></tr></table></td>
+  <td>Wählt ein Vereinslogo aus.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>entfernen</b></td></tr></table></td>
+  <td>Entfernt das ausgewählte Vereinslogo wieder.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">efa maximiert starten</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, wird efa im Vollbildmodus gestartet. efa belegt dabei den gesamten Platz auf dem Bildschirm, so daß im Betriebssystem auch die Taskleiste minimiert werden sollte.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Hauptfenster nicht verschiebbar</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, kann das <a href="EfaDirektFrame.html">Hauptfenster von efa</a> weder verschoben, noch minimiert werden. (Diese Funktion wird erst ab Java v1.4 unterstützt.)</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">efa immer im Vordergrund</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, dann befindet sich efa immer im Vordergrund, d.h. kann nicht von anderen, gleichzeitig laufenden Programmen verdeckt werden.  (Diese Funktion wird in vollem Umfang erst ab Java v1.5 unterstützt. Bei früheren Java-Versionen kann efa trotz dieser Option vorübergehend im Hintergrund sein.)</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">sortiere Boote nach Anzahl der Ruderplätze</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, werden in den Bootslisten (<i>verfügbare Boote</i>, <i>Boote auf Fahrt</i>, <i>gesperrte Boote</i>) die Boote nicht nur nach Namen sortiert, sondern zusätzlich nach der Anzahl ihrer Bootsplätze gruppiert.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabehinweise anzeigen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, werden beim Ein- und Austragen von Fahrten Hinweise zu den erforderlichen Eingaben angezeigt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">aktuelles Eingabefeld farblich hervorheben</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, wird das aktuelle Eingabefeld beim Beginnen und Beenden von Fahrten farblich hervorgehoben.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Uhr anzeigen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, wird im efa-Hauptfenster eine Uhr angezeigt, welche die aktuelle Uhrzeit wiedergibt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">News-Text</font></b></td></tr></table></td>
+  <td>Ein hier eingetragener Text wird im Hauptfenster von efa als Lauftext angezeigt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Schriftgröße</font></b></td></tr></table></td>
+  <td>In diesem Feld kann die Schriftgröße für alle efa-Fenster eingestellt werden (in Punkten). Größere Werte führen zu einer größeren Schrift. Wird das Feld leer gelassen, wird eine Standardschriftgröße benutzt (üblicherweise <i>12</i>). Eine Änderung der Schriftgröße wirkt sich nur auf neu geöffnete Fenster (bzw. nach Neustart von efa) aus.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Schriftstil</font></b></td></tr></table></td>
+  <td>In diesem Feld kann der Schriftstil (normal oder fett) für alle efa-Fenster eingestellt werden. Die Angabe <i>Standard</i> wählt den Standard-Schriftstil für das gewählte Look&Feel.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Sonnenaufgangs- und -untergangszeit anzeigen</font></b></td></tr></table></td>
+  <td>Wenn diese Option gewählt ist, zeigt efa unter der Uhr die Zeit des Sonnenaufgangs und -untergangs an. Damit diese korrekt berechnet wird, muß in die Felder <i>geographische Breite</i> und <i>geographische Länge</i> die genaue Position des Bootshauses eingetragen werden.<br>Hinweis: Um diese Funktionalität zu nutzen, muß das JSUNRISE-Plugin installiert werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>efa im Bootshaus - Benachrichtigungen</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Konfiguration von Benachrichtigungen bei Ereignissen</td>
+</tr>
+<tr>
+  <td colspan="2">Auf dieser Registerkarte kann festgelegt werden, wann und wie efa Administratoren bei bestimmten Ereignissen benachrichtigen soll.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Benachrichtigungen verschicken</font></b></td></tr></table></td>
+  <td>Für jede Art von Ereignis kann konfiguriert werden, ob und an welche Gruppe von Administratoren efa Nachrichten verschicken soll. Nachrichten werden als normale efa-Nachrichten intern in efa zugestellt sowie, falls für die entsprechenden Administratoren email-Adressen konfiguriert sind, auch als emails verschickt. Zusätzlich zu den hier konfigurierbaren Ereignissen gibt es einige weitere Ereignisse, bei denen immer Nachrichten verschickt werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">... bei Fehlern (ERROR)</font></b></td></tr></table></td>
+  <td>Wenn in efa ein Fehler auftritt, wird standardmäßig sofort eine Nachricht an alle Administratoren verschickt. Diese Einstellung sollte unbedingt aktiviert bleiben, da solche Fehler oft einen unmittelbaren Eingriff eines Administrators erfordern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">... bei Warnungen (WARNING) einmal pro Woche</font></b></td></tr></table></td>
+  <td>Warnungen entstehen bei Ereignissen, die der Administrator zur Kenntnis nehmen sollte und auf die er u.U. auch reagieren muß, die jedoch nicht unmittelbaren Einfluß auf die Funktionsfähigkeit von efa haben. Eine Zusammenfassung aller angefallenen Warnungen wird standardmäßig einmal pro Woche an alle Administratoren verschickt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">... bei Bootsstatus-Änderungen</font></b></td></tr></table></td>
+  <td>Wenn der Status eines Bootes durch einen Administrator geändert wird, so können auf Wunsch alle Admins bzw. Bootswarte darüber benachrichtigt werden. Änderungen am Bootsstatus durch das Beginnen und Beenden von Fahrten sowie das Erstellen von Reservierungen führen nicht zu Benachrichtigungen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">SMTP-Server</font></b></td></tr></table></td>
+  <td>efa ist in der Lage, Nachrichten, die an einen Administrator geschickt werden, auch per email zu versenden. Die Adresse, an die die Nachrichten geschickt werden, müssen dazu <a href="AdminVerwaltenFrame.html">bei der Verwaltung der Administratoren</a> angegeben werden.<br>In dieses Feld wird der Name des SMTP-Servers zum Verschicken von emails eingetragen.<br>Hinweis: Für diese Funktionalität ist das MAIL-Plugin erforderlich.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Username</font></b></td></tr></table></td>
+  <td>Dies ist der Benutzername für den SMTP-Server, sofern der Server einen verlangt. Wenn keine Anmeldung am SMTP-Server nötig ist, so muß dieses Feld leergelassen werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Paßwort</font></b></td></tr></table></td>
+  <td>Dies ist das Paßwort für den SMTP-Server,sofern der Server eines verlangt. Wenn keine Anmeldung am SMTP-Server nötig ist, so muß dieses Feld leergelassen werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Absender-Name</font></b></td></tr></table></td>
+  <td>Dies ist der Name des Absenders für den Versand von emails.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Absender-Adresse</font></b></td></tr></table></td>
+  <td>Dies ist die Adresse, die als Absender für emails eingetragen werden soll.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Betreff (Präfix)</font></b></td></tr></table></td>
+  <td>Dies ist ein beliebiger Text, der dem Betreff der email vorangestellt wird.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Signatur</font></b></td></tr></table></td>
+  <td>Dies ist die Signatur, die unter jeder email erscheint.</td>
+</tr>
+<tr>
+  <td colspan="2" bgcolor="#aaffaa">Pfade</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Nutzerdaten</font></b></td></tr></table></td>
+  <td>Das Verzeichnis, in dem efa alle Nutzerdaten (Fahrtenbücher, Einstellungen, Logdateien usw.) speichern soll. Eine Änderung des Verzeichnisses für Nutzerdaten wird erst nach einem Neustart von efa wirksam. efa kopiert keinerlei bestehende Daten von einem alten in ein neues Verzeichnis, falls dieses Verzeichnis geändert wird.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Webbrowser</font></b></td></tr></table></td>
+  <td>Pfad zu einem Webbrowser. Dieser wird beispielsweise gestartet, wenn bei der <a href="StatistikFrame.html">Statistikerstellung</a> die Ausgabeart <i>im Browser</i> gewählt wurde.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Acrobat Reader</font></b></td></tr></table></td>
+  <td>Der <i><a href="http://www.adobe.com/">Adobe</a> Acrobar Reader</i> ist ein Programm zum Darstellen von PDF-Dokumenten. Wenn Du den Acrobat Reader installiert hast und hier den Pfad zur Programmdatei des Acrobat Reader angibst, öffnet efa bei der <a href="StatistikFrame.html">Statistikerstellung</a> bei Ausgabeart <i>als PDF-Datei</i> die erstellte Kilometerliste automatisch im Acrobat Reader.</td>
+</tr>
+</table>
+
+<p><a href="Frames.html">Zurï¿½ck zur ï¿½bersicht der Hilfeseiten</a></p>
+<br clear="all"><hr>
+<small><a href="index.html">efa - elektronisches Fahrtenbuch</a>,
+Copyright &copy; 2001-10 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
+&lt;<a href="mailto:software@nmichael.de">software@nmichael.de</a>&gt;</small>
+</body>
+</html>

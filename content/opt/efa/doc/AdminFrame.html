@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>efa - elektronisches Fahrtenbuch</title>
+</head>
+<body bgcolor="#ffffff">
+<h1 align="center">Admin-Modus</h1>
+
+<br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Beschreibung</i></b></font></td></tr>
+</table>
+
+<p>Im Admin-Modus stehen den berechtigten Administratoren sämtliche Konfigurations- und Verwaltungsfunktionen von efa zur Verfügung. In den Admin-Modus gelangst Du vom <a href="EfaDirektFrame.html">efaDirekt Hauptfenster</a> durch Klicken des Buttons <i>Admin-Modus</i>. Beim Betreten des Admin-Modus wird ein Administratorname und ein Paßwort verlangt, so daß &quot;normale&quot; Mitglieder keinen Zugriff auf die Administrator-Funktionen haben.</p>
+<p>Je nach den im <a href="AdminVerwaltenFrame.html">Admis verwalten</a>-Fenster festgelegten Rechten stehen dem eingeloggten Admin u.U. nur ein Teil der hier beschriebenen Funktionen zur Verfügung. Der einzige Administrator, der Zugriff auf sämtliche Funktionen hat, ist der SuperAdmin <i>admin</i>.</p>
+
+<br clear="all">
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Erklï¿½rung der Buttons und Felder</i></b></font></td></tr>
+</table>
+
+<table width="100%">
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Admins verwalten</b></td></tr></table></td>
+  <td>Diese Funktion ermöglicht das Anlegen neuer Admins, das Ändern von Paßwörtern oder Rechten bestehender Admins, sowie das Löschen von Admins. Diese Funktion steht ausschließlich dem SuperAdmin <i>admin</i> zur Verfügung.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Paßwort ändern</b></td></tr></table></td>
+  <td>Über diese Funktion kann das Paßwort des aktuellen Administrators geändert werden. Diesen Button gibt es nur für <i>normale</i> Administratoren und nur, wenn ihnen das Recht zum Ändern des Paßworten gegeben wurde; der Super-Administrator ändert sein Paßwort über die Funktion <i>Admins verwalten</i>.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Fahrtenbuch-Vollzugriff</b></td></tr></table></td>
+  <td>Diese Funktion zeigt das gesamte Fahrtenbuch in der <a href="EfaFrame.html">herkömmlichen efa-Ansicht</a> und ermöglicht es, Einträge zu korrigieren, zu löschen, hinzuzufügen, Mitglieder, Boote und Ziele zu verwalten, Statistiken zu erstellen usw. Mit dieser Funktion ist ein Vollzugriff auf die gesamte efa-Funktionalität möglich.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>efa konfigurieren</b></td></tr></table></td>
+  <td>Diese Funktion erlaubt es, globale Einstellungen für efa vorzunehmen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Fahrtenbuch auswählen</b></td></tr></table></td>
+  <td>Mit dieser Funktion kann das aktuelle Fahrtenbuch, in welches alle Fahrten eingetragen werden sollen, ausgewählt werden, sowie ein neues Fahrtenbuch erstellt werden. Diese Funktion ermöglicht auch, zeitgesteuert zu einem späteren Zeitpunkt ein neues Fahrtenbuch zu erstellen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Fahrtenbuch bearbeiten</b></td></tr></table></td>
+  <td>Diese Funktion ermöglicht es, Fahrten im Fahrtenbuch zu bearbeiten und Mehrtagesfahrten zu editieren.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Bootsstatus bearbeiten</b></td></tr></table></td>
+  <td>Mit dieser Funktion läßt sich der Status der Boote verändern (verfügbar, auf Fahrt, nicht verfügbar) und bestimmen, welche Boote angezeigt werden sollen und welche nicht. Desweiteren lassen sich Reservierungen von Booten erstellen, bearbeiten und löschen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Bootsliste bearbeiten</b></td></tr></table></td>
+  <td>Mit dieser Funktion läßt sich die Liste der Boote verändern, z.B. neue Boote hinzufügen oder vorhandene bearbeiten. Außerdem kann festgelegt werden, welche Gruppen berechtigt sind, ein Boot zu rudern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Mitgliederliste bearbeiten</b></td></tr></table></td>
+  <td>Mit dieser Funktion läßt sich die Liste der Mitglieder verändern, z.B. neue Mitglieder hinzufügen oder vorhandene bearbeiten.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Zielliste bearbeiten</b></td></tr></table></td>
+  <td>Mit dieser Funktion läßt sich die Liste der Ziele verändern, z.B. neue Ziele hinzufügen oder vorhandene bearbeiten.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Gruppen bearbeiten</b></td></tr></table></td>
+  <td>Mit dieser Funktion lassen sich Gruppen von Mitgliedern bearbeiten, z.B. neue neue Gruppen erstellen oder die Mitglieder, die vorhandenen Gruppen angehören, zu verändern.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Nachrichten anzeigen</b></td></tr></table></td>
+  <td>Diese Funktion zeigt alle Nachrichten an, die an den Admin (entweder von Mitgliedern, oder von efa selbst) geschickt wurden. Wenn der Button einen Briefumschlag als Symbol trägt, so liegen neue Nachrichten vor.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Statistiken erstellen</b></td></tr></table></td>
+  <td>Mit dieser Funktion lassen sich beliebige Statistiken erstellen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Logdatei anzeigen</b></td></tr></table></td>
+  <td>Mit dieser Funktion wird die Logdatei, in der alle Aktionen von efaDirekt protokolliert sind, angezeigt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>efa sperren</b></td></tr></table></td>
+  <td>Mit dieser Funktion kann efa für die Benutzung von Mitgliedern für eine bestimmte Zeit gesperrt werden (etwa wegen eines Ruderverbots o.ä.).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Admin-Modus verlassen</b></td></tr></table></td>
+  <td>Verläßt den Admin-Modus wieder und schließt das Fenster.</td>
+</tr>
+</table>
+
+<br clear="all"><br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>siehe auch:</i></b></font></td></tr>
+</table>
+<ul>
+  <li><a href="AdminVerwaltenFrame.html">Rechte von Administratoren festlegen</a></li>
+</ul>
+
+<p><a href="Frames.html">Zurï¿½ck zur ï¿½bersicht der Hilfeseiten</a></p>
+<br clear="all"><hr>
+<small><a href="index.html">efa - elektronisches Fahrtenbuch</a>,
+Copyright &copy; 2001-10 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
+&lt;<a href="mailto:software@nmichael.de">software@nmichael.de</a>&gt;</small>
+</body>
+</html>

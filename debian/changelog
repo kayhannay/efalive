@@ -1,0 +1,6 @@
+efalive (2.0-1) unstable; urgency=low
+
+  * Initial release
+  * This is the first version of the Debian package of efaLive.
+
+ -- Kay Hannay <klinux@hannay.de>  Wed, 01 Aug 2012 10:20:18 +0200

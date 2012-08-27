@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>efa - elektronisches Fahrtenbuch</title>
+</head>
+<body bgcolor="#ffffff">
+<h1 align="center">Neues Mitglied hinzufügen / Mitglied bearbeiten</h1>
+
+<br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Beschreibung</i></b></font></td></tr>
+</table>
+
+<p>In diesem Fenster werden weitere Daten für Mitglieder und Gäste eingegeben. Es öffnet sich, wenn Du bei der <a href="EfaFrame.html">Eingabe der Fahrten</a> auf den Button hinter dem Eingabefeld eines Ruderers klickst, oder wenn Du ein Mitglied unter <i>Administration - Fahrtenbuch - Mitgliederliste</i> bearbeitest.</p>
+<p>Die Mitglieder des eigenen Vereins sollten selbstverständlich alle in die Mitgliederliste aufgenommen werden. Wichtig für dis Auswertung von Wettbewerben ist hier auch, daß ihr Jahrgang eingetragen ist! Wenn ein Ruderer nicht in die Mitgliederliste aufgenommen wird, bedeutet dies, daß für ihn einerseits keine jahrgangsbezogenen Wettbewerbe ausgewertet werden können, andererseits erhält er den Status <i>Andere</i>. Bei der Auswertung lassen sich solche Ruderer gezielt ausklammern. Ich würde daher empfehlen, alle Ruderer mit Status <i>Andere</i> immer von der Auswertung auszunehmen (dies ist auch die Standardeinstellung). Damit ergibt sich, daß alle Ruderer, die ausgewertet werden sollen, zur Mitgliederliste hinzugefügt werden sollten. Ich würde alle Mitglieder und Gäste in die Liste aufnehmen. Wenn ein Vereinsmitglied allerdings in einem fremden Verein mit fremden Ruderern rudert und diese Fahrt einträgt, würde ich die Mitglieder des fremden Vereins nicht in die Mitgliederliste aufnehmen.</p>
+
+<br clear="all">
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Erklï¿½rung der Buttons und Felder</i></b></font></td></tr>
+</table>
+
+<table width="100%">
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Mitgliederdaten</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Mitgliederdaten</td>
+</tr>
+<tr>
+  <td colspan="2">Auf dieser Registerkarte sind alle für ein Mitglied relevanten Daten zusammengefaßt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Vorname</font></b></td></tr></table></td>
+  <td>Vorname der Person.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Nachname</font></b></td></tr></table></td>
+  <td>Nachname der Person.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">falls auswärtig, Verein</font></b></td></tr></table></td>
+  <td>Verein, falls es sich bei der Person nicht um ein Mitglied handelt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Eingabe-Kürzel</font></b></td></tr></table></td>
+  <td>Kürzel zur leichteren Eingabe dieser Person. Wenn Du bei den <a href="EfaConfigFrame.html">Allgemeinen Einstellungen</a> die Option <i>Eingabe-Kürzel automatisch generieren</i> aktiviert hast, schlägt efa bei neuen Mitgliedern automatisch ein Kürzel vor.<br>Dieses Kürzel wird bei der <a href="EfaFrame.html">Eingabe</a> bevorzugt behandelt: Wenn es die Namen <i>Manuel Schmidt</i> und <i>Markus Schulz</i> gibt, sowie ein Eingabe-Kürzel <i>ma</i> für Markus, so wird bei der Eingabe <i>ma</i> Markus Schulz vorgeschlagen, obwohl der Name <i>Manuel Schmidt</i> im Alphabet davor kommt. Auf diese Weise lassen sich beispielsweise häufige Mitgliedernamen vor weniger häufig vorkommenden priorisieren.<br><b>Hinweis:</b> Die Eingabekürzel sollten so gewählt werden, daß sie niemals Anfangsstück eines existierenden, anderen Namens sind und gleichzeitig nicht Anfangsstück des Namens, für den sie stehen: Ein Kürzel für <i>Michael Arndt</i> sollte nicht <i>ma</i> lauten, wenn es einen Namen <i>Manuel Schmidt</i> gibt. Wenn nämlich jetzt der Name <i>Manuel Schmidt</i> eingegeben werden soll, so vervollständigt efa nach der Eingabe von <i>ma</i> zu <i>Michael Arndt</i>, und nach Drücken von <i>n</i> für Manuel wird der markierte Text <i>chael Arndt</i> durch das <i>n</i> ersetzt --- es erscheint <i>Min</i>!</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Jahrgang</font></b></td></tr></table></td>
+  <td>Geburtsjahr der Person. Diese Angabe ist für alle Mitglieder wichtig, da sie sonst für Fahrtenwettbewerbe nicht berücksichtigt werden können (da ihre Altersgruppe nicht festgestellt werden kann).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Geschlecht</font></b></td></tr></table></td>
+  <td>Geschlecht der Person.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Status</font></b></td></tr></table></td>
+  <td>Status der Person. Die Liste der Möglichen Status wird bei den <a href="NeuesFahrtenbuchFrame.html">Einstellungen zum Fahrtenbuch</a> festgelegt. Zur Bedeutung dieses Feldes siehe auch den einleitenden Text.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Behinderung</font></b></td></tr></table></td>
+  <td>Markiere diese Option, wenn die betreffende Person einen Behinderungsgrad von 50% oder mehr hat. In diesem Fall gelten für das DRV Fahrtenabzeichen gesonderte Bedingungen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Mitgliedsnummer</font></b></td></tr></table></td>
+  <td>Wenn in diesem Feld für das Mitglied eine Mitgliedsnummer erfaßt ist, so ist es möglich, in der Ausgabe bei Statistiken anstelle des Namens des Mitglieds seine Mitgliedsnummer auszugeben (<i>anonymisierte Statistik</i>). Es werden nur für die Mitglieder die Mitgliedsnummern ausgegeben, für die eine solche erfaßt wurde. Alle anderen Mitglieder erscheinen mit ihrem Namen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Paßwort</font></b></td></tr></table></td>
+  <td>Für die Verwendung im Bootshaus kann jedem Mitglied ein Paßwort zugewiesen werden. Zur Zeit wird es lediglich dazu benutzt, bei der Erstellung von persönlichen Statistiken zuvor nach einem Paßwort gefragt zu werden (<a href="StatistikFrame.html">siehe Statistik Erstellen: Hilfe zu Feld 'nur Name'</a>).</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">von Wettbewerbsmeldungen ausnehmen</font></b></td></tr></table></td>
+  <td>Diese Option bestimmt, ob ein Mitglied für die Auswertung und Meldung von Wettbewerben berücksichtigt werden soll oder nicht. Standardmäßig ist sie für alle Mitglieder deaktiviert. Wenn aber beispielsweise eine Person über einen anderen Verein gemeldet werden möchte, so kann diese Option aktiviert werden, damit es nicht zu versehentlichen Doppelmeldungen kommt. Für Gäste hat diese Option keine Auswirkung, da Gäste ohnehin bei Meldungen ignoriert werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Person hinzufügen</b></td></tr></table></td>
+  <td>Fügt die Person zur Mitgliederliste hinzu. Dieser Button ist nur verfügbar, wenn das Fenster für das Hinzufügen einer neuen Person geöffnet wurde.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Eintrag übernehmen</b></td></tr></table></td>
+  <td>Übernimmt die Einstellungen zu der Person. Dieser Button ist nur verfügbar, wenn die Einstellungen eines existierenden Mitglieds bearbeitet werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Weitere</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Weitere</td>
+</tr>
+<tr>
+  <td colspan="2">Diese Registerkarte enthält einige weitere Felder, die zur freien Verwendung bestimmt sind. Sie können von Vereinen genutzt werden, die mit efa ihre Bootsverwaltung machen möchten. efa wertet keines dieser Felder aus.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Freie Verwendung</font></b></td></tr></table></td>
+  <td>Ein Feld zur freien Verwendung, das von efa nicht ausgewertet wird.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#aaffaa"><b>Gruppen</b></td></tr></table></td>
+  <td width="*" bgcolor="#ddffdd">Gruppen</td>
+</tr>
+<tr>
+  <td colspan="2">Diese Registerkarte enthält die Zugehörigkeit zu Gruppen eines jeden Mitglieds (siehe <a href="NeueGruppeFrame.html">Gruppen</a>). Hinweis: Die Gruppenzugehörigkeit ist Mitgliederlisten-übergreifend! Dies bedeutet, daß Änderungen an der Gruppenzugehörigkeit in einer Mitgliederliste sich auch auf alle anderen Mitgliederlisten auswirken.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>Weitere Gruppen</b></td></tr></table></td>
+  <td>Fügt eine weitere Gruppe hinzu, in der diese Person Mitglied ist.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Gruppe n</font></b></td></tr></table></td>
+  <td>Zeigt an, in welchen Gruppen diese Person Mitglied ist.</td>
+</tr>
+</table>
+
+<br clear="all"><br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>siehe auch:</i></b></font></td></tr>
+</table>
+<ul>
+  <li><a href="NeuesFahrtenbuchFrame.html">Liste für Status festlegen</a></li>
+</ul>
+
+<p><a href="Frames.html">Zurï¿½ck zur ï¿½bersicht der Hilfeseiten</a></p>
+<br clear="all"><hr>
+<small><a href="index.html">efa - elektronisches Fahrtenbuch</a>,
+Copyright &copy; 2001-10 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
+&lt;<a href="mailto:software@nmichael.de">software@nmichael.de</a>&gt;</small>
+</body>
+</html>

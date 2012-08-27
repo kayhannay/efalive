@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>JAXP-Plugin</title>
+</head>
+<body>
+<h1 align="center">JAXP-Plugin</h1>
+
+<p>Um die XML-Funktionalität von <i>efa</i> nutzen zu können, wird das <i>Java API for XML Processing</i>
+(kurz JAXP) benötigt. <i>efa</i> verwendet XML intern für alle HTML-Ausgaben, die nicht mit der Standard-Formatierung
+ausgegeben werden, sowie für alle XML- und PDF-Ausgaben. (Für die PDF-Ausgabe ist zusätzlich
+<a href="fop.html">FOP</a> nötig.)</p>
+
+<p>JAXP 1.2 kann von <a href="http://efa.nmichael.de/plugins/">http://efa.nmichael.de/plugins/</a>
+heruntergeladen werden. Weitere Informationen zu JAXP, sowie die Original-Downloads von Sun, gibt es
+unter <a href="http://java.sun.com/xml/downloads/jaxp.html">http://java.sun.com/xml/downloads/jaxp.html</a>.</p>
+
+<p>JAXP - Java API for XML Processing<br>
+This product includes software developed by the Apache Software Foundation (<a href="http://www.apache.org/">http://www.apache.org/</a>).<br>
+The DOM bindings are published under the W3C Software Copyright Notice and License. Copyright &copy;
+	2002 <a href="http://www.w3.org/">World Wide Web
+	Consortium</a>, (<a href="http://www.lcs.mit.edu/">Massachusetts
+	Institute of Technology</a>, <a href="http://www.inria.fr/">Institut
+	National de Recherche en Informatique et en Automatique</a>, <a
+	href="http://www.keio.ac.jp/">Keio University</a>).  All Rights
+	Reserved. http://www.w3.org/Consortium/Legal/</p>
+
+
+<h2>Download und Installation des JAXP-Plugins</h2>
+<ul>
+  <li>Lade JAXP in der Version 1.2 oder neuer aus dem Internet, z.B. indem Du folgende Dateien herunterlädst:
+      <ul>
+        <li><a href="http://efa.nmichael.de/plugins/dom.jar">dom.jar</a> (26.710 Bytes)</li>
+        <li><a href="http://efa.nmichael.de/plugins/jaxp-api.jar">jaxp-api.jar</a> (27.052 Bytes)</li>
+        <li><a href="http://efa.nmichael.de/plugins/sax.jar">sax.jar</a> (26.206 Bytes)</li>
+        <li><a href="http://efa.nmichael.de/plugins/xalan.jar">xalan.jar</a> (906.806 Bytes)</li>
+        <li><a href="http://efa.nmichael.de/plugins/xercesImpl.jar">xercesImpl.jar</a> (974.490 Bytes)</li>
+      </ul>
+  </li>
+  <li>Kopiere die Dateien <tt>dom.jar</tt>, <tt>jaxp-api.jar</tt>, <tt>sax.jar</tt>, <tt>xalan.jar</tt> und
+      <tt>xercesImpl.jar</tt> in das <tt>efa/program/plugins</tt>-Verzeichnis.</li>
+  <li>Beende <i>efa</i> und starte das Programm anschließend neu. Nun sollte die XML-Funktionalität vorhanden
+      sein.</li>
+</ul>
+
+</body>
+</html>

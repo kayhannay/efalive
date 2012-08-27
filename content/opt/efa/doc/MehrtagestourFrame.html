@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>efa - elektronisches Fahrtenbuch</title>
+</head>
+<body bgcolor="#ffffff">
+<h1 align="center">Mehrtagesfahrt</h1>
+
+<br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Beschreibung</i></b></font></td></tr>
+</table>
+
+<p>Im Fenster <i>Mehrtagesfahrt</i> werden der Name, sowie einige Eigenschaften von Mehrtagesfahrten festgelegt.</p>
+<p>Für die Auswertung des DRV-Fahrtenabzeichens und der DRV Wanderruderstatistik ist es wichtig, daß jede Fahrt, bei der es sich um eine Mehrtagesfahrt handelt, als solche markiert ist. Wähle dazu bei der <a href="EfaFrame.html">Eingabe der Fahrten</a> aus der Liste <i>Art der Fahrt</i> den Namen der Mehrtagesfahrt, wenn diese bereits aufgeführt ist, bzw. den Punkt <i>&gt;&gt;&gt; neue Mehrtagesfahrt</i>. Im zweiten Fall öffnet sich dieses Fenster.</p>
+<p>Um eine <a href="AuswahlFrame.html">Liste aller Mehrtagesfahrten</a> des aktuellen Fahrtenbuchs anzuzeigen, wähle aus dem Menü <i>Administration</i> unter <i>Fahrtenbuch</i> den Punkt <i>Mehrtagesfahrten</i>. Durch Auswählen einer Fahrt und Klick auf <i>Bearbeiten</i> öffnet sich dann dieses Fenster.</p>
+
+<br clear="all">
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>Erklï¿½rung der Buttons und Felder</i></b></font></td></tr>
+</table>
+
+<table width="100%">
+<tr>
+  <td colspan="2">Es gibt zwei Möglichkeiten, Mehrtagesfahrten in efa einzutragen. Die eine Möglichkeit besteht darin, jede Etappe der Fahrt einzeln einzutragen. Über das Feld <i>Art der Fahrt</i> bei der <a href="EfaFrame.html">Fahrteneingabe</a> werden diese Etappen dann unter einem gemeinsamen Namen zu einer Mehrtagestour zusammengefaßt.</td>
+</tr>
+<tr>
+  <td colspan="2">Die zweite Möglichkeit besteht darin, bei der <a href="EfaFrame.html">Eingabe der Fahrt</a> die gesamte Mehrtagesfahrt als einen einzigen Eintrag hinzuzufügen. Auch in diesem Fall muß die Fahrt über das Feld <i>Art der Fahrt</i> als Mehrtagestour gekennzeichnet werden. Damit efa bei einer vorliegenden Fahrt weiß, ob es sich um die gesamte Fahrt oder nur um eine Etappe handelt, muß die Option <i>Diese Fahrt wird in Form von einzelnen Etappen eingetragen</i> entsprechend gesetzt sein.</td>
+</tr>
+<tr>
+  <td colspan="2">Beide Varianten liefern für die <a href="StatistikFrame.html">DRV-Auswertung</a> dasselbe Resultat. Die zweite Variante kann jedoch u.U. Nachteile mit sich bringen: Sie ist <i>ungenauer</i> in der Auswertung mancher Statistiken und erlaubt es auch nicht, während einer Ruderfahrt einzelne Ruderer auszutauschen.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Bezeichnung der Fahrt (Weg und Ziel)</font></b></td></tr></table></td>
+  <td>Trage in dieses Feld den Namen der Mehrtagesfahrt ein. Alle Fahrtenbucheinträge, die zu derselben Mehrtagesfahrt gehören, müssen unter diesem einen Namen zusammengefaßt werden. (Aber: Wird eine Tour innerhalb eines Jahres mehrfach gerudert, so handelt es sich um zwei verschiedene Mehrtagesfahrten, für die verschiedene Namen verwendet werden müssen!)</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Beginn der Ruderfahrt (Datum)</font></b></td></tr></table></td>
+  <td>Der Tag, an dem die Ruderfahrt begonnen hat. Dieses Datum wird u.a. für die Auswertung der Jugend-Fahrten-Abzeichen benötigt. Nach Auffassung des DRV zählt auch der Anreisetag als erster Tag der Ruderfahrt, selbst wenn an diesem Tag nicht gerudert wurde.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Ende der Ruderfahrt (Datum)</font></b></td></tr></table></td>
+  <td>Der Tag, an dem die Ruderfahrt aufgehört hat hat. Dieses Datum wird u.a. für die Auswertung der Jugend-Fahrten-Abzeichen benötigt. Nach Auffassung des DRV zählt auch der Abreisetag als letzter Tag der Ruderfahrt, selbst wenn an diesem Tag nicht gerudert wurde.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Anzahl der Rudertage</font></b></td></tr></table></td>
+  <td>Trage in dieses Feld bitte die Anzahl der Rudertage ein (ohne Ruhetage). Die hier eingetragene Anzahl an Tagen wird, wenn die Fahrt nicht in Form von Etappen eingetragen wird, <b>jedem</b> Teilnehmer dieser Ruderfahrt gutgeschrieben. Für Jugendfahrten, die von den Teilnehmern für das Erfüllen des DRV-Jugend-Fahrten-Abzeichens benötigt werden, dürfen als Rudertage auch An- und Abreisetage gezählt werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Befahrtene Gewässer (durch Kommata getrennt)</font></b></td></tr></table></td>
+  <td>Trage in dieses Feld eine durch Kommata getrennte Liste von Gewässern ein, die auf dieser Fahrt erreicht wurden. Diese Angabe wird für das Erstellen der DRV Fahrtenruderstatistik benötigt.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b><font color="#7777dd">Diese Fahrt wird in Form von einzelnen Etappen eingetragen</font></b></td></tr></table></td>
+  <td>Wie bereits in der Einleitung zu diesem Fenster beschrieben, kann eine Ruderfahrt entweder eingetragen werden, indem jede Etappe einzeln eingetragen wird (die Auswahl einer gemeinsamen Mehrtagesfahrt dient dann dazu, diese Etappen zusammenzufassen), oder es kann eine Mehrtagesfahrt als ein einziger Eintrag eingegeben werden. Um diese beiden Möglichkeiten unterscheiden zu können, muß diese Option entsprechend gewählt werden.</td>
+</tr>
+<tr>
+  <td valign="top"><table width="100%"><tr><td bgcolor="#dddddd"><b>OK</b></td></tr></table></td>
+  <td>Übernimmt die Einstellungen und schließt das Fenster.</td>
+</tr>
+</table>
+
+<br clear="all"><br>
+<table bgcolor="#0000ff" width="100%">
+<tr><td><font color="#ffffff"><b><i>siehe auch:</i></b></font></td></tr>
+</table>
+<ul>
+  <li><a href="EfaFrame.html">Eingabe von Fahrten</a></li>
+</ul>
+
+<p><a href="Frames.html">Zurï¿½ck zur ï¿½bersicht der Hilfeseiten</a></p>
+<br clear="all"><hr>
+<small><a href="index.html">efa - elektronisches Fahrtenbuch</a>,
+Copyright &copy; 2001-10 by <a href="http://www.nmichael.de/" target="_new">Nicolas Michael</a>
+&lt;<a href="mailto:software@nmichael.de">software@nmichael.de</a>&gt;</small>
+</body>
+</html>
