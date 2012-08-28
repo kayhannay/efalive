@@ -1,0 +1,15 @@
+#!/bin/bash
+
+RECIPIENT="user@example.local"
+
+exec > /var/log/efa_email_backup.log 2>&1
+
+/bin/mkdir /tmp/efa_backup 
+/bin/chown efa:efa /tmp/efa_backup
+/bin/su -l -c "efalive-backup /tmp/efa_backup" efa
+for i in `/bin/ls /tmp/efa_backup`
+do
+    (/bin/echo "Automatic efa backup"; /usr/bin/uuencode /tmp/efa_backup/$i $i) | /usr/bin/mail -s"efa backup `/bin/date '+%d.%m.%Y %H:%M:%S'`" -t "$RECIPIENT"
+done
+/bin/rm -r /tmp/efa_backup
+

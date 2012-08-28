@@ -20,8 +20,8 @@ set -e
 
 case "$1" in
     configure)
-        chown -R efa:efa /opt/efa
-        chown -R efa:efa /opt/efa2
+        #chown -R efa:efa /opt/efa
+        #chown -R efa:efa /opt/efa2
         chown -R efa:efa /home/efa/.halevt
         chown -R efa:efa /home/efa/.config
         chown efa:efa /home/efa/.xinitrc

@@ -16,4 +16,4 @@ export DH_VERBOSE=0
 	dh $@ 
 
 override_dh_install:
-	cp -r  ./etc ./home ./lib ./opt ./debian/efalive/
+	cp -r  ../content/* ./debian/efalive/

@@ -19,7 +19,7 @@ start_efa()
     #Start efaLive setup if there are no settings
     if [ ! -f ~/.efalive/settings.conf ]
     then
-        /opt/efalive/bin/efaLiveSetup.sh
+        efalive-setup
     fi
 
     . ~/.efalive/settings.conf
@@ -27,9 +27,9 @@ start_efa()
     #Set the correct efa start script
     if [ $EFA_VERSION -eq 2 ]
     then
-        EFA_PROG=/opt/efa2/efaBths.sh
+        EFA_PROG=efabths
     else
-        EFA_PROG=/opt/efa/efadirekt.sh
+        EFA_PROG=efadirekt
     fi
 
     #Start efa and check that it does not stop immediately or show a dialog

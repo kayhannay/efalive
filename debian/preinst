@@ -16,7 +16,7 @@ set -e
 
 case "$1" in
     install)
-        useradd -m -G plugdev -a -d /home/efa -s /bin/bash -p jI5Be67YcssCc efa
+        useradd -m -G plugdev -d /home/efa -s /bin/bash -p jI5Be67YcssCc efa
     ;;
 
     upgrade|abort-upgrade)

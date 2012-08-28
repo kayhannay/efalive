@@ -274,7 +274,7 @@
   -->
   <keybind key="C-F12">
     <action name="Execute">
-        <command>xterm -e su -l -c /opt/efalive/bin/efaLiveSetup.sh efa</command>
+        <command>xterm -e su -l -c efalive-setup efa</command>
     </action>
   </keybind>
 
