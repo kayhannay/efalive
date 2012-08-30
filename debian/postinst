@@ -26,7 +26,7 @@ case "$1" in
         chown -R efa:efa /home/efa/.config
         chown efa:efa /home/efa/.xinitrc
         chmod 440 /etc/sudoers
-        update-rc.d efa start 99 2 3 4 5 . stop 01 0 1 6 .
+        # update-rc.d efa start 99 2 3 4 5 . stop 01 0 1 6 .
         # plymouth-set-default-theme -R efa-live
         sed -i 's/START_DAEMON=yes/START_DAEMON=no/' /etc/default/halevt
         echo "efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /bin/date, /sbin/insserv -d ntp, /sbin/insserv -r ntp" >> /etc/sudoers

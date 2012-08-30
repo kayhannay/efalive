@@ -19,7 +19,7 @@ set -e
 
 case "$1" in
     remove|deconfigure)
-        update-rc.d efa remove
+        # update-rc.d efa remove
         # plymouth-set-default-theme -R spinner
         sed -i 's/START_DAEMON=no/START_DAEMON=yes/' /etc/default/halevt
         sed -i '/efa */d' /etc/sudoers

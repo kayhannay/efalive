@@ -25,6 +25,7 @@ case "$1" in
         then
             userdel efa;
         fi
+        # update-rc.d efa remove
     ;;
     upgrade|failed-upgrade|abort-upgrade|disappear)
     ;;

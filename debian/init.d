@@ -6,9 +6,8 @@
 # Should-Start:	     console-screen acpid dbus hal
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: EFA - Elektronisches Fahrtenbuch
-# Description:       EFA ist ein elektronisches Fahrtenbuch 
-#		     fuer Rudervereine.
+# Short-Description: EFA - electronic logbook
+# Description:       EFA is a electronic logbook for rowing and canoeing clubs. 
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
@@ -17,7 +16,7 @@ NAME=efa
 PROCESS=xinit
 DAEMONUSER=efa
 DAEMONGROUP=efa
-DESC="Elektronisches Fahrtenbuch"
+DESC="electronic logbook"
 DAEMON_OPTS="-- -br"
 
 HALEVT_DAEMON=/usr/bin/halevt
