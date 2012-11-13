@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=efaLive
+Description=Theme for the efaLive live CD
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/efa-live
+ScriptFile=/usr/share/plymouth/themes/efa-live/efa-live.script
