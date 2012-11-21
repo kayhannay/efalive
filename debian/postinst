@@ -27,7 +27,9 @@ case "$1" in
         chown efa:efa /home/efa/.xinitrc
         chmod 440 /etc/sudoers
         # update-rc.d efa start 99 2 3 4 5 . stop 01 0 1 6 .
-        # plymouth-set-default-theme -R efa-live
+        #aptitude -y install fontconfig-config
+        #aptitude -y install plymouth
+        plymouth-set-default-theme -R efa-live
         sed -i 's/START_DAEMON=yes/START_DAEMON=no/' /etc/default/halevt
         echo "efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /bin/date, /sbin/insserv -d ntp, /sbin/insserv -r ntp" >> /etc/sudoers
         # sed -i 's/allowed_users=.*/allowed_users=anybody/' /etc/X11/Xwrapper.config
