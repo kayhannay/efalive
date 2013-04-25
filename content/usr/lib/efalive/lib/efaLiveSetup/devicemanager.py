@@ -215,11 +215,11 @@ class DeviceManagerModel(object):
 
     def create_backup(self, path):
         self._logger.info("Create a backup to %s" % path)
-        return common.command_output(["/opt/efalive/bin/run_backup.sh", path])
+        return common.command_output(["/usr/bin/efalive-backup", path])
 
     def restore_backup(self, file):
         self._logger.info("Restore backup from %s" % file)
-        return common.command_output(["/opt/efalive/bin/run_restore.sh", file])
+        return common.command_output(["/usr/bin/efalive-restore", file])
 
     def debug_device(self, device):
         self._logger.debug("Device:")
