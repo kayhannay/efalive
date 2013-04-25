@@ -2,7 +2,7 @@
 '''
 Created on 10.01.2012
 
-Copyright (C) 2012 Kay Hannay
+Copyright (C) 2012-2013 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -29,7 +29,7 @@ import common
 
 import locale
 import gettext
-APP="screenSetup"
+APP="backup"
 LOCALEDIR=os.path.join(os.path.dirname(sys.argv[0]), "locale")
 DIR=os.path.realpath(LOCALEDIR)
 gettext.install(APP, DIR, unicode=True)
@@ -41,10 +41,10 @@ class BackupModel(object):
         self._logger = logging.getLogger('backup.BackupModel')
 
     def create_backup(self, path):
-        return common.command_output(["/opt/efalive/bin/run_backup.sh", path])
+        return common.command_output(["/usr/bin/efalive-backup", path])
 
     def restore_backup(self, file):
-        return common.command_output(["/opt/efalive/bin/run_restore.sh", file])
+        return common.command_output(["/usr/bin/efalive-restore", file])
 
 
 class BackupView(gtk.Window):

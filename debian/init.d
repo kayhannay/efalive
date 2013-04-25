@@ -50,7 +50,7 @@ do_start() {
             start-stop-daemon --start --quiet --pidfile $HALEVT_PIDFILE \
                 --chuid $DAEMONUSER --exec $HALEVT_DAEMON -- $HALEVT_DAEMON_OPTS
         fi
-        /bin/su -l $DAEMONUSER -c "$DAEMON $DAEMON_OPTS" >> /dev/null 2>&1 &
+        /bin/su -l $DAEMONUSER -c "$DAEMON $DAEMON_OPTS" >> /dev/null &
     fi
 }
 
