@@ -27,7 +27,7 @@ manpage.1: manpage.sgml
   <!ENTITY dhemail     "<email>klinux@hannay.de</email>">
   <!ENTITY dhusername  "Kay Hannay">
   <!ENTITY dhucpackage "<refentrytitle>EFALIVE</refentrytitle>">
-  <!ENTITY dhpackage   "efalive-backup">
+  <!ENTITY dhpackage   "efalive-restore">
 
   <!ENTITY debian      "<productname>Debian</productname>">
   <!ENTITY gnu         "<acronym>GNU</acronym>">
@@ -44,7 +44,7 @@ manpage.1: manpage.sgml
       &dhsurname;
     </author>
     <copyright>
-      <year>2003</year>
+      <year>2013</year>
       <holder>&dhusername;</holder>
     </copyright>
     &dhdate;
@@ -57,13 +57,13 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>Create a backup of the efaLive and efa configuration and data</refpurpose>
+    <refpurpose>Restore an efaLive backup</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
-      <command>&dhpackage; &lt;PATH&gt;</command>
+      <command>&dhpackage; &lt;FILE&gt;</command>
 <!--
-      <arg>PATH</arg>
+      <arg><option>&lt;FILE&gt;<replaceable>File name of the efaLive backup file that shall be restored.</replaceable></option></arg>
 -->
     </cmdsynopsis>
   </refsynopsisdiv>
@@ -73,8 +73,8 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> is used to create backups of efaLive configuration and settings files 
-        and triggers a backup of efa. So it includes all basic data to easily reproduce your efaLive installation.</para>
+    <para><command>&dhpackage;</command> is used to restore efaLive backups, which include a backup
+        of the efa data.</para>
 
   </refsect1>
   <refsect1>
@@ -87,10 +87,10 @@ manpage.1: manpage.sgml
 
     <variablelist>
       <varlistentry>
-        <term><option>&lt;PATH&gt;</option>
+        <term><option>&lt;FILE&gt;</option>
         </term>
         <listitem>
-          <para>The path where the backup should be stored.</para>
+          <para>File name of the efaLive backup file that shall be restored.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -98,7 +98,7 @@ manpage.1: manpage.sgml
   <refsect1>
     <title>SEE ALSO</title>
 
-    <para>efalive-restore (1), efalive-setup (1).</para>
+    <para>efalive-backup (1), efalive-setup (1).</para>
 
     <para>There is also a detailed documentation in a PDF document provided with this package.</para>
   </refsect1>
