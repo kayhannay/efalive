@@ -27,7 +27,7 @@ manpage.1: manpage.sgml
   <!ENTITY dhemail     "<email>klinux@hannay.de</email>">
   <!ENTITY dhusername  "Kay Hannay">
   <!ENTITY dhucpackage "<refentrytitle>EFALIVE</refentrytitle>">
-  <!ENTITY dhpackage   "efalive-backup">
+  <!ENTITY dhpackage   "efalive-setup">
 
   <!ENTITY debian      "<productname>Debian</productname>">
   <!ENTITY gnu         "<acronym>GNU</acronym>">
@@ -57,14 +57,14 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>Create a backup of the efaLive and efa configuration and data</refpurpose>
+    <refpurpose>Run the efaLive setup and management tool</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
-      <command>&dhpackage; &lt;PATH&gt;</command>
-<!--
-      <arg>PATH</arg>
--->
+      <command>&dhpackage;</command>
+
+      <!-- <arg><option>&lt;PATH&gt;<replaceable>Path where to store the backup</replaceable></option></arg> -->
+
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
@@ -73,10 +73,11 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> is used to create backups of efaLive configuration and settings files 
-        and triggers a backup of efa. So it includes all basic data to easily reproduce your efaLive installation.</para>
+    <para><command>&dhpackage;</command> starts the efaLive setup and managemet tool. It is used to configure efaLive, configure 
+	settings for the hardware of the computer and provides some tools like a file manager.</para>
 
   </refsect1>
+<!--
   <refsect1>
     <title>OPTIONS</title>
 
@@ -95,10 +96,11 @@ manpage.1: manpage.sgml
       </varlistentry>
     </variablelist>
   </refsect1>
+-->
   <refsect1>
     <title>SEE ALSO</title>
 
-    <para>efalive-restore (1), efalive-setup (1).</para>
+    <para>efalive-backup (1), efalive-restore (1).</para>
 
     <para>There is also a detailed documentation in a PDF document provided with this package.</para>
   </refsect1>
