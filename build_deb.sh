@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 #
-VERSION=2.0
+VERSION=2.1
 
-rm -r efalive-$VERSION
+rm -r efalive-*
 mkdir efalive-$VERSION
 #cp -a content/* efalive-$VERSION
 cp -a debian efalive-$VERSION

@@ -13,6 +13,8 @@ feh --bg-fill /usr/share/plymouth/themes/efa-live/efaLive.png
 exec xscreensaver -no-splash &
 #Start the window manager
 exec openbox &
+######Try to connect to the configured broadband connection; its name has to be "broadband"!
+#####nmcli con up id broadband &
 
 start_efa()
 {
