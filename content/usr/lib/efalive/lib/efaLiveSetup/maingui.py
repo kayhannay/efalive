@@ -1,7 +1,7 @@
 '''
 Created on 26.08.2010
 
-Copyright (C) 2010-2012 Kay Hannay
+Copyright (C) 2010-2013 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -336,9 +336,9 @@ class SetupView(gtk.Window):
         self.systemGrid.attach(self.networkButton, 1, 2, 0, 1)
         self.networkButton.show()
        
-        self.keyboardButton=gtk.Button(_("Keyboard"))
-        self.systemGrid.attach(self.keyboardButton, 2, 3, 0, 1)
-        self.keyboardButton.show()
+        self.dyndnsButton=gtk.Button(_("Hostname"))
+        self.systemGrid.attach(self.dyndnsButton, 2, 3, 0, 1)
+        self.dyndnsButton.show()
        
         self.screensaverButton=gtk.Button(_("Screensaver"))
         self.systemGrid.attach(self.screensaverButton, 0, 1, 1, 2)
@@ -347,6 +347,10 @@ class SetupView(gtk.Window):
         self.datetimeButton=gtk.Button(_("Date & time"))
         self.systemGrid.attach(self.datetimeButton, 1, 2, 1, 2)
         self.datetimeButton.show()
+       
+        self.keyboardButton=gtk.Button(_("Keyboard"))
+        self.systemGrid.attach(self.keyboardButton, 2, 3, 1, 2)
+        self.keyboardButton.show()
        
 
         # actions box
@@ -476,6 +480,7 @@ class SetupController(object):
         self._view.shutdownButton.connect("clicked", self.runShutdown)
         self._view.restartButton.connect("clicked", self.runRestart)
         self._view.keyboardButton.connect("clicked", self.runKeyboardSetup)
+        self._view.dyndnsButton.connect("clicked", self.runDyndnsSetup)
         self._view.screensaverButton.connect("clicked", self.runScreensaverSetup)
         self._view.datetimeButton.connect("clicked", self.runDateTimeSetup)
         self._view.editorButton.connect("clicked", self.runEditor)
@@ -491,7 +496,7 @@ class SetupController(object):
 
     def runNetworkSettings(self, widget):
         try:
-            subprocess.Popen(['nm-connection-editor'])
+            subprocess.Popen(['sudo', '/usr/bin/nm-connection-editor'])
         except OSError as error:
             message = _("Could not open nm-connection-editor program: %s") % error
             self._logger.error(message)
@@ -541,6 +546,14 @@ class SetupController(object):
             self._logger.error(message)
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
+    def runDyndnsSetup(self, widget):
+        try:
+            subprocess.Popen(['sudo', 'dpkg-reconfigure', '-fgnome', 'ddclient'])
+        except OSError as error:
+            message = _("Could not run dynamic hostname setup: %s") % error
+            self._logger.error(message)
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
+
     def runScreensaverSetup(self, widget):
         try:
             subprocess.Popen(['xscreensaver-demo'])
@@ -554,9 +567,9 @@ class SetupController(object):
 
     def runEditor(self, widget):
         try:
-            subprocess.Popen(['gedit'])
+            subprocess.Popen(['leafpad'])
         except OSError as error:
-            message = _("Could not open gedit program: %s") % error
+            message = _("Could not open leafpad program: %s") % error
             self._logger.error(message)
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 

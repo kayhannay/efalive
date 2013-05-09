@@ -2,9 +2,7 @@
 <halevt:Configuration version="0.1" xmlns:halevt="http://www.environnement.ens.fr/perso/dumas/halevt.html">
 
     <halevt:Device match="hal.block.is_volume = true &amp; hal.info.parent.hal.storage.bus = usb">
-        <halevt:OnInit exec="/bin/date &gt;&gt; ~/autobackup.log 2&gt;&amp;1" />
-        <halevt:OnInit exec="/bin/echo 'halevt:OnInit: Starting autobackup to device $hal.block.device$' &gt;&gt; ~/autobackup.log 2&gt;&amp;1" />
-        <halevt:OnInit exec="/usr/lib/efalive/bin/autobackup.sh $hal.block.device$ &gt;&gt; ~/autobackup.log 2&gt;&amp;1" />
+        <halevt:OnInit exec="/usr/bin/pmount $hal.block.device$ static_backup" />
         <halevt:Intersion exec="/bin/date &gt;&gt; ~/autobackup.log 2&gt;&amp;1" />
         <halevt:Insertion exec="/bin/echo 'halevt:Insertion: Starting autobackup to device $hal.block.device$' &gt;&gt; ~/autobackup.log 2&gt;&amp;1" />
         <halevt:Insertion exec="/usr/lib/efalive/bin/autobackup.sh $hal.block.device$ &gt;&gt; ~/autobackup.log 2&gt;&amp;1" />
