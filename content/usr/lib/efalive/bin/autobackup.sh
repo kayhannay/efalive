@@ -23,6 +23,11 @@
 # Usage: autobackup.sh <DEVICE>
 #
 
+if [ "x$LANG" = "x" ]
+then
+    export LANG=C.UTF-8
+fi
+
 BEEP_ERROR="/usr/bin/beep -f 2000 -r 5 -d 50 -l 1000"
 BEEP_SUCCESS="/usr/bin/beep -f 1000 -r 3 -d 50"
 
@@ -63,17 +68,17 @@ then
         /bin/echo "Login to efa2 server failed, please check that the efaLive administrator is created in efa2 configuration"
     fi
     /bin/echo "Error, backup failed!"
+    $BEEP_ERROR
     if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
     then
         /usr/bin/zenity --error --text="Backup failed, error code: $BACKUP_RESULT !\n\nView autobackup.log for details."
     fi
-    $BEEP_ERROR
 else
     /bin/echo "Backup successful."
+    $BEEP_SUCCESS
     if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
     then
         /usr/bin/zenity --info --text="Backup successful."
     fi
-    $BEEP_SUCCESS
 fi
 exit $BACKUP_RESULT
