@@ -1,2 +1,2 @@
 #Check for a network connection every five minutes and connect to broadband if none is up yet
-*/5 * * * * efa LC_ALL=C nmcli -t -f STATE dev|grep -q 'connected' || (nmcli -t -f NAME|grep -q 'broadband' && nmcli con up id broadband > /dev/null 2>&1)
+*/5 * * * * root LC_ALL=C nmcli -t -f STATE dev|grep -q '^connected' || (nmcli -t -f NAME con|grep -q 'broadband' && nmcli con up id 'broadband' > /dev/null 2>&1)
