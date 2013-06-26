@@ -20,8 +20,13 @@
 ###
 #
 # Automatic backup of efa data to an USB stick
-# Usage: autobackup.sh <DEVICE>
+# Usage: autobackup.sh <DEVICE> [DELAY]
 #
+# Where DEVICE is a mountable device and DELAY the time this script should
+# wait before it starts the backup in seconds.
+#
+
+/bin/date
 
 if [ "x$LANG" = "x" ]
 then
@@ -51,6 +56,19 @@ then
 	/bin/echo "Error, specified device does not exist!"
 	$BEEP_ERROR
 	exit 1
+fi
+
+if [ $2 ]
+then
+	if [[ $2 =~ ^[0-9]+ ]]
+	then
+		/bin/echo "Wait for $2 seconds ..."
+		/bin/sleep $2
+	else
+		/bin/echo "Error, specified delay is not a number!"
+		$BEEP_ERROR
+		exit 1
+	fi
 fi
 
 /bin/echo "Mounting $1 to /media/backup..."

@@ -142,9 +142,9 @@ class SetupModel(object):
     def setEfaVersion(self, version):
         self.efaVersion.updateData(version)
         if version == 1:
-            self.efaBackupPaths = "/opt/efa/daten /home/efa/efa"
+            self.efaBackupPaths = "/usr/lib/efa/daten /home/efa/efa"
         elif version == 2:
-            self.efaBackupPaths = "/opt/efa2/data /home/efa/efa2"
+            self.efaBackupPaths = "/usr/lib/efa2/data /home/efa/efa2"
         else:
             self._logger.error("Undefined version received: %d" % version)
         self._logger.debug("efa version: %d" % version)
