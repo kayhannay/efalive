@@ -44,7 +44,7 @@ manpage.1: manpage.sgml
       &dhsurname;
     </author>
     <copyright>
-      <year>2003</year>
+      <year>2013</year>
       <holder>&dhusername;</holder>
     </copyright>
     &dhdate;
@@ -82,8 +82,7 @@ manpage.1: manpage.sgml
 
     <para>These programs follow the usual &gnu; command line syntax,
       with long options starting with two dashes (`-').  A summary of
-      options is included below.  For a complete description, see the
-      <application>Info</application> files.</para>
+      options is included below.</para>
 
     <variablelist>
       <varlistentry>
@@ -100,7 +99,7 @@ manpage.1: manpage.sgml
 
     <para>efalive-restore (1), efalive-setup (1).</para>
 
-    <para>There is also a detailed documentation in a PDF document provided with this package.</para>
+    <para>There is also a detailed documentation in a PDF document provided with this software.</para>
   </refsect1>
   <refsect1>
     <title>AUTHOR</title>

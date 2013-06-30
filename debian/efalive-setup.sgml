@@ -44,7 +44,7 @@ manpage.1: manpage.sgml
       &dhsurname;
     </author>
     <copyright>
-      <year>2003</year>
+      <year>2013</year>
       <holder>&dhusername;</holder>
     </copyright>
     &dhdate;
@@ -102,7 +102,7 @@ manpage.1: manpage.sgml
 
     <para>efalive-backup (1), efalive-restore (1).</para>
 
-    <para>There is also a detailed documentation in a PDF document provided with this package.</para>
+    <para>There is also a detailed documentation in a PDF document provided with this software.</para>
   </refsect1>
   <refsect1>
     <title>AUTHOR</title>
