@@ -13,6 +13,7 @@ Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, efa, efa2, halevt, xterm, sudo, zenity, zip, unzip, openbox, python-gtk2, pmount, arandr, feh, python-gudev, network-manager-gnome, thunar, xscreensaver, ntp, leafpad, xinit, xserver-common, libgtk2-perl, ddclient
 #libgnome2-perl, gnome-session-bin, 
 #Depends: efa, efa2, xinit, fontconfig-config, halevt, xterm, sudo, zenity, zip, unzip, openbox, python-gtk2, pmount, openjdk-6-jre, arandr, feh, python-gudev, network-manager-gnome, thunar, libgnome2-perl, gnome-session-bin, xscreensaver, ntp, gedit, plymouth, sudo
+Build-Depends: docbook-to-man
 Recommends: beep, mailutils, sharutils, ssh, anacron, less, vim, nano
 Description: KIOSK system for the rowing logbook efa
  This packages sets up a KIOSK system for the rowing logbook software efa
