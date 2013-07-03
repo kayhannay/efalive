@@ -17,3 +17,9 @@ export DH_VERBOSE=0
 
 override_dh_install:
 	cp -r  ../content/* ./debian/efalive/
+
+override_dh_auto_build:
+	docbook-to-man debian/efalive-backup.sgml > debian/efalive-backup.1
+	docbook-to-man debian/efalive-restore.sgml > debian/efalive-restore.1
+	docbook-to-man debian/efalive-setup.sgml > debian/efalive-setup.1
+	dh_auto_build
