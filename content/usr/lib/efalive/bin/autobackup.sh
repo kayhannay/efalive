@@ -98,8 +98,6 @@ while getopts :hd:q opt; do
   esac
 done
 shift $((OPTIND-1))
-echo $1
-		
 
 if [ ! $1 ]
 then
