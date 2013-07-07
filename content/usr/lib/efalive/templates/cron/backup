@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DEVICE="/dev/sdXX"
+
+LOG_PATH=~
+BACKUP_CMD="/usr/lib/efalive/bin/autobackup.sh -q $DEVICE"
+if [ "x`id -u`" = "x0" ]
+then
+	LOG_PATH=/var/log
+	BACKUP_CMD="/bin/su -l -c '/usr/lib/efalive/bin/autobackup.sh -q $DEVICE' efa"
+fi
+exec >> $LOG_PATH/efalive_backup.log 2>&1
+
+eval $BACKUP_CMD
+
