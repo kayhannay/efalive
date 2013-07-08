@@ -11,10 +11,19 @@ then
 fi
 exec >> $LOG_PATH/efalive_email_backup.log 2>&1
 
+/bin/date
 /bin/mkdir /tmp/efa_backup 
 eval $BACKUP_CMD
 for i in `/bin/ls /tmp/efa_backup`
 do
+    if [ -d "/tmp/efa_backup/$i" ]
+    then
+	PWD=`pwd`
+	cd /tmp/efa_backup
+	/usr/bin/zip -r $i.zip $i
+	i=$i.zip
+	cd $PWD
+    fi
     (/bin/echo "Automatic efa backup"; /usr/bin/uuencode /tmp/efa_backup/$i $i) | /usr/bin/mail -s"efa backup `/bin/date '+%d.%m.%Y %H:%M:%S'`" -t "$RECIPIENT"
 done
 /bin/rm -r /tmp/efa_backup
