@@ -50,6 +50,9 @@ def show_exception_dialog(widget, message, details):
 def show_output_dialog(widget, message, details):
     show_details_dialog(widget, gtk.MESSAGE_INFO, _("Output"), message, details)
 
+def show_warning_dialog(widget, message, details):
+    show_details_dialog(widget, gtk.MESSAGE_WARNING, _("Details"), message, details)
+
 def show_details_dialog(widget, type, details_label, message, details):
     dialog = gtk.MessageDialog(widget, gtk.DIALOG_MODAL, type, gtk.BUTTONS_CLOSE, message)
     dialog.set_resizable(True)
