@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2012 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2013 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -27,6 +27,10 @@ EFA_BACKUP_PATHS="/usr/lib/efa/ausgabe/layout /usr/lib/efa/daten /home/efa/efa"
 EFALIVE_BACKUP_PATHS="/home/efa/.efalive"
 EFA_USER=efa
 EFA_GROUP=efa
+
+EFA_BACKUP_FILE="NONE"
+EFALIVE_BACKUP_FILE="NONE"
+WARNING_CODE=0
 
 if [ -f ~/.efalive/settings.conf ]
 then
@@ -58,7 +62,7 @@ fi
 ### Create backup of existing data
 /bin/echo "Creating backup of existing data ..."
 /bin/mkdir -p ~/backup/restore_backup
-run_backup.sh ~/backup/restore_backup
+efalive-backup ~/backup/restore_backup
 
 if [[ "$1" =~ ^/.* ]]
 then
@@ -70,46 +74,75 @@ fi
 ### Remove old data
 if [ $EFA_VERSION -eq 2 ]
 then
-    #check if an efa or an efaLive backup file was selected
+    #check if an efa or an efaLive backup file was selected and try to find the coresponding other file
     if [[ "$BACKUP_FILE" =~ .*/efaLive_backup_[0-9]{8}_[0-9]{6}\.zip ]]
     then
-        #remove "efaLive_backup_" (and parent directory, if required)
+        #Remove "efaLive_backup_" (and parent directory, if required)
         BACKUP_TIMESTAMP=${BACKUP_FILE#*"efaLive_backup_"}
         BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP#*"efaLive_backup_"}
-        #remove .zip ending
+        #Remove .zip ending
         BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP%".zip"*}
         BACKUP_DIR=${BACKUP_FILE%"efaLive_backup_${BACKUP_TIMESTAMP}.zip"*}
+        EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
+        EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
     elif [[ "$BACKUP_FILE" =~ .*/efa_backup_[0-9]{8}_[0-9]{6}\.zip ]]
     then
-        #remove "efaLive_backup_" (and parent directory, if required)
+        #Remove "efaLive_backup_" (and parent directory, if required)
         BACKUP_TIMESTAMP=${BACKUP_FILE#*"efa_backup_"}
         BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP#*"efa_backup_"}
-        #remove .zip ending
+        #Remove .zip ending
         BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP%".zip"*}
         BACKUP_DIR=${BACKUP_FILE%"efa_backup_${BACKUP_TIMESTAMP}.zip"*}
+        EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
+        EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
+    elif $(unzip -l $BACKUP_FILE | grep -q backup.meta)
+    then
+        #This is an efa backup only.
+        EFA_BACKUP_FILE=$BACKUP_FILE
+        /bin/echo "Warning, restoring efa backup only! Did not find matching efaLive backup file."
+        WARNING_CODE=1005
+    elif $(unzip -l $BACKUP_FILE | grep -q /home/efa/.efalive)
+    then
+        #This is an efaLive backup only.
+        EFALIVE_BACKUP_FILE=$BACKUP_FILE
+        /bin/echo "Warning, restoring efaLive backup only! Did not find matching efa backup file."
+        WARNING_CODE=1004
     else
-        /bin/echo "Error, specified file is not an efaLive oder efa backup zip file!"
+        /bin/echo "Error, specified file is not an efaLive or efa backup zip file!"
         exit 1003
     fi
 
-    cd /
-    /bin/rm -Rf $EFALIVE_BACKUP_PATHS
-    EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
-    /bin/echo "Restoring efaLive backup from $EFALIVE_BACKUP_FILE ..."
-    /usr/bin/unzip -o $EFALIVE_BACKUP_FILE 
-    /bin/chown -R $EFA_USER:$EFA_GROUP $EFALIVE_BACKUP_PATHS
-    EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
-    /bin/echo "Restoring efa backup from $EFA_BACKUP_FILE ..."
-    EFA_CRED=$EFA_CREDENTIALS_FILE efacli efalive@localhost:$EFA_PORT -cmd "backup restore $EFA_BACKUP_FILE"
-    CLI_RETURNCODE=$?
-    if [ $CLI_RETURNCODE -ne 0 ]
+    if [ "x$EFALIVE_BACKUP_FILE" != "xNONE" ]
     then
-        /bin/echo "Error, could not restore efa backup ($CLI_RETURNCODE)!"
-    else
-        /bin/echo "Restore finished."
+        /bin/echo "Restoring efaLive backup from $EFALIVE_BACKUP_FILE ..."
+        cd /
+        /bin/rm -Rf $EFALIVE_BACKUP_PATHS
+        /usr/bin/unzip -o $EFALIVE_BACKUP_FILE 
+        /bin/chown -R $EFA_USER:$EFA_GROUP $EFALIVE_BACKUP_PATHS
+        RETURNCODE=0
+        /bin/echo "efaLive restore finished."
     fi
-    exit $CLI_RETURNCODE
-else
+    if [ "x$EFA_BACKUP_FILE" != "xNONE" ]
+    then
+        /bin/echo "Restoring efa backup from $EFA_BACKUP_FILE ..."
+        EFA_CRED=$EFA_CREDENTIALS_FILE efacli efalive@localhost:$EFA_PORT -cmd "backup restore $EFA_BACKUP_FILE"
+        RETURNCODE=$?
+        if [ $RETURNCODE -ne 0 ]
+        then
+            /bin/echo "Error, could not restore efa backup ($CLI_RETURNCODE)!"
+        else
+            /bin/echo "efa restore finished."
+        fi
+    fi
+
+    #Check if restore was successfull, but only efa or efaLive backup was restored
+    if [ (RETURNCODE -eq 0) && (WARNING_CODE -ne 0) ]
+    then
+        RETURNCODE=$WARNING_CODE
+    fi
+    exit $RETURNCODE
+else 
+    #efa1 backup
     cd /
     /bin/rm -Rf $EFA_BACKUP_PATHS
     /usr/bin/unzip -o $BACKUP_FILE
