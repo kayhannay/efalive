@@ -136,7 +136,7 @@ then
     fi
 
     #Check if restore was successfull, but only efa or efaLive backup was restored
-    if [ (RETURNCODE -eq 0) && (WARNING_CODE -ne 0) ]
+    if [ ($RETURNCODE -eq 0) && ($WARNING_CODE -ne 0) ]
     then
         RETURNCODE=$WARNING_CODE
     fi
