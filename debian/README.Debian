@@ -1,6 +1,8 @@
 efalive for Debian
 ------------------
 
-<possible notes regarding this package - if none, delete this file>
+This package does not fulfill all file location standards in Debian yet.
+This is due to the fact that the distribution of this software was handled
+in a different way before. It requires some more time to fix all this.
 
- -- Kay Hannay <klinux@hannay.de>  Wed, 01 Aug 2012 10:20:18 +0200
+ -- Kay Hannay <klinux@hannay.de>  Mon, 30 Sep 2013 21:36:18 +0200
