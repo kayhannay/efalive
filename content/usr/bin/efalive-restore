@@ -112,6 +112,7 @@ then
         exit 1003
     fi
 
+    RETURNCODE=0
     if [ "x$EFALIVE_BACKUP_FILE" != "xNONE" ]
     then
         /bin/echo "Restoring efaLive backup from $EFALIVE_BACKUP_FILE ..."
@@ -136,7 +137,7 @@ then
     fi
 
     #Check if restore was successfull, but only efa or efaLive backup was restored
-    if [ ($RETURNCODE -eq 0) && ($WARNING_CODE -ne 0) ]
+    if [ $RETURNCODE -eq 0 && $WARNING_CODE -ne 0 ]
     then
         RETURNCODE=$WARNING_CODE
     fi
