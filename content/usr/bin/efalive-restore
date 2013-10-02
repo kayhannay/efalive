@@ -32,6 +32,21 @@ EFA_BACKUP_FILE="NONE"
 EFALIVE_BACKUP_FILE="NONE"
 WARNING_CODE=0
 
+function create_backup {
+    ### Delete old backup of existing data, if exists
+    if [ -e ~/backup/restore_backup ]
+    then
+        /bin/echo "Removing old restore backup ..."
+        /bin/rm -Rf ~/backup/restore_backup
+    fi
+
+    ### Create backup of existing data
+    /bin/echo "Creating backup of existing data ..."
+    /bin/mkdir -p ~/backup/restore_backup
+    efalive-backup ~/backup/restore_backup
+}
+
+
 if [ -f ~/.efalive/settings.conf ]
 then
     . ~/.efalive/settings.conf
@@ -52,17 +67,6 @@ then
 	exit 1002
 fi
 
-### Delete old backup of existing data, if exists
-if [ -e ~/backup/restore_backup ]
-then
-    /bin/echo "Removing old restore backup ..."
-	/bin/rm -Rf ~/backup/restore_backup
-fi
-
-### Create backup of existing data
-/bin/echo "Creating backup of existing data ..."
-/bin/mkdir -p ~/backup/restore_backup
-efalive-backup ~/backup/restore_backup
 
 if [[ "$1" =~ ^/.* ]]
 then
@@ -95,13 +99,13 @@ then
         BACKUP_DIR=${BACKUP_FILE%"efa_backup_${BACKUP_TIMESTAMP}.zip"*}
         EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
         EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
-    elif $(unzip -l $BACKUP_FILE | grep -q backup.meta)
+    elif $(unzip -l $BACKUP_FILE 2>>/dev/null | grep -q backup.meta)
     then
         #This is an efa backup only.
         EFA_BACKUP_FILE=$BACKUP_FILE
         /bin/echo "Warning, restoring efa backup only! Did not find matching efaLive backup file."
         WARNING_CODE=1005
-    elif $(unzip -l $BACKUP_FILE | grep -q /home/efa/.efalive)
+    elif $(unzip -l $BACKUP_FILE 2>>/dev/null | grep -q /home/efa/.efalive)
     then
         #This is an efaLive backup only.
         EFALIVE_BACKUP_FILE=$BACKUP_FILE
@@ -111,6 +115,8 @@ then
         /bin/echo "Error, specified file is not an efaLive or efa backup zip file!"
         exit 1003
     fi
+
+    create_backup
 
     RETURNCODE=0
     if [ "x$EFALIVE_BACKUP_FILE" != "xNONE" ]
@@ -137,12 +143,14 @@ then
     fi
 
     #Check if restore was successfull, but only efa or efaLive backup was restored
-    if [ $RETURNCODE -eq 0 && $WARNING_CODE -ne 0 ]
+    if [ $RETURNCODE -eq 0 -a $WARNING_CODE -ne 0 ]
     then
         RETURNCODE=$WARNING_CODE
     fi
     exit $RETURNCODE
-else 
+else
+    create_backup
+ 
     #efa1 backup
     cd /
     /bin/rm -Rf $EFA_BACKUP_PATHS
