@@ -105,7 +105,7 @@ then
         EFA_BACKUP_FILE=$BACKUP_FILE
         /bin/echo "Warning, restoring efa backup only! Did not find matching efaLive backup file."
         WARNING_CODE=1005
-    elif $(unzip -l $BACKUP_FILE 2>>/dev/null | grep -q /home/efa/.efalive)
+    elif $(unzip -l $BACKUP_FILE 2>>/dev/null | grep -q home/efa/.efalive)
     then
         #This is an efaLive backup only.
         EFALIVE_BACKUP_FILE=$BACKUP_FILE
