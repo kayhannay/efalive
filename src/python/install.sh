@@ -35,8 +35,13 @@ fi
 
 echo "Replace paths ..."
 
-absprefix=$(get_abs_path ${prefix})
-sedprefix=$(echo ${absprefix} | sed -e 's/[\/&]/\\&/g')
+if [[ ${prefix} =~ "debian" ]]
+then
+    sedprefix='\/usr'
+else
+    local absprefix=$(get_abs_path ${prefix})
+    sedprefix=$(echo ${absprefix} | sed -e 's/[\/&]/\\&/g')
+fi
 sed -i "s/LOCALES=os.path.join(os.path.dirname(sys.argv\[0\]), os.pardir, 'i18n')/LOCALES=os.path.join('${sedprefix}', 'share', 'locale')/" efalivesetup/common/common.py
 sed -i "s/icon_path = os.path.join(path, 'icons', icon_name)/icon_path = os.path.join('${sedprefix}', 'share', 'pixmaps', 'efalivesetup', icon_name)/" efalivesetup/common/common.py
 sed -i "s/PYTHONPATH=.:$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/python2.7\/site-packages\/:$PYTHONPATH/" efalive-setup

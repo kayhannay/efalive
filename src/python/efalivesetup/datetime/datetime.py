@@ -28,7 +28,7 @@ import logging
 import locale
 import gettext
 
-import efalivesetup.common.dialogs
+from efalivesetup.common import dialogs
 from efalivesetup.common import common
 from efalivesetup.common.observable import Observable
 
