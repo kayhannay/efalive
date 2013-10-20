@@ -1,0 +1,7 @@
+include install.sh
+include setup.py
+include efalive-setup
+recursive-include i18n *.mo
+recursive-include icons *
+recursive-include efalivesetup *.py
+
