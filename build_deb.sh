@@ -17,6 +17,7 @@
 BUILD_DIR=build/efalive
 PROJECT_ROOT=$(pwd)
 
+rm -rf build
 mkdir -p $BUILD_DIR
 cp -r debian $BUILD_DIR
 
