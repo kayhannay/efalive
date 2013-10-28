@@ -26,7 +26,7 @@ import subprocess
 import traceback
 import logging
 
-import efalivesetup.common.dialogs
+from efalivesetup.common import dialogs
 from efalivesetup.common.observable import Observable
 from efalivesetup.devicemanager.devicemanager import DeviceManagerController as DeviceManager
 from efalivesetup.screen.screensetup import ScreenSetupController as ScreenSetup
@@ -165,6 +165,9 @@ class SetupModel(object):
         self.efaPort.updateData(port)
         self._logger.debug("efa port: %d" % port)
 
+    def create_log_package(self, path):
+        return common.command_output(["/usr/lib/efalive/bin/create_log_package.sh", path])
+        
 
 class SetupView(gtk.Window):
     def __init__(self, type):
@@ -305,6 +308,10 @@ class SetupView(gtk.Window):
         self.backupButton=gtk.Button(_("Backup"))
         self.toolsGrid.attach(self.backupButton, 1, 2, 1, 2)
         self.backupButton.show()
+       
+        self.log_button=gtk.Button(_("Logs"))
+        self.toolsGrid.attach(self.log_button, 2, 3, 1, 2)
+        self.log_button.show()
        
         # system box
         self.systemFrame=gtk.Frame(_("System"))
@@ -482,6 +489,7 @@ class SetupController(object):
         self._view.datetimeButton.connect("clicked", self.runDateTimeSetup)
         self._view.editorButton.connect("clicked", self.runEditor)
         self._view.backupButton.connect("clicked", self.runBackup)
+        self._view.log_button.connect("clicked", self.run_create_log)
 
     def runTerminal(self, widget):
         try:
@@ -572,6 +580,34 @@ class SetupController(object):
 
     def runBackup(self, widget):
         Backup(None, standalone=False)
+
+    def run_create_log(self, widget):
+        try:
+            file_chooser = gtk.FileChooserDialog(_("Select directory to store log files"), 
+                                                 self._view, 
+                                                 gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, 
+                                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+            result = file_chooser.run()
+            if result == gtk.RESPONSE_OK:
+                file_chooser.hide()
+                directory = file_chooser.get_filename()
+                (returncode, output) = self._model.create_log_package(directory)
+                if returncode != 0:
+		    message = _("Could not create log file package in %s !") % directory
+		    self._logger.error(message)
+		    self._logger.debug(output)
+		    dialogs.show_exception_dialog(self._view, message, output)
+                else:
+                    message = _("Created log file package in %s .") % directory
+                    self._logger.info(message)
+                    self._logger.debug(output)
+                    dialogs.show_output_dialog(self._view, message, output)
+
+        except OSError as error:
+            message = "Could not create log file package: %s" % error
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
+        finally:
+            file_chooser.destroy()
 
     def setEfaVersion(self, widget):
         self._model.setEfaVersion(widget.get_active() + 1)
