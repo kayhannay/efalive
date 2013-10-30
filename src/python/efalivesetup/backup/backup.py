@@ -158,13 +158,13 @@ class BackupController(object):
                         self._logger.error(message)
                         self._logger.debug(output)
                         dialogs.show_exception_dialog(self._view, message, output)
-                    elif returncode == 1004:
-                        message = _("Restore of backup finished, but only restored efaLive backup.") % filename
+                    elif returncode == 244:
+                        message = _("Restore of backup finished, but only restored efaLive backup from file %s.") % filename
                         self._logger.warning(message)
                         self._logger.debug(output)
                         dialogs.show_warning_dialog(self._view, message, output)
-                    elif returncode == 1005:
-                        message = _("Restore of backup finished, but only restored efa backup.") % filename
+                    elif returncode == 245:
+                        message = _("Restore of backup finished, but only restored efa backup from file %s.") % filename
                         self._logger.warning(message)
                         self._logger.debug(output)
                         dialogs.show_warning_dialog(self._view, message, output)
