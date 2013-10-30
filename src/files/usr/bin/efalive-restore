@@ -52,19 +52,19 @@ then
     . ~/.efalive/settings.conf
 else
     /bin/echo "efaLive has not been configured yet!"
-    exit 1000
+    exit 240
 fi
 
 if [ ! $1 ]
 then
 	/bin/echo "Error, no backup file specified!"
-	exit 1001
+	exit 241
 fi
 
 if [ ! -f $1 ]
 then
 	/bin/echo "Error, backup file does not exist!"
-	exit 1002
+	exit 242
 fi
 
 
@@ -104,16 +104,16 @@ then
         #This is an efa backup only.
         EFA_BACKUP_FILE=$BACKUP_FILE
         /bin/echo "Warning, restoring efa backup only! Did not find matching efaLive backup file."
-        WARNING_CODE=1005
+        WARNING_CODE=245
     elif $(unzip -l $BACKUP_FILE 2>>/dev/null | grep -q home/efa/.efalive)
     then
         #This is an efaLive backup only.
         EFALIVE_BACKUP_FILE=$BACKUP_FILE
         /bin/echo "Warning, restoring efaLive backup only! Did not find matching efa backup file."
-        WARNING_CODE=1004
+        WARNING_CODE=244
     else
         /bin/echo "Error, specified file is not an efaLive or efa backup zip file!"
-        exit 1003
+        exit 243
     fi
 
     create_backup

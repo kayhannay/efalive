@@ -31,19 +31,19 @@ then
     . ~/.efalive/settings.conf
 else
     /bin/echo "efaLive has not been configured yet!"
-    exit 1000
+    exit 240
 fi
 
 if [ ! $1 ]
 then
 	/bin/echo "Error, no backup path specified!"
-	exit 1001
+	exit 241
 fi
 
 if [ ! -d $1 ]
 then
 	/bin/echo "Error, specified path does not exist!"
-	exit 1002
+	exit 242
 fi
 
 ### Create backup
@@ -67,7 +67,7 @@ then
     if [ ! -e $EFALIVE_BACKUP_FILE ]
     then
         /bin/echo "Error, efaLive backup file has not been created"
-        exit 1003
+        exit 243
     fi
 else
     cd /
@@ -77,7 +77,7 @@ else
     if [ ! -e $1/$BACKUP_FILE ]
     then
 	    /bin/echo "Error, backup was not successful"
-        exit 1003
+        exit 243
     fi
 fi
 
