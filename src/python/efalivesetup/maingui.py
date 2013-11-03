@@ -25,6 +25,7 @@ import os
 import subprocess
 import traceback
 import logging
+import hashlib
 
 from efalivesetup.common import dialogs
 from efalivesetup.common.observable import Observable
@@ -54,6 +55,8 @@ class SetupModel(object):
         self.efaLiveBackupPaths="/home/efa/.efalive"
         self.efaPort=Observable()
         self.efaCredentialsFile="~/.efalive/.efacred"
+	self.auto_backup_use_password=Observable()
+	self.auto_backup_password=""
 
     def initModel(self):
         self.efaVersion.updateData(2)
@@ -110,6 +113,17 @@ class SetupModel(object):
                 credStr=line[(line.index('=') + 1):].rstrip()
                 self.efaCredentialsFile = credStr
                 self._logger.debug("Parsed efa credentials file setting: " + credStr)
+            elif line.startswith("AUTO_BACKUP_PASSWORD="):
+                pwdStr=line[(line.index('=') + 1):].rstrip()
+                self.auto_backup_password = pwdStr
+                self._logger.debug("Parsed efa auto backup password setting: " + pwdStr)
+            elif line.startswith("AUTO_BACKUP_USE_PASSWORD="):
+                enableStr=line[(line.index('=') + 1):].rstrip()
+                if enableStr == "\"TRUE\"":
+                    self.enableAutoBackupPassword(True)
+                else:
+                    self.enableAutoBackupPassword(False)
+                self._logger.debug("Parsed auto backup enable password setting: " + enableStr)
         if versionStr != None:
             self.setEfaVersion(int(versionStr))
 
@@ -131,6 +145,11 @@ class SetupModel(object):
             settingsFile.write("EFALIVE_BACKUP_PATHS=\"%s\"\n" % self.efaLiveBackupPaths)
             settingsFile.write("EFA_PORT=%d\n" % self.efaPort.getData())
             settingsFile.write("EFA_CREDENTIALS_FILE=%s\n" % self.efaCredentialsFile)
+            settingsFile.write("AUTO_BACKUP_PASSWORD=%s\n" % self.auto_backup_password)
+            if self.auto_backup_use_password._data == True:
+                settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"TRUE\"\n")
+            else:
+                settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"FALSE\"\n")
             settingsFile.close()
         except IOError, exception:
             self._logger.error("Could not save files: %s" % exception)
@@ -167,7 +186,16 @@ class SetupModel(object):
 
     def create_log_package(self, path):
         return common.command_output(["/usr/lib/efalive/bin/create_log_package.sh", path])
+    
+    def enableAutoBackupPassword(self, enable):
+        self.auto_backup_use_password.updateData(enable)
+        self._logger.debug("auto backup password: %s" % enable)
         
+    def setAutoBackupPassword(self, pwd):
+	hash = hashlib.sha512(pwd).hexdigest()
+        self.auto_backup_password = hash
+        self._logger.debug("efa auto backup password: %s, hash %s" % (pwd,hash))
+
 
 class SetupView(gtk.Window):
     def __init__(self, type):
@@ -226,8 +254,8 @@ class SetupView(gtk.Window):
         self.portHBox.pack_start(self.portLabel, False, False, 5)
         self.portLabel.show()
 
-        port_adjustment = gtk.Adjustment(0, 0, 65565, 1, 1000)
-        self.port_button = gtk.SpinButton(port_adjustment)
+        self.port_adjustment = gtk.Adjustment(0, 0, 65565, 1, 1000)
+        self.port_button = gtk.SpinButton(self.port_adjustment)
         self.port_button.set_wrap(True)
         self.portHBox.pack_end(self.port_button, False, False, 2)
         self.port_button.show()
@@ -262,14 +290,39 @@ class SetupView(gtk.Window):
         self.autoUsbBackupHBox.pack_start(self.autoUsbBackupCbox, False, True, 2)
         self.autoUsbBackupCbox.show()
 
-        self.autoUsbBackupDialogHBox=gtk.HBox(False, 2)
-        self.autoUsbBackupVBox.pack_start(self.autoUsbBackupDialogHBox, True, True, 2)
+        self.autoUsbBackupEnabledVBox=gtk.VBox(False, 2)
+	self.autoUsbBackupVBox.pack_start(self.autoUsbBackupEnabledVBox, True, True, 2)
+	self.autoUsbBackupEnabledVBox.show()
+        
+	self.autoUsbBackupDialogHBox=gtk.HBox(False, 2)
+        self.autoUsbBackupEnabledVBox.pack_start(self.autoUsbBackupDialogHBox, True, True, 2)
         self.autoUsbBackupDialogHBox.show()
 
         self.autoUsbBackupDialogCbox = gtk.CheckButton(_("show dialog after automatic backup"))
         self.autoUsbBackupDialogHBox.pack_start(self.autoUsbBackupDialogCbox, False, True, 20)
         self.autoUsbBackupDialogCbox.show()
 
+        self.autoBackupUsePasswordHBox=gtk.HBox(False, 2)
+        self.autoUsbBackupEnabledVBox.pack_start(self.autoBackupUsePasswordHBox, True, True, 2)
+        self.autoBackupUsePasswordHBox.show()
+
+        self.autoBackupUsePasswordCbox = gtk.CheckButton(_("use password for automatic backup"))
+        self.autoBackupUsePasswordHBox.pack_start(self.autoBackupUsePasswordCbox, False, True, 20)
+        self.autoBackupUsePasswordCbox.show()
+        
+        self.autoBackupPasswordHBox=gtk.HBox(False, 2)
+        self.autoUsbBackupEnabledVBox.pack_start(self.autoBackupPasswordHBox, True, True, 2)
+        self.autoBackupPasswordHBox.show()
+
+        self.autoBackupPasswordLabel=gtk.Label(_("backup password"))
+        self.autoBackupPasswordHBox.pack_start(self.autoBackupPasswordLabel, False, False, 40)
+        self.autoBackupPasswordLabel.show()
+        
+	self.autoBackupPasswordEntry = gtk.Entry(max=255)
+	self.autoBackupPasswordEntry.set_visibility(False)
+        self.autoBackupPasswordHBox.pack_end(self.autoBackupPasswordEntry, True, True, 2)
+        self.autoBackupPasswordEntry.show()
+        
         # tools box
         self.toolsFrame=gtk.Frame(_("Tools"))
         self.mainBox.pack_start(self.toolsFrame, True, False, 2)
@@ -429,12 +482,14 @@ class SetupController(object):
         self._view.shutdownCombo.append_text(_("restart pc"))
         self._view.shutdownCombo.append_text(_("restart efa"))
 
-        self._view.autoUsbBackupDialogHBox.set_sensitive(False)
+        self._view.autoUsbBackupEnabledVBox.set_sensitive(False)
+        self._view.autoBackupPasswordHBox.set_sensitive(False)
 
         self._model.efaVersion.registerObserverCb(self.efaVersionChanged)
         self._model.efaShutdownAction.registerObserverCb(self.efaShutdownActionChanged)
         self._model.autoUsbBackup.registerObserverCb(self.autoUsbBackupChanged)
         self._model.autoUsbBackupDialog.registerObserverCb(self.autoUsbBackupDialogChanged)
+        self._model.auto_backup_use_password.registerObserverCb(self.autoBackupUsePasswordChanged)
         self._model.efaPort.registerObserverCb(self.efaPortChanged)
         self._model.initModel()
 
@@ -456,11 +511,18 @@ class SetupController(object):
         self._view.shutdownCombo.set_active(index)
 
     def autoUsbBackupChanged(self, enable):
-        self._view.autoUsbBackupDialogHBox.set_sensitive(enable)
+        self._view.autoUsbBackupEnabledVBox.set_sensitive(enable)
         self._view.autoUsbBackupCbox.set_active(enable)
 
     def autoUsbBackupDialogChanged(self, enable):
         self._view.autoUsbBackupDialogCbox.set_active(enable)
+
+    def autoBackupUsePasswordChanged(self, enable):
+        self._view.autoBackupPasswordHBox.set_sensitive(enable)
+        self._view.autoBackupUsePasswordCbox.set_active(enable)
+
+    def autoBackupPasswordChanged(self, pwd):
+        self._view.autoBackupPasswordEntry.set_text(pwd)
 
     def efaPortChanged(self, port):
         self._view.port_button.set_value(port)
@@ -476,6 +538,8 @@ class SetupController(object):
         self._view.shutdownCombo.connect("changed", self.setEfaShutdownAction)
         self._view.autoUsbBackupCbox.connect("toggled", self.setAutoUsbBackup)
         self._view.autoUsbBackupDialogCbox.connect("toggled", self.setAutoUsbBackupDialog)
+        self._view.autoBackupUsePasswordCbox.connect("toggled", self.setAutoBackupUsePassword)
+	self._view.autoBackupPasswordEntry.connect("changed", self.setAutoBackupPassword)
         self._view.terminalButton.connect("clicked", self.runTerminal)
         self._view.screenButton.connect("clicked", self.runScreenSetup)
         self._view.deviceButton.connect("clicked", self.runDeviceManager)
@@ -490,6 +554,7 @@ class SetupController(object):
         self._view.editorButton.connect("clicked", self.runEditor)
         self._view.backupButton.connect("clicked", self.runBackup)
         self._view.log_button.connect("clicked", self.run_create_log)
+	self._view.port_adjustment.connect("value_changed", self.setEfaPort)
 
     def runTerminal(self, widget):
         try:
@@ -628,6 +693,12 @@ class SetupController(object):
 
     def setAutoUsbBackupDialog(self, widget):
         self._model.enableAutoUsbBackupDialog(widget.get_active())
+
+    def setAutoBackupUsePassword(self, widget):
+        self._model.enableAutoBackupPassword(widget.get_active())
+
+    def setAutoBackupPassword(self, widget):
+        self._model.setAutoBackupPassword(widget.get_text())
 
     def setEfaPort(self, widget):
         self._model.setEfaPort(widget.get_value())
