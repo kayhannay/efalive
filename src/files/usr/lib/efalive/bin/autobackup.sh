@@ -64,6 +64,28 @@ function inform_error {
 	fi
 }
 
+function check_password {
+	if [ "x$AUTO_BACKUP_USE_PASSWORD" = "xTRUE" ]
+	then
+		ERROR=""
+		PASSWORD=NONE
+		while [ "x$PASSWORD" != "x$AUTO_BACKUP_PASSWORD" ]
+		do
+			if [ "x$ERROR" != "x" ]
+			then
+				echo "Wrong password given for auto backup!"
+			fi
+   			PASS=$(/usr/bin/zenity --entry --hide-text --text "Passwort für Datensichernung$ERROR" --title "Passwort");
+   			if [ $? != 0 ]
+			then 
+				exit 0
+			fi
+			ERROR="\nEingabe war falsch!"
+			PASSWORD=$(echo -n $PASS | sha512sum | sed 's/  -//')
+		done
+	fi
+}
+
 export DISPLAY=:0.0
 if [ -f ~/.efalive/settings.conf ]
 then
@@ -111,6 +133,8 @@ then
 	exit 1
 fi
 
+check_password
+exit 0
 /bin/echo "Mounting $1 to /media/backup..."
 /usr/bin/pmount $1 backup
 /bin/echo "Creating backup to /media/backup..."
