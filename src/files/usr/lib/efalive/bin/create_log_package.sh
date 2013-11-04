@@ -25,7 +25,12 @@
 # Where TARGET_DIR is the directory where the ZIP file should be stored.
 #
 
-if [ ! $1 -o ! -d $1 ]
+if [ ! $1 ]
+then
+	/bin/echo "Error, please specify a target directory for the log ZIP file!"
+	exit 1
+fi
+if [ ! -d $1 ]
 then
 	/bin/echo "Error, please specify a target directory for the log ZIP file!"
 	exit 1
@@ -37,9 +42,7 @@ PWD=`/bin/pwd`
 USER=`/usr/bin/id -un`
 
 /bin/mkdir /tmp/log_package
-sudo cp /var/log/syslog /var/log/Xorg.0.log /var/log/mail.* /var/log/auth.log /tmp/log_package/
-sudo /bin/chown $USER:users /tmp/log_package/*
-/bin/chmod 644 /tmp/log_package/*
+sudo /usr/lib/efalive/bin/copy_log_files.sh /tmp/log_package $USER
 /bin/dmesg > /tmp/log_package/dmesg.log
 cd /tmp/log_package
 /usr/bin/zip $ZIP_FILE *
