@@ -73,15 +73,16 @@ function check_password {
 		do
 			if [ "x$ERROR" != "x" ]
 			then
-				echo "Wrong password given for auto backup!"
+				/bin/echo "Wrong password given for auto backup!"
 			fi
-   			PASS=$(/usr/bin/zenity --entry --hide-text --text "Passwort für Datensichernung$ERROR" --title "Passwort");
+   			PASS_INPUT=$(/usr/bin/zenity --entry --hide-text --text "Passwort für Datensichernung$ERROR" --title "Passwort");
    			if [ $? != 0 ]
 			then 
+                /bin/echo "Backup aborted by user"
 				exit 0
 			fi
 			ERROR="\nEingabe war falsch!"
-			PASSWORD=$(echo -n $PASS | sha512sum | sed 's/  -//')
+			PASSWORD=$(echo -n $PASS_INPUT | sha512sum | sed 's/  -//')
 		done
 	fi
 }
@@ -134,7 +135,6 @@ then
 fi
 
 check_password
-exit 0
 /bin/echo "Mounting $1 to /media/backup..."
 /usr/bin/pmount $1 backup
 /bin/echo "Creating backup to /media/backup..."
