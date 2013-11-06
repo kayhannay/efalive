@@ -27,6 +27,9 @@
 # beep sound that is normally played and the dialog for an error or success.
 #
 
+TEXTDOMAIN=efalive_autobackup
+TEXTDOMAINDIR=/usr/share/locale
+
 /bin/date
 
 if [ "x$LANG" = "x" ]
@@ -44,7 +47,7 @@ function inform_success {
 	/bin/echo "$1"
     	if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
     	then
-        	/usr/bin/zenity --info --text="Autobackup: $1"
+        	/usr/bin/zenity --info --text=$"Auto backup: $1"
     	fi
 	if [ "x$QUIET" = "xFALSE" ]
 	then
@@ -56,7 +59,7 @@ function inform_error {
 	/bin/echo "$1"
     	if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
     	then
-        	/usr/bin/zenity --error --text="Autobackup: $1"
+        	/usr/bin/zenity --error --text=$"Auto backup: $1"
     	fi
 	if [ "x$QUIET" = "xFALSE" ]
 	then
@@ -73,15 +76,15 @@ function check_password {
 		do
 			if [ "x$ERROR" != "x" ]
 			then
-				/bin/echo "Wrong password given for auto backup!"
+				/bin/echo $"Wrong password given for auto backup!"
 			fi
-   			PASS_INPUT=$(/usr/bin/zenity --entry --hide-text --text "Passwort für Datensichernung$ERROR" --title "Passwort");
+   			PASS_INPUT=$(/usr/bin/zenity --entry --hide-text --text $"Password for auto backup$ERROR" --title $"Passwort");
    			if [ $? != 0 ]
 			then 
-                /bin/echo "Backup aborted by user"
+                		/bin/echo $"Backup aborted by user"
 				exit 0
 			fi
-			ERROR="\nEingabe war falsch!"
+			ERROR=$"\nWrong password!"
 			PASSWORD=$(echo -n $PASS_INPUT | sha512sum | sed 's/  -//')
 		done
 	fi
@@ -102,20 +105,20 @@ while getopts :hd:q opt; do
 	d)
 		if [[ $OPTARG =~ ^[0-9]+ ]]
 		then
-			/bin/echo "Wait for $OPTARG seconds ..."
+			/bin/echo $"Wait for $OPTARG seconds ..."
 			/bin/sleep $OPTARG
 		else
-			inform_error "Error, specified delay (-d) is not a number!"
+			inform_error $"Error, specified delay (-d) is not a number!"
 			exit 1
 		fi
 		;;
 	*)
-		/bin/echo -e "Unknown argument: -$OPTARG\n"
-		/bin/echo "Usage: autobackup.sh [-q] [-d DELAY] <DEVICE>"
-		/bin/echo -e '\nWhere DEVICE is a mountable device and DELAY the time this script should'\
-			     '\nwait before it starts the backup in seconds. With -q you can supress the'\
-			     '\nbeep sound that is normally played and the dialog for an error or success.\n'
-		inform_error "Unknown argument: -$OPTARG"
+		/bin/echo -e $"Unknown argument: -$OPTARG\n"
+		/bin/echo $"Usage: autobackup.sh [-q] [-d DELAY] <DEVICE>"
+		/bin/echo -e $'\nWhere DEVICE is a mountable device and DELAY the time this script should'\
+			     $'\nwait before it starts the backup in seconds. With -q you can supress the'\
+			     $'\nbeep sound that is normally played and the dialog for an error or success.\n'
+		inform_error $"Unknown argument: -$OPTARG"
 		exit 1
 		;;
   esac
@@ -124,33 +127,33 @@ shift $((OPTIND-1))
 
 if [ ! $1 ]
 then
-	inform_error "Error, no backup device specified!"
+	inform_error $"Error, no backup device specified!"
 	exit 1
 fi
 
 if [ ! -b $1 ]
 then
-	inform_error "Error, specified device does not exist!"
+	inform_error $"Error, specified device does not exist!"
 	exit 1
 fi
 
 check_password
-/bin/echo "Mounting $1 to /media/backup..."
+/bin/echo $"Mounting $1 to /media/backup..."
 /usr/bin/pmount $1 backup
-/bin/echo "Creating backup to /media/backup..."
+/bin/echo $"Creating backup to /media/backup..."
 efalive-backup /media/backup
 BACKUP_RESULT=$?
-/bin/echo "Unmounting $1..."
+/bin/echo $"Unmounting $1..."
 /usr/bin/pumount backup
 
 if [ $BACKUP_RESULT -ne 0 ]
 then
     if [ $BACKUP_RESULT -eq 1 ] || [ $BACKUP_RESULT -eq 5 ]
     then
-        /bin/echo "Login to efa2 server failed, please check that the efaLive administrator is created in efa2 configuration"
+        /bin/echo $"Login to efa2 server failed, please check that the efaLive administrator is created in efa2 configuration"
     fi
-    inform_error "Backup failed, error code: $BACKUP_RESULT !\n\nView autobackup.log for details."
+    inform_error $"Backup failed, error code: $BACKUP_RESULT !\n\nView autobackup.log for details."
 else
-    inform_success "Backup successful."
+    inform_success $"Backup successful."
 fi
 exit $BACKUP_RESULT
