@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: efaLiveSetup 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 20:53+0200\n"
+"POT-Creation-Date: 2014-01-05 23:35+0100\n"
 "PO-Revision-Date: 2010-09-07 10:18+0200\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -18,367 +18,230 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: backup.py:54
-msgid "Backup & Restore"
-msgstr "Datensicherung"
-
-#: backup.py:65 maingui.py:308
-msgid "Backup"
-msgstr "Datensicherung"
-
-#: backup.py:74
-msgid "Restore"
-msgstr "Wiederherstellen"
-
-#: backup.py:87
-msgid "Close"
-msgstr "Schließen"
-
-#: backup.py:115
-msgid "Select directory"
-msgstr "Verzeichnis auswählen"
-
-#: backup.py:126 devicemanager.py:377
-msgid ""
-"Backup failed! Please check that the efalive user is configured correctly in "
-"efa."
-msgstr ""
-"Datensicherung fehlgeschlagen! Bitte die Konfiguration des efalive Benutzers "
-"in efa prüfen."
-
-#: backup.py:131 devicemanager.py:382
-#, python-format
-msgid "Backup to %s failed!"
-msgstr "Datensicherung nach %s fehlgeschlagen!"
-
-#: backup.py:136 devicemanager.py:387
-#, python-format
-msgid "Backup to %s finished."
-msgstr "Datensicherung nach %s erfolgreich."
-
-#: backup.py:149 devicemanager.py:402
-msgid "Select backup"
-msgstr "Sicherungsdatei auswählen"
-
-#: backup.py:160 devicemanager.py:415
-msgid ""
-"Restore failed! Please check that the efalive user is configured correctly "
-"in efa."
-msgstr ""
-"Wiederherstellen fehlgeschlagen! Bitte die Konfiguration des efalive "
-"Benutzers in efa prüfen."
-
-#: backup.py:165
-msgid "Restore of backup finished, but only restored efaLive backup."
-msgstr "Wiederherstellung erfolgreich, es wurde allerdings nur ein efaLive Backup bearbeitet"
-
-#: backup.py:170
-#, fuzzy
-msgid "Restore of backup finished, but only restored efa backup."
-msgstr "Wiederherstellung erfolgreich, es wurde allerdings nur ein efa Backup bearbeitet"
-
-#: backup.py:175 devicemanager.py:420
-#, python-format
-msgid "Restore of backup %s failed!"
-msgstr "Wiederherstellen der Datensicherung %s fehlgeschlagen"
-
-#: backup.py:180 devicemanager.py:425
-#, python-format
-msgid "Restore of backup %s finished."
-msgstr "Wiederherstellen der Datensicherung %s erfolgreich"
-
-#: datetime.py:66
-#, python-format
-msgid "Could not check NTP service status: %s"
-msgstr "Konnte den Status des NTP Service nicht prüfen: %s"
-
-#: datetime.py:100
-#, python-format
-msgid "Could not enable NTP service: %s"
-msgstr "Konnte den NTP service inicht einschalten: %s"
-
-#: datetime.py:109
-#, python-format
-msgid "Could not disable NTP service: %s"
-msgstr "Konnte den NTP Service nicht ausschalten: %s"
-
-#: datetime.py:115
-#, python-format
-msgid "Could not set time: %s"
-msgstr "Fehler beim setzen der Uhrzeit: %s"
-
-#: datetime.py:124
-msgid "Date & Time"
-msgstr "Datum & Zeit"
-
-#: datetime.py:147
-msgid "Time (h m s)"
-msgstr "Zeit (h m s)"
-
-#: datetime.py:169
-msgid "Network time protocol"
-msgstr "Netzwerk-Zeit-Protokoll"
-
-#: datetime.py:177
-msgid "Use network time protocol (NTP)"
-msgstr "Zeit über Internet synchronisieren (NTP)"
-
-#: datetime.py:185 maingui.py:393 screensetup.py:65
-msgid "Ok"
-msgstr "Ok"
-
-#: datetime.py:190 maingui.py:397 screensetup.py:75
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: devicemanager.py:69
-msgid "Restore backup from device"
-msgstr "Wiederherstellen einer Datensicherung von diesem Gerät"
-
-#: devicemanager.py:76
-msgid "Create backup on device"
-msgstr "Datensicherung auf diesem Gerät erstellen"
-
-#: devicemanager.py:251
-msgid "Device Manager"
-msgstr "Speichermedien"
-
-#: devicemanager.py:262
-msgid "USB storage devices"
-msgstr "USB Speichermedien"
-
-#: devicemanager.py:266
-msgid "no devices found"
-msgstr "Kein Gerät gefunden"
-
-#: devicemanager.py:302
-msgid "Unmount USB device"
-msgstr "USB Gerät aushängen"
-
-#: devicemanager.py:303 devicemanager.py:315
-#, python-format
-msgid "Vendor: %s"
-msgstr "Hersteller: %s"
-
-#: devicemanager.py:304 devicemanager.py:316
-#, python-format
-msgid "Model: %s"
-msgstr "Modell: %s"
-
-#: devicemanager.py:305 devicemanager.py:317
-#, python-format
-msgid "Device: %s"
-msgstr "Gerät: %s"
-
-#: devicemanager.py:306 devicemanager.py:318
-#, python-format
-msgid "Size: %s"
-msgstr "Größe: %s"
-
-#: devicemanager.py:307 devicemanager.py:319
-#, python-format
-msgid "Filesystem: %s"
-msgstr "Dateisystem: %s"
-
-#: devicemanager.py:308 devicemanager.py:320
-#, python-format
-msgid "USB-Id: %s"
-msgstr "USB-Id: %s"
-
-#: devicemanager.py:309
-#, python-format
-msgid "Mouned to: %s"
-msgstr "Einhängepunkt: %s"
-
-#: devicemanager.py:314
-msgid "Mount USB device"
-msgstr "USB Gerät einhängen"
-
-#: devicemanager.py:355
-#, python-format
-msgid "Could not mount device: %s"
-msgstr "Konnte Gerät nicht einhängen: %s"
-
-#: devicemanager.py:364
-#, python-format
-msgid "Could not unmount device: %s"
-msgstr "Konnte Gerät nicht aushängen: %s"
-
-#: devicemanager.py:394
-#, python-format
-msgid "Could not create backup: %s"
-msgstr "Konnte keine Datensicherung erstellen: %s"
-
-#: devicemanager.py:432
-#, python-format
-msgid "Could not restore backup: %s"
-msgstr "Konnte keine Datensicherung erstellen: %s"
-
-#: dialogs.py:48 dialogs.py:54
+#: efalivesetup/common/dialogs.py:49 efalivesetup/common/dialogs.py:55
 msgid "Details"
 msgstr "Details"
 
-#: dialogs.py:51
+#: efalivesetup/common/dialogs.py:52
 msgid "Output"
 msgstr "Ausgaben"
 
-#: maingui.py:176
+#: efalivesetup/common/dialogs.py:80
+#, python-format
+msgid "Please enter the password of user %s"
+msgstr "Bitte das Passwort für Benutzer %s eingeben"
+
+#: efalivesetup/common/dialogs.py:84
+msgid "The password you entered did not match!"
+msgstr "Das eingegebene Passwort war falsch!"
+
+#: efalivesetup/common/dialogs.py:113
+msgid "Internal error in PAM authentication module"
+msgstr "Interner Fehler im PAM Authentifizierungsmodul"
+
+#: efalivesetup/maingui.py:204
 msgid "efaLive setup"
 msgstr "efaLive Setup"
 
-#: maingui.py:187
+#: efalivesetup/maingui.py:215
 msgid "efaLive settings"
 msgstr "efaLive Einstellungen"
 
-#: maingui.py:208
+#: efalivesetup/maingui.py:236
 msgid "efa version (2 recommended)"
 msgstr "efa Version (2 empfohlen)"
 
-#: maingui.py:225
+#: efalivesetup/maingui.py:253
 msgid "efa network port"
 msgstr "efa Netzwerk-Port"
 
-#: maingui.py:244
+#: efalivesetup/maingui.py:272
 msgid "efa shutdown action"
 msgstr "Aktion beim Beenden von efa"
 
-#: maingui.py:261
+#: efalivesetup/maingui.py:289
 msgid "enable automatic USB backup"
 msgstr "Automatische Datensicherung auf USB einschalten"
 
-#: maingui.py:269
+#: efalivesetup/maingui.py:301
 msgid "show dialog after automatic backup"
 msgstr "Dialog nach automatischer Datensicherung anzeigen"
 
-#: maingui.py:274
+#: efalivesetup/maingui.py:309
+msgid "use password for automatic backup"
+msgstr "Passwort für automatische Datensicherung verwenden"
+
+#: efalivesetup/maingui.py:317
+msgid "backup password"
+msgstr "Passwort zur Datensicherung"
+
+#: efalivesetup/maingui.py:327
 msgid "Tools"
 msgstr "Werkzeuge"
 
-#: maingui.py:292
+#: efalivesetup/maingui.py:345
 msgid "Terminal"
 msgstr "Kommandozeile"
 
-#: maingui.py:296
+#: efalivesetup/maingui.py:349
 msgid "File manager"
 msgstr "Dateimanager"
 
-#: maingui.py:300
+#: efalivesetup/maingui.py:353
 msgid "Devices"
 msgstr "Speichermedien"
 
-#: maingui.py:304
+#: efalivesetup/maingui.py:357
 msgid "Editor"
 msgstr "Editor"
 
-#: maingui.py:313
+#: efalivesetup/maingui.py:361 efalivesetup/backup/backup.py:62
+msgid "Backup"
+msgstr "Datensicherung"
+
+#: efalivesetup/maingui.py:365
+msgid "Logs"
+msgstr "Logdateien"
+
+#: efalivesetup/maingui.py:370
 msgid "System"
 msgstr "System"
 
-#: maingui.py:331
+#: efalivesetup/maingui.py:388
 msgid "Screen"
 msgstr "Bildschirm"
 
-#: maingui.py:335
+#: efalivesetup/maingui.py:392
 msgid "Network"
 msgstr "Netzwerk"
 
-#: maingui.py:339
+#: efalivesetup/maingui.py:396
 msgid "Hostname"
 msgstr "Hostname"
 
-#: maingui.py:343
+#: efalivesetup/maingui.py:400
 msgid "Screensaver"
 msgstr "Bildschirmschoner"
 
-#: maingui.py:347
+#: efalivesetup/maingui.py:404
 msgid "Date & time"
 msgstr "Datum & Zeit"
 
-#: maingui.py:351
+#: efalivesetup/maingui.py:408
 msgid "Keyboard"
 msgstr "Tastatur"
 
-#: maingui.py:357
+#: efalivesetup/maingui.py:414
 msgid "Actions"
 msgstr "Aktionen"
 
-#: maingui.py:375
+#: efalivesetup/maingui.py:432
 msgid "Shutdown PC"
 msgstr "PC herunterfahren"
 
-#: maingui.py:379
+#: efalivesetup/maingui.py:436
 msgid "Restart PC"
 msgstr "PC neu starten"
 
-#: maingui.py:421
+#: efalivesetup/maingui.py:450 efalivesetup/screen/screensetup.py:63
+#: efalivesetup/datetime/datetime.py:182
+msgid "Ok"
+msgstr "Ok"
+
+#: efalivesetup/maingui.py:454 efalivesetup/screen/screensetup.py:73
+#: efalivesetup/datetime/datetime.py:187
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: efalivesetup/maingui.py:488
 msgid "1 (old)"
 msgstr "1 (alt)"
 
-#: maingui.py:422
+#: efalivesetup/maingui.py:489
 msgid "2 (current)"
 msgstr "2 (aktuell)"
 
-#: maingui.py:424
+#: efalivesetup/maingui.py:491
 msgid "shutdown pc"
 msgstr "PC herunterfahren"
 
-#: maingui.py:425
+#: efalivesetup/maingui.py:492
 msgid "restart pc"
 msgstr "PC neu starten"
 
-#: maingui.py:426
+#: efalivesetup/maingui.py:493
 msgid "restart efa"
 msgstr "efa neu starten"
 
-#: maingui.py:493
+#: efalivesetup/maingui.py:494
+msgid "stop efa"
+msgstr "efa beenden"
+
+#: efalivesetup/maingui.py:576
 #, python-format
 msgid "Could not open xterm program: %s"
 msgstr "Konnte das Programm xterm nicht starten: %s"
 
-#: maingui.py:501
+#: efalivesetup/maingui.py:584
 #, python-format
 msgid "Could not open nm-connection-editor program: %s"
 msgstr "Konnte das Programm nm-connection-editor nicht starten: %s"
 
-#: maingui.py:509
+#: efalivesetup/maingui.py:592
 #, python-format
 msgid "Could not open thunar program: %s"
 msgstr "Konnte das Programm thunar nicht starten: %s"
 
-#: maingui.py:514
+#: efalivesetup/maingui.py:597
 msgid "Really shut down PC ?"
 msgstr "PC wirklich herunterfahren ?"
 
-#: maingui.py:520 maingui.py:531
+#: efalivesetup/maingui.py:603 efalivesetup/maingui.py:614
 #, python-format
 msgid "Could not run /sbin/shutdown program: %s"
 msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
 
-#: maingui.py:525
+#: efalivesetup/maingui.py:608
 msgid "Really reboot PC ?"
 msgstr "PC wirklich neu starten ?"
 
-#: maingui.py:545
+#: efalivesetup/maingui.py:628
 #, python-format
 msgid "Could not run keyboard setup: %s"
 msgstr "Konnte die Tastatureinstellungen nicht laden: %s"
 
-#: maingui.py:553
+#: efalivesetup/maingui.py:636
 #, fuzzy, python-format
 msgid "Could not run dynamic hostname setup: %s"
-msgstr "Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
+msgstr ""
+"Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
 
-#: maingui.py:561
+#: efalivesetup/maingui.py:644
 #, python-format
 msgid "Could not open xscreensaver-demo program: %s"
 msgstr "Konnte das Programm xscreensaver-demo nicht starten: %s"
 
-#: maingui.py:572
+#: efalivesetup/maingui.py:655
 #, fuzzy, python-format
 msgid "Could not open leafpad program: %s"
 msgstr "Konnte das Programm leafpad nicht starten: %s"
 
-#: maingui.py:607
+#: efalivesetup/maingui.py:664
+#, fuzzy
+msgid "Select directory to store log files"
+msgstr "Verzeichnis auswählen"
+
+#: efalivesetup/maingui.py:674
+#, fuzzy, python-format
+msgid "Could not create log file package in %s !"
+msgstr "Konnte keine Datensicherung erstellen: %s"
+
+#: efalivesetup/maingui.py:679
+#, python-format
+msgid "Created log file package in %s ."
+msgstr "Paket mit Logdateien in %s erstellt."
+
+#: efalivesetup/maingui.py:726
 msgid ""
 "Could not save files!\n"
 "\n"
@@ -386,21 +249,237 @@ msgstr ""
 "Die Einstellungen konnten nicht gespeichert werden!\n"
 "\n"
 
-#: maingui.py:608
+#: efalivesetup/maingui.py:727
 msgid "Please check the path you provided for "
 msgstr "Bitte überprüfe den angegebenen Pfad auf "
 
-#: maingui.py:609
+#: efalivesetup/maingui.py:728
 msgid "user rights and existance."
 msgstr "Benutzerrechte und ob er existiert."
 
-#: screensetup.py:45
+#: efalivesetup/devicemanager/devicemanager.py:66
+msgid "Restore backup from device"
+msgstr "Wiederherstellen einer Datensicherung von diesem Gerät"
+
+#: efalivesetup/devicemanager/devicemanager.py:73
+msgid "Create backup on device"
+msgstr "Datensicherung auf diesem Gerät erstellen"
+
+#: efalivesetup/devicemanager/devicemanager.py:248
+msgid "Device Manager"
+msgstr "Speichermedien"
+
+#: efalivesetup/devicemanager/devicemanager.py:259
+msgid "USB storage devices"
+msgstr "USB Speichermedien"
+
+#: efalivesetup/devicemanager/devicemanager.py:263
+msgid "no devices found"
+msgstr "Kein Gerät gefunden"
+
+#: efalivesetup/devicemanager/devicemanager.py:299
+msgid "Unmount USB device"
+msgstr "USB Gerät aushängen"
+
+#: efalivesetup/devicemanager/devicemanager.py:300
+#: efalivesetup/devicemanager/devicemanager.py:312
+#, python-format
+msgid "Vendor: %s"
+msgstr "Hersteller: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:301
+#: efalivesetup/devicemanager/devicemanager.py:313
+#, python-format
+msgid "Model: %s"
+msgstr "Modell: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:302
+#: efalivesetup/devicemanager/devicemanager.py:314
+#, python-format
+msgid "Device: %s"
+msgstr "Gerät: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:303
+#: efalivesetup/devicemanager/devicemanager.py:315
+#, python-format
+msgid "Size: %s"
+msgstr "Größe: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:304
+#: efalivesetup/devicemanager/devicemanager.py:316
+#, python-format
+msgid "Filesystem: %s"
+msgstr "Dateisystem: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:305
+#: efalivesetup/devicemanager/devicemanager.py:317
+#, python-format
+msgid "USB-Id: %s"
+msgstr "USB-Id: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:306
+#, python-format
+msgid "Mouned to: %s"
+msgstr "Einhängepunkt: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:311
+msgid "Mount USB device"
+msgstr "USB Gerät einhängen"
+
+#: efalivesetup/devicemanager/devicemanager.py:352
+#, python-format
+msgid "Could not mount device: %s"
+msgstr "Konnte Gerät nicht einhängen: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:361
+#, python-format
+msgid "Could not unmount device: %s"
+msgstr "Konnte Gerät nicht aushängen: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:374
+#: efalivesetup/backup/backup.py:123
+msgid ""
+"Backup failed! Please check that the efalive user is configured correctly in "
+"efa."
+msgstr ""
+"Datensicherung fehlgeschlagen! Bitte die Konfiguration des efalive Benutzers "
+"in efa prüfen."
+
+#: efalivesetup/devicemanager/devicemanager.py:379
+#: efalivesetup/backup/backup.py:128
+#, python-format
+msgid "Backup to %s failed!"
+msgstr "Datensicherung nach %s fehlgeschlagen!"
+
+#: efalivesetup/devicemanager/devicemanager.py:384
+#: efalivesetup/backup/backup.py:133
+#, python-format
+msgid "Backup to %s finished."
+msgstr "Datensicherung nach %s erfolgreich."
+
+#: efalivesetup/devicemanager/devicemanager.py:391
+#, python-format
+msgid "Could not create backup: %s"
+msgstr "Konnte keine Datensicherung erstellen: %s"
+
+#: efalivesetup/devicemanager/devicemanager.py:399
+#: efalivesetup/backup/backup.py:146
+msgid "Select backup"
+msgstr "Sicherungsdatei auswählen"
+
+#: efalivesetup/devicemanager/devicemanager.py:412
+#: efalivesetup/backup/backup.py:157
+msgid ""
+"Restore failed! Please check that the efalive user is configured correctly "
+"in efa."
+msgstr ""
+"Wiederherstellen fehlgeschlagen! Bitte die Konfiguration des efalive "
+"Benutzers in efa prüfen."
+
+#: efalivesetup/devicemanager/devicemanager.py:417
+msgid "Restore of backup finished, but only restored efaLive backup."
+msgstr ""
+"Wiederherstellung erfolgreich, es wurde allerdings nur ein efaLive Backup "
+"bearbeitet"
+
+#: efalivesetup/devicemanager/devicemanager.py:422
+#, fuzzy
+msgid "Restore of backup finished, but only restored efa backup."
+msgstr ""
+"Wiederherstellung erfolgreich, es wurde allerdings nur ein efa Backup "
+"bearbeitet"
+
+#: efalivesetup/devicemanager/devicemanager.py:427
+#: efalivesetup/backup/backup.py:172
+#, python-format
+msgid "Restore of backup %s failed!"
+msgstr "Wiederherstellen der Datensicherung %s fehlgeschlagen"
+
+#: efalivesetup/devicemanager/devicemanager.py:432
+#: efalivesetup/backup/backup.py:177
+#, python-format
+msgid "Restore of backup %s finished."
+msgstr "Wiederherstellen der Datensicherung %s erfolgreich"
+
+#: efalivesetup/devicemanager/devicemanager.py:439
+#, python-format
+msgid "Could not restore backup: %s"
+msgstr "Konnte keine Datensicherung erstellen: %s"
+
+#: efalivesetup/screen/screensetup.py:43
 msgid "Screen setup"
 msgstr "Bildschirm-Setup"
 
-#: screensetup.py:70
+#: efalivesetup/screen/screensetup.py:68
 msgid "Apply"
 msgstr "Anwenden"
+
+#: efalivesetup/datetime/datetime.py:63
+#, python-format
+msgid "Could not check NTP service status: %s"
+msgstr "Konnte den Status des NTP Service nicht prüfen: %s"
+
+#: efalivesetup/datetime/datetime.py:97
+#, python-format
+msgid "Could not enable NTP service: %s"
+msgstr "Konnte den NTP service inicht einschalten: %s"
+
+#: efalivesetup/datetime/datetime.py:106
+#, python-format
+msgid "Could not disable NTP service: %s"
+msgstr "Konnte den NTP Service nicht ausschalten: %s"
+
+#: efalivesetup/datetime/datetime.py:112
+#, python-format
+msgid "Could not set time: %s"
+msgstr "Fehler beim setzen der Uhrzeit: %s"
+
+#: efalivesetup/datetime/datetime.py:121
+msgid "Date & Time"
+msgstr "Datum & Zeit"
+
+#: efalivesetup/datetime/datetime.py:144
+msgid "Time (h m s)"
+msgstr "Zeit (h m s)"
+
+#: efalivesetup/datetime/datetime.py:166
+msgid "Network time protocol"
+msgstr "Netzwerk-Zeit-Protokoll"
+
+#: efalivesetup/datetime/datetime.py:174
+msgid "Use network time protocol (NTP)"
+msgstr "Zeit über Internet synchronisieren (NTP)"
+
+#: efalivesetup/backup/backup.py:51
+msgid "Backup & Restore"
+msgstr "Datensicherung"
+
+#: efalivesetup/backup/backup.py:71
+msgid "Restore"
+msgstr "Wiederherstellen"
+
+#: efalivesetup/backup/backup.py:84
+msgid "Close"
+msgstr "Schließen"
+
+#: efalivesetup/backup/backup.py:112
+msgid "Select directory"
+msgstr "Verzeichnis auswählen"
+
+#: efalivesetup/backup/backup.py:162
+#, fuzzy, python-format
+msgid ""
+"Restore of backup finished, but only restored efaLive backup from file %s."
+msgstr ""
+"Wiederherstellung erfolgreich, es wurde allerdings nur ein efaLive Backup "
+"bearbeitet"
+
+#: efalivesetup/backup/backup.py:167
+#, fuzzy, python-format
+msgid "Restore of backup finished, but only restored efa backup from file %s."
+msgstr ""
+"Wiederherstellung erfolgreich, es wurde allerdings nur ein efa Backup "
+"bearbeitet"
 
 #~ msgid "efa version"
 #~ msgstr "efa Version"

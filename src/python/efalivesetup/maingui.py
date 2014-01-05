@@ -60,7 +60,7 @@ class SetupModel(object):
 
     def initModel(self):
         self.efaVersion.updateData(2)
-        self.efaShutdownAction.updateData("sudo /sbin/shutdown -h now")
+        self.efaShutdownAction.updateData("shutdown")
         self.efaPort.updateData(3834)
         if os.path.isfile(self._settingsFileName):
             self.settingsFile=open(self._settingsFileName, "r")
@@ -461,7 +461,14 @@ class SetupController(object):
         self._logger = logging.getLogger('efalivesetup.maingui.SetupController')
         if(len(argv) < 2):
             raise(BaseException("No arguments given"))
-        confPath=argv[1]
+        ask_for_password = False
+	if(len(argv) == 2):
+            confPath=argv[1]
+	elif(len(argv) == 3):
+	    if argv[1] != '-p':
+                raise(BaseException("Two parameters given, but first one is not -p"))
+	    ask_for_password = True
+            confPath=argv[2]
         if(model==None):
             self._model=SetupModel(confPath)
         else:
@@ -470,7 +477,10 @@ class SetupController(object):
             self._view=SetupView(gtk.WINDOW_TOPLEVEL)
         else:
             self._view=view
-
+	if ask_for_password == True:
+            pwok = dialogs.show_password_dialog(self._view, 'hannayk')
+            if pwok == False:
+                gtk.main_quit()
         self.initEvents()
         self._view.connect("destroy", self.destroy)
         self._view.show()
@@ -481,6 +491,7 @@ class SetupController(object):
         self._view.shutdownCombo.append_text(_("shutdown pc"))
         self._view.shutdownCombo.append_text(_("restart pc"))
         self._view.shutdownCombo.append_text(_("restart efa"))
+        self._view.shutdownCombo.append_text(_("stop efa"))
 
         self._view.autoUsbBackupEnabledVBox.set_sensitive(False)
         self._view.autoBackupPasswordHBox.set_sensitive(False)
@@ -502,12 +513,14 @@ class SetupController(object):
 
     def efaShutdownActionChanged(self, action):
         index=0
-        if(action=="\"sudo /sbin/shutdown -h now\""):
+        if(action=="\"shutdown\""):
             index=0
-        elif(action=="\"sudo /sbin/shutdown -r now\""):
+        elif(action=="\"restart\""):
             index=1
         elif(action=="\"start_efa\""):
             index=2
+        elif(action=="\"stop_efa\""):
+            index=3
         self._view.shutdownCombo.set_active(index)
 
     def autoUsbBackupChanged(self, enable):
@@ -681,11 +694,13 @@ class SetupController(object):
         action_string = ""
         action = widget.get_active()
         if action == 0:
-            action_string = "\"sudo /sbin/shutdown -h now\""
+            action_string = "\"shutdown\""
         elif action == 1:
-            action_string = "\"sudo /sbin/shutdown -r now\""
+            action_string = "\"restart\""
         elif action == 2:
             action_string = "\"start_efa\""
+	elif action == 3:
+            action_string = "\"stop_efa\""
         self._model.setEfaShutdownAction(action_string)
 
     def setAutoUsbBackup(self, widget):

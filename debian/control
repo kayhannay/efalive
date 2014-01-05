@@ -10,7 +10,7 @@ Homepage: http://www.hannay.de/index.php?option=com_content&view=article&id=46&I
 
 Package: efalive
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, efa, efa2, halevt, xterm, sudo, zenity, zip, unzip, openbox, python-gtk2, pmount, arandr, feh, python-gudev, network-manager-gnome, thunar, xscreensaver, ntp, leafpad, xinit, xserver-common, libgtk2-perl, ddclient
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, efa, efa2, halevt, xterm, sudo, zenity, zip, unzip, openbox, python-gtk2, pmount, arandr, feh, python-gudev, network-manager-gnome, thunar, xscreensaver, ntp, leafpad, libgtk2-perl, ddclient, xserver-xorg
 #libgnome2-perl, gnome-session-bin, 
 #Depends: efa, efa2, xinit, fontconfig-config, halevt, xterm, sudo, zenity, zip, unzip, openbox, python-gtk2, pmount, openjdk-6-jre, arandr, feh, python-gudev, network-manager-gnome, thunar, libgnome2-perl, gnome-session-bin, xscreensaver, ntp, gedit, plymouth, sudo
 #Build-Depends: docbook-to-man
