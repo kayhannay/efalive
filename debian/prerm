@@ -24,7 +24,7 @@ case "$1" in
         #sed -i 's/START_DAEMON=no/START_DAEMON=yes/' /etc/default/halevt
         sed -i '/^efa .*/d' /etc/sudoers
         #sed -i 's/allowed_users=.*/allowed_users=console/' /etc/X11/Xwrapper.config
-    	dpkg-reconfigure x11-common
+    	#dpkg-reconfigure x11-common
     ;;
 
     upgrade|failed-upgrade)
