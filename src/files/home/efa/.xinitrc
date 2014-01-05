@@ -13,10 +13,8 @@ feh --bg-fill /usr/share/plymouth/themes/efa-live/efaLive.png
 exec xscreensaver -no-splash &
 #Start the window manager
 exec openbox &
-######Try to connect to the configured broadband connection; its name has to be "broadband"!
-#####nmcli con up id broadband &
 
-start_efa()
+load_settings()
 {
     #Start efaLive setup if there are no settings
     if [ ! -f ~/.efalive/settings.conf ]
@@ -25,7 +23,26 @@ start_efa()
     fi
 
     . ~/.efalive/settings.conf
+}
 
+start_halevt()
+{
+    if [ "x$AUTO_USB_BACKUP" = "xTRUE" ]
+    then
+        /usr/bin/halevt -c ~/.halevt/efaLive.xml -p /tmp/efalive_halevt.pid
+    fi
+}
+
+stop_halevt()
+{
+    if [ -f /tmp/efalive_halevt.pid ]
+    then
+        kill -TERM $(cat /tmp/efalive_halevt.pid)
+    fi
+}
+
+start_efa()
+{
     #Set the correct efa start script
     if [ $EFA_VERSION -eq 2 ]
     then
@@ -41,7 +58,7 @@ start_efa()
     delta=$(($stop-$start))
     if [ $delta -lt 5 ]
     then
-        zenity --question --text="Das elektronische Fahrtenbuch efa wurde unerwartet schnell beendet. Soll nun die Aktion beim Herunterfahren von efa gestartet werden?"
+        zenity --question --text="The electronic logbook efa was stopped unexpectedly quick. Should we continue with the configured action for efa shutdown?"
         if [ $? -ne 0 ]
         then
             exit 0
@@ -49,6 +66,28 @@ start_efa()
     fi
 }
 
+stop_efa()
+{
+    stop_halevt
+    exit 0
+}
+
+shutdown()
+{
+    stop_halevt
+    sudo /sbin/shutdown -h now
+    exit 0
+}
+
+restart()
+{
+    stop_halevt
+    sudo /sbin/shutdown -r now
+    exit 0
+}
+
+load_settings
+start_halevt
 start_efa
 while :
 do

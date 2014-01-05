@@ -1,7 +1,7 @@
 '''
 Created on 10.01.2012
 
-Copyright (C) 2012 Kay Hannay
+Copyright (C) 2012-2014 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -22,6 +22,7 @@ pygtk.require('2.0')
 import gtk
 import os
 import sys
+import PAM
 
 import locale
 import gettext
@@ -74,4 +75,54 @@ def show_details_dialog(widget, type, details_label, message, details):
     scroll_area.show()
     dialog.run()
     dialog.destroy()
+
+def get_password_dialog(widget, user, error):
+    text = (_("Please enter the password of user %s") % user)
+    dialog = gtk.MessageDialog(widget, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK_CANCEL, text)
+    dialog.set_resizable(False)
+    if error == True:
+	error_text = gtk.Label(_("The password you entered did not match!"))
+	dialog.vbox.pack_start(error_text)
+    	error_text.show()
+    password_entry = gtk.Entry(max=255)
+    password_entry.set_visibility(False)
+    dialog.vbox.pack_start(password_entry, False, False, 2)
+    password_entry.show()
+    response = dialog.run()
+    password = None
+    if response == gtk.RESPONSE_OK:
+        password = password_entry.get_text()
+    dialog.destroy()
+    return password
+
+def authenticate(user, password):
+    def get_pass(authx, query_list, user_data):
+        resp = []
+        resp.append((password,0))
+        return resp
+    auth = PAM.pam()
+    auth.start('passwd')
+    auth.set_item(PAM.PAM_USER, user)
+    auth.set_item(PAM.PAM_CONV, get_pass)
+    try:
+        auth.authenticate()
+        auth.acct_mgmt()
+    except PAM.error:
+        return False
+    except:
+        raise(BaseException(_("Internal error in PAM authentication module")))
+    else:
+        return True
+    return False
+
+def show_password_dialog(widget, user):
+    authenticated = False
+    error = False
+    while authenticated == False:
+    	password = get_password_dialog(widget, user, error)
+        if password == None:
+            return False
+	authenticated = authenticate(user, password)
+        error = True
+    return True
 

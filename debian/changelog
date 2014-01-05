@@ -1,6 +1,9 @@
 efalive (2.2-1) stable; urgency=low
 
-  * Improve backup restore so that efa and efyLive only backups can be restored
+  * Improve backup restore so that efa and efaLive only backups can be restored
+  * Add support for auto backup password
+  * Switch from own init script to login manager solution
+  * Exchange su based password check by Python solution for efaLive Setup start
 
  -- Kay Hannay <klinux@hannay.de>  Fri, 27 Sep 2013 18:30:21 +0200
 
