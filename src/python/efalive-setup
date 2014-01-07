@@ -1,18 +1,35 @@
 #!/bin/bash
 
-DIR=~/.efalive
+PARAMS=~/.efalive
+
+print_help() {
+    echo "Syntax: [-p] [<DIRECTORY>]"
+}
 
 if [ $1 ]
 then
-    if [ -d $1 ]
+    if [ $2 ]
     then
-        DIR=$1
+        if [ "x$1" != "x-p" -o ! -d $2 ]
+        then
+            print_help
+            exit 1
+        fi
+        PARAMS="-p $2"
     else
-        echo "Error, not a directory: $1"
-	exit 1
+        if [ "x$1" = "x-p"  ]
+        then
+            PARAMS="-p $PARAMS"
+        elif [ -d $1 ]
+        then
+            PARAMS="$1"
+        else
+            print_help
+            exit 1
+        fi
     fi
 fi
 
-PYTHONPATH=.:$PYTHONPATH 
-PYTHONPATH=$PYTHONPATH python -m efalivesetup.maingui $DIR >> /dev/null
+PYTHONPATH=/usr/lib/python2.7/site-packages/:$PYTHONPATH 
+PYTHONPATH=$PYTHONPATH python -m efalivesetup.maingui $PARAMS >> /dev/null
 
