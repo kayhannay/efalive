@@ -478,9 +478,9 @@ class SetupController(object):
         else:
             self._view=view
 	if ask_for_password == True:
-            pwok = dialogs.show_password_dialog(self._view, 'hannayk')
+            pwok = dialogs.show_password_dialog(self._view, 'efa')
             if pwok == False:
-                gtk.main_quit()
+                exit()             
         self.initEvents()
         self._view.connect("destroy", self.destroy)
         self._view.show()
