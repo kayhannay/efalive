@@ -4,8 +4,9 @@ efalive (2.2-1) stable; urgency=low
   * Add support for auto backup password
   * Switch from own init script to login manager solution
   * Exchange su based password check by Python solution for efaLive Setup start
+  * Add function to create a log file package
 
- -- Kay Hannay <klinux@hannay.de>  Fri, 27 Sep 2013 18:30:21 +0200
+ -- Kay Hannay <klinux@hannay.de>  Wed, 08 Jan 2014 20:54:21 +0200
 
 
 efalive (2.1-1) unstable; urgency=low

@@ -77,15 +77,15 @@ def show_details_dialog(widget, type, details_label, message, details):
     dialog.destroy()
 
 def get_password_dialog(widget, user, error):
-    text = (_("Please enter the password of user %s") % user)
-    dialog = gtk.MessageDialog(widget, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK_CANCEL, text)
-    dialog.set_resizable(False)
+    dialog = gtk.MessageDialog(widget, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK_CANCEL, None)
+    dialog.set_markup(_("Please enter the password of user %s") % user)
     if error == True:
-	error_text = gtk.Label(_("The password you entered did not match!"))
-	dialog.vbox.pack_start(error_text)
-    	error_text.show()
+	dialog.format_secondary_markup("<span foreground='red'>" + _("The password you entered did not match!") + "</span>")
+    dialog.set_resizable(False)
+    dialog.set_default_response(gtk.RESPONSE_OK)
     password_entry = gtk.Entry(max=255)
     password_entry.set_visibility(False)
+    password_entry.set_activates_default(gtk.TRUE)
     dialog.vbox.pack_start(password_entry, False, False, 2)
     password_entry.show()
     response = dialog.run()
