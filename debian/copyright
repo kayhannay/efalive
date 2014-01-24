@@ -3,7 +3,7 @@ Upstream-Name: efaLive
 Upstream-Contact: Kay Hannay <klinux@hannay.de>
 Source: http://www.hannay.de/
 Files: *
-Copyright: Copyright 2013 Kay Hannay <klinux@hannay.de>
+Copyright: Copyright 2013-2014 Kay Hannay <klinux@hannay.de>
 License: GPL-3+
  This program is free software; you can redistribute it
  and/or modify it under the terms of the GNU General Public
