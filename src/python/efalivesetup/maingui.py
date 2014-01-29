@@ -155,16 +155,6 @@ class SetupModel(object):
             self._logger.error("Could not save files: %s" % exception)
             raise Exception("Could not save files")
 
-    def setEfaVersion(self, version):
-        self.efaVersion.updateData(version)
-        if version == 1:
-            self.efaBackupPaths = "/usr/lib/efa/daten /home/efa/efa"
-        elif version == 2:
-            self.efaBackupPaths = "/usr/lib/efa2/data /home/efa/efa2"
-        else:
-            self._logger.error("Undefined version received: %d" % version)
-        self._logger.debug("efa version: %d" % version)
-
     def setEfaShutdownAction(self, action):
         self.efaShutdownAction.updateData(action)
         self._logger.debug("efa shutdown action: %s" % action)
@@ -223,23 +213,6 @@ class SetupView(gtk.Window):
         self.settingsVBox=gtk.VBox(False, 0)
         self.settingsSpaceBox.pack_start(self.settingsVBox, True, True, 2)
         self.settingsVBox.show()
-
-        # efa version
-        self.versionVBox=gtk.VBox(False, 0)
-        self.settingsVBox.pack_start(self.versionVBox, True, True, 2)
-        self.versionVBox.show()
-
-        self.versionHBox=gtk.HBox(False, 5)
-        self.versionVBox.pack_start(self.versionHBox, True, True, 2)
-        self.versionHBox.show()
-
-        self.versionLabel=gtk.Label(_("efa version (2 recommended)"))
-        self.versionHBox.pack_start(self.versionLabel, False, False, 5)
-        self.versionLabel.show()
-
-        self.versionCombo=gtk.combo_box_new_text()
-        self.versionHBox.pack_end(self.versionCombo, False, False, 2)
-        self.versionCombo.show()
 
         # efa port field
         self.portVBox=gtk.VBox(False, 0)
@@ -485,9 +458,6 @@ class SetupController(object):
         self._view.connect("destroy", self.destroy)
         self._view.show()
 
-        self._view.versionCombo.append_text(_("1 (old)"))
-        self._view.versionCombo.append_text(_("2 (current)"))
-
         self._view.shutdownCombo.append_text(_("shutdown pc"))
         self._view.shutdownCombo.append_text(_("restart pc"))
         self._view.shutdownCombo.append_text(_("restart efa"))
@@ -496,20 +466,12 @@ class SetupController(object):
         self._view.autoUsbBackupEnabledVBox.set_sensitive(False)
         self._view.autoBackupPasswordHBox.set_sensitive(False)
 
-        self._model.efaVersion.registerObserverCb(self.efaVersionChanged)
         self._model.efaShutdownAction.registerObserverCb(self.efaShutdownActionChanged)
         self._model.autoUsbBackup.registerObserverCb(self.autoUsbBackupChanged)
         self._model.autoUsbBackupDialog.registerObserverCb(self.autoUsbBackupDialogChanged)
         self._model.auto_backup_use_password.registerObserverCb(self.autoBackupUsePasswordChanged)
         self._model.efaPort.registerObserverCb(self.efaPortChanged)
         self._model.initModel()
-
-    def efaVersionChanged(self, version):
-        if(version==1):
-            self._view.portHBox.set_sensitive(False)
-        elif(version==2):
-            self._view.portHBox.set_sensitive(True)
-        self._view.versionCombo.set_active(version - 1)
 
     def efaShutdownActionChanged(self, action):
         index=0
@@ -547,7 +509,6 @@ class SetupController(object):
         self._logger.debug("Initialize events")
         self._view.closeButton.connect("clicked", self.destroy)
         self._view.okButton.connect("clicked", self.save)
-        self._view.versionCombo.connect("changed", self.setEfaVersion)
         self._view.shutdownCombo.connect("changed", self.setEfaShutdownAction)
         self._view.autoUsbBackupCbox.connect("toggled", self.setAutoUsbBackup)
         self._view.autoUsbBackupDialogCbox.connect("toggled", self.setAutoUsbBackupDialog)
@@ -686,9 +647,6 @@ class SetupController(object):
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
         finally:
             file_chooser.destroy()
-
-    def setEfaVersion(self, widget):
-        self._model.setEfaVersion(widget.get_active() + 1)
 
     def setEfaShutdownAction(self, widget):
         action_string = ""
