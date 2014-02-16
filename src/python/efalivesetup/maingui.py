@@ -1,7 +1,7 @@
 '''
 Created on 26.08.2010
 
-Copyright (C) 2010-2013 Kay Hannay
+Copyright (C) 2010-2014 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -51,7 +51,7 @@ class SetupModel(object):
         self.efaShutdownAction=Observable()
         self.autoUsbBackup=Observable()
         self.autoUsbBackupDialog=Observable()
-        self.efaBackupPaths=None
+        self.efaBackupPaths="/usr/lib/efa/ausgabe/layout /usr/lib/efa/daten /home/efa/efa"
         self.efaLiveBackupPaths="/home/efa/.efalive"
         self.efaPort=Observable()
         self.efaCredentialsFile="~/.efalive/.efacred"
@@ -169,6 +169,10 @@ class SetupModel(object):
 
     def getConfigPath(self):
         return self._confPath
+
+    def setEfaVersion(self, version):
+        self.efaVersion.updateData(version)
+        self._logger.debug("efa version: %d" % version)
 
     def setEfaPort(self, port):
         self.efaPort.updateData(port)
