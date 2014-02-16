@@ -89,6 +89,12 @@ then
         BACKUP_DIR=${BACKUP_FILE%"efaLive_backup_${BACKUP_TIMESTAMP}.zip"*}
         EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
         EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
+	if [ ! -f $EFA_BACKUP_FILE ]
+        then
+	    EFA_BACKUP_FILE="NONE"
+            /bin/echo "Warning, restoring efaLive backup only! Did not find matching efa backup file."
+            WARNING_CODE=244
+        fi
     elif [[ "$BACKUP_FILE" =~ .*/efa_backup_[0-9]{8}_[0-9]{6}\.zip ]]
     then
         #Remove "efaLive_backup_" (and parent directory, if required)
@@ -99,6 +105,12 @@ then
         BACKUP_DIR=${BACKUP_FILE%"efa_backup_${BACKUP_TIMESTAMP}.zip"*}
         EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
         EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
+	if [ ! -f $EFALIVE_BACKUP_FILE ]
+        then
+	    EFALIVE_BACKUP_FILE="NONE"
+            /bin/echo "Warning, restoring efa backup only! Did not find matching efaLive backup file."
+            WARNING_CODE=244
+        fi
     elif $(unzip -l $BACKUP_FILE 2>>/dev/null | grep -q backup.meta)
     then
         #This is an efa backup only.
@@ -115,7 +127,7 @@ then
         /bin/echo "Error, specified file is not an efaLive or efa backup zip file!"
         exit 243
     fi
-
+exit 0
     create_backup
 
     RETURNCODE=0
