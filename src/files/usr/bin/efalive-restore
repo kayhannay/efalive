@@ -127,7 +127,7 @@ then
         /bin/echo "Error, specified file is not an efaLive or efa backup zip file!"
         exit 243
     fi
-exit 0
+
     create_backup
 
     RETURNCODE=0
