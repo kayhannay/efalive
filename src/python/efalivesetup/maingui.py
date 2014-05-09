@@ -55,8 +55,8 @@ class SetupModel(object):
         self.efaLiveBackupPaths="/home/efa/.efalive"
         self.efaPort=Observable()
         self.efaCredentialsFile="~/.efalive/.efacred"
-	self.auto_backup_use_password=Observable()
-	self.auto_backup_password=""
+        self.auto_backup_use_password=Observable()
+        self.auto_backup_password=""
 
     def initModel(self):
         self.efaVersion.updateData(2)
@@ -180,13 +180,13 @@ class SetupModel(object):
 
     def create_log_package(self, path):
         return common.command_output(["/usr/lib/efalive/bin/create_log_package.sh", path])
-    
+
     def enableAutoBackupPassword(self, enable):
         self.auto_backup_use_password.updateData(enable)
         self._logger.debug("auto backup password: %s" % enable)
-        
+
     def setAutoBackupPassword(self, pwd):
-	hash = hashlib.sha512(pwd).hexdigest()
+        hash = hashlib.sha512(pwd).hexdigest()
         self.auto_backup_password = hash
         self._logger.debug("efa auto backup password: %s, hash %s" % (pwd,hash))
 
@@ -268,10 +268,10 @@ class SetupView(gtk.Window):
         self.autoUsbBackupCbox.show()
 
         self.autoUsbBackupEnabledVBox=gtk.VBox(False, 2)
-	self.autoUsbBackupVBox.pack_start(self.autoUsbBackupEnabledVBox, True, True, 2)
-	self.autoUsbBackupEnabledVBox.show()
-        
-	self.autoUsbBackupDialogHBox=gtk.HBox(False, 2)
+        self.autoUsbBackupVBox.pack_start(self.autoUsbBackupEnabledVBox, True, True, 2)
+        self.autoUsbBackupEnabledVBox.show()
+
+        self.autoUsbBackupDialogHBox=gtk.HBox(False, 2)
         self.autoUsbBackupEnabledVBox.pack_start(self.autoUsbBackupDialogHBox, True, True, 2)
         self.autoUsbBackupDialogHBox.show()
 
@@ -286,7 +286,7 @@ class SetupView(gtk.Window):
         self.autoBackupUsePasswordCbox = gtk.CheckButton(_("use password for automatic backup"))
         self.autoBackupUsePasswordHBox.pack_start(self.autoBackupUsePasswordCbox, False, True, 20)
         self.autoBackupUsePasswordCbox.show()
-        
+
         self.autoBackupPasswordHBox=gtk.HBox(False, 2)
         self.autoUsbBackupEnabledVBox.pack_start(self.autoBackupPasswordHBox, True, True, 2)
         self.autoBackupPasswordHBox.show()
@@ -294,12 +294,12 @@ class SetupView(gtk.Window):
         self.autoBackupPasswordLabel=gtk.Label(_("backup password"))
         self.autoBackupPasswordHBox.pack_start(self.autoBackupPasswordLabel, False, False, 40)
         self.autoBackupPasswordLabel.show()
-        
-	self.autoBackupPasswordEntry = gtk.Entry(max=255)
-	self.autoBackupPasswordEntry.set_visibility(False)
+
+        self.autoBackupPasswordEntry = gtk.Entry(max=255)
+        self.autoBackupPasswordEntry.set_visibility(False)
         self.autoBackupPasswordHBox.pack_end(self.autoBackupPasswordEntry, True, True, 2)
         self.autoBackupPasswordEntry.show()
-        
+
         # tools box
         self.toolsFrame=gtk.Frame(_("Tools"))
         self.mainBox.pack_start(self.toolsFrame, True, False, 2)
@@ -308,11 +308,11 @@ class SetupView(gtk.Window):
         self.toolsSpaceVBox=gtk.VBox(False, 10)
         self.toolsFrame.add(self.toolsSpaceVBox)
         self.toolsSpaceVBox.show()
-        
+
         self.toolsSpaceBox=gtk.HBox(False, 10)
         self.toolsSpaceVBox.pack_start(self.toolsSpaceBox, True, True, 5)
         self.toolsSpaceBox.show()
-        
+
         self.toolsGrid=gtk.Table(2, 3, True)
         self.toolsSpaceBox.pack_start(self.toolsGrid, True, True, 5)
         self.toolsGrid.set_row_spacings(2)
@@ -322,27 +322,27 @@ class SetupView(gtk.Window):
         self.terminalButton=gtk.Button(_("Terminal"))
         self.toolsGrid.attach(self.terminalButton, 0, 1, 0, 1)
         self.terminalButton.show()
-        
+
         self.fileManagerButton=gtk.Button(_("File manager"))
         self.toolsGrid.attach(self.fileManagerButton, 1, 2, 0, 1)
         self.fileManagerButton.show()
-       
+
         self.deviceButton=gtk.Button(_("Devices"))
         self.toolsGrid.attach(self.deviceButton, 2, 3, 0, 1)
         self.deviceButton.show()
-       
+
         self.editorButton=gtk.Button(_("Editor"))
         self.toolsGrid.attach(self.editorButton, 0, 1, 1, 2)
         self.editorButton.show()
-       
+
         self.backupButton=gtk.Button(_("Backup"))
         self.toolsGrid.attach(self.backupButton, 1, 2, 1, 2)
         self.backupButton.show()
-       
+
         self.log_button=gtk.Button(_("Logs"))
         self.toolsGrid.attach(self.log_button, 2, 3, 1, 2)
         self.log_button.show()
-       
+
         # system box
         self.systemFrame=gtk.Frame(_("System"))
         self.mainBox.pack_start(self.systemFrame, True, False, 2)
@@ -351,11 +351,11 @@ class SetupView(gtk.Window):
         self.systemSpaceVBox=gtk.VBox(False, 10)
         self.systemFrame.add(self.systemSpaceVBox)
         self.systemSpaceVBox.show()
-        
+
         self.systemSpaceBox=gtk.HBox(False, 10)
         self.systemSpaceVBox.pack_start(self.systemSpaceBox, True, True, 5)
         self.systemSpaceBox.show()
-        
+
         self.systemGrid=gtk.Table(2, 3, True)
         self.systemSpaceBox.pack_start(self.systemGrid, True, True, 5)
         self.systemGrid.set_row_spacings(2)
@@ -365,27 +365,27 @@ class SetupView(gtk.Window):
         self.screenButton=gtk.Button(_("Screen"))
         self.systemGrid.attach(self.screenButton, 0, 1, 0, 1)
         self.screenButton.show()
-        
+
         self.networkButton=gtk.Button(_("Network"))
         self.systemGrid.attach(self.networkButton, 1, 2, 0, 1)
         self.networkButton.show()
-       
+
         self.dyndnsButton=gtk.Button(_("Hostname"))
         self.systemGrid.attach(self.dyndnsButton, 2, 3, 0, 1)
         self.dyndnsButton.show()
-       
+
         self.screensaverButton=gtk.Button(_("Screensaver"))
         self.systemGrid.attach(self.screensaverButton, 0, 1, 1, 2)
         self.screensaverButton.show()
-       
+
         self.datetimeButton=gtk.Button(_("Date & time"))
         self.systemGrid.attach(self.datetimeButton, 1, 2, 1, 2)
         self.datetimeButton.show()
-       
+
         self.keyboardButton=gtk.Button(_("Keyboard"))
         self.systemGrid.attach(self.keyboardButton, 2, 3, 1, 2)
         self.keyboardButton.show()
-       
+
 
         # actions box
         self.actionsFrame=gtk.Frame(_("Actions"))
@@ -395,11 +395,11 @@ class SetupView(gtk.Window):
         self.actionsSpaceVBox=gtk.VBox(False, 10)
         self.actionsFrame.add(self.actionsSpaceVBox)
         self.actionsSpaceVBox.show()
-        
+
         self.actionsSpaceBox=gtk.HBox(False, 10)
         self.actionsSpaceVBox.pack_start(self.actionsSpaceBox, True, True, 5)
         self.actionsSpaceBox.show()
-        
+
         self.actionsGrid=gtk.Table(1, 3, True)
         self.actionsSpaceBox.pack_start(self.actionsGrid, True, True, 5)
         self.actionsGrid.set_row_spacings(2)
@@ -409,15 +409,15 @@ class SetupView(gtk.Window):
         self.shutdownButton=gtk.Button(_("Shutdown PC"))
         self.actionsGrid.attach(self.shutdownButton, 0, 1, 0, 1)
         self.shutdownButton.show()
-        
+
         self.restartButton=gtk.Button(_("Restart PC"))
         self.actionsGrid.attach(self.restartButton, 1, 2, 0, 1)
         self.restartButton.show()
-       
+
         self.actionsDummy=gtk.Label()
         self.actionsGrid.attach(self.actionsDummy, 2, 3, 0, 1)
         self.actionsDummy.show()
-       
+
 
         # button box
         self.buttonBox=gtk.HBox(False, 0)
@@ -427,11 +427,11 @@ class SetupView(gtk.Window):
         self.okButton=gtk.Button(_("Ok"))
         self.buttonBox.pack_end(self.okButton, False, False, 2)
         self.okButton.show()
-        
+
         self.closeButton=gtk.Button(_("Cancel"))
         self.buttonBox.pack_end(self.closeButton, False, False, 2)
         self.closeButton.show()
-        
+
 
 class SetupController(object):
     def __init__(self, argv, model=None, view=None):
@@ -439,12 +439,12 @@ class SetupController(object):
         if(len(argv) < 2):
             raise(BaseException("No arguments given"))
         ask_for_password = False
-	if(len(argv) == 2):
+        if(len(argv) == 2):
             confPath=argv[1]
-	elif(len(argv) == 3):
-	    if argv[1] != '-p':
+        elif(len(argv) == 3):
+            if argv[1] != '-p':
                 raise(BaseException("Two parameters given, but first one is not -p"))
-	    ask_for_password = True
+            ask_for_password = True
             confPath=argv[2]
         if(model==None):
             self._model=SetupModel(confPath)
@@ -454,7 +454,7 @@ class SetupController(object):
             self._view=SetupView(gtk.WINDOW_TOPLEVEL)
         else:
             self._view=view
-	if ask_for_password == True:
+        if ask_for_password == True:
             pwok = dialogs.show_password_dialog(self._view, 'efa')
             if pwok == False:
                 exit()             
@@ -517,7 +517,7 @@ class SetupController(object):
         self._view.autoUsbBackupCbox.connect("toggled", self.setAutoUsbBackup)
         self._view.autoUsbBackupDialogCbox.connect("toggled", self.setAutoUsbBackupDialog)
         self._view.autoBackupUsePasswordCbox.connect("toggled", self.setAutoBackupUsePassword)
-	self._view.autoBackupPasswordEntry.connect("changed", self.setAutoBackupPassword)
+        self._view.autoBackupPasswordEntry.connect("changed", self.setAutoBackupPassword)
         self._view.terminalButton.connect("clicked", self.runTerminal)
         self._view.screenButton.connect("clicked", self.runScreenSetup)
         self._view.deviceButton.connect("clicked", self.runDeviceManager)
@@ -532,7 +532,7 @@ class SetupController(object):
         self._view.editorButton.connect("clicked", self.runEditor)
         self._view.backupButton.connect("clicked", self.runBackup)
         self._view.log_button.connect("clicked", self.run_create_log)
-	self._view.port_adjustment.connect("value_changed", self.setEfaPort)
+        self._view.port_adjustment.connect("value_changed", self.setEfaPort)
 
     def runTerminal(self, widget):
         try:
@@ -585,7 +585,7 @@ class SetupController(object):
 
     def runDeviceManager(self, widget):
         DeviceManager(None, standalone=False)
-        
+
     def runKeyboardSetup(self, widget):
         try:
             subprocess.Popen(['sudo', 'dpkg-reconfigure', '-fgnome', 'keyboard-configuration'])
@@ -636,10 +636,10 @@ class SetupController(object):
                 directory = file_chooser.get_filename()
                 (returncode, output) = self._model.create_log_package(directory)
                 if returncode != 0:
-		    message = _("Could not create log file package in %s !") % directory
-		    self._logger.error(message)
-		    self._logger.debug(output)
-		    dialogs.show_exception_dialog(self._view, message, output)
+                    message = _("Could not create log file package in %s !") % directory
+                    self._logger.error(message)
+                    self._logger.debug(output)
+                    dialogs.show_exception_dialog(self._view, message, output)
                 else:
                     message = _("Created log file package in %s .") % directory
                     self._logger.info(message)
@@ -661,7 +661,7 @@ class SetupController(object):
             action_string = "\"restart\""
         elif action == 2:
             action_string = "\"start_efa\""
-	elif action == 3:
+        elif action == 3:
             action_string = "\"stop_efa\""
         self._model.setEfaShutdownAction(action_string)
 

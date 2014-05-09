@@ -278,7 +278,7 @@ class DeviceManagerView(gtk.Window):
         del self._device_entries[device.device_file]
         device_entry.destroy()
         if len(self._device_entries) == 0:
-    		self.no_device_label.show()
+            self.no_device_label.show()
         self.queue_resize()
 
     def create_device_entry(self, device):
