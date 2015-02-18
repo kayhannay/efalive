@@ -46,10 +46,16 @@ then
 	exit 242
 fi
 
+if [ ! -w $1 ]
+then
+	/bin/echo "Error, specified path not writable!"
+	exit 244
+fi
+
 ### Create backup
 if [ $EFA_VERSION -eq 2 ]
 then
-    BACKUP_DIR=$1/efaLive_backup_${BACKUP_TIMESTAMP}
+    BACKUP_DIR=`cd $1; /bin/pwd`/efaLive_backup_${BACKUP_TIMESTAMP}
     mkdir $BACKUP_DIR
     EFA_BACKUP_FILE=$BACKUP_DIR/efa_backup_$BACKUP_TIMESTAMP.zip
     /bin/echo "Create efa backup to $EFA_BACKUP_FILE ..."
