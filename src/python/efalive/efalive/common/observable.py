@@ -32,14 +32,14 @@ class Observable(object):
             self._observerCbs = []
         else:
             self._observerCbs = observers
-        
+
     def registerObserverCb(self, observerCb):
         self._observerCbs.append(observerCb)
-        
+
     def removeObserverCb(self, observerCb):
         if observerCb in self._observerCbs:
             self._observerCbs.remove(observerCb)
-        
+
     def updateData(self, data):
         self._data = data
         self.__notifyObservers()
