@@ -1,44 +1,41 @@
-from efalivedaemon import AutoBackupModule
+#!/usr/bin/python
+'''
+Created on 16.02.2015
+
+Copyright (C) 2015 Kay Hannay
+
+This file is part of efaLive.
+
+efaLiveSetup is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+efaLiveSetup is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
+'''
 import unittest
 from mock import MagicMock
-import pyudev
+
 from efalive.common import common
+from efalivedaemon import AutoBackupModule
+from efalive.common.usbmonitor import UsbStorageDevice
 
 class AutoBackupModuleTestCase(unittest.TestCase):
 
-    def test_handle_device_event_add_usb_device(self):
+    def test_handle_usb_add_device(self):
         classUnderTest = AutoBackupModule()
-        classUnderTest._run_autobackup = MagicMock()
+        common.command_output = MagicMock(return_value=(0, "Test output"))
 
-        deviceStub = DeviceStub()
+        result = classUnderTest._handle_usb_add_event(UsbStorageDevice("/dev/test1"))
 
-        classUnderTest._handle_device_event(deviceStub)
+        common.command_output.assert_called_once_with(["/usr/lib/efalive/bin/autobackup", "/dev/test1"])
 
-        classUnderTest._run_autobackup.assert_called_once_with('/dev/test1')
-
-    def test_handle_device_event_add_non_usb_device(self):
-        classUnderTest = AutoBackupModule()
-        classUnderTest._run_autobackup = MagicMock()
-
-        deviceStub = DeviceStub()
-        deviceStub.bus_id = "ata"
-
-        classUnderTest._handle_device_event(deviceStub)
-
-        classUnderTest._run_autobackup.assert_not_called()
-
-    def test_handle_device_event_remove_usb_device(self):
-        classUnderTest = AutoBackupModule()
-        classUnderTest._run_autobackup = MagicMock()
-
-        deviceStub = DeviceStub()
-        deviceStub.action = "remove"
-
-        classUnderTest._handle_device_event(deviceStub)
-
-        classUnderTest._run_autobackup.assert_not_called()
-
-    def test_run_autobackup_success(self):
+    def test_run_autobackup__success(self):
         classUnderTest = AutoBackupModule()
         common.command_output = MagicMock(return_value=(0, "Test output"))
 
@@ -47,7 +44,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
         common.command_output.assert_called_once_with(['/usr/lib/efalive/bin/autobackup', '/dev/test1'])
         self.assertEqual(0, result)
 
-    def test_run_autobackup_fail_user(self):
+    def test_run_autobackup__fail_user(self):
         classUnderTest = AutoBackupModule()
         common.command_output = MagicMock(return_value=(1, "Test error"))
 
@@ -56,7 +53,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
         common.command_output.assert_not_called()
         self.assertEqual(1, result)
 
-    def test_run_autobackup_fail_other(self):
+    def test_run_autobackup__fail_other(self):
         classUnderTest = AutoBackupModule()
         common.command_output = MagicMock(return_value=(2, "Test error"))
 
@@ -65,7 +62,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
         common.command_output.assert_not_called()
         self.assertEqual(1, result)
 
-    def test_run_autobackup_fail_exception(self):
+    def test_run_autobackup__fail_exception(self):
         classUnderTest = AutoBackupModule()
         common.command_output = MagicMock(side_effect = OSError())
 
@@ -74,25 +71,4 @@ class AutoBackupModuleTestCase(unittest.TestCase):
         common.command_output.assert_not_called()
         self.assertEqual(1, result)
 
-
-class DeviceStub(pyudev.Device):
-
-    subsystem = "block"
-    device_type = "partition"
-    sys_name = "test1"
-    sys_number = "1"
-    sys_path = "/sys/devices/test1"
-    driver = None
-    action = "add"
-    device_node = "/dev/test1"
-    bus_id = "usb"
-
-    def __init__(self):
-        pass
-
-    def __del__(self):
-        pass
-
-    def __getitem__(self, key):
-        return self.bus_id
 

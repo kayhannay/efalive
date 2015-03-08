@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PYTHONPATH=./efalive:$PYTHONPATH
+PYTHONPATH=$PYTHONPATH python -m efalivedaemon $@
+

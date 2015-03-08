@@ -1,13 +1,33 @@
+#!/usr/bin/python
+'''
+Created on 16.02.2015
+
+Copyright (C) 2015 Kay Hannay
+
+This file is part of efaLive.
+
+efaLiveSetup is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+efaLiveSetup is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
+'''
 import os
-import sys 
+import sys
 import subprocess
 import time
 import logging
-from pyudev import Context, Monitor, MonitorObserver
 
 from datetime import datetime
 
 from efalive.common import common
+from efalive.common.usbmonitor import UsbStorageMonitor, UsbStorageDevice
 
 class EfaLiveDaemon():
     """efaLive daemon main class which controls several modules. 
@@ -26,7 +46,7 @@ class EfaLiveDaemon():
         logging.basicConfig(filename='/tmp/efaLiveDaemon.log',level=logging.DEBUG)
         self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
 
-        AutoBackupModule()
+        AutoBackupModule().start()
         watchdog = WatchDogModule()
 
         while True:
@@ -60,44 +80,17 @@ class AutoBackupModule():
     def __init__(self):
         self._logger = logging.getLogger('efalivedaemon.AutoBackupModule')
 
-        udev_context = Context()
-        udev_monitor = Monitor.from_netlink(udev_context)
-        udev_monitor.filter_by('block', device_type='partition')
-        udev_observer = MonitorObserver(udev_monitor, callback=self._handle_device_event, name='monitor-observer')
-        udev_observer.start()
+        self._storage_monitor = UsbStorageMonitor(self._handle_usb_add_event)
 
-    def _handle_device_event(self, device):
-        self._debug_device(device)
-        if (device.__getitem__("ID_BUS") != "usb"):
-            return
-        self._logger.info("Action %s for device %s" % (device.action, device.device_node))
-        if device.action == "add":
-            self._logger.info("Could start backup now.")
-            self._run_autobackup(device.device_node)
-        else:
-            self._logger.warn("Unhandled action: %s" % device.action)
+    def start(self):
+        self._storage_monitor.start()
 
-    def _debug_device(self, device):
-        self._logger.debug("Device:")
-        self._logger.debug("\tSubsystem: %s" % device.subsystem)
-        self._logger.debug("\tType: %s" % device.device_type)
-        self._logger.debug("\tName: %s" % device.sys_name)
-        self._logger.debug("\tNumber: %s" % device.sys_number)
-        self._logger.debug("\tSYS-fs path: %s" % device.sys_path)
-        self._logger.debug("\tDriver: %s" % device.driver)
-        self._logger.debug("\tAction: %s" % device.action)
-        self._logger.debug("\tFile: %s" % device.device_node)
-        #self._logger.debug("\tLinks: %s" % device.get_device_file_symlinks())
-        #self._logger.debug("\tProperties: %s" % device.get_property_keys())
-        #self._logger.debug("\tSYBSYSTEM: %s" % device.get_property("SUBSYSTEM"))
-        #self._logger.debug("\tDEVTYPE: %s" % device.get_property("DEVTYPE"))
-        ##self._logger.debug("\tID_VENDOR: %s" % device.__getitem__("ID_VENDOR"))
-        self._logger.debug("\tID_MODEL: %s" % device.__getitem__("ID_MODEL"))
-        self._logger.debug("\tID_TYPE: %s" % device.__getitem__("ID_TYPE"))
-        self._logger.debug("\tID_BUS: %s" % device.__getitem__("ID_BUS"))
-        self._logger.debug("\tID_FS_LABEL: %s" % device.__getitem__("ID_FS_LABEL"))
-        self._logger.debug("\tID_FS_TYPE: %s" % device.__getitem__("ID_FS_TYPE"))
-        self._logger.debug("\tUDISKS_PARTITION_SIZE: %s" % device.__getitem__("UDISKS_PARTITION_SIZE"))
+    def stop(self):
+        self._storage_monitor.stop()
+
+    def _handle_usb_add_event(self, device):
+        self._logger.info("USB storage device added: [%s] %s %s (%s, %s)" % (device.bus_id, device.vendor, device.model, device.size, device.device_file))
+        self._run_autobackup(device.device_file)
 
     def _run_autobackup(self, device_file):
         try:
