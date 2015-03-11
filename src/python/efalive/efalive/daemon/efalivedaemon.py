@@ -28,25 +28,47 @@ from datetime import datetime
 
 from efalive.common import common
 from efalive.common.usbmonitor import UsbStorageMonitor, UsbStorageDevice
+from efalive.common.settings import EfaLiveSettings
 
-class EfaLiveDaemon():
+class EfaLiveDaemon(object):
     """efaLive daemon main class which controls several modules. 
 
     These modules perform specific actions then.
     """
 
-    def __init__(self):
+    def __init__(self, argv):
+        # These attributes are expected by the DaemonRunner
         self.stdin_path = '/dev/null'
         self.stdout_path = '/dev/tty'
         self.stderr_path = '/dev/tty'
         self.pidfile_path = '/tmp/efalivedaemon.pid'
         self.pidfile_timeout = 5
 
-    def run(self):
-        logging.basicConfig(filename='/tmp/efaLiveDaemon.log',level=logging.DEBUG)
         self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
 
-        AutoBackupModule().start()
+        daemon_args = ["start", "stop", "restart"]
+        if(len(argv) < 2 or len(argv) > 3):
+            self._print_usage_and_exit()
+        elif(len(argv) == 3):
+            if argv[1] in daemon_args:
+                confPath=argv[2]
+                #Override argv for the python-daemon, it appects one argument only
+                sys.argv = [argv[0], argv[1]]
+            elif argv[2] in daemon_args:
+                confPath=argv[1]
+                #Override argv for the python-daemon, it appects one argument only
+                sys.argv = [argv[0], argv[2]]
+            else:
+                self._print_usage_and_exit()
+            self._settings = EfaLiveSettings(confPath)
+        elif(len(argv) == 2):
+            if not argv[1] in daemon_args:
+                self._print_usage_and_exit()
+            self._settings = EfaLiveSettings()
+
+    def run(self):
+        if self._settings.autoUsbBackup.getData():
+            AutoBackupModule().start()
         watchdog = WatchDogModule()
 
         while True:
@@ -54,8 +76,13 @@ class EfaLiveDaemon():
             self._logger.debug("Running")
             time.sleep(10)
 
+    def _print_usage_and_exit(self):
+        print "ERROR: No proper arguments given"
+        print "Usage of efaLive daemon:\n"
+        print "\t%s [confDir] start|stop|restart" % sys.argv[0]
+        sys.exit(1)
 
-class WatchDogModule():
+class WatchDogModule(object):
     """Watchdog that is triggered by the efaLive daemon.
 
     This watchdog checks whether the X server is still running. If not, 
@@ -69,7 +96,7 @@ class WatchDogModule():
         self._logger.info("Check system conditions ...")
 
 
-class AutoBackupModule():
+class AutoBackupModule(object):
     """Module to autmatically create a backup.
 
     This module is used to automatically create a backup on any USB 
