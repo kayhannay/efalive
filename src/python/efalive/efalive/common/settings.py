@@ -25,10 +25,11 @@ from observable import Observable
 
 class EfaLiveSettings(object):
 
-    def __init__(self, confPath):
+    def __init__(self, confPath = os.path.join(os.path.expanduser('~'), ".efalive")):
         self._logger = logging.getLogger('efalive.common.EfaLiveSettings')
         self._checkPath(confPath)
         self.confPath=confPath
+        self._logger.info("Using configuration directory '%s'" % confPath)
         self._settingsFileName = os.path.join(self.confPath, "settings.conf")
         self._backupFileName = os.path.join(self.confPath, "backup.conf")
         self.efaVersion=Observable()
