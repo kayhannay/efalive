@@ -1,7 +1,7 @@
 '''
 Created on 26.08.2010
 
-Copyright (C) 2010-2014 Kay Hannay
+Copyright (C) 2010-2015 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -25,8 +25,8 @@ import sys
 
 from efalive.setup import maingui
 
-if __name__ == '__main__':
-    logging.basicConfig(filename='efaLiveSetup.log',level=logging.INFO)
+if __name__ == "__main__":
+    logging.basicConfig(filename="efaLiveSetup.log", level=logging.INFO)
     controller = maingui.SetupController(sys.argv)
     gtk.main();
 

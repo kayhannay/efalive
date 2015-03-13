@@ -55,6 +55,7 @@ mkdir -p ${prefix}/share/locale
 cp -r i18n/* ${prefix}/share/locale/
 mkdir -p ${prefix}/bin
 cp efalive-setup ${prefix}/bin
+cp efalive-daemon ${prefix}/bin
 
 
 #cp *.py ../../bash/efalive/content/usr/lib/efalive/lib/efaLiveSetup/ 

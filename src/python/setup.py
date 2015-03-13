@@ -2,9 +2,9 @@
 
 from distutils.core import setup
 
-setup(name='efaLiveSetup',
+setup(name='efaLiveTools',
       version='1.1',
-      description='Setup utility for efaLive',
+      description='Tools for efaLive',
       author='Kay Hannay',
       author_email='klinux@hannay.de',
       url='http://www.hannay.de/',
@@ -15,7 +15,8 @@ setup(name='efaLiveSetup',
                 'efalive.efalive.setup.backup', 
                 'efalive.efalive.setup.devicemanager', 
                 'efalive.efalive.setup.screen', 
-                'efalive.efalive.setup.dttime'],
+                'efalive.efalive.setup.dttime',
+                'efalive.efalive.daemon'],
      )
 
 '''

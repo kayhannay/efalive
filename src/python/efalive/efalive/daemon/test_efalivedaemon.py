@@ -20,9 +20,10 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
 from mock import MagicMock
+from mock import call
 
 from efalive.common import common
-from efalivedaemon import AutoBackupModule
+from efalivedaemon import AutoBackupModule, WatchDogModule
 from efalive.common.usbmonitor import UsbStorageDevice
 
 class AutoBackupModuleTestCase(unittest.TestCase):
@@ -71,4 +72,23 @@ class AutoBackupModuleTestCase(unittest.TestCase):
         common.command_output.assert_not_called()
         self.assertEqual(1, result)
 
+
+class WatchDogModuleTestCase(unittest.TestCase):
+
+    def test_run_checks__process_found(self):
+        class_under_test = WatchDogModule()
+        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 /usr/bin/Xorg :0 -novtswitch"))
+
+        class_under_test.run_checks()
+
+        common.command_output.assert_called_once_with(["ps", "-Af"])
+
+    def test_run_checks__process_not_found(self):
+        class_under_test = WatchDogModule()
+        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 /usr/bin/AnotherProcess -foo"))
+
+        class_under_test.run_checks()
+
+        expected_calls = [call(["ps", "-Af"]), call(["sudo", "/sbin/shutdown", "-r", "now"])]
+        self.assertEquals(expected_calls, common.command_output.call_args_list)
 

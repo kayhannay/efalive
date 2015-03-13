@@ -94,6 +94,18 @@ class WatchDogModule(object):
 
     def run_checks(self):
         self._logger.info("Check system conditions ...")
+        process_name = "/usr/bin/Xorg"
+        count = self._check_for_process(process_name)
+        if count < 1:
+            self._logger.warn("Process is not running, have to restart!")
+            common.command_output(["sudo", "/sbin/shutdown", "-r", "now"])
+        else:
+            self._logger.debug("Found %d instances of the process '%s'." % (count, process_name))
+
+    def _check_for_process(self, process_name):
+        (return_code, output) = common.command_output(["ps", "-Af"])
+        process_count = output.count(process_name)
+        return process_count
 
 
 class AutoBackupModule(object):
