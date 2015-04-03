@@ -44,7 +44,8 @@ else
 fi
 sed -i "s/LOCALES=os.path.join(os.path.dirname(sys.argv\[0\]), os.pardir, 'i18n')/LOCALES=os.path.join('${sedprefix}', 'share', 'locale')/" efalive/efalive/common/common.py
 sed -i "s/icon_path = os.path.join(path, 'icons', icon_name)/icon_path = os.path.join('${sedprefix}', 'share', 'pixmaps', 'efalive', icon_name)/" efalive/efalive/common/common.py
-sed -i "s/PYTHONPATH=.\/efalive:\$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/python2.7\/site-packages\/efalive\/:\$PYTHONPATH/" efalive-setup
+sed -i "s/PYTHONPATH=.\/efalive:\$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/pymodules\/python2.7\/efalive\/:\$PYTHONPATH/" efalive-setup
+sed -i "s/PYTHONPATH=.\/efalive:\$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/pymodules\/python2.7\/efalive\/:\$PYTHONPATH/" efalive-daemon
 
 echo "Call Python setup with arguments: $args"
 

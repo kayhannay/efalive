@@ -77,7 +77,7 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
     def test_run_checks__process_found(self):
         class_under_test = WatchDogModule()
-        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 /usr/bin/Xorg :0 -novtswitch"))
+        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 openbox"))
 
         class_under_test.run_checks()
 
@@ -85,10 +85,12 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
     def test_run_checks__process_not_found(self):
         class_under_test = WatchDogModule()
-        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 /usr/bin/AnotherProcess -foo"))
+        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 AnotherProcess -foo"))
 
         class_under_test.run_checks()
+        class_under_test.run_checks()
+        class_under_test.run_checks()
 
-        expected_calls = [call(["ps", "-Af"]), call(["sudo", "/sbin/shutdown", "-r", "now"])]
+        expected_calls = [call(["ps", "-Af"]), call(["ps", "-Af"]), call(["ps", "-Af"]), call(["sudo", "/sbin/shutdown", "-r", "now"])]
         self.assertEquals(expected_calls, common.command_output.call_args_list)
 

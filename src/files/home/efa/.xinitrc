@@ -1,3 +1,6 @@
+LOGFILE=~/startup.log
+exec 1>> $LOGFILE 2>&1
+
 #Apply screen setup settings
 XRANDR_CONFIG=~/.efalive/screen_setup.sh
 
@@ -25,31 +28,19 @@ load_settings()
     . ~/.efalive/settings.conf
 }
 
-start_halevt()
+start_efalive_daemon()
 {
-    if [ "x$AUTO_USB_BACKUP" = "xTRUE" ]
-    then
-        /usr/bin/halevt -c ~/.halevt/efaLive.xml -p /tmp/efalive_halevt.pid
-    fi
+    /usr/bin/efalive-daemon start
 }
 
-stop_halevt()
+stop_efalive_daemon()
 {
-    if [ -f /tmp/efalive_halevt.pid ]
-    then
-        kill -TERM $(cat /tmp/efalive_halevt.pid)
-    fi
+    /usr/bin/efalive-daemon stp
 }
 
 start_efa()
 {
-    #Set the correct efa start script
-    if [ $EFA_VERSION -eq 2 ]
-    then
-        EFA_PROG=efabths
-    else
-        EFA_PROG=efadirekt
-    fi
+    EFA_PROG=efabths
 
     #Start efa and check that it does not stop immediately or show a dialog
     start=`date +%s`
@@ -68,26 +59,26 @@ start_efa()
 
 stop_efa()
 {
-    stop_halevt
+    stop_efalive_daemon
     exit 0
 }
 
 shutdown()
 {
-    stop_halevt
+    stop_efalive_daemon
     sudo /sbin/shutdown -h now
     exit 0
 }
 
 restart()
 {
-    stop_halevt
+    stop_efalive_daemon
     sudo /sbin/shutdown -r now
     exit 0
 }
 
 load_settings
-start_halevt
+start_efalive_daemon
 start_efa
 while :
 do

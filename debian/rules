@@ -16,8 +16,8 @@ export DH_VERBOSE=0
 	dh $@ 
 
 override_dh_install:
-	tar zx -C ../python -f ../python/efaLiveSetup-1.0.tar.gz
-	cd ../python/efaLiveSetup-1.0/; ./install.sh --prefix=../../efalive/debian/efalive/usr; cd ../../efalive/
+	tar zx -C ../python -f ../python/efaLiveTools-1.1.tar.gz
+	cd ../python/efaLiveTools-1.1/; ./install.sh --prefix=../../efalive/debian/efalive/usr; cd ../../efalive/
 	cp -r  ../../src/files/* debian/efalive/
 
 override_dh_auto_build:

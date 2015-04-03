@@ -36,12 +36,12 @@ class EfaLiveDaemon(object):
     These modules perform specific actions then.
     """
 
-    def __init__(self, argv):
+    def __init__(self, argv, output="/dev/tty", pidfile="/tmp/efaLiveDaemon.pid"):
         # These attributes are expected by the DaemonRunner
-        self.stdin_path = '/dev/null'
-        self.stdout_path = '/dev/tty'
-        self.stderr_path = '/dev/tty'
-        self.pidfile_path = '/tmp/efalivedaemon.pid'
+        self.stdin_path = "/dev/null"
+        self.stdout_path = output
+        self.stderr_path = output
+        self.pidfile_path = pidfile
         self.pidfile_timeout = 5
 
         self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
@@ -52,11 +52,11 @@ class EfaLiveDaemon(object):
         elif(len(argv) == 3):
             if argv[1] in daemon_args:
                 confPath=argv[2]
-                #Override argv for the python-daemon, it appects one argument only
+                #Override argv for the python-daemon, it accepts one argument only
                 sys.argv = [argv[0], argv[1]]
             elif argv[2] in daemon_args:
                 confPath=argv[1]
-                #Override argv for the python-daemon, it appects one argument only
+                #Override argv for the python-daemon, it accepts one argument only
                 sys.argv = [argv[0], argv[2]]
             else:
                 self._print_usage_and_exit()
@@ -85,22 +85,31 @@ class EfaLiveDaemon(object):
 class WatchDogModule(object):
     """Watchdog that is triggered by the efaLive daemon.
 
-    This watchdog checks whether the X server is still running. If not, 
+    This watchdog checks whether the window manager is still running. If not, 
     the PC is restarted.
     """
 
     def __init__(self):
         self._logger = logging.getLogger('efalivedaemon.WatchDogModule')
+        self._reset_restart_threshold()
+
+    def _reset_restart_threshold(self):
+        #How many cycles do we wait before we restart?
+        self._restart_threshold = 3
 
     def run_checks(self):
         self._logger.info("Check system conditions ...")
-        process_name = "/usr/bin/Xorg"
-        count = self._check_for_process(process_name)
-        if count < 1:
-            self._logger.warn("Process is not running, have to restart!")
-            common.command_output(["sudo", "/sbin/shutdown", "-r", "now"])
+        process_name = "openbox"
+        process_count = self._check_for_process(process_name)
+        if process_count < 1:
+            self._restart_threshold -= 1
+            self._logger.warn("Process '%s' is not running, wait for %d more checks before restart!" % (process_name, self._restart_threshold))
+            if self._restart_threshold < 1:
+                self._logger.warn("Trigger restart now...")
+                common.command_output(["sudo", "/sbin/shutdown", "-r", "now"])
         else:
-            self._logger.debug("Found %d instances of the process '%s'." % (count, process_name))
+            self._logger.debug("Found %d instances of the process '%s'." % (process_count, process_name))
+            self._reset_restart_threshold()
 
     def _check_for_process(self, process_name):
         (return_code, output) = common.command_output(["ps", "-Af"])
