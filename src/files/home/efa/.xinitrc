@@ -14,6 +14,8 @@ feh --bg-fill /usr/share/plymouth/themes/efa-live/efaLive.png
 #####exec gnome-session &
 #Start the screensaver
 exec xscreensaver -no-splash &
+#Start power manager
+exec xfce4-power-manager &
 #Start the window manager
 exec openbox &
 

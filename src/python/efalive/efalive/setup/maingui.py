@@ -267,7 +267,7 @@ class SetupView(gtk.Window):
         self.systemSpaceVBox.pack_start(self.systemSpaceBox, True, True, 5)
         self.systemSpaceBox.show()
 
-        self.systemGrid=gtk.Table(2, 3, True)
+        self.systemGrid=gtk.Table(3, 3, True)
         self.systemSpaceBox.pack_start(self.systemGrid, True, True, 5)
         self.systemGrid.set_row_spacings(2)
         self.systemGrid.set_col_spacings(2)
@@ -289,12 +289,16 @@ class SetupView(gtk.Window):
         self.systemGrid.attach(self.screensaverButton, 0, 1, 1, 2)
         self.screensaverButton.show()
 
+        self.powerManagerButton=gtk.Button(_("Power manager"))
+        self.systemGrid.attach(self.powerManagerButton, 1, 2, 1, 2)
+        self.powerManagerButton.show()
+
         self.datetimeButton=gtk.Button(_("Date & time"))
-        self.systemGrid.attach(self.datetimeButton, 1, 2, 1, 2)
+        self.systemGrid.attach(self.datetimeButton, 2, 3, 1, 2)
         self.datetimeButton.show()
 
         self.keyboardButton=gtk.Button(_("Keyboard"))
-        self.systemGrid.attach(self.keyboardButton, 2, 3, 1, 2)
+        self.systemGrid.attach(self.keyboardButton, 0, 1, 2, 3)
         self.keyboardButton.show()
 
 
@@ -439,6 +443,7 @@ class SetupController(object):
         self._view.keyboardButton.connect("clicked", self.runKeyboardSetup)
         self._view.dyndnsButton.connect("clicked", self.runDyndnsSetup)
         self._view.screensaverButton.connect("clicked", self.runScreensaverSetup)
+        self._view.powerManagerButton.connect("clicked", self.runPowerManagerSetup)
         self._view.datetimeButton.connect("clicked", self.runDateTimeSetup)
         self._view.editorButton.connect("clicked", self.runEditor)
         self._view.backupButton.connect("clicked", self.runBackup)
@@ -518,6 +523,14 @@ class SetupController(object):
             subprocess.Popen(['xscreensaver-demo'])
         except OSError as error:
             message = _("Could not open xscreensaver-demo program: %s") % error
+            self._logger.error(message)
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
+
+    def runPowerManagerSetup(self, widget):
+        try:
+            subprocess.Popen(['xfce4-power-manager-settings'])
+        except OSError as error:
+            message = _("Could not open xfce4-power-manager-settings program: %s") % error
             self._logger.error(message)
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
