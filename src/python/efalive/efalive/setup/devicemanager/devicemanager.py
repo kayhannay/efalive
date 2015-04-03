@@ -2,7 +2,7 @@
 '''
 Created on 11.01.2011
 
-Copyright (C) 2011 Kay Hannay
+Copyright (C) 2011-2015 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -32,9 +32,9 @@ import logging
 import locale
 import gettext
 
-from efalivesetup.common.observable import Observable
-from efalivesetup.common import dialogs
-from efalivesetup.common import common
+from efalive.common.observable import Observable
+from ..setupcommon import dialogs
+from efalive.common import common
 
 APP="deviceManager"
 gettext.install(APP, common.LOCALEDIR, unicode=True)
@@ -77,7 +77,7 @@ class DeviceWidget(gtk.VBox):
         self.mount_button = gtk.ToggleButton()
         hBox.pack_end(self.mount_button, False, False)
         self.mount_button.show()
-        
+
 
 class Device(object):
     def __init__(self, device_file, vendor=None, model=None, size=0, fs_type=None, label=None, mounted=False, bus_id=None):
@@ -255,11 +255,11 @@ class DeviceManagerView(gtk.Window):
         self.main_box=gtk.VBox(False, 2)
         self.add(self.main_box)
         self.main_box.show()
-        
+
         self.info_label = gtk.Label(_("USB storage devices"))
         self.main_box.add(self.info_label)
         self.info_label.show()
-        
+
         self.no_device_label = gtk.Label(_("no devices found"))
         self.main_box.add(self.no_device_label)
         self.no_device_label.show()
@@ -278,7 +278,7 @@ class DeviceManagerView(gtk.Window):
         del self._device_entries[device.device_file]
         device_entry.destroy()
         if len(self._device_entries) == 0:
-    		self.no_device_label.show()
+            self.no_device_label.show()
         self.queue_resize()
 
     def create_device_entry(self, device):
@@ -288,7 +288,7 @@ class DeviceManagerView(gtk.Window):
         device_entry.mount_button.connect("toggled", self._controller.toggle_mount, device_entry)
         device_entry.backup_button.connect("clicked", self._controller.create_backup, device)
         device_entry.restore_button.connect("clicked", self._controller.restore_backup, device)
-        
+
         return device_entry
 
     def set_device_mounted(self, device_entry):
@@ -443,13 +443,13 @@ class DeviceManagerController(object):
 
     def on_device_add(self, device):
         self._view.add_device(device)
-    
+
     def on_device_remove(self, device):
         self._view.remove_device(device)
-    
+
     def on_device_change(self, device):
         pass
-        
+
 
 if __name__ == '__main__':
     logging.basicConfig(filename='deviceManager.log',level=logging.INFO)

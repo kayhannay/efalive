@@ -20,15 +20,15 @@ along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import gtk
 import os
-import sys 
+import sys
 import subprocess
 import traceback
 import logging
 import locale
 import gettext
 
-from efalivesetup.common import dialogs
-from efalivesetup.common import common
+from ..setupcommon import dialogs
+from efalive.common import common
 
 APP="backup"
 gettext.install(APP, common.LOCALEDIR, unicode=True)
@@ -102,7 +102,7 @@ class BackupController(object):
             self._view=view
         self.init_events(standalone)
         self._view.show()
-        
+
     def init_events(self, standalone):
         if standalone:
             self._view.connect('destroy', gtk.main_quit)
@@ -193,6 +193,4 @@ if __name__ == '__main__':
     logging.basicConfig(filename='screenSetup.log',level=logging.INFO)
     controller = BackupController(sys.argv)
     gtk.main();
-
-    
 

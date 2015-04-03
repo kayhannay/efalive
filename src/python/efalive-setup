@@ -30,6 +30,6 @@ then
     fi
 fi
 
-PYTHONPATH=/usr/lib/python2.7/site-packages/:$PYTHONPATH 
-PYTHONPATH=$PYTHONPATH python -m efalivesetup.maingui $PARAMS >> /dev/null
+PYTHONPATH=./efalive:$PYTHONPATH
+PYTHONPATH=$PYTHONPATH python -m efalivesetup $PARAMS >> /dev/null
 
