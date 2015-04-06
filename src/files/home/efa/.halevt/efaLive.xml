@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<halevt:Configuration version="0.1" xmlns:halevt="http://www.environnement.ens.fr/perso/dumas/halevt.html">
-
-    <halevt:Device match="hal.block.is_volume = true &amp; hal.info.parent.hal.storage.bus = usb">
-        <!-- <halevt:OnInit exec="/usr/lib/efalive/bin/autobackup.sh $hal.block.device$ 60 &gt;&gt; ~/autobackup.log 2&gt;&amp;1 &amp;" /> -->
-        <halevt:Insertion exec="/usr/lib/efalive/bin/autobackup.sh $hal.block.device$ &gt;&gt; ~/autobackup.log 2&gt;&amp;1" />
-    </halevt:Device>
-
-</halevt:Configuration>
