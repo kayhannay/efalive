@@ -98,7 +98,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._handle_usb_add_event(UsbStorageDevice("/dev/test1"))
 
-        common.command_output.assert_called_once_with(["/usr/lib/efalive/bin/autobackup", "/dev/test1"])
+        common.command_output.assert_called_once_with(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1"])
 
     def test_run_autobackup__success(self):
         classUnderTest = AutoBackupModule()
@@ -106,7 +106,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
-        common.command_output.assert_called_once_with(['/usr/lib/efalive/bin/autobackup', '/dev/test1'])
+        common.command_output.assert_called_once_with(['/usr/lib/efalive/bin/autobackup.sh', '/dev/test1'])
         self.assertEqual(0, result)
 
     def test_run_autobackup__fail_user(self):
