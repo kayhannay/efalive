@@ -10,8 +10,6 @@ then
 fi
 #Set the background image
 feh --bg-fill /usr/share/plymouth/themes/efa-live/efaLive.png
-#Start a gnome session for D-BUS and Keyring functionality
-#####exec gnome-session &
 #Start the screensaver
 exec xscreensaver -no-splash &
 #Start power manager
@@ -37,7 +35,7 @@ start_efalive_daemon()
 
 stop_efalive_daemon()
 {
-    /usr/bin/efalive-daemon stp
+    /usr/bin/efalive-daemon stop
 }
 
 start_efa()
