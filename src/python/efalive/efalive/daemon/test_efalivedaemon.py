@@ -19,12 +19,76 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
-from mock import MagicMock
-from mock import call
+from mock import call, MagicMock
 
 from efalive.common import common
-from efalivedaemon import AutoBackupModule, WatchDogModule
+from efalivedaemon import EfaLiveDaemon,AutoBackupModule, WatchDogModule
 from efalive.common.usbmonitor import UsbStorageDevice
+from efalive.common import settings
+from efalive.common.settings import EfaLiveSettings
+
+class EfaLiveDaemonTestCase(unittest.TestCase):
+
+    def test_init__start(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "start"])
+        settings.initSettings.assert_called_once()
+
+    def test_init__restart(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "restart"])
+        settings.initSettings.assert_called_once()
+
+    def test_init__stop(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "stop"])
+        settings.initSettings.assert_not_called()
+
+    def test_init__unknown(self):
+        EfaLiveDaemon._print_usage_and_exit = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "unknown"])
+        EfaLiveDaemon._print_usage_and_exit.assert_called_once()
+
+    def test_init__no_argument(self):
+        EfaLiveDaemon._print_usage_and_exit = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon"])
+        EfaLiveDaemon._print_usage_and_exit.assert_called_once()
+
+    def test_init__too_many_arguments(self):
+        EfaLiveDaemon._print_usage_and_exit = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "start", "/tmp", "test"])
+        EfaLiveDaemon._print_usage_and_exit.assert_called_once()
+
+    def test_init__start_with_conf_path_first(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "start"])
+        settings.initSettings.assert_called_once()
+
+    def test_init__start_with_conf_path_last(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "start", "/tmp"])
+        settings.initSettings.assert_called_once()
+
+    def test_init__restart_with_conf_path_first(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "restart"])
+        settings.initSettings.assert_called_once()
+
+    def test_init__restart_with_conf_path_last(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "restart", "/tmp"])
+        settings.initSettings.assert_called_once()
+
+    def test_init__stop_with_conf_path_first(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "stop"])
+        settings.initSettings.assert_not_called()
+
+    def test_init__stop_with_conf_path_last(self):
+        settings.initSettings = MagicMock()
+        classUnderTest = EfaLiveDaemon(["efalivedaemon", "stop", "/tmp"])
+        settings.initSettings.assert_not_called()
+
 
 class AutoBackupModuleTestCase(unittest.TestCase):
 

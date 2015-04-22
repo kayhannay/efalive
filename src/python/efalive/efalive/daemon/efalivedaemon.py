@@ -51,20 +51,27 @@ class EfaLiveDaemon(object):
             self._print_usage_and_exit()
         elif(len(argv) == 3):
             if argv[1] in daemon_args:
-                confPath=argv[2]
+                confPath = argv[2]
+                command = argv[1]
                 #Override argv for the python-daemon, it accepts one argument only
                 sys.argv = [argv[0], argv[1]]
             elif argv[2] in daemon_args:
-                confPath=argv[1]
+                confPath = argv[1]
+                command = argv[2]
                 #Override argv for the python-daemon, it accepts one argument only
                 sys.argv = [argv[0], argv[2]]
             else:
                 self._print_usage_and_exit()
-            self._settings = EfaLiveSettings(confPath)
+
+            if command != "stop":
+                self._settings = EfaLiveSettings(confPath)
+                self._settings.initSettings()
         elif(len(argv) == 2):
             if not argv[1] in daemon_args:
                 self._print_usage_and_exit()
-            self._settings = EfaLiveSettings()
+            elif argv[1] != "stop":
+                self._settings = EfaLiveSettings()
+                self._settings.initSettings()
 
     def run(self):
         if self._settings.autoUsbBackup.getData():
