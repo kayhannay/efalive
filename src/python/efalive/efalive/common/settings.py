@@ -32,7 +32,6 @@ class EfaLiveSettings(object):
         self._logger.info("Using configuration directory '%s'" % confPath)
         self._settingsFileName = os.path.join(self.confPath, "settings.conf")
         self._backupFileName = os.path.join(self.confPath, "backup.conf")
-        self.efaVersion=Observable()
         self.efaShutdownAction=Observable()
         self.autoUsbBackup=Observable()
         self.autoUsbBackupDialog=Observable()
@@ -44,7 +43,6 @@ class EfaLiveSettings(object):
         self.auto_backup_password=""
 
     def initSettings(self):
-        self.efaVersion.updateData(2)
         self.efaShutdownAction.updateData("shutdown")
         self.efaPort.updateData(3834)
         if os.path.isfile(self._settingsFileName):
@@ -59,12 +57,8 @@ class EfaLiveSettings(object):
 
     def parseSettingsFile(self, file):
         self._logger.info("Parsing settings file")
-        versionStr=None
         for line in file:
-            if line.startswith("EFA_VERSION="):
-                versionStr=line[(line.index('=') + 1):]
-                self._logger.debug("Parsed version: " + versionStr)
-            elif line.startswith("EFA_SHUTDOWN_ACTION="):
+            if line.startswith("EFA_SHUTDOWN_ACTION="):
                 actionStr=line[(line.index('=') + 1):].rstrip()
                 self.efaShutdownAction.updateData(actionStr)
                 self._logger.debug("Parsed shutdown action: " + actionStr)
@@ -109,14 +103,11 @@ class EfaLiveSettings(object):
                 else:
                     self.auto_backup_use_password.updateData(False)
                 self._logger.debug("Parsed auto backup enable password setting: " + enableStr)
-        if versionStr != None:
-            self.efaVersion.updateData(int(versionStr))
 
     def save(self):
         self._logger.info("Saving settings to file: %s" % (self._settingsFileName))
         try:
             settingsFile=open(self._settingsFileName, "w")
-            settingsFile.write("EFA_VERSION=%d\n" % self.efaVersion.getData())
             settingsFile.write("EFA_SHUTDOWN_ACTION=%s\n" % self.efaShutdownAction.getData())
             if self.autoUsbBackup._data == True:
                 settingsFile.write("AUTO_USB_BACKUP=\"TRUE\"\n")
