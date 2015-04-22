@@ -64,7 +64,7 @@ class UsbStorageMonitor(object):
 
     def _handle_device_event(self, device):
         self._debug_device(device)
-        if (device.__getitem__("ID_BUS") != "usb"):
+        if (device.get("ID_BUS") != "usb"):
             return
         self._logger.info("Action %s for device %s" % (device.action, device.device_node))
         if device.action == "add":
@@ -88,13 +88,16 @@ class UsbStorageMonitor(object):
         #self._logger.debug("\tProperties: %s" % device.get_property_keys())
         #self._logger.debug("\tSYBSYSTEM: %s" % device.get_property("SUBSYSTEM"))
         #self._logger.debug("\tDEVTYPE: %s" % device.get_property("DEVTYPE"))
-        ##self._logger.debug("\tID_VENDOR: %s" % device.__getitem__("ID_VENDOR"))
-        self._logger.debug("\tID_MODEL: %s" % device.__getitem__("ID_MODEL"))
-        self._logger.debug("\tID_TYPE: %s" % device.__getitem__("ID_TYPE"))
-        self._logger.debug("\tID_BUS: %s" % device.__getitem__("ID_BUS"))
-        self._logger.debug("\tID_FS_LABEL: %s" % device.__getitem__("ID_FS_LABEL"))
-        self._logger.debug("\tID_FS_TYPE: %s" % device.__getitem__("ID_FS_TYPE"))
-        self._logger.debug("\tUDISKS_PARTITION_SIZE: %s" % device.__getitem__("UDISKS_PARTITION_SIZE"))
+        ##self._logger.debug("\tID_VENDOR: %s" % device.get("ID_VENDOR"))
+        self._logger.debug("\tID_MODEL: %s" % device.get("ID_MODEL"))
+        self._logger.debug("\tID_TYPE: %s" % device.get("ID_TYPE"))
+        self._logger.debug("\tID_BUS: %s" % device.get("ID_BUS"))
+        self._logger.debug("\tID_FS_LABEL: %s" % device.get("ID_FS_LABEL"))
+        self._logger.debug("\tID_FS_TYPE: %s" % device.get("ID_FS_TYPE"))
+        self._logger.debug("\tID_PART_ENTRY_SIZE: %s" % device.get("ID_PART_ENTRY_SIZE"))
+        #self._logger.debug("All attributes:")
+        #for attrName in device.__iter__():
+        #    self._logger.debug(attrName)
 
     def _wrap_device(self, device):
         """ Convert a PyUdev device to an efaLive device
@@ -102,12 +105,12 @@ class UsbStorageMonitor(object):
         if device is None:
             return None
         wrapped_device = UsbStorageDevice(device.device_node)
-        if device.__getitem__("ID_VENDOR"):
-            wrapped_device.vendor = device.__getitem__("ID_VENDOR")
-        if device.__getitem__("ID_MODEL"):
-            wrapped_device.model = device.__getitem__("ID_MODEL")
-        if device.__getitem__("UDISKS_PARTITION_SIZE"):
-            byte_size = float(device.__getitem__("UDISKS_PARTITION_SIZE"))
+        if device.get("ID_VENDOR"):
+            wrapped_device.vendor = device.get("ID_VENDOR")
+        if device.get("ID_MODEL"):
+            wrapped_device.model = device.get("ID_MODEL")
+        if device.get("ID_PART_ENTRY_SIZE"):
+            byte_size = float(device.get("ID_PART_ENTRY_SIZE"))
             size = byte_size / 1024
             unit = "KB"
             if (size > 1024):
@@ -120,11 +123,11 @@ class UsbStorageMonitor(object):
                 size = size / 1024
                 unit = "TB"
             wrapped_device.size = "%.1f %s" % (size, unit)
-        if device.__getitem__("ID_FS_TYPE"):
-            wrapped_device.fs_type = device.__getitem__("ID_FS_TYPE")
-        if device.__getitem__("ID_FS_LABEL"):
-            wrapped_device.label = device.__getitem__("ID_FS_LABEL")
-        if device.__getitem__("ID_VENDOR_ID") and device.__getitem__("ID_MODEL_ID"):
-            wrapped_device.bus_id = "%s:%s" % (device.__getitem__("ID_VENDOR_ID"), device.__getitem__("ID_MODEL_ID"))
+        if device.get("ID_FS_TYPE"):
+            wrapped_device.fs_type = device.get("ID_FS_TYPE")
+        if device.get("ID_FS_LABEL"):
+            wrapped_device.label = device.get("ID_FS_LABEL")
+        if device.get("ID_VENDOR_ID") and device.get("ID_MODEL_ID"):
+            wrapped_device.bus_id = "%s:%s" % (device.get("ID_VENDOR_ID"), device.get("ID_MODEL_ID"))
         return wrapped_device
 

@@ -165,9 +165,9 @@ class UdevDeviceStub(pyudev.Device):
     def __del__(self):
         pass
 
-    def __getitem__(self, key):
+    def get(self, key):
         return {
-                "UDISKS_PARTITION_SIZE": self.size,
+                "ID_PART_ENTRY_SIZE": self.size,
                 "ID_VENDOR": DEVICE_VENDOR,
                 "ID_MODEL": DEVICE_MODEL,
                 "ID_FS_TYPE": DEVICE_FS_TYPE,
