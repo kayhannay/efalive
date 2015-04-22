@@ -15,7 +15,7 @@ For more information about efaLive, have a look to the efaLive documentation on 
 * [efa](http://efa.nmichael.de/) - the rowing and canoeing log book software
 
 ##Requirements
-The efaLive project consists mainly of Bash shell scripts and a small Python GUI for administratrive tasks. To run the efaLive-Setup tool, you at least need the following packages:
+The efaLive project consists mainly of Bash shell scripts, a small Python GUI for administratrive tasks and a Python daemon. To run the efaLive-Setup and daemon tool, you at least need the following packages:
 
 * [python-gtk2](http://packages.debian.org/jessie/dpkg-dev)
 * [arandr](http://packages.debian.org/jessie/arandr)
