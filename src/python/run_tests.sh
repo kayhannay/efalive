@@ -2,3 +2,4 @@
 
 python -m unittest discover -s efalive
 
+exit $?
