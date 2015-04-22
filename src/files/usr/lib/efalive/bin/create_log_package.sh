@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2013 Kay Hannay <klinux@hannay.de>
+# Copyright 2013-2015 Kay Hannay <klinux@hannay.de>
 #
 ###
 #

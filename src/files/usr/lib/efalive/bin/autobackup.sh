@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2013 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2015 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -150,7 +150,7 @@ if [ $BACKUP_RESULT -ne 0 ]
 then
     if [ $BACKUP_RESULT -eq 1 ] || [ $BACKUP_RESULT -eq 5 ]
     then
-        /bin/echo $"Login to efa2 server failed, please check that the efaLive administrator is created in efa2 configuration"
+        /bin/echo $"Login to efa server failed, please check that the efaLive administrator is created in efa configuration"
     fi
     inform_error $"Backup failed, error code: $BACKUP_RESULT !\n\nView autobackup.log for details."
 else
