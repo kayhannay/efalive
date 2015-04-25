@@ -28,23 +28,32 @@ class EfaLiveSettings(object):
     def __init__(self, confPath = os.path.join(os.path.expanduser('~'), ".efalive")):
         self._logger = logging.getLogger('efalive.common.EfaLiveSettings')
         self._checkPath(confPath)
-        self.confPath=confPath
+        self.confPath = confPath
         self._logger.info("Using configuration directory '%s'" % confPath)
         self._settingsFileName = os.path.join(self.confPath, "settings.conf")
         self._backupFileName = os.path.join(self.confPath, "backup.conf")
-        self.efaShutdownAction=Observable()
-        self.autoUsbBackup=Observable()
-        self.autoUsbBackupDialog=Observable()
-        self.efaBackupPaths="/usr/lib/efa/ausgabe/layout /usr/lib/efa/daten /home/efa/efa"
-        self.efaLiveBackupPaths="/home/efa/.efalive"
-        self.efaPort=Observable()
-        self.efaCredentialsFile="~/.efalive/.efacred"
-        self.auto_backup_use_password=Observable()
-        self.auto_backup_password=""
+        self.efaShutdownAction = Observable()
+        self.autoUsbBackup = Observable()
+        self.autoUsbBackupDialog = Observable()
+        self.efaLiveBackupPaths = "/home/efa/.efalive"
+        self.efaPort = Observable()
+        self.efaCredentialsFile = "~/.efalive/.efacred"
+        self.auto_backup_use_password = Observable()
+        self.auto_backup_password = ""
+        self.mailer_host = Observable()
+        self.mailer_port = Observable()
+        self.mailer_use_ssl = Observable()
+        self.mailer_use_starttls = Observable()
+        self.mailer_user = Observable()
+        self.mailer_password = Observable()
+        self.backup_mail_recipient = Observable()
 
     def initSettings(self):
         self.efaShutdownAction.updateData("shutdown")
         self.efaPort.updateData(3834)
+        self.mailer_port.updateData(25)
+        self.mailer_use_ssl.updateData(False)
+        self.mailer_use_starttls.updateData(True)
         if os.path.isfile(self._settingsFileName):
             self.settingsFile=open(self._settingsFileName, "r")
             self.parseSettingsFile(self.settingsFile)
@@ -64,22 +73,12 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed shutdown action: " + actionStr)
             elif line.startswith("AUTO_USB_BACKUP="):
                 enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.autoUsbBackup.updateData(True)
-                else:
-                    self.autoUsbBackup.updateData(False)
+                self.autoUsbBackup.updateData(enableStr == "\"TRUE\"")
                 self._logger.debug("Parsed auto USB backup setting: " + enableStr)
             elif line.startswith("AUTO_USB_BACKUP_DIALOG="):
                 enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.autoUsbBackupDialog.updateData(True)
-                else:
-                    self.autoUsbBackupDialog.updateData(False)
+                self.autoUsbBackupDialog.updateData(enableStr == "\"TRUE\"")
                 self._logger.debug("Parsed auto USB backup dialog setting: " + enableStr)
-            elif line.startswith("EFA_BACKUP_PATHS="):
-                backupStr=line[(line.index('=') + 1):].rstrip()
-                self.efaBackupPaths = backupStr.replace("\"", "")
-                self._logger.debug("Parsed efa backup paths: " + backupStr)
             elif line.startswith("EFALIVE_BACKUP_PATHS="):
                 backupStr=line[(line.index('=') + 1):].rstrip()
                 self.efaLiveBackupPaths = backupStr.replace("\"", "")
@@ -98,11 +97,32 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed efa auto backup password setting: " + pwdStr)
             elif line.startswith("AUTO_BACKUP_USE_PASSWORD="):
                 enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.auto_backup_use_password.updateData(True)
-                else:
-                    self.auto_backup_use_password.updateData(False)
+                self.auto_backup_use_password.updateData(enableStr == "\"TRUE\"")
                 self._logger.debug("Parsed auto backup enable password setting: " + enableStr)
+            elif line.startswith("MAILER_HOST="):
+                hostStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_host.updaeData(hostStr)
+                self._logger.debug("Parsed efa mailer host setting: " + hostStr)
+            elif line.startswith("MAILER_PORT="):
+                portStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_port.updaeData(int(portStr))
+                self._logger.debug("Parsed efa mailer port setting: " + portStr)
+            elif line.startswith("MAILER_USE_SSL="):
+                enableStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_use_ssl.updateData(enableStr == "\"TRUE\"")
+                self._logger.debug("Parsed efa mailer use SSL setting: " + enableStr)
+            elif line.startswith("MAILER_USE_STARTTLS="):
+                enableStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_use_starttls.updateData(enableStr == "\"TRUE\"")
+                self._logger.debug("Parsed efa mailer use StartTLS setting: " + enableStr)
+            elif line.startswith("MAILER_USER="):
+                userStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_user.updaeData(userStr)
+                self._logger.debug("Parsed efa mailer user setting: " + userStr)
+            elif line.startswith("MAILER_PASSWORD="):
+                passStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_password.updaeData(passStr)
+                self._logger.debug("Parsed efa mailer password setting: " + passStr)
 
     def save(self):
         self._logger.info("Saving settings to file: %s" % (self._settingsFileName))
@@ -117,7 +137,6 @@ class EfaLiveSettings(object):
                 settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"TRUE\"\n")
             else:
                 settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"FALSE\"\n")
-            settingsFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
             settingsFile.write("EFALIVE_BACKUP_PATHS=\"%s\"\n" % self.efaLiveBackupPaths)
             settingsFile.write("EFA_PORT=%d\n" % self.efaPort.getData())
             settingsFile.write("EFA_CREDENTIALS_FILE=%s\n" % self.efaCredentialsFile)
@@ -126,6 +145,18 @@ class EfaLiveSettings(object):
                 settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"TRUE\"\n")
             else:
                 settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"FALSE\"\n")
+            settingsFile.write("MAILER_HOST=%s\n" % self.mailer_host.getData())
+            settingsFile.write("MAILER_PORT=%d\n" % self.mailer_port.getData())
+            if self.mailer_use_ssl.getData() == True:
+                settingsFile.write("MAILER_USE_SSL=\"TRUE\"\n")
+            else:
+                settingsFile.write("MAILER_USE_SSL=\"FALSE\"\n")
+            if self.mailer_use_starttls.getData() == True:
+                settingsFile.write("MAILER_USE_STARTTLS=\"TRUE\"\n")
+            else:
+                settingsFile.write("MAILER_USE_STARTTLS=\"FALSE\"\n")
+            settingsFile.write("MAILER_USER=%s\n" % self.mailer_user.getData())
+            settingsFile.write("MAILER_PASSWORD=%s\n" % self.mailer_password.getData())
             settingsFile.close()
         except IOError, exception:
             self._logger.error("Could not save files: %s" % exception)
