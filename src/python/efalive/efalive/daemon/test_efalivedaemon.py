@@ -22,7 +22,7 @@ import unittest
 from mock import call, patch, MagicMock
 
 from efalive.common import common
-from efalivedaemon import EfaLiveDaemon,AutoBackupModule, WatchDogModule
+from efalivedaemon import EfaLiveDaemon,AutoBackupModule, WatchDogModule, TaskSchedulerModule
 from efalive.common.usbmonitor import UsbStorageDevice
 from efalive.common import settings
 from efalive.common.settings import EfaLiveSettings
@@ -163,4 +163,42 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
         expected_calls = [call(["ps", "-Af"]), call(["ps", "-Af"]), call(["ps", "-Af"]), call(["sudo", "/sbin/shutdown", "-r", "now"])]
         self.assertEquals(expected_calls, common.command_output.call_args_list)
+
+class TaskSchedulerModuleTestCase(unittest.TestCase):
+
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('__builtin__.open')
+    def test_run_tasks(self, settings_mock, open_mock):
+        common.command_output = MagicMock(return_value = (0, "testfile.txt"))
+        open_mock.return_value = FileStub()
+        settings_mock.hourly_tasks.getData.return_value = [["SHELL", "ls /tmp"]]
+        settings_mock.daily_tasks.getData.return_value = []
+        settings_mock.weekly_tasks.getData.return_value = []
+        settings_mock.monthly_tasks.getData.return_value = []
+        settings_mock.confPath = "/test"
+
+        class_under_test = TaskSchedulerModule()
+        class_under_test.load_tasks(settings_mock)
+        class_under_test.run_tasks()
+
+        assert common.command_output.call_count == 1
+        assert common.command_output.call_args == call(["ls", "/tmp"])
+        print class_under_test._hourly_markers
+        assert len(class_under_test._hourly_markers) == 1
+
+
+class FileStub(object):
+
+    def __init__(self):
+        pass
+
+    def close(self):
+        pass
+
+    def __iter__(self):
+        return iter(self.settings_list)
+
+    def write(self, data):
+        self.settings_list.append(data)
+
 

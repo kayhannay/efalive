@@ -23,12 +23,16 @@ import sys
 import subprocess
 import time
 import logging
+import md5
+import dateutil.parser
+import json
 
 from datetime import datetime
 
 from efalive.common import common
 from efalive.common.usbmonitor import UsbStorageMonitor, UsbStorageDevice
 from efalive.common.settings import EfaLiveSettings
+from tasks import ShellTask
 
 class EfaLiveDaemon(object):
     """efaLive daemon main class which controls several modules. 
@@ -169,4 +173,87 @@ class AutoBackupModule(object):
             self._logger.error(message)
         return 1
 
+
+class TaskSchedulerModule(object):
+    """Module to run repeating tasks
+
+    This module can be used to run repeating tasks. It supports hourly, 
+    daily and weekly tasks.
+    """
+    def __init__(self):
+        self._hourly_markers = {}
+        self._daily_markers = {}
+        self._weekly_markers = {}
+        self._monthly_markers = {}
+
+    def load_tasks(self, settings):
+        self.hourly_tasks = self._create_task_list(settings.hourly_tasks.getData())
+        self.daily_tasks = self._create_task_list(settings.daily_tasks.getData())
+        self.weekly_tasks = self._create_task_list(settings.weekly_tasks.getData())
+        self.monthly_tasks = self._create_task_list(settings.monthly_tasks.getData())
+        self._conf_path = settings.confPath
+        self._load_marker_file("hourly_tasks.dat")
+
+    def _create_task_list(self, tasks):
+        task_list = []
+        for task in tasks:
+            task_id = self._create_id(task)
+            if task[0] == "SHELL":
+                shellTask = ShellTask(task_id, task[1])
+                task_list.append(shellTask)
+        return task_list
+
+    def run_tasks(self):
+        for task in self.hourly_tasks:
+            if not self._already_executed(task, "HOURLY"):
+                task.run()
+                self._mark_task_run(task, "HOURLY")
+        for task in self.daily_tasks:
+            task.run()
+        for task in self.weekly_tasks:
+            task.run()
+        for task in self.monthly_tasks:
+            task.run()
+
+    def _create_id(self, task):
+        hasher = md5.new()
+        hasher.update(task[0])
+        hasher.update(task[1])
+        return hasher.hexdigest()
+
+    def _load_marker_file(self, file_name):
+        markers = {}
+        marker_file = open(os.path.join(self._conf_path, file_name), "r")
+        for line in marker_file:
+            entry = json.loads(line)
+            markers[entry[0]] = dateutil.parser.parse(entry[1])
+        return markers
+
+    def _save_marker_file(self, file_name, markers):
+        marker_file = open(os.path.join(self._conf_path, file_name), "w")
+        for marker in markers:
+            marker_file.write(json.dumps([marker, markers[marker].isoformat()]))
+
+    def _already_executed(self, task, cycle):
+        if cycle == "HOURLY":
+            if task.task_id in self._hourly_markers:
+                last_run = self._hourly_markers[task.task_id]
+                delta = datetime.now() - last_run
+                print delta
+                if (delta.total_seconds() < 1 * 60 * 60):
+                    return True
+            return False
+        elif cycle == "DAILY":
+            if task.task_id in self._daily_markers:
+                last_run = self._daily_markers[task.task_id]
+                delta = datetime.now() - last_run
+                print delta
+                if (delta.total_seconds() < 24 * 60 * 60):
+                    return True
+            return False
+
+    def _mark_task_run(self, task, cycle):
+        if cycle == "HOURLY":
+            self._hourly_markers[task.task_id] = datetime.now()
+            self._save_marker_file("hourly_tasks.dat", self._hourly_markers)
 

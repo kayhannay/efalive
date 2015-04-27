@@ -20,6 +20,7 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import logging
 import os
+import json
 
 from observable import Observable
 
@@ -47,6 +48,10 @@ class EfaLiveSettings(object):
         self.mailer_user = Observable()
         self.mailer_password = Observable()
         self.backup_mail_recipient = Observable()
+        self.hourly_tasks = Observable()
+        self.daily_tasks = Observable()
+        self.weekly_tasks = Observable()
+        self.monthly_tasks = Observable()
 
     def initSettings(self):
         self.efaShutdownAction.updateData("shutdown")
@@ -101,11 +106,11 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed auto backup enable password setting: " + enableStr)
             elif line.startswith("MAILER_HOST="):
                 hostStr=line[(line.index('=') + 1):].rstrip()
-                self.mailer_host.updaeData(hostStr)
+                self.mailer_host.updateData(hostStr)
                 self._logger.debug("Parsed efa mailer host setting: " + hostStr)
             elif line.startswith("MAILER_PORT="):
                 portStr=line[(line.index('=') + 1):].rstrip()
-                self.mailer_port.updaeData(int(portStr))
+                self.mailer_port.updateData(int(portStr))
                 self._logger.debug("Parsed efa mailer port setting: " + portStr)
             elif line.startswith("MAILER_USE_SSL="):
                 enableStr=line[(line.index('=') + 1):].rstrip()
@@ -117,12 +122,28 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed efa mailer use StartTLS setting: " + enableStr)
             elif line.startswith("MAILER_USER="):
                 userStr=line[(line.index('=') + 1):].rstrip()
-                self.mailer_user.updaeData(userStr)
+                self.mailer_user.updateData(userStr)
                 self._logger.debug("Parsed efa mailer user setting: " + userStr)
             elif line.startswith("MAILER_PASSWORD="):
                 passStr=line[(line.index('=') + 1):].rstrip()
-                self.mailer_password.updaeData(passStr)
+                self.mailer_password.updateData(passStr)
                 self._logger.debug("Parsed efa mailer password setting: " + passStr)
+            elif line.startswith("HOURLY_TASKS="):
+                valueStr=line[(line.index('=') + 1):].rstrip()
+                self.hourly_tasks.updateData(json.loads(valueStr))
+                self._logger.debug("Parsed hourly tasks setting: " + valueStr)
+            elif line.startswith("DAILY_TASKS="):
+                valueStr=line[(line.index('=') + 1):].rstrip()
+                self.daily_tasks.updateData(json.loads(valueStr))
+                self._logger.debug("Parsed daily tasks setting: " + valueStr)
+            elif line.startswith("WEEKLY_TASKS="):
+                valueStr=line[(line.index('=') + 1):].rstrip()
+                self.weekly_tasks.updateData(json.loads(valueStr))
+                self._logger.debug("Parsed weekly tasks setting: " + valueStr)
+            elif line.startswith("MONTHLY_TASKS="):
+                valueStr=line[(line.index('=') + 1):].rstrip()
+                self.monthly_tasks.updateData(json.loads(valueStr))
+                self._logger.debug("Parsed monthly tasks setting: " + valueStr)
 
     def save(self):
         self._logger.info("Saving settings to file: %s" % (self._settingsFileName))
@@ -157,7 +178,12 @@ class EfaLiveSettings(object):
                 settingsFile.write("MAILER_USE_STARTTLS=\"FALSE\"\n")
             settingsFile.write("MAILER_USER=%s\n" % self.mailer_user.getData())
             settingsFile.write("MAILER_PASSWORD=%s\n" % self.mailer_password.getData())
+            settingsFile.write("HOURLY_TASKS=%s\n" % json.dumps(self.hourly_tasks.getData()))
+            settingsFile.write("DAILY_TASKS=%s\n" % json.dumps(self.daily_tasks.getData()))
+            settingsFile.write("WEEKLY_TASKS=%s\n" % json.dumps(self.weekly_tasks.getData()))
+            settingsFile.write("MONTHLY_TASKS=%s\n" % json.dumps(self.monthly_tasks.getData()))
             settingsFile.close()
         except IOError, exception:
             self._logger.error("Could not save files: %s" % exception)
             raise Exception("Could not save files")
+

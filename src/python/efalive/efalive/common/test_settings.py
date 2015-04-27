@@ -49,6 +49,10 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual(None, settings.mailer_user.getData())
         self.assertEqual(None, settings.mailer_password.getData())
         self.assertEqual(None, settings.backup_mail_recipient.getData())
+        self.assertEqual(None, settings.hourly_tasks.getData())
+        self.assertEqual(None, settings.daily_tasks.getData())
+        self.assertEqual(None, settings.weekly_tasks.getData())
+        self.assertEqual(None, settings.monthly_tasks.getData())
 
     @patch("__builtin__.open")
     def test_initSettings__no_settings(self, open_mock):
@@ -80,6 +84,64 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual("/tmp /test", settings.efaLiveBackupPaths)
         self.assertEqual(1234, settings.efaPort.getData())
         self.assertEqual("/tmp/cred.txt", settings.efaCredentialsFile)
+        self.assertEqual("secret", settings.auto_backup_password)
+        self.assertEqual(True, settings.auto_backup_use_password.getData())
+        self.assertEqual("smtp.testserver.local", settings.mailer_host.getData())
+        self.assertEqual(465, settings.mailer_port.getData())
+        self.assertEqual(True, settings.mailer_use_ssl.getData())
+        self.assertEqual(False, settings.mailer_use_starttls.getData())
+        self.assertEqual("testuser", settings.mailer_user.getData())
+        self.assertEqual("secret", settings.mailer_password.getData())
+        self.assertEqual([["SHELL", "ls /tmp0"]], settings.hourly_tasks.getData())
+        self.assertEqual([["BACKUP", ""], ["SHELL", "ls /tmp1"]], settings.daily_tasks.getData())
+        self.assertEqual([["SHELL", "ls /tmp2"]], settings.weekly_tasks.getData())
+        self.assertEqual([["SHELL", "ls /tmp3"]], settings.monthly_tasks.getData())
+
+    @patch("__builtin__.open")
+    def test_save__settings_filled(self, open_mock):
+        os.path.exists = MagicMock(return_value = True)
+        file_stub = FileStub(True)
+        open_mock.return_value = file_stub
+
+        settings = EfaLiveSettings("/test/")
+        settings.efaShutdownAction.updateData("test")
+        settings.autoUsbBackup.updateData(True)
+        settings.autoUsbBackupDialog.updateData(True)
+        settings.efaLiveBackupPaths = "/tmp /test"
+        settings.efaPort.updateData(1234)
+        settings.efaCredentialsFile = "/tmp/cred.txt"
+        settings.auto_backup_password = "secret"
+        settings.auto_backup_use_password.updateData(True)
+        settings.mailer_host.updateData("smtp.testserver.local")
+        settings.mailer_port.updateData(465)
+        settings.mailer_use_ssl.updateData(True)
+        settings.mailer_use_starttls.updateData(False)
+        settings.mailer_user.updateData("testuser")
+        settings.mailer_password.updateData("secret")
+        settings.hourly_tasks.updateData([["SHELL", "ls /tmp0"]])
+        settings.daily_tasks.updateData([["BACKUP", ""], ["SHELL", "ls /tmp1"]])
+        settings.weekly_tasks.updateData([["SHELL", "ls /tmp2"]])
+        settings.monthly_tasks.updateData([["SHELL", "ls /tmp3"]])
+        settings.save()
+
+        self.assertEqual("EFA_SHUTDOWN_ACTION=test\n", file_stub.settings_list[0])
+        self.assertEqual("AUTO_USB_BACKUP=\"TRUE\"\n", file_stub.settings_list[1])
+        self.assertEqual("AUTO_USB_BACKUP_DIALOG=\"TRUE\"\n", file_stub.settings_list[2])
+        self.assertEqual("EFALIVE_BACKUP_PATHS=\"/tmp /test\"\n", file_stub.settings_list[3])
+        self.assertEqual("EFA_PORT=1234\n", file_stub.settings_list[4])
+        self.assertEqual("EFA_CREDENTIALS_FILE=/tmp/cred.txt\n", file_stub.settings_list[5])
+        self.assertEqual("AUTO_BACKUP_PASSWORD=secret\n", file_stub.settings_list[6])
+        self.assertEqual("AUTO_BACKUP_USE_PASSWORD=\"TRUE\"\n", file_stub.settings_list[7])
+        self.assertEqual("MAILER_HOST=smtp.testserver.local\n", file_stub.settings_list[8])
+        self.assertEqual("MAILER_PORT=465\n", file_stub.settings_list[9])
+        self.assertEqual("MAILER_USE_SSL=\"TRUE\"\n", file_stub.settings_list[10])
+        self.assertEqual("MAILER_USE_STARTTLS=\"FALSE\"\n", file_stub.settings_list[11])
+        self.assertEqual("MAILER_USER=testuser\n", file_stub.settings_list[12])
+        self.assertEqual("MAILER_PASSWORD=secret\n", file_stub.settings_list[13])
+        self.assertEqual("HOURLY_TASKS=[[\"SHELL\", \"ls /tmp0\"]]\n", file_stub.settings_list[14])
+        self.assertEqual("DAILY_TASKS=[[\"BACKUP\", \"\"], [\"SHELL\", \"ls /tmp1\"]]\n", file_stub.settings_list[15])
+        self.assertEqual("WEEKLY_TASKS=[[\"SHELL\", \"ls /tmp2\"]]\n", file_stub.settings_list[16])
+        self.assertEqual("MONTHLY_TASKS=[[\"SHELL\", \"ls /tmp3\"]]\n", file_stub.settings_list[17])
 
 
 class FileStub(object):
@@ -94,7 +156,19 @@ class FileStub(object):
                     "AUTO_USB_BACKUP_DIALOG=\"TRUE\"",
                     "EFALIVE_BACKUP_PATHS=\"/tmp /test\"",
                     "EFA_PORT=1234",
-                    "EFA_CREDENTIALS_FILE=/tmp/cred.txt"
+                    "EFA_CREDENTIALS_FILE=/tmp/cred.txt",
+                    "AUTO_BACKUP_PASSWORD=secret",
+                    "AUTO_BACKUP_USE_PASSWORD=\"TRUE\"",
+                    "MAILER_HOST=smtp.testserver.local",
+                    "MAILER_PORT=465",
+                    "MAILER_USE_STARTTLS=\"FALSE\"",
+                    "MAILER_USE_SSL=\"TRUE\"",
+                    "MAILER_USER=testuser",
+                    "MAILER_PASSWORD=secret",
+                    "HOURLY_TASKS=[[\"SHELL\",\"ls /tmp0\"]]",
+                    "DAILY_TASKS=[[\"BACKUP\",\"\"],[\"SHELL\",\"ls /tmp1\"]]",
+                    "WEEKLY_TASKS=[[\"SHELL\",\"ls /tmp2\"]]",
+                    "MONTHLY_TASKS=[[\"SHELL\",\"ls /tmp3\"]]",
                     ]
 
     def close(self):
@@ -103,11 +177,6 @@ class FileStub(object):
     def __iter__(self):
         return iter(self.settings_list)
 
-"""
-    class __metaclass__(type):
-        def __iter__(self):
-            for attr in dir(FileStub):
-                if not attr.startswith("__"):
-                    yield attr
-"""
+    def write(self, data):
+        self.settings_list.append(data)
 
