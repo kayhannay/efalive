@@ -33,6 +33,6 @@ class ShellTaskTestCase(unittest.TestCase):
         class_under_test = ShellTask("123def", "ls /tmp")
         class_under_test.run()
 
-        assert common.command_output.call_count == 1
-        assert common.command_output.call_args == call(["ls", "/tmp"])
+        self.assertEqual(1, common.command_output.call_count)
+        self.assertEqual(call(["ls", "/tmp"]), common.command_output.call_args)
 

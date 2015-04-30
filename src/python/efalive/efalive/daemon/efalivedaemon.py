@@ -193,6 +193,9 @@ class TaskSchedulerModule(object):
         self.monthly_tasks = self._create_task_list(settings.monthly_tasks.getData())
         self._conf_path = settings.confPath
         self._load_marker_file("hourly_tasks.dat")
+        self._load_marker_file("daily_tasks.dat")
+        self._load_marker_file("weekly_tasks.dat")
+        self._load_marker_file("monthly_tasks.dat")
 
     def _create_task_list(self, tasks):
         task_list = []
@@ -209,11 +212,17 @@ class TaskSchedulerModule(object):
                 task.run()
                 self._mark_task_run(task, "HOURLY")
         for task in self.daily_tasks:
-            task.run()
+            if not self._already_executed(task, "DAILY"):
+                task.run()
+                self._mark_task_run(task, "DAILY")
         for task in self.weekly_tasks:
-            task.run()
+            if not self._already_executed(task, "WEEKLY"):
+                task.run()
+                self._mark_task_run(task, "WEEKLY")
         for task in self.monthly_tasks:
-            task.run()
+            if not self._already_executed(task, "MONTHLY"):
+                task.run()
+                self._mark_task_run(task, "MONTHLY")
 
     def _create_id(self, task):
         hasher = md5.new()
@@ -239,7 +248,6 @@ class TaskSchedulerModule(object):
             if task.task_id in self._hourly_markers:
                 last_run = self._hourly_markers[task.task_id]
                 delta = datetime.now() - last_run
-                print delta
                 if (delta.total_seconds() < 1 * 60 * 60):
                     return True
             return False
@@ -247,8 +255,21 @@ class TaskSchedulerModule(object):
             if task.task_id in self._daily_markers:
                 last_run = self._daily_markers[task.task_id]
                 delta = datetime.now() - last_run
-                print delta
                 if (delta.total_seconds() < 24 * 60 * 60):
+                    return True
+            return False
+        elif cycle == "WEEKLY":
+            if task.task_id in self._weekly_markers:
+                last_run = self._weekly_markers[task.task_id]
+                delta = datetime.now() - last_run
+                if (delta.total_seconds() < 7 * 24 * 60 * 60):
+                    return True
+            return False
+        elif cycle == "MONTHLY":
+            if task.task_id in self._monthly_markers:
+                last_run = self._monthly_markers[task.task_id]
+                delta = datetime.now() - last_run
+                if (delta.total_seconds() < 4 * 7 * 24 * 60 * 60):
                     return True
             return False
 
@@ -256,4 +277,13 @@ class TaskSchedulerModule(object):
         if cycle == "HOURLY":
             self._hourly_markers[task.task_id] = datetime.now()
             self._save_marker_file("hourly_tasks.dat", self._hourly_markers)
+        elif cycle == "DAILY":
+            self._daily_markers[task.task_id] = datetime.now()
+            self._save_marker_file("daily_tasks.dat", self._daily_markers)
+        elif cycle == "WEEKLY":
+            self._weekly_markers[task.task_id] = datetime.now()
+            self._save_marker_file("weekly_tasks.dat", self._weekly_markers)
+        elif cycle == "MONTHLY":
+            self._monthly_markers[task.task_id] = datetime.now()
+            self._save_marker_file("monthly_tasks.dat", self._monthly_markers)
 
