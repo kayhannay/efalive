@@ -105,7 +105,7 @@ class WatchDogModule(object):
         self._restart_threshold = 3
 
     def run_checks(self):
-        self._logger.info("Check system conditions ...")
+        self._logger.debug("Check system conditions ...")
         process_name = "openbox"
         process_count = self._check_for_process(process_name)
         if process_count < 1:

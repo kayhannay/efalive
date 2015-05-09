@@ -26,7 +26,7 @@ from efalive.daemon.efalivedaemon import EfaLiveDaemon
 
 if __name__ == "__main__":
     logfile = "efaLiveDaemon.log"
-    logging.basicConfig(filename=logfile, level=logging.DEBUG)
+    logging.basicConfig(filename=logfile, level=logging.INFO)
     daemon = EfaLiveDaemon(sys.argv, output=logfile)
     daemon_runner = runner.DaemonRunner(daemon)
     # We have to preserve the logger file handle when switching to daemon mode
