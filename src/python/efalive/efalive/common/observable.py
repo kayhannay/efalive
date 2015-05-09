@@ -1,9 +1,9 @@
 '''
 Created on 27.04.2009
 
-Copyright (C) 2009-2010 Kay Hannay
+Copyright (C) 2009-2015 Kay Hannay
 
-This file is part of efaLiveSetup.
+This file is part of efaLive.
 
 efaLiveSetup is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
+along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
 class Observable(object):

@@ -1,7 +1,7 @@
 '''
 Created on 26.08.2010
 
-Copyright (C) 2010-2014 Kay Hannay
+Copyright (C) 2010-2015 Kay Hannay
 
 This file is part of efaLiveSetup.
 
