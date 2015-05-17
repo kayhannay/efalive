@@ -29,71 +29,71 @@ from efalive.common.settings import EfaLiveSettings
 
 class EfaLiveDaemonTestCase(unittest.TestCase):
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__start(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "start"])
-        settingsMock.initSettings.assert_called_once()
+        assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__restart(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "restart"])
-        settingsMock.initSettings.assert_called_once()
+        assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__stop(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "stop"])
-        settingsMock.initSettings.assert_not_called()
+        assert settingsMock.return_value.initSettings.call_count == 0
 
     def test_init__unknown(self):
         EfaLiveDaemon._print_usage_and_exit = MagicMock()
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "unknown"])
-        EfaLiveDaemon._print_usage_and_exit.assert_called_once()
+        assert EfaLiveDaemon._print_usage_and_exit.call_count == 1
 
     def test_init__no_argument(self):
         EfaLiveDaemon._print_usage_and_exit = MagicMock()
         classUnderTest = EfaLiveDaemon(["efalivedaemon"])
-        EfaLiveDaemon._print_usage_and_exit.assert_called_once()
+        assert EfaLiveDaemon._print_usage_and_exit.call_count == 1
 
     def test_init__too_many_arguments(self):
         EfaLiveDaemon._print_usage_and_exit = MagicMock()
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "start", "/tmp", "test"])
-        EfaLiveDaemon._print_usage_and_exit.assert_called_once()
+        assert EfaLiveDaemon._print_usage_and_exit.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__start_with_conf_path_first(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "start"])
-        settingsMock.initSettings.assert_called_once()
+        assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__start_with_conf_path_last(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "start", "/tmp"])
-        settingsMock.initSettings.assert_called_once()
+        assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__restart_with_conf_path_first(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "restart"])
-        settingsMock.initSettings.assert_called_once()
+        assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__restart_with_conf_path_last(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "restart", "/tmp"])
-        settingsMock.initSettings.assert_called_once()
+        assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autoepec=True)
     def test_init__stop_with_conf_path_first(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "stop"])
-        settingsMock.initSettings.assert_not_called()
+        assert settingsMock.return_value.initSettings.call_count == 0
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__stop_with_conf_path_last(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "stop", "/tmp"])
-        settingsMock.initSettings.assert_not_called()
+        assert settingsMock.return_value.initSettings.call_count == 0
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings')
+    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
     def test_init__unknown_with_conf_path(self, settingsMock):
         EfaLiveDaemon._print_usage_and_exit = MagicMock()
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "unknown"])
-        EfaLiveDaemon._print_usage_and_exit.assert_called_once()
+        assert EfaLiveDaemon._print_usage_and_exit.call_count == 1
 
 
 class AutoBackupModuleTestCase(unittest.TestCase):
@@ -104,7 +104,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._handle_usb_add_event(UsbStorageDevice("/dev/test1"))
 
-        self.assertEqual(call(['/usr/lib/efalive/bin/autobackup.sh', '/dev/test1']), common.command_output.call_args)
+        self.assertEqual(call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1", ">>", "~/autobackup.log", "2>&1"]), common.command_output.call_args)
         self.assertEqual(1, common.command_output.call_count)
 
     def test_run_autobackup__success(self):
@@ -113,7 +113,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
-        self.assertEqual(call(['/usr/lib/efalive/bin/autobackup.sh', '/dev/test1']), common.command_output.call_args)
+        self.assertEqual(call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1", ">>", "~/autobackup.log", "2>&1"]), common.command_output.call_args)
         self.assertEqual(1, common.command_output.call_count)
         self.assertEqual(0, result)
 

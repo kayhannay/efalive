@@ -109,7 +109,7 @@ class WatchDogModule(object):
         self._restart_threshold = 3
 
     def run_checks(self):
-        self._logger.info("Check system conditions ...")
+        self._logger.debug("Check system conditions ...")
         process_name = "openbox"
         process_count = self._check_for_process(process_name)
         if process_count < 1:
@@ -153,7 +153,7 @@ class AutoBackupModule(object):
 
     def _run_autobackup(self, device_file):
         try:
-            (returncode, output) = common.command_output(["/usr/lib/efalive/bin/autobackup.sh", device_file])
+            (returncode, output) = common.command_output(["/usr/lib/efalive/bin/autobackup.sh", device_file, ">>", "~/autobackup.log", "2>&1"])
             if returncode != 0:
                 if returncode == 1 or returncode == 5:
                     message = "Backup failed! Please check that the efalive user is configured correctly in efa."
