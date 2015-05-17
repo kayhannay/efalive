@@ -1,3 +1,12 @@
+efalive (2.3-1) stable; urgency=low
+
+  * Update for Debian Jessie
+  * Add efaLive daemon
+  * Add power manager
+
+ -- Kay Hannay <klinux@hannay.de>  Fri, 06 Mar 2015 18:14:21 +0100
+
+
 efalive (2.2-1) stable; urgency=low
 
   * Improve backup restore so that efa and efaLive only backups can be restored

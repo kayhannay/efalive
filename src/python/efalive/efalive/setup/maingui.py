@@ -1,7 +1,7 @@
 '''
 Created on 26.08.2010
 
-Copyright (C) 2010-2014 Kay Hannay
+Copyright (C) 2010-2015 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -27,13 +27,14 @@ import traceback
 import logging
 import hashlib
 
-from efalivesetup.common import dialogs
-from efalivesetup.common.observable import Observable
-from efalivesetup.devicemanager.devicemanager import DeviceManagerController as DeviceManager
-from efalivesetup.screen.screensetup import ScreenSetupController as ScreenSetup
-from efalivesetup.datetime.datetime import DateTimeController as DateTime
-from efalivesetup.backup.backup import BackupController as Backup
-from efalivesetup.common import common
+from setupcommon import dialogs
+from devicemanager.devicemanager import DeviceManagerController as DeviceManager
+from screen.screensetup import ScreenSetupController as ScreenSetup
+from dttime.datetime import DateTimeController as DateTime
+#from datetime.dttime import DateTimeController
+from backup.backup import BackupController as Backup
+from ..common import common
+from ..common.settings import EfaLiveSettings
 
 import locale
 import gettext
@@ -43,153 +44,63 @@ gettext.install(APP, common.LOCALEDIR, unicode=True)
 class SetupModel(object):
     def __init__(self, confPath):
         self._logger = logging.getLogger('efalivesetup.maingui.SetupModel')
-        self._checkPath(confPath)
-        self._confPath=confPath
-        self._settingsFileName = os.path.join(self._confPath, "settings.conf")
-        self._backupFileName = os.path.join(self._confPath, "backup.conf")
-        self.efaVersion=Observable()
-        self.efaShutdownAction=Observable()
-        self.autoUsbBackup=Observable()
-        self.autoUsbBackupDialog=Observable()
-        self.efaBackupPaths="/usr/lib/efa/ausgabe/layout /usr/lib/efa/daten /home/efa/efa"
-        self.efaLiveBackupPaths="/home/efa/.efalive"
-        self.efaPort=Observable()
-        self.efaCredentialsFile="~/.efalive/.efacred"
-        self.auto_backup_use_password=Observable()
-        self.auto_backup_password=""
+        self._settings = EfaLiveSettings(confPath)
 
     def initModel(self):
-        self.efaVersion.updateData(2)
-        self.efaShutdownAction.updateData("shutdown")
-        self.efaPort.updateData(3834)
-        if os.path.isfile(self._settingsFileName):
-            self.settingsFile=open(self._settingsFileName, "r")
-            self.parseSettingsFile(self.settingsFile)
-            self.settingsFile.close()
-
-    def _checkPath(self, path):
-        if not os.path.exists(path):
-            self._logger.debug("Creating directory: %s" % path)
-            os.makedirs(path, 0755)
-
-    def parseSettingsFile(self, file):
-        self._logger.info("Parsing settings file")
-        versionStr=None
-        for line in file:
-            if line.startswith("EFA_VERSION="):
-                versionStr=line[(line.index('=') + 1):]
-                self._logger.debug("Parsed version: " + versionStr)
-            elif line.startswith("EFA_SHUTDOWN_ACTION="):
-                actionStr=line[(line.index('=') + 1):].rstrip()
-                self.setEfaShutdownAction(actionStr)
-                self._logger.debug("Parsed shutdown action: " + actionStr)
-            elif line.startswith("AUTO_USB_BACKUP="):
-                enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.enableAutoUsbBackup(True)
-                else:
-                    self.enableAutoUsbBackup(False)
-                self._logger.debug("Parsed auto USB backup setting: " + enableStr)
-            elif line.startswith("AUTO_USB_BACKUP_DIALOG="):
-                enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.enableAutoUsbBackupDialog(True)
-                else:
-                    self.enableAutoUsbBackupDialog(False)
-                self._logger.debug("Parsed auto USB backup dialog setting: " + enableStr)
-            elif line.startswith("EFA_BACKUP_PATHS="):
-                backupStr=line[(line.index('=') + 1):].rstrip()
-                self.efaBackupPaths = backupStr.replace("\"", "")
-                self._logger.debug("Parsed efa backup paths: " + backupStr)
-            elif line.startswith("EFALIVE_BACKUP_PATHS="):
-                backupStr=line[(line.index('=') + 1):].rstrip()
-                self.efaLiveBackupPaths = backupStr.replace("\"", "")
-                self._logger.debug("Parsed efaLive backup paths: " + backupStr)
-            elif line.startswith("EFA_PORT="):
-                portStr=line[(line.index('=') + 1):].rstrip()
-                self.setEfaPort(int(portStr))
-                self._logger.debug("Parsed efa port: " + portStr)
-            elif line.startswith("EFA_CREDENTIALS_FILE="):
-                credStr=line[(line.index('=') + 1):].rstrip()
-                self.efaCredentialsFile = credStr
-                self._logger.debug("Parsed efa credentials file setting: " + credStr)
-            elif line.startswith("AUTO_BACKUP_PASSWORD="):
-                pwdStr=line[(line.index('=') + 1):].rstrip()
-                self.auto_backup_password = pwdStr
-                self._logger.debug("Parsed efa auto backup password setting: " + pwdStr)
-            elif line.startswith("AUTO_BACKUP_USE_PASSWORD="):
-                enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.enableAutoBackupPassword(True)
-                else:
-                    self.enableAutoBackupPassword(False)
-                self._logger.debug("Parsed auto backup enable password setting: " + enableStr)
-        if versionStr != None:
-            self.setEfaVersion(int(versionStr))
+        self._settings.initSettings()
 
     def save(self):
-        self._logger.info("Saving settings to file: %s" % (self._settingsFileName))
-        try:
-            settingsFile=open(self._settingsFileName, "w")
-            settingsFile.write("EFA_VERSION=%d\n" % self.efaVersion.getData())
-            settingsFile.write("EFA_SHUTDOWN_ACTION=%s\n" % self.efaShutdownAction.getData())
-            if self.autoUsbBackup._data == True:
-                settingsFile.write("AUTO_USB_BACKUP=\"TRUE\"\n")
-            else:
-                settingsFile.write("AUTO_USB_BACKUP=\"FALSE\"\n")
-            if self.autoUsbBackupDialog._data == True:
-                settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"TRUE\"\n")
-            else:
-                settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"FALSE\"\n")
-            settingsFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
-            settingsFile.write("EFALIVE_BACKUP_PATHS=\"%s\"\n" % self.efaLiveBackupPaths)
-            settingsFile.write("EFA_PORT=%d\n" % self.efaPort.getData())
-            settingsFile.write("EFA_CREDENTIALS_FILE=%s\n" % self.efaCredentialsFile)
-            settingsFile.write("AUTO_BACKUP_PASSWORD=%s\n" % self.auto_backup_password)
-            if self.auto_backup_use_password._data == True:
-                settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"TRUE\"\n")
-            else:
-                settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"FALSE\"\n")
-            settingsFile.close()
-        except IOError, exception:
-            self._logger.error("Could not save files: %s" % exception)
-            raise Exception("Could not save files")
+        self._settings.save()
 
     def setEfaShutdownAction(self, action):
-        self.efaShutdownAction.updateData(action)
+        self._settings.efaShutdownAction.updateData(action)
         self._logger.debug("efa shutdown action: %s" % action)
 
     def enableAutoUsbBackup(self, enable):
-        self.autoUsbBackup.updateData(enable)
+        self._settings.autoUsbBackup.updateData(enable)
         self._logger.debug("auto USB backup: %s" % enable)
 
     def enableAutoUsbBackupDialog(self, enable):
-        self.autoUsbBackupDialog.updateData(enable)
+        self._settings.autoUsbBackupDialog.updateData(enable)
         self._logger.debug("auto USB backup dialog: %s" % enable)
 
     def getConfigPath(self):
-        return self._confPath
+        return self._settings.confPath
 
     def setEfaVersion(self, version):
-        self.efaVersion.updateData(version)
+        self._settings.efaVersion.updateData(version)
         self._logger.debug("efa version: %d" % version)
 
     def setEfaPort(self, port):
-        self.efaPort.updateData(port)
+        self._settings.efaPort.updateData(port)
         self._logger.debug("efa port: %d" % port)
 
     def create_log_package(self, path):
         return common.command_output(["/usr/lib/efalive/bin/create_log_package.sh", path])
 
     def enableAutoBackupPassword(self, enable):
-        self.auto_backup_use_password.updateData(enable)
+        self._settings.auto_backup_use_password.updateData(enable)
         self._logger.debug("auto backup password: %s" % enable)
 
     def setAutoBackupPassword(self, pwd):
         hash = hashlib.sha512(pwd).hexdigest()
-        self.auto_backup_password = hash
+        self._settings.auto_backup_password = hash
         self._logger.debug("efa auto backup password: %s, hash %s" % (pwd,hash))
 
+    def registerEfaShutdownActionCb(self, callback):
+        self._settings.efaShutdownAction.registerObserverCb(callback)
+
+    def registerAutoUsbBackupCb(self, callback):
+        self._settings.autoUsbBackup.registerObserverCb(callback)
+
+    def registerAutoUsbBackupDialogCb(self, callback):
+        self._settings.autoUsbBackupDialog.registerObserverCb(callback)
+
+    def registerAutoBackupUsePasswordCb(self, callback):
+        self._settings.auto_backup_use_password.registerObserverCb(callback)
+
+    def registerEfaPortCb(self, callback):
+        self._settings.efaPort.registerObserverCb(callback)
 
 class SetupView(gtk.Window):
     def __init__(self, type):
@@ -356,7 +267,7 @@ class SetupView(gtk.Window):
         self.systemSpaceVBox.pack_start(self.systemSpaceBox, True, True, 5)
         self.systemSpaceBox.show()
 
-        self.systemGrid=gtk.Table(2, 3, True)
+        self.systemGrid=gtk.Table(3, 3, True)
         self.systemSpaceBox.pack_start(self.systemGrid, True, True, 5)
         self.systemGrid.set_row_spacings(2)
         self.systemGrid.set_col_spacings(2)
@@ -378,12 +289,16 @@ class SetupView(gtk.Window):
         self.systemGrid.attach(self.screensaverButton, 0, 1, 1, 2)
         self.screensaverButton.show()
 
+        self.powerManagerButton=gtk.Button(_("Power manager"))
+        self.systemGrid.attach(self.powerManagerButton, 1, 2, 1, 2)
+        self.powerManagerButton.show()
+
         self.datetimeButton=gtk.Button(_("Date & time"))
-        self.systemGrid.attach(self.datetimeButton, 1, 2, 1, 2)
+        self.systemGrid.attach(self.datetimeButton, 2, 3, 1, 2)
         self.datetimeButton.show()
 
         self.keyboardButton=gtk.Button(_("Keyboard"))
-        self.systemGrid.attach(self.keyboardButton, 2, 3, 1, 2)
+        self.systemGrid.attach(self.keyboardButton, 0, 1, 2, 3)
         self.keyboardButton.show()
 
 
@@ -457,7 +372,7 @@ class SetupController(object):
         if ask_for_password == True:
             pwok = dialogs.show_password_dialog(self._view, 'efa')
             if pwok == False:
-                exit()             
+                exit()
         self.initEvents()
         self._view.connect("destroy", self.destroy)
         self._view.show()
@@ -470,11 +385,11 @@ class SetupController(object):
         self._view.autoUsbBackupEnabledVBox.set_sensitive(False)
         self._view.autoBackupPasswordHBox.set_sensitive(False)
 
-        self._model.efaShutdownAction.registerObserverCb(self.efaShutdownActionChanged)
-        self._model.autoUsbBackup.registerObserverCb(self.autoUsbBackupChanged)
-        self._model.autoUsbBackupDialog.registerObserverCb(self.autoUsbBackupDialogChanged)
-        self._model.auto_backup_use_password.registerObserverCb(self.autoBackupUsePasswordChanged)
-        self._model.efaPort.registerObserverCb(self.efaPortChanged)
+        self._model.registerEfaShutdownActionCb(self.efaShutdownActionChanged)
+        self._model.registerAutoUsbBackupCb(self.autoUsbBackupChanged)
+        self._model.registerAutoUsbBackupDialogCb(self.autoUsbBackupDialogChanged)
+        self._model.registerAutoBackupUsePasswordCb(self.autoBackupUsePasswordChanged)
+        self._model.registerEfaPortCb(self.efaPortChanged)
         self._model.initModel()
 
     def efaShutdownActionChanged(self, action):
@@ -528,6 +443,7 @@ class SetupController(object):
         self._view.keyboardButton.connect("clicked", self.runKeyboardSetup)
         self._view.dyndnsButton.connect("clicked", self.runDyndnsSetup)
         self._view.screensaverButton.connect("clicked", self.runScreensaverSetup)
+        self._view.powerManagerButton.connect("clicked", self.runPowerManagerSetup)
         self._view.datetimeButton.connect("clicked", self.runDateTimeSetup)
         self._view.editorButton.connect("clicked", self.runEditor)
         self._view.backupButton.connect("clicked", self.runBackup)
@@ -610,6 +526,14 @@ class SetupController(object):
             self._logger.error(message)
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
 
+    def runPowerManagerSetup(self, widget):
+        try:
+            subprocess.Popen(['xfce4-power-manager-settings'])
+        except OSError as error:
+            message = _("Could not open xfce4-power-manager-settings program: %s") % error
+            self._logger.error(message)
+            dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
+
     def runDateTimeSetup(self, widget):
         DateTime(None, standalone=False)
 
@@ -684,15 +608,10 @@ class SetupController(object):
         try:
             self._model.save()
             self.destroy(widget)
-        except Error as error:
+        except:
             message = _("Could not save files!\n\n") \
                     + _("Please check the path you provided for ") \
                     + _("user rights and existance.")
             self._logger.error(message)
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
-
-if __name__ == '__main__':
-    logging.basicConfig(filename='efaLiveSetup.log',level=logging.INFO)
-    controller = SetupController(sys.argv)
-    gtk.main();
 

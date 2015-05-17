@@ -2,7 +2,7 @@
 '''
 Created on 03.01.2012
 
-Copyright (C) 2012 Kay Hannay
+Copyright (C) 2012-2015 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -28,9 +28,9 @@ import logging
 import locale
 import gettext
 
-from efalivesetup.common import dialogs
-from efalivesetup.common import common
-from efalivesetup.common.observable import Observable
+from ..setupcommon import dialogs
+from efalive.common import common
+from efalive.common.observable import Observable
 
 APP="dateTime"
 gettext.install(APP, common.LOCALEDIR, unicode=True)
@@ -98,7 +98,9 @@ class DateTimeModel(object):
                 self._logger.error(message)
                 dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
         else:
-            date = "%02d%02d%02d%02d%04d.%02d" % (self.month.getData(), self.day.getData(), self.hour.getData(), self.minute.getData(), self.year.getData(), self.second.getData())
+            date = "%02d%02d%02d%02d%04d.%02d" % (
+                    self.month.getData(), self.day.getData(), self.hour.getData(), 
+                    self.minute.getData(), self.year.getData(), self.second.getData())
             self._logger.info("Setting date to %s" % date)
             try:
                 subprocess.Popen(['sudo', 'insserv', '-r', 'ntp'])
@@ -213,7 +215,7 @@ class DateTimeController(object):
         self.init_events(standalone)
         self._model.initModel()
         self._view.show()
-        
+
     def init_events(self, standalone):
         if standalone:
             self._view.connect('destroy', gtk.main_quit)
@@ -267,6 +269,4 @@ if __name__ == '__main__':
     logging.basicConfig(filename='dateTime.log',level=logging.INFO)
     controller = DateTimeController(sys.argv)
     gtk.main();
-
-    
 

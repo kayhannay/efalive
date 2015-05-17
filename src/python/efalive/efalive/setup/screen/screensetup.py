@@ -2,7 +2,7 @@
 '''
 Created on 09.06.2011
 
-Copyright (C) 2011 Kay Hannay
+Copyright (C) 2011-2015 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -26,8 +26,8 @@ import logging
 import locale
 import gettext
 
-from efalivesetup.common import dialogs
-from efalivesetup.common import common
+from ..setupcommon import dialogs
+from efalive.common import common
 
 APP="screenSetup"
 gettext.install(APP, common.LOCALEDIR, unicode=True)
@@ -55,7 +55,7 @@ class ScreenSetupView(gtk.Window):
         self.randr_widget.load_from_x()
         main_box.pack_start(self.randr_widget, True, True, 2)
         self.randr_widget.show()
-        
+
         button_box = gtk.HBox(False, 2)
         main_box.pack_end(button_box, False, False)
         button_box.show()
@@ -91,7 +91,7 @@ class ScreenSetupController(object):
             self._view=view
         self.init_events(standalone)
         self._view.show()
-        
+
     def init_events(self, standalone):
         if standalone:
             self._view.connect('destroy', gtk.main_quit)
@@ -114,6 +114,4 @@ if __name__ == '__main__':
     logging.basicConfig(filename='screenSetup.log',level=logging.INFO)
     controller = ScreenSetupController(sys.argv)
     gtk.main();
-
-    
 

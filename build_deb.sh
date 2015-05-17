@@ -1,18 +1,6 @@
 #!/bin/bash
 #
 #
-#VERSION=2.2
-
-#rm -r efalive-*
-#mkdir efalive-$VERSION
-#cp -a content/* efalive-$VERSION
-#cp -a debian efalive-$VERSION
-#cd content
-#tar czf ../efalive_$VERSION.orig.tar.gz *
-#cd ..
-#cd efalive-$VERSION
-#debuild -uc -us
-#cd ..
 
 BUILD_DIR=build/efalive
 PROJECT_ROOT=$(pwd)
@@ -22,6 +10,14 @@ mkdir -p $BUILD_DIR
 cp -r debian $BUILD_DIR
 
 cd src/python
+
+./run_tests.sh
+if [ $? != 0 ]
+then
+    echo "Build failed due to test errors!"
+    exit 1
+fi
+
 python setup.py sdist --dist-dir ../../build/python
 cd $PROJECT_ROOT
 

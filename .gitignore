@@ -1,0 +1,7 @@
+src/python/MANIFEST
+build
+*.swp
+*.pyc
+*.log
+*.pot
+

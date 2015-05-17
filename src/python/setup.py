@@ -2,13 +2,22 @@
 
 from distutils.core import setup
 
-setup(name='efaLiveSetup',
-      version='1.0',
-      description='Setup utility for efaLive',
+setup(name='efaLiveTools',
+      version='1.1',
+      description='Tools for efaLive',
       author='Kay Hannay',
       author_email='klinux@hannay.de',
       url='http://www.hannay.de/',
-      packages=['efalivesetup', 'efalivesetup.common', 'efalivesetup.backup', 'efalivesetup.devicemanager', 'efalivesetup.screen', 'efalivesetup.datetime'],
+      packages=['efalive',
+                'efalive.efalive',
+                'efalive.efalive.common',
+                'efalive.efalive.setup',
+                'efalive.efalive.setup.setupcommon',
+                'efalive.efalive.setup.backup',
+                'efalive.efalive.setup.devicemanager',
+                'efalive.efalive.setup.screen',
+                'efalive.efalive.setup.dttime',
+                'efalive.efalive.daemon'],
      )
 
 '''

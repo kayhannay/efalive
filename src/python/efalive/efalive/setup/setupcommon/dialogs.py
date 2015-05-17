@@ -1,7 +1,7 @@
 '''
 Created on 10.01.2012
 
-Copyright (C) 2012-2014 Kay Hannay
+Copyright (C) 2012-2015 Kay Hannay
 
 This file is part of efaLiveSetup.
 
@@ -80,7 +80,7 @@ def get_password_dialog(widget, user, error):
     dialog = gtk.MessageDialog(widget, gtk.DIALOG_MODAL, gtk.MESSAGE_INFO, gtk.BUTTONS_OK_CANCEL, None)
     dialog.set_markup(_("Please enter the password of user %s") % user)
     if error == True:
-    dialog.format_secondary_markup("<span foreground='red'>" + _("The password you entered did not match!") + "</span>")
+        dialog.format_secondary_markup("<span foreground='red'>" + _("The password you entered did not match!") + "</span>")
     dialog.set_resizable(False)
     dialog.set_default_response(gtk.RESPONSE_OK)
     password_entry = gtk.Entry(max=255)
@@ -122,7 +122,7 @@ def show_password_dialog(widget, user):
         password = get_password_dialog(widget, user, error)
         if password == None:
             return False
-    authenticated = authenticate(user, password)
+        authenticated = authenticate(user, password)
         error = True
     return True
 
