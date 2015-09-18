@@ -20,7 +20,6 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import os
 import sys
-import subprocess
 import time
 import logging
 import md5
@@ -30,9 +29,10 @@ import json
 from datetime import datetime
 
 from efalive.common import common
-from efalive.common.usbmonitor import UsbStorageMonitor, UsbStorageDevice
+from efalive.common.usbmonitor import UsbStorageMonitor
 from efalive.common.settings import EfaLiveSettings
 from tasks import ShellTask
+from efalive.daemon.tasks import BackupMailTask
 
 class EfaLiveDaemon(object):
     """efaLive daemon main class which controls several modules. 
@@ -80,10 +80,13 @@ class EfaLiveDaemon(object):
     def run(self):
         if self._settings.autoUsbBackup.getData():
             AutoBackupModule().start()
+        scheduler = TaskSchedulerModule()
+        scheduler.load_tasks(self._settings)
         watchdog = WatchDogModule()
 
         while True:
             watchdog.run_checks()
+            scheduler.run_tasks()
             self._logger.debug("Running")
             time.sleep(10)
 
@@ -187,11 +190,11 @@ class TaskSchedulerModule(object):
         self._monthly_markers = {}
 
     def load_tasks(self, settings):
-        self.hourly_tasks = self._create_task_list(settings.hourly_tasks.getData())
-        self.daily_tasks = self._create_task_list(settings.daily_tasks.getData())
-        self.weekly_tasks = self._create_task_list(settings.weekly_tasks.getData())
-        self.monthly_tasks = self._create_task_list(settings.monthly_tasks.getData())
-        self._conf_path = settings.confPath
+        self._settings = settings
+        self.hourly_tasks = self._create_task_list(self._settings.hourly_tasks.getData())
+        self.daily_tasks = self._create_task_list(self._settings.daily_tasks.getData())
+        self.weekly_tasks = self._create_task_list(self._settings.weekly_tasks.getData())
+        self.monthly_tasks = self._create_task_list(self._settings.monthly_tasks.getData())
         self._load_marker_file("hourly_tasks.dat")
         self._load_marker_file("daily_tasks.dat")
         self._load_marker_file("weekly_tasks.dat")
@@ -204,6 +207,9 @@ class TaskSchedulerModule(object):
             if task[0] == "SHELL":
                 shellTask = ShellTask(task_id, task[1])
                 task_list.append(shellTask)
+            elif task[0] == "BACKUP_MAIL":
+                backupMailTask = BackupMailTask(task_id, task[1], self._settings)
+                task_list.append(backupMailTask)
         return task_list
 
     def run_tasks(self):
@@ -227,19 +233,19 @@ class TaskSchedulerModule(object):
     def _create_id(self, task):
         hasher = md5.new()
         hasher.update(task[0])
-        hasher.update(task[1])
+        hasher.update(str(task[1]))
         return hasher.hexdigest()
 
     def _load_marker_file(self, file_name):
         markers = {}
-        marker_file = open(os.path.join(self._conf_path, file_name), "r")
+        marker_file = open(os.path.join(self._settings.confPath, file_name), "r")
         for line in marker_file:
             entry = json.loads(line)
             markers[entry[0]] = dateutil.parser.parse(entry[1])
         return markers
 
     def _save_marker_file(self, file_name, markers):
-        marker_file = open(os.path.join(self._conf_path, file_name), "w")
+        marker_file = open(os.path.join(self._settings.confPath, file_name), "w")
         for marker in markers:
             marker_file.write(json.dumps([marker, markers[marker].isoformat()]))
 

@@ -19,13 +19,16 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
-from mock import call, patch, MagicMock
+from mock import call, patch, MagicMock, Mock
 
 from efalive.common import common
 from efalivedaemon import EfaLiveDaemon,AutoBackupModule, WatchDogModule, TaskSchedulerModule
 from efalive.common.usbmonitor import UsbStorageDevice
-from efalive.common import settings
 from efalive.common.settings import EfaLiveSettings
+from efalive.common.observable import Observable
+from tasks import BackupMailTask
+#from efalive.common import settings
+#from efalive.common.settings import EfaLiveSettings
 
 class EfaLiveDaemonTestCase(unittest.TestCase):
 
@@ -167,16 +170,20 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
 class TaskSchedulerModuleTestCase(unittest.TestCase):
 
-    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings")
     @patch("__builtin__.open")
-    def test_run_tasks(self, open_mock, settings_mock):
+    def test_run_tasks(self, open_mock):
         common.command_output = MagicMock(return_value = (0, "testfile.txt"))
         fileStub = FileStub()
         open_mock.return_value = fileStub
-        settings_mock.hourly_tasks.getData.return_value = [["SHELL", "ls /tmp1"]]
-        settings_mock.daily_tasks.getData.return_value = [["SHELL", "ls /tmp2"]]
-        settings_mock.weekly_tasks.getData.return_value = [["SHELL", "ls /tmp3"]]
-        settings_mock.monthly_tasks.getData.return_value = [["SHELL", "ls /tmp4"]]
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData([["SHELL", "ls /tmp1"]])
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData([["SHELL", "ls /tmp2"]])
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData([["SHELL", "ls /tmp3"]])
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData([["SHELL", "ls /tmp4"]])
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
@@ -194,16 +201,20 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(1, len(class_under_test._monthly_markers))
         self.assertEqual(4, len(fileStub.data))
 
-    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings")
     @patch("__builtin__.open")
-    def test_run_tasks__already_executed(self, open_mock, settings_mock):
+    def test_run_tasks__already_executed(self, open_mock):
         common.command_output = MagicMock(return_value = (0, "testfile.txt"))
         fileStub = FileStub()
         open_mock.return_value = fileStub
-        settings_mock.hourly_tasks.getData.return_value = [["SHELL", "ls /tmp1"]]
-        settings_mock.daily_tasks.getData.return_value = []
-        settings_mock.weekly_tasks.getData.return_value = []
-        settings_mock.monthly_tasks.getData.return_value = []
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData([["SHELL", "ls /tmp1"]])
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData([])
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData([])
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData([])
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
@@ -228,16 +239,20 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(0, len(class_under_test._monthly_markers))
         self.assertEqual(1, len(fileStub.data))
 
-    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings")
     @patch("__builtin__.open")
-    def test_run_tasks__new_task(self, open_mock, settings_mock):
+    def test_run_tasks__new_task(self, open_mock):
         common.command_output = MagicMock(return_value = (0, "testfile.txt"))
         fileStub = FileStub()
         open_mock.return_value = fileStub
-        settings_mock.hourly_tasks.getData.return_value = [["SHELL", "ls /tmp1"]]
-        settings_mock.daily_tasks.getData.return_value = []
-        settings_mock.weekly_tasks.getData.return_value = []
-        settings_mock.monthly_tasks.getData.return_value = []
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData([["SHELL", "ls /tmp1"]])
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData([])
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData([])
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData([])
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
@@ -252,7 +267,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(0, len(class_under_test._monthly_markers))
         self.assertEqual(1, len(fileStub.data))
 
-        settings_mock.daily_tasks.getData.return_value = [["SHELL", "ls /tmp2"]]
+        settings_mock.daily_tasks.updateData([["SHELL", "ls /tmp2"]])
 
         class_under_test.load_tasks(settings_mock)
         class_under_test.run_tasks()
@@ -265,6 +280,34 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(0, len(class_under_test._weekly_markers))
         self.assertEqual(0, len(class_under_test._monthly_markers))
         self.assertEqual(2, len(fileStub.data))
+
+    @patch("__builtin__.open")
+    @patch("efalive.daemon.efalivedaemon.BackupMailTask")
+    def test_run_tasks__mail(self, backup_mail_task_mock, open_mock):
+        fileStub = FileStub()
+        open_mock.return_value = fileStub
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData([])
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData([["BACKUP_MAIL", ["user1@testsystem.local", "user2@testsystem.local"]]])
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData([])
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData([])
+        settings_mock.confPath = "/test"
+        backup_mail_task_mock_instance = backup_mail_task_mock.return_value
+        backup_mail_task_mock_instance.task_id = 12345
+
+        class_under_test = TaskSchedulerModule()
+        class_under_test.load_tasks(settings_mock)
+        class_under_test.run_tasks()
+
+        self.assertEqual(0, len(class_under_test._hourly_markers))
+        self.assertEqual(1, len(class_under_test._daily_markers))
+        self.assertEqual(0, len(class_under_test._weekly_markers))
+        self.assertEqual(0, len(class_under_test._monthly_markers))
+        self.assertEqual(1, backup_mail_task_mock_instance.run.call_count)
 
 
 class FileStub(object):
