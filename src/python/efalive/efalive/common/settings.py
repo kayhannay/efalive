@@ -23,6 +23,7 @@ import os
 import json
 
 from observable import Observable
+import md5
 
 class EfaLiveSettings(object):
 
@@ -59,6 +60,7 @@ class EfaLiveSettings(object):
         self.mailer_port.updateData(25)
         self.mailer_use_ssl.updateData(False)
         self.mailer_use_starttls.updateData(True)
+
         if os.path.isfile(self._settingsFileName):
             self.settingsFile=open(self._settingsFileName, "r")
             self.parseSettingsFile(self.settingsFile)
@@ -130,20 +132,50 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed efa mailer password setting: " + passStr)
             elif line.startswith("HOURLY_TASKS="):
                 valueStr=line[(line.index('=') + 1):].rstrip()
-                self.hourly_tasks.updateData(json.loads(valueStr))
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.hourly_tasks.updateData(task_map)
                 self._logger.debug("Parsed hourly tasks setting: " + valueStr)
             elif line.startswith("DAILY_TASKS="):
                 valueStr=line[(line.index('=') + 1):].rstrip()
-                self.daily_tasks.updateData(json.loads(valueStr))
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.daily_tasks.updateData(task_map)
                 self._logger.debug("Parsed daily tasks setting: " + valueStr)
             elif line.startswith("WEEKLY_TASKS="):
                 valueStr=line[(line.index('=') + 1):].rstrip()
-                self.weekly_tasks.updateData(json.loads(valueStr))
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.weekly_tasks.updateData(task_map)
                 self._logger.debug("Parsed weekly tasks setting: " + valueStr)
             elif line.startswith("MONTHLY_TASKS="):
                 valueStr=line[(line.index('=') + 1):].rstrip()
-                self.monthly_tasks.updateData(json.loads(valueStr))
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.monthly_tasks.updateData(task_map)
                 self._logger.debug("Parsed monthly tasks setting: " + valueStr)
+
+    def _create_id(self, task):
+        hasher = md5.new()
+        hasher.update(task[0])
+        hasher.update(str(task[1]))
+        return hasher.hexdigest()
 
     def save(self):
         self._logger.info("Saving settings to file: %s" % (self._settingsFileName))
@@ -178,12 +210,19 @@ class EfaLiveSettings(object):
                 settingsFile.write("MAILER_USE_STARTTLS=\"FALSE\"\n")
             settingsFile.write("MAILER_USER=%s\n" % self.mailer_user.getData())
             settingsFile.write("MAILER_PASSWORD=%s\n" % self.mailer_password.getData())
-            settingsFile.write("HOURLY_TASKS=%s\n" % json.dumps(self.hourly_tasks.getData()))
-            settingsFile.write("DAILY_TASKS=%s\n" % json.dumps(self.daily_tasks.getData()))
-            settingsFile.write("WEEKLY_TASKS=%s\n" % json.dumps(self.weekly_tasks.getData()))
-            settingsFile.write("MONTHLY_TASKS=%s\n" % json.dumps(self.monthly_tasks.getData()))
+            settingsFile.write("HOURLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.hourly_tasks)))
+            settingsFile.write("DAILY_TASKS=%s\n" % json.dumps(self._get_tasks(self.daily_tasks)))
+            settingsFile.write("WEEKLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.weekly_tasks)))
+            settingsFile.write("MONTHLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.monthly_tasks)))
             settingsFile.close()
         except IOError, exception:
             self._logger.error("Could not save files: %s" % exception)
             raise Exception("Could not save files")
+
+    def _get_tasks(self, tasks_data):
+        tasks = tasks_data.getData()
+        if tasks == None:
+            return None
+        else:
+            return tasks.values()
 

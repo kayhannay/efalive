@@ -202,13 +202,12 @@ class TaskSchedulerModule(object):
 
     def _create_task_list(self, tasks):
         task_list = []
-        for task in tasks:
-            task_id = self._create_id(task)
-            if task[0] == "SHELL":
-                shellTask = ShellTask(task_id, task[1])
+        for task_id in tasks.keys():
+            if tasks[task_id][0] == "SHELL":
+                shellTask = ShellTask(task_id, tasks[task_id][1])
                 task_list.append(shellTask)
-            elif task[0] == "BACKUP_MAIL":
-                backupMailTask = BackupMailTask(task_id, task[1], self._settings)
+            elif tasks[task_id][0] == "BACKUP_MAIL":
+                backupMailTask = BackupMailTask(task_id, tasks[task_id][1], self._settings)
                 task_list.append(backupMailTask)
         return task_list
 
@@ -229,12 +228,6 @@ class TaskSchedulerModule(object):
             if not self._already_executed(task, "MONTHLY"):
                 task.run()
                 self._mark_task_run(task, "MONTHLY")
-
-    def _create_id(self, task):
-        hasher = md5.new()
-        hasher.update(task[0])
-        hasher.update(str(task[1]))
-        return hasher.hexdigest()
 
     def _load_marker_file(self, file_name):
         markers = {}

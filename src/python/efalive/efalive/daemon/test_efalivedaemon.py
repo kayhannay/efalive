@@ -177,13 +177,13 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         open_mock.return_value = fileStub
         settings_mock = Mock(spec = EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
-        settings_mock.hourly_tasks.updateData([["SHELL", "ls /tmp1"]])
+        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
         settings_mock.daily_tasks = Observable()
-        settings_mock.daily_tasks.updateData([["SHELL", "ls /tmp2"]])
+        settings_mock.daily_tasks.updateData({"234" : ["SHELL", "ls /tmp2"]})
         settings_mock.weekly_tasks = Observable()
-        settings_mock.weekly_tasks.updateData([["SHELL", "ls /tmp3"]])
+        settings_mock.weekly_tasks.updateData({"345" : ["SHELL", "ls /tmp3"]})
         settings_mock.monthly_tasks = Observable()
-        settings_mock.monthly_tasks.updateData([["SHELL", "ls /tmp4"]])
+        settings_mock.monthly_tasks.updateData({"456" : ["SHELL", "ls /tmp4"]})
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
@@ -208,13 +208,13 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         open_mock.return_value = fileStub
         settings_mock = Mock(spec = EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
-        settings_mock.hourly_tasks.updateData([["SHELL", "ls /tmp1"]])
+        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
         settings_mock.daily_tasks = Observable()
-        settings_mock.daily_tasks.updateData([])
+        settings_mock.daily_tasks.updateData({})
         settings_mock.weekly_tasks = Observable()
-        settings_mock.weekly_tasks.updateData([])
+        settings_mock.weekly_tasks.updateData({})
         settings_mock.monthly_tasks = Observable()
-        settings_mock.monthly_tasks.updateData([])
+        settings_mock.monthly_tasks.updateData({})
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
@@ -246,13 +246,13 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         open_mock.return_value = fileStub
         settings_mock = Mock(spec = EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
-        settings_mock.hourly_tasks.updateData([["SHELL", "ls /tmp1"]])
+        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
         settings_mock.daily_tasks = Observable()
-        settings_mock.daily_tasks.updateData([])
+        settings_mock.daily_tasks.updateData({})
         settings_mock.weekly_tasks = Observable()
-        settings_mock.weekly_tasks.updateData([])
+        settings_mock.weekly_tasks.updateData({})
         settings_mock.monthly_tasks = Observable()
-        settings_mock.monthly_tasks.updateData([])
+        settings_mock.monthly_tasks.updateData({})
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
@@ -267,7 +267,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(0, len(class_under_test._monthly_markers))
         self.assertEqual(1, len(fileStub.data))
 
-        settings_mock.daily_tasks.updateData([["SHELL", "ls /tmp2"]])
+        settings_mock.daily_tasks.updateData({"1234" : ["SHELL", "ls /tmp2"]})
 
         class_under_test.load_tasks(settings_mock)
         class_under_test.run_tasks()
@@ -288,13 +288,13 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         open_mock.return_value = fileStub
         settings_mock = Mock(spec = EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
-        settings_mock.hourly_tasks.updateData([])
+        settings_mock.hourly_tasks.updateData({})
         settings_mock.daily_tasks = Observable()
-        settings_mock.daily_tasks.updateData([["BACKUP_MAIL", ["user1@testsystem.local", "user2@testsystem.local"]]])
+        settings_mock.daily_tasks.updateData({"123" : ["BACKUP_MAIL", ["user1@testsystem.local", "user2@testsystem.local"]]})
         settings_mock.weekly_tasks = Observable()
-        settings_mock.weekly_tasks.updateData([])
+        settings_mock.weekly_tasks.updateData({})
         settings_mock.monthly_tasks = Observable()
-        settings_mock.monthly_tasks.updateData([])
+        settings_mock.monthly_tasks.updateData({})
         settings_mock.confPath = "/test"
         backup_mail_task_mock_instance = backup_mail_task_mock.return_value
         backup_mail_task_mock_instance.task_id = 12345

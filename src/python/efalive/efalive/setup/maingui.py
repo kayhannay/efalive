@@ -18,6 +18,7 @@ You should have received a copy of the GNU General Public License
 along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import pygtk
+from efalive.setup.taskstab import TasksTabController
 pygtk.require('2.0')
 import gtk
 import traceback
@@ -126,6 +127,9 @@ class SetupController(object):
         
         self.system_tab_controller = SystemTabController(self._model._settings)
         self._view.add_tab(_("System"), self.system_tab_controller.get_view())
+        
+        self.tasks_tab_controller = TasksTabController(self._model._settings)
+        self._view.add_tab(_("Tasks"), self.tasks_tab_controller.get_view())
         
         self.initEvents()
         self._view.connect("destroy", self.destroy)
