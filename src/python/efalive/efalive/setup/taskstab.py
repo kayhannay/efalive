@@ -19,7 +19,6 @@ along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import pygtk
 import gobject
-import md5
 pygtk.require('2.0')
 import gtk
 import logging
@@ -92,6 +91,20 @@ class TasksTabModel(object):
             tasks[self._settings._create_id(task)] = task
             self._settings.monthly_tasks.updateData(tasks)
 
+    def get_task(self, task_id):
+        tasks = self._settings.hourly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "HOURLY", tasks[task_id]
+        tasks = self._settings.daily_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "DAILY", tasks[task_id]
+        tasks = self._settings.weekly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "WEEKLY", tasks[task_id]
+        tasks = self._settings.monthly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "MONTHLY", tasks[task_id]
+
 class TasksTabView(gtk.VBox):
     def __init__(self):
         super(gtk.VBox, self).__init__()
@@ -127,6 +140,10 @@ class TasksTabView(gtk.VBox):
         self.task_button_vbox.pack_start(self.task_add_button, False, False, 2)
         self.task_add_button.show()
 
+        self.task_edit_button = gtk.Button(_("Edit"))
+        self.task_button_vbox.pack_start(self.task_edit_button, False, False, 2)
+        self.task_edit_button.show()
+
         self.task_del_button = gtk.Button(_("Del"))
         self.task_button_vbox.pack_start(self.task_del_button, False, False, 2)
         self.task_del_button.show()
@@ -146,6 +163,7 @@ class TasksTabController(object):
         self._model.register_weekly_tasks_callback(self.a_task_list_changed)
         self._model.register_monthly_tasks_callback(self.a_task_list_changed)
         self._view.task_add_button.connect("clicked", self.add_task)
+        self._view.task_edit_button.connect("clicked", self.edit_task)
         self._view.task_del_button.connect("clicked", self.delete_task)
 
     def get_view(self):
@@ -185,7 +203,7 @@ class TasksTabController(object):
                 task_type = "BACKUP"
                 text = editor.backup_task_input.get_text()
             else:
-                task_type = "SCRIPT"
+                task_type = "SHELL"
                 text = editor.script_task_input.get_text()
             interval = editor.task_interval_combo.get_active()
             if interval == 0:
@@ -196,7 +214,56 @@ class TasksTabController(object):
                 task_interval = "WEEKLY"
             elif interval == 3:
                 task_interval = "MONTHLY"
-            self._logger.info("Save new task '%s' '%s' '%s'" % (active_type, text, interval))
+            self._logger.info("Save new task '%s' '%s' '%s'" % (task_type, text, task_interval))
+            self._model.add_task(task_type, text, task_interval)
+        editor.destroy()
+
+    def edit_task(self, widget):
+        selection = self._view.task_list.get_selection()
+        selection.set_mode(gtk.SELECTION_SINGLE)
+        tree_model, tree_iter = selection.get_selected()
+        task_id = tree_model.get_value(tree_iter, 0)
+        task_interval, task = self._model.get_task(task_id)
+
+        editor = TaskEditor(self._view.get_toplevel())
+        self._logger.info("Edit task: %s" % task)
+        if task[0] == "BACKUP":
+            combo_index = 0
+            input_field = editor.backup_task_input
+        elif task[0] == "SHELL":
+            combo_index = 1
+            input_field = editor.script_task_input
+        if task_interval == "HOURLY":
+            interval_combo_index = 0
+        elif task_interval == "DAILY":
+            interval_combo_index = 1
+        elif task_interval == "WEEKLY":
+            interval_combo_index = 2
+        elif task_interval == "MONTHLY":
+            interval_combo_index = 3
+        editor.task_type_combo.set_active(combo_index)
+        input_field.set_text(task[1])
+        editor.task_interval_combo.set_active(interval_combo_index)
+        response = editor.run()
+        if response == gtk.RESPONSE_OK:
+            active_type = editor.task_type_combo.get_active()
+            if active_type == 0:
+                task_type = "BACKUP"
+                text = editor.backup_task_input.get_text()
+            else:
+                task_type = "SHELL"
+                text = editor.script_task_input.get_text()
+            interval = editor.task_interval_combo.get_active()
+            if interval == 0:
+                task_interval = "HOURLY"
+            elif interval == 1:
+                task_interval = "DAILY"
+            elif interval == 2:
+                task_interval = "WEEKLY"
+            elif interval == 3:
+                task_interval = "MONTHLY"
+            self._logger.info("Save changed task '%s' '%s' '%s'" % (task_type, text, task_interval))
+            self._model.delete_task(task_id)
             self._model.add_task(task_type, text, task_interval)
         editor.destroy()
 
@@ -216,7 +283,7 @@ class TaskEditor(gtk.Dialog):
         self.task_type_select_hbox.pack_start(self.task_type_combo, False, False, 2)
         self.task_type_combo.show()
         self.task_type_combo.append_text(_("Backup"))
-        self.task_type_combo.append_text(_("Script"))
+        self.task_type_combo.append_text(_("Shell"))
         self.task_type_combo.connect("changed", self.task_type_changed)
 
         self.task_edit_vbox = gtk.VBox()
