@@ -272,7 +272,7 @@ class TaskEditor(gtk.Dialog):
         gtk.Dialog.__init__(self, _("Task editor"), widget)
         
         self.main_container_vbox = gtk.VBox()
-        self.vbox.pack_start(self.main_container_vbox, True, True, 2)
+        self.vbox.pack_start(self.main_container_vbox, True, True, 5)
         self.main_container_vbox.show()
         
         self.task_type_select_hbox = gtk.HBox()

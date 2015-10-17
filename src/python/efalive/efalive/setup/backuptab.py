@@ -72,7 +72,7 @@ class BackupTabView(gtk.VBox):
     def _create_auto_usb_backup_components(self):
         # automatic usb backup box
         self.usbBackupFrame=gtk.Frame(_("Auto USB backup"))
-        self.pack_start(self.usbBackupFrame, False, False, 2)
+        self.pack_start(self.usbBackupFrame, False, False, 5)
         self.usbBackupFrame.show()
 
         self.usbBackupSpaceBox=gtk.HBox(False, 5)

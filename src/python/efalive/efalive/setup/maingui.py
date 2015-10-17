@@ -19,6 +19,7 @@ along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import pygtk
 from efalive.setup.taskstab import TasksTabController
+from efalive.setup.mailtab import MailTabController
 pygtk.require('2.0')
 import gtk
 import traceback
@@ -130,6 +131,9 @@ class SetupController(object):
         
         self.tasks_tab_controller = TasksTabController(self._model._settings)
         self._view.add_tab(_("Tasks"), self.tasks_tab_controller.get_view())
+        
+        self.mail_tab_controller = MailTabController(self._model._settings)
+        self._view.add_tab(_("Mail"), self.mail_tab_controller.get_view())
         
         self.initEvents()
         self._view.connect("destroy", self.destroy)

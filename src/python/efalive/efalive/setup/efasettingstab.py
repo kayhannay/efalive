@@ -56,7 +56,7 @@ class EfaSettingsTabView(gtk.VBox):
     def _init_components(self):
         # efa port field
         self.portVBox=gtk.VBox(False, 0)
-        self.pack_start(self.portVBox, False, False, 2)
+        self.pack_start(self.portVBox, False, False, 5)
         self.portVBox.show()
 
         self.portHBox=gtk.HBox(False, 5)
