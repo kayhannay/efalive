@@ -226,3 +226,62 @@ class EfaLiveSettings(object):
         else:
             return tasks.values()
 
+    def delete_task(self, task_id):
+        tasks = self.hourly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.hourly_tasks.updateData(tasks)
+        tasks = self.daily_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.daily_tasks.updateData(tasks)
+        tasks = self.weekly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.weekly_tasks.updateData(tasks)
+        tasks = self.monthly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.monthly_tasks.updateData(tasks)
+
+    def add_task(self, task_type, task_data, task_interval):
+        task = [task_type, task_data]
+        if (task_interval == "HOURLY"):
+            tasks = self.hourly_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.hourly_tasks.updateData(tasks)
+        elif (task_interval == "DAILY"):
+            tasks = self.daily_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.daily_tasks.updateData(tasks)
+        elif (task_interval == "WEEKLY"):
+            tasks = self.weekly_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.weekly_tasks.updateData(tasks)
+        elif (task_interval == "MONTHLY"):
+            tasks = self.monthly_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.monthly_tasks.updateData(tasks)
+
+    def get_task(self, task_id):
+        tasks = self.hourly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "HOURLY", tasks[task_id]
+        tasks = self.daily_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "DAILY", tasks[task_id]
+        tasks = self.weekly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "WEEKLY", tasks[task_id]
+        tasks = self.monthly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "MONTHLY", tasks[task_id]
+

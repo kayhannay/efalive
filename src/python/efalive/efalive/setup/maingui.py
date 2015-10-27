@@ -114,23 +114,23 @@ class SetupController(object):
             if pwok == False:
                 exit()
         
-        self.settings_gui_controller = EfaSettingsTabController(self._model._settings)
-        self._view.add_tab(_("Settings"), self.settings_gui_controller.get_view())
+        self.tools_tab_controller = ToolsTabController()
+        self._view.add_tab(_("Tools"), self.tools_tab_controller.get_view())
         
         self.actions_gui_controller = ActionsTabController()
         self._view.add_tab(_("Actions"), self.actions_gui_controller.get_view())
-        
-        self.backup_tab_controller = BackupTabController(self._model._settings)
-        self._view.add_tab(_("Backup"), self.backup_tab_controller.get_view())
-        
-        self.tools_tab_controller = ToolsTabController()
-        self._view.add_tab(_("Tools"), self.tools_tab_controller.get_view())
         
         self.system_tab_controller = SystemTabController(self._model._settings)
         self._view.add_tab(_("System"), self.system_tab_controller.get_view())
         
         self.tasks_tab_controller = TasksTabController(self._model._settings)
         self._view.add_tab(_("Tasks"), self.tasks_tab_controller.get_view())
+        
+        self.settings_gui_controller = EfaSettingsTabController(self._model._settings)
+        self._view.add_tab(_("Efa settings"), self.settings_gui_controller.get_view())
+        
+        self.backup_tab_controller = BackupTabController(self._model._settings)
+        self._view.add_tab(_("Backup"), self.backup_tab_controller.get_view())
         
         self.mail_tab_controller = MailTabController(self._model._settings)
         self._view.add_tab(_("Mail"), self.mail_tab_controller.get_view())

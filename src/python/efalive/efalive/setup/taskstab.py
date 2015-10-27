@@ -47,63 +47,13 @@ class TasksTabModel(object):
         self._settings.monthly_tasks.registerObserverCb(callback)
 
     def delete_task(self, task_id):
-        tasks = self._settings.hourly_tasks.getData()
-        if tasks != None and task_id in tasks:
-            del tasks[task_id]
-            self._settings.hourly_tasks.updateData(tasks)
-        tasks = self._settings.daily_tasks.getData()
-        if tasks != None and task_id in tasks:
-            del tasks[task_id]
-            self._settings.daily_tasks.updateData(tasks)
-        tasks = self._settings.weekly_tasks.getData()
-        if tasks != None and task_id in tasks:
-            del tasks[task_id]
-            self._settings.weekly_tasks.updateData(tasks)
-        tasks = self._settings.monthly_tasks.getData()
-        if tasks != None and task_id in tasks:
-            del tasks[task_id]
-            self._settings.monthly_tasks.updateData(tasks)
+        self._settings.delete_task(task_id)
 
     def add_task(self, task_type, task_data, task_interval):
-        task = [task_type, task_data]
-        if (task_interval == "HOURLY"):
-            tasks = self._settings.hourly_tasks.getData()
-            if tasks == None:
-                tasks = {}
-            tasks[self._settings._create_id(task)] = task
-            self._settings.hourly_tasks.updateData(tasks)
-        elif (task_interval == "DAILY"):
-            tasks = self._settings.daily_tasks.getData()
-            if tasks == None:
-                tasks = {}
-            tasks[self._settings._create_id(task)] = task
-            self._settings.daily_tasks.updateData(tasks)
-        elif (task_interval == "WEEKLY"):
-            tasks = self._settings.weekly_tasks.getData()
-            if tasks == None:
-                tasks = {}
-            tasks[self._settings._create_id(task)] = task
-            self._settings.weekly_tasks.updateData(tasks)
-        elif (task_interval == "MONTHLY"):
-            tasks = self._settings.monthly_tasks.getData()
-            if tasks == None:
-                tasks = {}
-            tasks[self._settings._create_id(task)] = task
-            self._settings.monthly_tasks.updateData(tasks)
+        self._settings.add_task(task_type, task_data, task_interval)
 
     def get_task(self, task_id):
-        tasks = self._settings.hourly_tasks.getData()
-        if tasks != None and task_id in tasks:
-            return "HOURLY", tasks[task_id]
-        tasks = self._settings.daily_tasks.getData()
-        if tasks != None and task_id in tasks:
-            return "DAILY", tasks[task_id]
-        tasks = self._settings.weekly_tasks.getData()
-        if tasks != None and task_id in tasks:
-            return "WEEKLY", tasks[task_id]
-        tasks = self._settings.monthly_tasks.getData()
-        if tasks != None and task_id in tasks:
-            return "MONTHLY", tasks[task_id]
+        return self._settings.get_task(task_id)
 
 class TasksTabView(gtk.VBox):
     def __init__(self):
@@ -136,15 +86,24 @@ class TasksTabView(gtk.VBox):
         self.tasks_hbox.pack_start(self.task_button_vbox, False, False, 2)
         self.task_button_vbox.show()
 
-        self.task_add_button = gtk.Button(_("Add"))
+        self.task_add_button = gtk.Button()
+        button_icon = gtk.image_new_from_file(common.get_icon_path("plus.png"))
+        self.task_add_button.set_image(button_icon)
+        self.task_add_button.set_tooltip_text(_("Add a new task"))
         self.task_button_vbox.pack_start(self.task_add_button, False, False, 2)
         self.task_add_button.show()
 
-        self.task_edit_button = gtk.Button(_("Edit"))
+        self.task_edit_button = gtk.Button()
+        button_icon = gtk.image_new_from_file(common.get_icon_path("settings.png"))
+        self.task_edit_button.set_image(button_icon)
+        self.task_edit_button.set_tooltip_text(_("Edit task"))
         self.task_button_vbox.pack_start(self.task_edit_button, False, False, 2)
         self.task_edit_button.show()
 
-        self.task_del_button = gtk.Button(_("Del"))
+        self.task_del_button = gtk.Button()
+        button_icon = gtk.image_new_from_file(common.get_icon_path("minus.png"))
+        self.task_del_button.set_image(button_icon)
+        self.task_del_button.set_tooltip_text(_("Remove task"))
         self.task_button_vbox.pack_start(self.task_del_button, False, False, 2)
         self.task_del_button.show()
 

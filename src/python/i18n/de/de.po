@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: efaLiveSetup 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-03 11:35+0200\n"
+"POT-Creation-Date: 2015-10-27 22:30+0100\n"
 "PO-Revision-Date: 2010-09-07 10:18+0200\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -24,7 +24,7 @@ msgstr "Bildschirm-Setup"
 
 #: efalive/efalive/setup/screen/screensetup.py:63
 #: efalive/efalive/setup/dttime/datetime.py:184
-#: efalive/efalive/setup/maingui.py:342
+#: efalive/efalive/setup/taskstab.py:287 efalive/efalive/setup/maingui.py:82
 msgid "Ok"
 msgstr "Ok"
 
@@ -34,9 +34,53 @@ msgstr "Anwenden"
 
 #: efalive/efalive/setup/screen/screensetup.py:73
 #: efalive/efalive/setup/dttime/datetime.py:189
-#: efalive/efalive/setup/maingui.py:346
+#: efalive/efalive/setup/taskstab.py:286 efalive/efalive/setup/maingui.py:86
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: efalive/efalive/setup/backuptab.py:74
+msgid "Auto USB backup"
+msgstr "Automatische USB Datensicherung"
+
+#: efalive/efalive/setup/backuptab.py:90
+msgid "enable automatic USB backup"
+msgstr "Automatische Datensicherung auf USB einschalten"
+
+#: efalive/efalive/setup/backuptab.py:102
+msgid "show dialog after automatic backup"
+msgstr "Dialog nach automatischer Datensicherung anzeigen"
+
+#: efalive/efalive/setup/backuptab.py:110
+msgid "use password for automatic backup"
+msgstr "Passwort für automatische Datensicherung verwenden"
+
+#: efalive/efalive/setup/backuptab.py:118
+msgid "backup password"
+msgstr "Passwort zur Datensicherung"
+
+#: efalive/efalive/setup/mailtab.py:78
+msgid "SMTP host"
+msgstr "SMTP Server"
+
+#: efalive/efalive/setup/mailtab.py:86
+msgid "SMTP port"
+msgstr "SMTP Port"
+
+#: efalive/efalive/setup/mailtab.py:96
+msgid "User"
+msgstr "Benutzer"
+
+#: efalive/efalive/setup/mailtab.py:104
+msgid "Password"
+msgstr "Passwort"
+
+#: efalive/efalive/setup/mailtab.py:113
+msgid "Use SSL/TLS"
+msgstr "SSL/TLS nutzen"
+
+#: efalive/efalive/setup/mailtab.py:119
+msgid "Use startTLS"
+msgstr "StartTLS nutzen"
 
 #: efalive/efalive/setup/setupcommon/dialogs.py:49
 #: efalive/efalive/setup/setupcommon/dialogs.py:55
@@ -96,195 +140,85 @@ msgstr "Netzwerk-Zeit-Protokoll"
 msgid "Use network time protocol (NTP)"
 msgstr "Zeit über Internet synchronisieren (NTP)"
 
-#: efalive/efalive/setup/maingui.py:109
-msgid "efaLive setup"
-msgstr "efaLive Setup"
+#: efalive/efalive/setup/taskstab.py:92
+msgid "Add a new task"
+msgstr "Task hinzufügen"
 
-#: efalive/efalive/setup/maingui.py:120
-msgid "efaLive settings"
-msgstr "efaLive Einstellungen"
+#: efalive/efalive/setup/taskstab.py:99
+msgid "Edit task"
+msgstr "Task editieren"
 
-#: efalive/efalive/setup/maingui.py:141
-msgid "efa network port"
-msgstr "efa Netzwerk-Port"
+#: efalive/efalive/setup/taskstab.py:106
+msgid "Remove task"
+msgstr "Task entfernen"
 
-#: efalive/efalive/setup/maingui.py:160
-msgid "efa shutdown action"
-msgstr "Aktion beim Beenden von efa"
+#: efalive/efalive/setup/taskstab.py:231
+msgid "Task editor"
+msgstr "Task-Editor"
 
-#: efalive/efalive/setup/maingui.py:177
-msgid "enable automatic USB backup"
-msgstr "Automatische Datensicherung auf USB einschalten"
-
-#: efalive/efalive/setup/maingui.py:189
-msgid "show dialog after automatic backup"
-msgstr "Dialog nach automatischer Datensicherung anzeigen"
-
-#: efalive/efalive/setup/maingui.py:197
-msgid "use password for automatic backup"
-msgstr "Passwort für automatische Datensicherung verwenden"
-
-#: efalive/efalive/setup/maingui.py:205
-msgid "backup password"
-msgstr "Passwort zur Datensicherung"
-
-#: efalive/efalive/setup/maingui.py:215
-msgid "Tools"
-msgstr "Werkzeuge"
-
-#: efalive/efalive/setup/maingui.py:233
-msgid "Terminal"
-msgstr "Kommandozeile"
-
-#: efalive/efalive/setup/maingui.py:237
-msgid "File manager"
-msgstr "Dateimanager"
-
-#: efalive/efalive/setup/maingui.py:241
-msgid "Devices"
-msgstr "Speichermedien"
-
-#: efalive/efalive/setup/maingui.py:245
-msgid "Editor"
-msgstr "Editor"
-
-#: efalive/efalive/setup/maingui.py:249
+#: efalive/efalive/setup/taskstab.py:244 efalive/efalive/setup/maingui.py:133
+#: efalive/efalive/setup/toolstab.py:81
 #: efalive/efalive/setup/backup/backup.py:62
 msgid "Backup"
 msgstr "Datensicherung"
 
-#: efalive/efalive/setup/maingui.py:253
-msgid "Logs"
-msgstr "Logdateien"
+#: efalive/efalive/setup/taskstab.py:245
+msgid "Shell"
+msgstr "Shell"
 
-#: efalive/efalive/setup/maingui.py:258
-msgid "System"
-msgstr "System"
+#: efalive/efalive/setup/taskstab.py:254
+msgid "Command"
+msgstr "Befehl"
 
-#: efalive/efalive/setup/maingui.py:276
-msgid "Screen"
-msgstr "Bildschirm"
+#: efalive/efalive/setup/taskstab.py:263
+msgid "Recipient"
+msgstr "Empfänger"
 
-#: efalive/efalive/setup/maingui.py:280
-msgid "Network"
-msgstr "Netzwerk"
+#: efalive/efalive/setup/taskstab.py:277
+msgid "Hourly"
+msgstr "Stündlich"
 
-#: efalive/efalive/setup/maingui.py:284
-msgid "Hostname"
-msgstr "Hostname"
+#: efalive/efalive/setup/taskstab.py:278
+msgid "Daily"
+msgstr "Täglich"
 
-#: efalive/efalive/setup/maingui.py:288
-msgid "Screensaver"
-msgstr "Bildschirmschoner"
+#: efalive/efalive/setup/taskstab.py:279
+msgid "Weekly"
+msgstr "Wöchentlich"
 
-#: efalive/efalive/setup/maingui.py:292
-msgid "Power manager"
-msgstr "Energieverwaltung"
+#: efalive/efalive/setup/taskstab.py:280
+msgid "Monthly"
+msgstr "Monatlich"
 
-#: efalive/efalive/setup/maingui.py:296
-msgid "Date & time"
-msgstr "Datum & Zeit"
+#: efalive/efalive/setup/maingui.py:57
+msgid "efaLive setup"
+msgstr "efaLive Setup"
 
-#: efalive/efalive/setup/maingui.py:300
-msgid "Keyboard"
-msgstr "Tastatur"
+#: efalive/efalive/setup/maingui.py:118
+msgid "Tools"
+msgstr "Werkzeuge"
 
-#: efalive/efalive/setup/maingui.py:306
+#: efalive/efalive/setup/maingui.py:121
 msgid "Actions"
 msgstr "Aktionen"
 
-#: efalive/efalive/setup/maingui.py:324
-msgid "Shutdown PC"
-msgstr "PC herunterfahren"
+#: efalive/efalive/setup/maingui.py:124
+msgid "System"
+msgstr "System"
 
-#: efalive/efalive/setup/maingui.py:328
-msgid "Restart PC"
-msgstr "PC neu starten"
+#: efalive/efalive/setup/maingui.py:127
+msgid "Tasks"
+msgstr "Tasks"
 
-#: efalive/efalive/setup/maingui.py:380
-msgid "shutdown pc"
-msgstr "PC herunterfahren"
+#: efalive/efalive/setup/maingui.py:130
+msgid "Efa settings"
+msgstr "Efa Einstellungen"
 
-#: efalive/efalive/setup/maingui.py:381
-msgid "restart pc"
-msgstr "PC neu starten"
+#: efalive/efalive/setup/maingui.py:136
+msgid "Mail"
+msgstr "E-Mail"
 
-#: efalive/efalive/setup/maingui.py:382
-msgid "restart efa"
-msgstr "efa neu starten"
-
-#: efalive/efalive/setup/maingui.py:383
-msgid "stop efa"
-msgstr "efa beenden"
-
-#: efalive/efalive/setup/maingui.py:457
-#, python-format
-msgid "Could not open xterm program: %s"
-msgstr "Konnte das Programm xterm nicht starten: %s"
-
-#: efalive/efalive/setup/maingui.py:465
-#, python-format
-msgid "Could not open nm-connection-editor program: %s"
-msgstr "Konnte das Programm nm-connection-editor nicht starten: %s"
-
-#: efalive/efalive/setup/maingui.py:473
-#, python-format
-msgid "Could not open thunar program: %s"
-msgstr "Konnte das Programm thunar nicht starten: %s"
-
-#: efalive/efalive/setup/maingui.py:478
-msgid "Really shut down PC ?"
-msgstr "PC wirklich herunterfahren ?"
-
-#: efalive/efalive/setup/maingui.py:484 efalive/efalive/setup/maingui.py:495
-#, python-format
-msgid "Could not run /sbin/shutdown program: %s"
-msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
-
-#: efalive/efalive/setup/maingui.py:489
-msgid "Really reboot PC ?"
-msgstr "PC wirklich neu starten ?"
-
-#: efalive/efalive/setup/maingui.py:509
-#, python-format
-msgid "Could not run keyboard setup: %s"
-msgstr "Konnte die Tastatureinstellungen nicht laden: %s"
-
-#: efalive/efalive/setup/maingui.py:517
-#, python-format
-msgid "Could not run dynamic hostname setup: %s"
-msgstr "Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
-
-#: efalive/efalive/setup/maingui.py:525
-#, python-format
-msgid "Could not open xscreensaver-demo program: %s"
-msgstr "Konnte das Programm xscreensaver-demo nicht starten: %s"
-
-#: efalive/efalive/setup/maingui.py:533
-#, python-format
-msgid "Could not open xfce4-power-manager-settings program: %s"
-msgstr "Konnte das Programm xfce4-power-manager-settings nicht starten: %s"
-
-#: efalive/efalive/setup/maingui.py:544
-#, python-format
-msgid "Could not open leafpad program: %s"
-msgstr "Konnte das Programm leafpad nicht starten: %s"
-
-#: efalive/efalive/setup/maingui.py:553
-msgid "Select directory to store log files"
-msgstr "Verzeichnis für Logdateien auswählen"
-
-#: efalive/efalive/setup/maingui.py:563
-#, python-format
-msgid "Could not create log file package in %s !"
-msgstr "Konnte keine Logdateienpaket auf %s erstellen!"
-
-#: efalive/efalive/setup/maingui.py:568
-#, python-format
-msgid "Created log file package in %s ."
-msgstr "Paket mit Logdateien in %s erstellt."
-
-#: efalive/efalive/setup/maingui.py:612
+#: efalive/efalive/setup/maingui.py:156
 msgid ""
 "Could not save files!\n"
 "\n"
@@ -292,13 +226,86 @@ msgstr ""
 "Die Einstellungen konnten nicht gespeichert werden!\n"
 "\n"
 
-#: efalive/efalive/setup/maingui.py:613
+#: efalive/efalive/setup/maingui.py:157
 msgid "Please check the path you provided for "
 msgstr "Bitte überprüfe den angegebenen Pfad auf "
 
-#: efalive/efalive/setup/maingui.py:614
+#: efalive/efalive/setup/maingui.py:158
 msgid "user rights and existance."
 msgstr "Benutzerrechte und ob er existiert."
+
+#: efalive/efalive/setup/toolstab.py:57
+msgid "Terminal"
+msgstr "Kommandozeile"
+
+#: efalive/efalive/setup/toolstab.py:63
+msgid "File manager"
+msgstr "Dateimanager"
+
+#: efalive/efalive/setup/toolstab.py:69
+msgid "Devices"
+msgstr "Speichermedien"
+
+#: efalive/efalive/setup/toolstab.py:75
+msgid "Editor"
+msgstr "Editor"
+
+#: efalive/efalive/setup/toolstab.py:87
+msgid "Logs"
+msgstr "Logdateien"
+
+#: efalive/efalive/setup/toolstab.py:116
+#, python-format
+msgid "Could not open xterm program: %s"
+msgstr "Konnte das Programm xterm nicht starten: %s"
+
+#: efalive/efalive/setup/toolstab.py:124
+#, python-format
+msgid "Could not open thunar program: %s"
+msgstr "Konnte das Programm thunar nicht starten: %s"
+
+#: efalive/efalive/setup/toolstab.py:135
+#, python-format
+msgid "Could not open leafpad program: %s"
+msgstr "Konnte das Programm leafpad nicht starten: %s"
+
+#: efalive/efalive/setup/toolstab.py:144
+msgid "Select directory to store log files"
+msgstr "Verzeichnis für Logdateien auswählen"
+
+#: efalive/efalive/setup/toolstab.py:154
+#, python-format
+msgid "Could not create log file package in %s !"
+msgstr "Konnte keine Logdateienpaket auf %s erstellen!"
+
+#: efalive/efalive/setup/toolstab.py:159
+#, python-format
+msgid "Created log file package in %s ."
+msgstr "Paket mit Logdateien in %s erstellt."
+
+#: efalive/efalive/setup/efasettingstab.py:66
+msgid "efa network port"
+msgstr "efa Netzwerk-Port"
+
+#: efalive/efalive/setup/efasettingstab.py:85
+msgid "efa shutdown action"
+msgstr "Aktion beim Beenden von efa"
+
+#: efalive/efalive/setup/efasettingstab.py:98
+msgid "shutdown pc"
+msgstr "PC herunterfahren"
+
+#: efalive/efalive/setup/efasettingstab.py:99
+msgid "restart pc"
+msgstr "PC neu starten"
+
+#: efalive/efalive/setup/efasettingstab.py:100
+msgid "restart efa"
+msgstr "efa neu starten"
+
+#: efalive/efalive/setup/efasettingstab.py:101
+msgid "stop efa"
+msgstr "efa beenden"
 
 #: efalive/efalive/setup/backup/backup.py:51
 msgid "Backup & Restore"
@@ -479,47 +486,79 @@ msgstr ""
 msgid "Could not restore backup: %s"
 msgstr "Konnte keine Datensicherung erstellen: %s"
 
-#~ msgid "efa version (2 recommended)"
-#~ msgstr "efa Version (2 empfohlen)"
+#: efalive/efalive/setup/systemtab.py:58
+msgid "Screen"
+msgstr "Bildschirm"
 
-#~ msgid "1 (old)"
-#~ msgstr "1 (alt)"
+#: efalive/efalive/setup/systemtab.py:64
+msgid "Network"
+msgstr "Netzwerk"
 
-#~ msgid "2 (current)"
-#~ msgstr "2 (aktuell)"
+#: efalive/efalive/setup/systemtab.py:70
+msgid "Hostname"
+msgstr "Hostname"
 
-#~ msgid "efa version"
-#~ msgstr "efa Version"
+#: efalive/efalive/setup/systemtab.py:76
+msgid "Screensaver"
+msgstr "Bildschirmschoner"
 
-#~ msgid "Choose which version of efa to use (efa 2 recommendet)."
-#~ msgstr "Zu benutzende efa version (efa 2 empfohlen)"
+#: efalive/efalive/setup/systemtab.py:82
+msgid "Power manager"
+msgstr "Energieverwaltung"
 
-#~ msgid "version"
-#~ msgstr "Version"
+#: efalive/efalive/setup/systemtab.py:88
+msgid "Date & time"
+msgstr "Datum & Zeit"
 
-#~ msgid "1 (stable)"
-#~ msgstr "1 (Stabil)"
+#: efalive/efalive/setup/systemtab.py:94
+msgid "Keyboard"
+msgstr "Tastatur"
 
-#~ msgid "2 (development)"
-#~ msgstr "2 (Entwicklung)"
+#: efalive/efalive/setup/systemtab.py:124
+#, python-format
+msgid "Could not open nm-connection-editor program: %s"
+msgstr "Konnte das Programm nm-connection-editor nicht starten: %s"
 
-#~ msgid "Here you can choose the efa version that "
-#~ msgstr "Hier kannst Du auswählen, welche Version von efa "
+#: efalive/efalive/setup/systemtab.py:135
+#, python-format
+msgid "Could not run keyboard setup: %s"
+msgstr "Konnte die Tastatureinstellungen nicht laden: %s"
 
-#~ msgid "you would like to use. Please note that efa 2 is a development "
-#~ msgstr "Du benutzen willst. Bitte beachte, dass sich efa 2 noch "
+#: efalive/efalive/setup/systemtab.py:143
+#, python-format
+msgid "Could not run dynamic hostname setup: %s"
+msgstr ""
+"Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
 
-#~ msgid "version, which might me unstable. If you need a stable version, "
-#~ msgstr "in der Entwicklung befindet und daher instabil sein kann. Wenn Du "
+#: efalive/efalive/setup/systemtab.py:151
+#, python-format
+msgid "Could not open xscreensaver-demo program: %s"
+msgstr "Konnte das Programm xscreensaver-demo nicht starten: %s"
 
-#~ msgid "choose efa 1."
-#~ msgstr "eine stabile Version benötigst, wähle efa 1."
+#: efalive/efalive/setup/systemtab.py:159
+#, python-format
+msgid "Could not open xfce4-power-manager-settings program: %s"
+msgstr "Konnte das Programm xfce4-power-manager-settings nicht starten: %s"
 
-#~ msgid "Mount"
-#~ msgstr "Einhängen"
+#: efalive/efalive/setup/actionstab.py:48
+msgid "Shutdown PC"
+msgstr "PC herunterfahren"
 
-#~ msgid "Unmount"
-#~ msgstr "Aushängen"
+#: efalive/efalive/setup/actionstab.py:54
+msgid "Restart PC"
+msgstr "PC neu starten"
 
-#~ msgid "Screen Setup"
-#~ msgstr "Bildschirm-Setup"
+#: efalive/efalive/setup/actionstab.py:79
+msgid "Really shut down PC ?"
+msgstr "PC wirklich herunterfahren ?"
+
+#: efalive/efalive/setup/actionstab.py:85
+#: efalive/efalive/setup/actionstab.py:96
+#, python-format
+msgid "Could not run /sbin/shutdown program: %s"
+msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
+
+#: efalive/efalive/setup/actionstab.py:90
+msgid "Really reboot PC ?"
+msgstr "PC wirklich neu starten ?"
+

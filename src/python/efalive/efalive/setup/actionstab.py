@@ -44,11 +44,15 @@ class ActionsTabView(gtk.VBox):
         self.actionsGrid.set_col_spacings(2)
         self.actionsGrid.show()
 
-        self.shutdownButton=gtk.Button(_("Shutdown PC"))
+        self.shutdownButton=gtk.Button()
+        button_vbox = common.get_button_label("power.png", _("Shutdown PC"))
+        self.shutdownButton.add(button_vbox)
         self.actionsGrid.attach(self.shutdownButton, 0, 1, 0, 1)
         self.shutdownButton.show()
 
-        self.restartButton=gtk.Button(_("Restart PC"))
+        self.restartButton=gtk.Button()
+        button_vbox = common.get_button_label("restart.png", _("Restart PC"))
+        self.restartButton.add(button_vbox)
         self.actionsGrid.attach(self.restartButton, 1, 2, 0, 1)
         self.restartButton.show()
 
