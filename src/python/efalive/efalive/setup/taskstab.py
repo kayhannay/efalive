@@ -70,14 +70,21 @@ class TasksTabView(gtk.VBox):
 
         self.task_list_cell = gtk.CellRendererText()
         self.task_list_cell.set_property('background-gdk', gtk.gdk.Color(red=50000, green=50000, blue=50000))
-        self.task_list_column = gtk.TreeViewColumn('Task list', self.task_list_cell, markup=1)
+        self.task_list_column = gtk.TreeViewColumn(_("Task list"), self.task_list_cell, markup=1)
 
         self.task_list_id_cell = gtk.CellRendererText()
         self.task_list_id_column = gtk.TreeViewColumn('Id', self.task_list_id_cell, markup=0)
         self.task_list_id_column.set_visible(False)
 
+        self.tasks_scoll_window = gtk.ScrolledWindow()
+        self.tasks_hbox.pack_start(self.tasks_scoll_window, True, True, 2)
+        self.tasks_scoll_window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.tasks_scoll_window.show()
+
         self.task_list = gtk.TreeView(self.task_list_store)
-        self.tasks_hbox.pack_start(self.task_list, True, True, 2)
+        selection = self.task_list.get_selection()
+        selection.set_mode(gtk.SELECTION_SINGLE)
+        self.tasks_scoll_window.add(self.task_list) # pack_start(self.task_list, True, True, 2)
         self.task_list.show()
         self.task_list.append_column(self.task_list_id_column)
         self.task_list.append_column(self.task_list_column)
@@ -112,6 +119,8 @@ class TasksTabController(object):
         self._logger = logging.getLogger('TasksTabController')
         
         self._view = TasksTabView()
+        self._view.task_del_button.set_sensitive(False)
+        self._view.task_edit_button.set_sensitive(False)
         
         self._model = TasksTabModel(settings)
         self._init_events()
@@ -124,6 +133,7 @@ class TasksTabController(object):
         self._view.task_add_button.connect("clicked", self.add_task)
         self._view.task_edit_button.connect("clicked", self.edit_task)
         self._view.task_del_button.connect("clicked", self.delete_task)
+        self._view.task_list.get_selection().connect("changed", self.task_selection_changed)
 
     def get_view(self):
         return self._view
@@ -133,21 +143,34 @@ class TasksTabController(object):
 
     def a_task_list_changed(self, task_list):
         self._view.task_list_store.clear()
-        self._process_task_list("Hourly", self._model._settings.hourly_tasks.getData())
-        self._process_task_list("Daily", self._model._settings.daily_tasks.getData())
-        self._process_task_list("Weekly", self._model._settings.weekly_tasks.getData())
-        self._process_task_list("Monthly", self._model._settings.monthly_tasks.getData())
+        self._process_task_list(_("Hourly"), self._model._settings.hourly_tasks.getData())
+        self._process_task_list(_("Daily"), self._model._settings.daily_tasks.getData())
+        self._process_task_list(_("Weekly"), self._model._settings.weekly_tasks.getData())
+        self._process_task_list(_("Monthly"), self._model._settings.monthly_tasks.getData())
+
+    def task_selection_changed(self, selection):
+        if selection.count_selected_rows() < 1:
+            self._view.task_del_button.set_sensitive(False)
+            self._view.task_edit_button.set_sensitive(False)
+        else:
+            self._view.task_del_button.set_sensitive(True)
+            self._view.task_edit_button.set_sensitive(True)
 
     def _process_task_list(self, task_frequency, tasks):
         if tasks == None:
             return
         for task_id in tasks.keys():
             task = tasks.get(task_id)
-            self.addTaskToView(task_id, task[0], task_frequency, task[1])
+            if task[0] == "BACKUP":
+                task_type = _("Backup")
+            elif task[0] == "SHELL":
+                task_type = _("Shell")
+            else:
+                task_type = task[0]
+            self.addTaskToView(task_id, task_type, task_frequency, task[1])
 
     def delete_task(self, widget):
         selection = self._view.task_list.get_selection()
-        selection.set_mode(gtk.SELECTION_SINGLE)
         tree_model, tree_iter = selection.get_selected()
         task_id = tree_model.get_value(tree_iter, 0)
         self._logger.info("Delete task %s" % task_id)
@@ -179,7 +202,6 @@ class TasksTabController(object):
 
     def edit_task(self, widget):
         selection = self._view.task_list.get_selection()
-        selection.set_mode(gtk.SELECTION_SINGLE)
         tree_model, tree_iter = selection.get_selected()
         task_id = tree_model.get_value(tree_iter, 0)
         task_interval, task = self._model.get_task(task_id)
@@ -231,15 +253,19 @@ class TaskEditor(gtk.Dialog):
         gtk.Dialog.__init__(self, _("Task editor"), widget)
         
         self.main_container_vbox = gtk.VBox()
-        self.vbox.pack_start(self.main_container_vbox, True, True, 5)
+        self.vbox.pack_start(self.main_container_vbox, False, False, 5)
         self.main_container_vbox.show()
         
         self.task_type_select_hbox = gtk.HBox()
         self.main_container_vbox.pack_start(self.task_type_select_hbox, False, False, 2)
         self.task_type_select_hbox.show()
 
+        self.task_type_label = gtk.Label(_("Type"))
+        self.task_type_select_hbox.pack_start(self.task_type_label, False, False, 2)
+        self.task_type_label.show()
+
         self.task_type_combo = gtk.combo_box_new_text()
-        self.task_type_select_hbox.pack_start(self.task_type_combo, False, False, 2)
+        self.task_type_select_hbox.pack_end(self.task_type_combo, False, False, 2)
         self.task_type_combo.show()
         self.task_type_combo.append_text(_("Backup"))
         self.task_type_combo.append_text(_("Shell"))
@@ -255,7 +281,7 @@ class TaskEditor(gtk.Dialog):
         self.script_task_hbox.pack_start(self.script_task_label, False, False, 2)
         self.script_task_label.show()
         self.script_task_input = gtk.Entry(max=255)
-        self.script_task_hbox.pack_start(self.script_task_input, True, True, 2)
+        self.script_task_hbox.pack_end(self.script_task_input, True, True, 2)
         self.script_task_input.show()
 
         self.backup_task_hbox = gtk.HBox()
@@ -264,15 +290,19 @@ class TaskEditor(gtk.Dialog):
         self.backup_task_hbox.pack_start(self.backup_task_label, False, False, 2)
         self.backup_task_label.show()
         self.backup_task_input = gtk.Entry(max=255)
-        self.backup_task_hbox.pack_start(self.backup_task_input, True, True, 2)
+        self.backup_task_hbox.pack_end(self.backup_task_input, True, True, 2)
         self.backup_task_input.show()
 
         self.task_interval_select_hbox = gtk.HBox()
         self.main_container_vbox.pack_start(self.task_interval_select_hbox, False, False, 2)
         self.task_interval_select_hbox.show()
 
+        self.task_interval_label = gtk.Label(_("Interval"))
+        self.task_interval_select_hbox.pack_start(self.task_interval_label, False, False, 2)
+        self.task_interval_label.show()
+
         self.task_interval_combo = gtk.combo_box_new_text()
-        self.task_interval_select_hbox.pack_start(self.task_interval_combo, False, False, 2)
+        self.task_interval_select_hbox.pack_end(self.task_interval_combo, False, False, 2)
         self.task_interval_combo.show()
         self.task_interval_combo.append_text(_("Hourly"))
         self.task_interval_combo.append_text(_("Daily"))

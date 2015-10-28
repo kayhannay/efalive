@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: efaLiveSetup 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-27 22:30+0100\n"
+"POT-Creation-Date: 2015-10-28 22:58+0100\n"
 "PO-Revision-Date: 2010-09-07 10:18+0200\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -24,7 +24,7 @@ msgstr "Bildschirm-Setup"
 
 #: efalive/efalive/setup/screen/screensetup.py:63
 #: efalive/efalive/setup/dttime/datetime.py:184
-#: efalive/efalive/setup/taskstab.py:287 efalive/efalive/setup/maingui.py:82
+#: efalive/efalive/setup/taskstab.py:317 efalive/efalive/setup/maingui.py:82
 msgid "Ok"
 msgstr "Ok"
 
@@ -34,7 +34,7 @@ msgstr "Anwenden"
 
 #: efalive/efalive/setup/screen/screensetup.py:73
 #: efalive/efalive/setup/dttime/datetime.py:189
-#: efalive/efalive/setup/taskstab.py:286 efalive/efalive/setup/maingui.py:86
+#: efalive/efalive/setup/taskstab.py:316 efalive/efalive/setup/maingui.py:86
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -140,55 +140,67 @@ msgstr "Netzwerk-Zeit-Protokoll"
 msgid "Use network time protocol (NTP)"
 msgstr "Zeit über Internet synchronisieren (NTP)"
 
-#: efalive/efalive/setup/taskstab.py:92
+#: efalive/efalive/setup/taskstab.py:73
+msgid "Task list"
+msgstr "Tasks"
+
+#: efalive/efalive/setup/taskstab.py:99
 msgid "Add a new task"
 msgstr "Task hinzufügen"
 
-#: efalive/efalive/setup/taskstab.py:99
+#: efalive/efalive/setup/taskstab.py:106
 msgid "Edit task"
 msgstr "Task editieren"
 
-#: efalive/efalive/setup/taskstab.py:106
+#: efalive/efalive/setup/taskstab.py:113
 msgid "Remove task"
 msgstr "Task entfernen"
 
-#: efalive/efalive/setup/taskstab.py:231
-msgid "Task editor"
-msgstr "Task-Editor"
+#: efalive/efalive/setup/taskstab.py:146 efalive/efalive/setup/taskstab.py:307
+msgid "Hourly"
+msgstr "Stündlich"
 
-#: efalive/efalive/setup/taskstab.py:244 efalive/efalive/setup/maingui.py:133
-#: efalive/efalive/setup/toolstab.py:81
+#: efalive/efalive/setup/taskstab.py:147 efalive/efalive/setup/taskstab.py:308
+msgid "Daily"
+msgstr "Täglich"
+
+#: efalive/efalive/setup/taskstab.py:148 efalive/efalive/setup/taskstab.py:309
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#: efalive/efalive/setup/taskstab.py:149 efalive/efalive/setup/taskstab.py:310
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: efalive/efalive/setup/taskstab.py:165 efalive/efalive/setup/taskstab.py:270
+#: efalive/efalive/setup/maingui.py:133 efalive/efalive/setup/toolstab.py:81
 #: efalive/efalive/setup/backup/backup.py:62
 msgid "Backup"
 msgstr "Datensicherung"
 
-#: efalive/efalive/setup/taskstab.py:245
+#: efalive/efalive/setup/taskstab.py:167 efalive/efalive/setup/taskstab.py:271
 msgid "Shell"
 msgstr "Shell"
 
-#: efalive/efalive/setup/taskstab.py:254
+#: efalive/efalive/setup/taskstab.py:253
+msgid "Task editor"
+msgstr "Task-Editor"
+
+#: efalive/efalive/setup/taskstab.py:263
+msgid "Type"
+msgstr "Typ"
+
+#: efalive/efalive/setup/taskstab.py:280
 msgid "Command"
 msgstr "Befehl"
 
-#: efalive/efalive/setup/taskstab.py:263
+#: efalive/efalive/setup/taskstab.py:289
 msgid "Recipient"
 msgstr "Empfänger"
 
-#: efalive/efalive/setup/taskstab.py:277
-msgid "Hourly"
-msgstr "Stündlich"
-
-#: efalive/efalive/setup/taskstab.py:278
-msgid "Daily"
-msgstr "Täglich"
-
-#: efalive/efalive/setup/taskstab.py:279
-msgid "Weekly"
-msgstr "Wöchentlich"
-
-#: efalive/efalive/setup/taskstab.py:280
-msgid "Monthly"
-msgstr "Monatlich"
+#: efalive/efalive/setup/taskstab.py:300
+msgid "Interval"
+msgstr "Intervall"
 
 #: efalive/efalive/setup/maingui.py:57
 msgid "efaLive setup"
@@ -561,4 +573,3 @@ msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
 #: efalive/efalive/setup/actionstab.py:90
 msgid "Really reboot PC ?"
 msgstr "PC wirklich neu starten ?"
-
