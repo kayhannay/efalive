@@ -184,6 +184,7 @@ class TaskSchedulerModule(object):
     daily and weekly tasks.
     """
     def __init__(self):
+        self._logger = logging.getLogger('efalivedaemon.TaskScheduleModule')
         self._hourly_markers = {}
         self._daily_markers = {}
         self._weekly_markers = {}
@@ -195,13 +196,15 @@ class TaskSchedulerModule(object):
         self.daily_tasks = self._create_task_list(self._settings.daily_tasks.getData())
         self.weekly_tasks = self._create_task_list(self._settings.weekly_tasks.getData())
         self.monthly_tasks = self._create_task_list(self._settings.monthly_tasks.getData())
-        self._load_marker_file("hourly_tasks.dat")
-        self._load_marker_file("daily_tasks.dat")
-        self._load_marker_file("weekly_tasks.dat")
-        self._load_marker_file("monthly_tasks.dat")
+        self._hourly_markers = self._load_marker_file("hourly_tasks.dat")
+        self._daily_markers = self._load_marker_file("daily_tasks.dat")
+        self._weekly_markers = self._load_marker_file("weekly_tasks.dat")
+        self._monthly_markers = self._load_marker_file("monthly_tasks.dat")
 
     def _create_task_list(self, tasks):
         task_list = []
+        if tasks == None:
+            return task_list
         for task_id in tasks.keys():
             if tasks[task_id][0] == "SHELL":
                 shellTask = ShellTask(task_id, tasks[task_id][1])
@@ -231,26 +234,37 @@ class TaskSchedulerModule(object):
 
     def _load_marker_file(self, file_name):
         markers = {}
-        marker_file = open(os.path.join(self._settings.confPath, file_name), "r")
-        for line in marker_file:
+        marker_file = os.path.join(self._settings.confPath, file_name)
+        if not os.path.isfile(marker_file):
+            self._logger.info("No marker file found at %s" % marker_file)
+            return markers
+        marker_file_handle = open(marker_file, "r")
+        for line in marker_file_handle:
             entry = json.loads(line)
+            self._logger.debug("Read marker line: %s" % entry)
             markers[entry[0]] = dateutil.parser.parse(entry[1])
+        marker_file_handle.close()
         return markers
 
     def _save_marker_file(self, file_name, markers):
         marker_file = open(os.path.join(self._settings.confPath, file_name), "w")
         for marker in markers:
-            marker_file.write(json.dumps([marker, markers[marker].isoformat()]))
+            marker_file.write("%s\n" % json.dumps([marker, markers[marker].isoformat()]))
+        marker_file.close()
 
     def _already_executed(self, task, cycle):
+        self._logger.debug("Execute task: %s" % task.task_id)
         if cycle == "HOURLY":
+            self._logger.debug("Hourly markers: %s" % self._hourly_markers)
             if task.task_id in self._hourly_markers:
                 last_run = self._hourly_markers[task.task_id]
                 delta = datetime.now() - last_run
+                self._logger.info("Delta: %d" % delta.total_seconds())
                 if (delta.total_seconds() < 1 * 60 * 60):
                     return True
             return False
         elif cycle == "DAILY":
+            self._logger.debug("Daily markers: %s" % self._daily_markers)
             if task.task_id in self._daily_markers:
                 last_run = self._daily_markers[task.task_id]
                 delta = datetime.now() - last_run
@@ -258,6 +272,7 @@ class TaskSchedulerModule(object):
                     return True
             return False
         elif cycle == "WEEKLY":
+            self._logger.debug("Weekly markers: %s" % self._weekly_markers)
             if task.task_id in self._weekly_markers:
                 last_run = self._weekly_markers[task.task_id]
                 delta = datetime.now() - last_run
@@ -265,6 +280,7 @@ class TaskSchedulerModule(object):
                     return True
             return False
         elif cycle == "MONTHLY":
+            self._logger.debug("Monthly markers: %s" % self._monthly_markers)
             if task.task_id in self._monthly_markers:
                 last_run = self._monthly_markers[task.task_id]
                 delta = datetime.now() - last_run

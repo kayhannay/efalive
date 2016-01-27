@@ -36,10 +36,10 @@ def get_icon_path(icon_name):
     logger.debug("Resolved icon path: %s" % icon_path)
     return icon_path
 
-def command_output(args, **kwds):
-    kwds.setdefault("stdout", subprocess.PIPE)
-    kwds.setdefault("stderr", subprocess.STDOUT)
-    process = subprocess.Popen(args, **kwds)
+def command_output(args):
+    logger = logging.getLogger('common')
+    logger.debug("Command to execute: '%s'" % args)
+    process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
     output = process.communicate()[0]
     returncode = process.returncode
     return (returncode, output)

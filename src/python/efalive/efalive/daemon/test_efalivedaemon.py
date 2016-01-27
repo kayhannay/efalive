@@ -243,7 +243,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
     def test_run_tasks__new_task(self, open_mock):
         common.command_output = MagicMock(return_value = (0, "testfile.txt"))
         fileStub = FileStub()
-        open_mock.return_value = fileStub
+        open_mock.side_effect = [ fileStub, FileStub(), FileStub(), FileStub(), fileStub, fileStub, FileStub(), FileStub(), FileStub(), fileStub]
         settings_mock = Mock(spec = EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
         settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
