@@ -38,10 +38,8 @@ from email.mime.text import MIMEText
 class MailData(object):
 
     def __init__(self):
-        self.recipient_addresses = None
-        self.recipient_name = None
-        self.sender_address = None
-        self.sender_name = None
+        self.recipients = None
+        self.sender = None
         self.subject = None
         self.body = None
         self.file_attachments = None
@@ -64,6 +62,7 @@ class Mailer(object):
 
     def create_mail(self, mail):
         message_text = MIMEText(mail.body)
+        message_text.set_charset("utf-8")
         if mail.file_attachments != None:
             msg = MIMEMultipart()
             msg.attach(message_text)
@@ -73,8 +72,8 @@ class Mailer(object):
         else:
             msg = message_text
         msg["Subject"] = mail.subject
-        msg["From"] = mail.sender_address
-        msg["To"] = ', '.join(mail.recipient_addresses)
+        msg["From"] = mail.sender
+        msg["To"] = ', '.join(mail.recipients)
         return msg
 
     def send_mail(self, config, mail):

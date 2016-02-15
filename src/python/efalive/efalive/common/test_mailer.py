@@ -28,8 +28,8 @@ class MailerTestCase(unittest.TestCase):
 
     def test_create_mail__text(self):
         mail = MailData()
-        mail.recipient_addresses = ["recipient@test.local"]
-        mail.sender_address = "sender@test.local"
+        mail.recipients = ["recipient@test.local"]
+        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
 
@@ -37,7 +37,7 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender_address, result["From"])
+        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertFalse(result.is_multipart())
         self.assertEqual("text/plain", result.get_content_type())
@@ -45,8 +45,8 @@ class MailerTestCase(unittest.TestCase):
 
     def test_create_mail__text_two_recipients(self):
         mail = MailData()
-        mail.recipient_addresses = ["recipient1@test.local", "recipient2@test.local"]
-        mail.sender_address = "sender@test.local"
+        mail.recipients = ["recipient1@test.local", "recipient2@test.local"]
+        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
 
@@ -54,7 +54,7 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient1@test.local, recipient2@test.local", result["To"])
-        self.assertEqual(mail.sender_address, result["From"])
+        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertFalse(result.is_multipart())
         self.assertEqual("text/plain", result.get_content_type())
@@ -62,8 +62,8 @@ class MailerTestCase(unittest.TestCase):
 
     def test_create_mail__attach_zip(self):
         mail = MailData()
-        mail.recipient_addresses = ["recipient@test.local"]
-        mail.sender_address = "sender@test.local"
+        mail.recipients = ["recipient@test.local"]
+        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.zip"]
@@ -74,7 +74,7 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender_address, result["From"])
+        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -88,8 +88,8 @@ class MailerTestCase(unittest.TestCase):
 
     def test_create_mail__attach_text(self):
         mail = MailData()
-        mail.recipient_addresses = ["recipient@test.local"]
-        mail.sender_address = "sender@test.local"
+        mail.recipients = ["recipient@test.local"]
+        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.txt"]
@@ -100,7 +100,7 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender_address, result["From"])
+        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -114,8 +114,8 @@ class MailerTestCase(unittest.TestCase):
 
     def test_create_mail__attach_image(self):
         mail = MailData()
-        mail.recipient_addresses = ["recipient@test.local"]
-        mail.sender_address = "sender@test.local"
+        mail.recipients = ["recipient@test.local"]
+        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.png"]
@@ -126,7 +126,7 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender_address, result["From"])
+        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -140,8 +140,8 @@ class MailerTestCase(unittest.TestCase):
 
     def test_create_mail__attach_audio(self):
         mail = MailData()
-        mail.recipient_addresses = ["recipient@test.local"]
-        mail.sender_address = "sender@test.local"
+        mail.recipients = ["recipient@test.local"]
+        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.wav"]
@@ -152,7 +152,7 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender_address, result["From"])
+        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -166,8 +166,8 @@ class MailerTestCase(unittest.TestCase):
 
     def test_create_mail__attach_text_and_zip(self):
         mail = MailData()
-        mail.recipient_addresses = ["recipient@test.local"]
-        mail.sender_address = "sender@test.local"
+        mail.recipients = ["recipient@test.local"]
+        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.txt", "test.zip"]
@@ -179,7 +179,7 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender_address, result["From"])
+        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -197,8 +197,8 @@ class MailerTestCase(unittest.TestCase):
     @patch("efalive.common.mailer.smtplib.SMTP", autospec=True)
     def test_send_mail__unencrypted_unauthorized(self, smtp_mock):
         mail_data = MailData()
-        mail_data.recipient_addresses = ["recipient@test.local"]
-        mail_data.sender_address = "sender@test.local"
+        mail_data.recipients = ["recipient@test.local"]
+        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()
@@ -222,8 +222,8 @@ class MailerTestCase(unittest.TestCase):
     @patch("efalive.common.mailer.smtplib.SMTP", autospec=True)
     def test_send_mail__starttls_unauthorized(self, smtp_mock):
         mail_data = MailData()
-        mail_data.recipient_addresses = ["recipient@test.local"]
-        mail_data.sender_address = "sender@test.local"
+        mail_data.recipients = ["recipient@test.local"]
+        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()
@@ -247,8 +247,8 @@ class MailerTestCase(unittest.TestCase):
     @patch("efalive.common.mailer.smtplib.SMTP_SSL", autospec=True)
     def test_send_mail__ssl_unauthorized(self, smtp_mock):
         mail_data = MailData()
-        mail_data.recipient_addresses = ["recipient@test.local"]
-        mail_data.sender_address = "sender@test.local"
+        mail_data.recipients = ["recipient@test.local"]
+        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()
@@ -272,8 +272,8 @@ class MailerTestCase(unittest.TestCase):
     @patch("efalive.common.mailer.smtplib.SMTP", autospec=True)
     def test_send_mail__unencrypted_authorized(self, smtp_mock):
         mail_data = MailData()
-        mail_data.recipient_addresses = ["recipient@test.local"]
-        mail_data.sender_address = "sender@test.local"
+        mail_data.recipients = ["recipient@test.local"]
+        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()

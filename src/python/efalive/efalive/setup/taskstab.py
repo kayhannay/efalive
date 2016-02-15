@@ -161,7 +161,7 @@ class TasksTabController(object):
             return
         for task_id in tasks.keys():
             task = tasks.get(task_id)
-            if task[0] == "BACKUP":
+            if task[0] == "BACKUP_MAIL":
                 task_type = _("Backup")
             elif task[0] == "SHELL":
                 task_type = _("Shell")
@@ -182,7 +182,7 @@ class TasksTabController(object):
         if response == gtk.RESPONSE_OK:
             active_type = editor.task_type_combo.get_active()
             if active_type == 0:
-                task_type = "BACKUP"
+                task_type = "BACKUP_MAIL"
                 text = editor.backup_task_input.get_text()
             else:
                 task_type = "SHELL"
@@ -208,7 +208,7 @@ class TasksTabController(object):
 
         editor = TaskEditor(self._view.get_toplevel())
         self._logger.info("Edit task: %s" % task)
-        if task[0] == "BACKUP":
+        if task[0] == "BACKUP_MAIL":
             combo_index = 0
             input_field = editor.backup_task_input
         elif task[0] == "SHELL":
@@ -229,7 +229,7 @@ class TasksTabController(object):
         if response == gtk.RESPONSE_OK:
             active_type = editor.task_type_combo.get_active()
             if active_type == 0:
-                task_type = "BACKUP"
+                task_type = "BACKUP_MAIL"
                 text = editor.backup_task_input.get_text()
             else:
                 task_type = "SHELL"

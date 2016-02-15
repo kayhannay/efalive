@@ -75,7 +75,7 @@ class BackupMailTask(Task):
         self._logger = logging.getLogger('daemon.BackupMailTask')
 
         self._mail_data = MailData()
-        self._mail_data.recipient_addresses = recipients
+        self._mail_data.recipients = [ recipients ]
 
         self._mailer_config = MailerConfig()
         self._mailer_config.smtp_host = efalive_settings.mailer_host.getData()
@@ -91,11 +91,14 @@ class BackupMailTask(Task):
         backup_dir = os.path.dirname(directory)
         if not os.path.exists(backup_dir):
             os.mkdirs(backup_dir)
-        (returncode, output) = common.command_output(["/usr/bin/efalive-backup", directory])
-        if returncode != 0:
-            self._logger.error("Could not create backup (%d): \n %s" % (returncode, output))
-            return
-        self._logger.debug("Backup finished (%d): \n %s", (returncode, output))
+        try:
+            (returncode, output) = common.command_output(["/usr/bin/efalive-backup", directory])
+            if returncode != 0:
+                self._logger.error("Could not create backup (%d): \n %s" % (returncode, output))
+                return
+            self._logger.debug("Backup finished (%d): \n %s", (returncode, output))
+        except OSError, exception:
+            self._logger.error("Could not create backup: %s" % exception)
         
         if mailer == None:
             mailer = Mailer()

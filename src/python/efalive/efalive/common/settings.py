@@ -21,6 +21,7 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 import os
 import json
+import base64
 
 from observable import Observable
 import md5
@@ -128,7 +129,7 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed efa mailer user setting: " + userStr)
             elif line.startswith("MAILER_PASSWORD="):
                 passStr=line[(line.index('=') + 1):].rstrip()
-                self.mailer_password.updateData(passStr)
+                self.mailer_password.updateData(base64.b64decode(passStr))
                 self._logger.debug("Parsed efa mailer password setting: " + passStr)
             elif line.startswith("HOURLY_TASKS="):
                 valueStr=line[(line.index('=') + 1):].rstrip()
@@ -209,7 +210,7 @@ class EfaLiveSettings(object):
             else:
                 settingsFile.write("MAILER_USE_STARTTLS=\"FALSE\"\n")
             settingsFile.write("MAILER_USER=%s\n" % self.mailer_user.getData())
-            settingsFile.write("MAILER_PASSWORD=%s\n" % self.mailer_password.getData())
+            settingsFile.write("MAILER_PASSWORD=%s\n" % base64.b64encode(self.mailer_password.getData()))
             settingsFile.write("HOURLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.hourly_tasks)))
             settingsFile.write("DAILY_TASKS=%s\n" % json.dumps(self._get_tasks(self.daily_tasks)))
             settingsFile.write("WEEKLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.weekly_tasks)))
