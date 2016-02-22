@@ -85,7 +85,7 @@ class MailTabView(gtk.VBox):
         self.pack_start(self.port_hbox, False, False, 2)
         self.port_label = gtk.Label(_("SMTP port"))
         self.port_hbox.pack_start(self.port_label, False, False, 2)
-        self.port_adjustment = gtk.Adjustment(25, 0, 65565, 1, 1000)
+        self.port_adjustment = gtk.Adjustment(0, 0, 65565, 1, 1000)
         self.port_button = gtk.SpinButton(self.port_adjustment)
         self.port_button.set_wrap(True)
         self.port_hbox.pack_end(self.port_button, False, False, 2)

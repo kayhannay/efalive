@@ -58,9 +58,12 @@ class EfaLiveSettings(object):
     def initSettings(self):
         self.efaShutdownAction.updateData("shutdown")
         self.efaPort.updateData(3834)
+        self.mailer_host.updateData("")
         self.mailer_port.updateData(25)
         self.mailer_use_ssl.updateData(False)
         self.mailer_use_starttls.updateData(True)
+        self.mailer_user.updateData("")
+        self.mailer_password.updateData("")
 
         if os.path.isfile(self._settingsFileName):
             self.settingsFile=open(self._settingsFileName, "r")
