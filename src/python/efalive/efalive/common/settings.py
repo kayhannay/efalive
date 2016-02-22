@@ -132,7 +132,7 @@ class EfaLiveSettings(object):
                 self.mailer_password.updateData(base64.b64decode(passStr))
                 self._logger.debug("Parsed efa mailer password setting: " + passStr)
             elif line.startswith("HOURLY_TASKS="):
-                valueStr=line[(line.index('=') + 1):].rstrip()
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
                 tasks = json.loads(valueStr)
                 if tasks != None:
                     task_map = {}
@@ -142,7 +142,7 @@ class EfaLiveSettings(object):
                     self.hourly_tasks.updateData(task_map)
                 self._logger.debug("Parsed hourly tasks setting: " + valueStr)
             elif line.startswith("DAILY_TASKS="):
-                valueStr=line[(line.index('=') + 1):].rstrip()
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
                 tasks = json.loads(valueStr)
                 if tasks != None:
                     task_map = {}
@@ -152,7 +152,7 @@ class EfaLiveSettings(object):
                     self.daily_tasks.updateData(task_map)
                 self._logger.debug("Parsed daily tasks setting: " + valueStr)
             elif line.startswith("WEEKLY_TASKS="):
-                valueStr=line[(line.index('=') + 1):].rstrip()
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
                 tasks = json.loads(valueStr)
                 if tasks != None:
                     task_map = {}
@@ -162,7 +162,7 @@ class EfaLiveSettings(object):
                     self.weekly_tasks.updateData(task_map)
                 self._logger.debug("Parsed weekly tasks setting: " + valueStr)
             elif line.startswith("MONTHLY_TASKS="):
-                valueStr=line[(line.index('=') + 1):].rstrip()
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
                 tasks = json.loads(valueStr)
                 if tasks != None:
                     task_map = {}
@@ -210,11 +210,14 @@ class EfaLiveSettings(object):
             else:
                 settingsFile.write("MAILER_USE_STARTTLS=\"FALSE\"\n")
             settingsFile.write("MAILER_USER=%s\n" % self.mailer_user.getData())
-            settingsFile.write("MAILER_PASSWORD=%s\n" % base64.b64encode(self.mailer_password.getData()))
-            settingsFile.write("HOURLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.hourly_tasks)))
-            settingsFile.write("DAILY_TASKS=%s\n" % json.dumps(self._get_tasks(self.daily_tasks)))
-            settingsFile.write("WEEKLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.weekly_tasks)))
-            settingsFile.write("MONTHLY_TASKS=%s\n" % json.dumps(self._get_tasks(self.monthly_tasks)))
+            password = self.mailer_password.getData()
+            if password != None:
+                password = base64.b64encode(password)
+            settingsFile.write("MAILER_PASSWORD=%s\n" % password)
+            settingsFile.write("HOURLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.hourly_tasks)))
+            settingsFile.write("DAILY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.daily_tasks)))
+            settingsFile.write("WEEKLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.weekly_tasks)))
+            settingsFile.write("MONTHLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.monthly_tasks)))
             settingsFile.close()
         except IOError, exception:
             self._logger.error("Could not save files: %s" % exception)

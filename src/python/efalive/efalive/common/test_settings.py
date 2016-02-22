@@ -138,10 +138,10 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual("MAILER_USE_STARTTLS=\"FALSE\"\n", file_stub.settings_list[11])
         self.assertEqual("MAILER_USER=testuser\n", file_stub.settings_list[12])
         self.assertEqual("MAILER_PASSWORD=c2VjcmV0\n", file_stub.settings_list[13])
-        self.assertEqual("HOURLY_TASKS=[[\"SHELL\", \"ls /tmp0\"]]\n", file_stub.settings_list[14])
-        self.assertEqual("DAILY_TASKS=[[\"BACKUP\", \"\"], [\"SHELL\", \"ls /tmp1\"]]\n", file_stub.settings_list[15])
-        self.assertEqual("WEEKLY_TASKS=[[\"SHELL\", \"ls /tmp2\"]]\n", file_stub.settings_list[16])
-        self.assertEqual("MONTHLY_TASKS=[[\"SHELL\", \"ls /tmp3\"]]\n", file_stub.settings_list[17])
+        self.assertEqual("HOURLY_TASKS='[[\"SHELL\", \"ls /tmp0\"]]'\n", file_stub.settings_list[14])
+        self.assertEqual("DAILY_TASKS='[[\"BACKUP\", \"\"], [\"SHELL\", \"ls /tmp1\"]]'\n", file_stub.settings_list[15])
+        self.assertEqual("WEEKLY_TASKS='[[\"SHELL\", \"ls /tmp2\"]]'\n", file_stub.settings_list[16])
+        self.assertEqual("MONTHLY_TASKS='[[\"SHELL\", \"ls /tmp3\"]]'\n", file_stub.settings_list[17])
 
 
 class FileStub(object):
@@ -165,10 +165,10 @@ class FileStub(object):
                     "MAILER_USE_SSL=\"TRUE\"",
                     "MAILER_USER=testuser",
                     "MAILER_PASSWORD=c2VjcmV0",
-                    "HOURLY_TASKS=[[\"SHELL\",\"ls /tmp0\"]]",
-                    "DAILY_TASKS=[[\"BACKUP\",\"\"],[\"SHELL\",\"ls /tmp1\"]]",
-                    "WEEKLY_TASKS=[[\"SHELL\",\"ls /tmp2\"]]",
-                    "MONTHLY_TASKS=[[\"SHELL\",\"ls /tmp3\"]]",
+                    "HOURLY_TASKS='[[\"SHELL\",\"ls /tmp0\"]]'",
+                    "DAILY_TASKS='[[\"BACKUP\",\"\"],[\"SHELL\",\"ls /tmp1\"]]'",
+                    "WEEKLY_TASKS='[[\"SHELL\",\"ls /tmp2\"]]'",
+                    "MONTHLY_TASKS='[[\"SHELL\",\"ls /tmp3\"]]'",
                     ]
 
     def close(self):
