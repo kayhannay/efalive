@@ -42,13 +42,13 @@ class EfaLiveDaemon(object):
 
     def __init__(self, argv, output="/dev/tty", pidfile="/tmp/efaLiveDaemon.pid"):
         # These attributes are expected by the DaemonRunner
+        self.logfile = output
         self.stdin_path = "/dev/null"
-        self.stdout_path = output
-        self.stderr_path = output
+        self.stdout_path = "/dev/tty"
+        self.stderr_path = "/dev/tty"
         self.pidfile_path = pidfile
         self.pidfile_timeout = 5
 
-        self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
 
         daemon_args = ["start", "stop", "restart"]
         if(len(argv) < 2 or len(argv) > 3):
@@ -78,6 +78,8 @@ class EfaLiveDaemon(object):
                 self._settings.initSettings()
 
     def run(self):
+        logging.basicConfig(filename=self.logfile, level=logging.DEBUG)
+        self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
         if self._settings.autoUsbBackup.getData():
             AutoBackupModule().start()
         scheduler = TaskSchedulerModule()

@@ -45,7 +45,9 @@ class BackupMailTaskTestCase(unittest.TestCase):
     def test_run(self):
         common.command_output = MagicMock(return_value = (0, ""))
         os.path.exists = MagicMock(return_value = False)
-        os.mkdirs = MagicMock()
+        os.makedirs = MagicMock()
+        os.listdir = MagicMock()
+        os.rmdir = MagicMock()
         Mailer.create_mail = MagicMock(return_value = MIMEMultipart())
         Mailer.send_mail = MagicMock()
 
@@ -57,12 +59,13 @@ class BackupMailTaskTestCase(unittest.TestCase):
         settings_mock.mailer_use_ssl = Observable()
         settings_mock.mailer_user = Observable()
         settings_mock.mailer_password = Observable()
+        settings_mock.mailer_sender = Observable()
 
         class_under_test = BackupMailTask("123def", ["user@test.local"], settings_mock)
         mailer_mock = Mock(spec=Mailer)
         class_under_test.run(mailer=mailer_mock)
 
-        self.assertEqual(1, os.mkdirs.call_count)
+        self.assertEqual(1, os.makedirs.call_count)
         self.assertEqual(1, common.command_output.call_count)
         self.assertEqual(call(["/usr/bin/efalive-backup", "/tmp/efalive_backup_mail"]), common.command_output.call_args)
         self.assertEqual(1, mailer_mock.create_mail.call_count)

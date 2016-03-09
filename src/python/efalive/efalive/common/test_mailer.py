@@ -37,7 +37,6 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertFalse(result.is_multipart())
         self.assertEqual("text/plain", result.get_content_type())
@@ -54,7 +53,6 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient1@test.local, recipient2@test.local", result["To"])
-        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertFalse(result.is_multipart())
         self.assertEqual("text/plain", result.get_content_type())
@@ -74,7 +72,6 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -100,7 +97,6 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -126,7 +122,6 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -152,7 +147,6 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()
@@ -179,7 +173,6 @@ class MailerTestCase(unittest.TestCase):
         result = mailer.create_mail(mail)
 
         self.assertEqual("recipient@test.local", result["To"])
-        self.assertEqual(mail.sender, result["From"])
         self.assertEqual(mail.subject, result["Subject"])
         self.assertTrue(result.is_multipart())
         messages = result.get_payload()

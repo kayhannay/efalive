@@ -54,6 +54,12 @@ class MailTabModel(object):
     def set_smtp_password(self, password):
         self._settings.mailer_password.updateData(password)
 
+    def set_sender(self, sender):
+        self._settings.mailer_sender.updateData(sender)
+
+    def register_sender_callback(self, callback):
+        self._settings.mailer_sender.registerObserverCb(callback)
+
     def set_smtp_use_ssl(self, use_ssl):
         self._settings.mailer_use_ssl.updateData(use_ssl)
 
@@ -108,6 +114,14 @@ class MailTabView(gtk.VBox):
         self.password_hbox.pack_end(self.password_input, False, False, 2)
         self.password_hbox.show_all()
         
+        self.sender_hbox = gtk.HBox()
+        self.pack_start(self.sender_hbox, False, False, 2)
+        self.sender_label = gtk.Label(_("Sender address"))
+        self.sender_hbox.pack_start(self.sender_label, False, False, 2)
+        self.sender_input = gtk.Entry(max=255)
+        self.sender_hbox.pack_end(self.sender_input, False, False, 2)
+        self.sender_hbox.show_all()
+        
         self.ssl_hbox = gtk.HBox()
         self.pack_start(self.ssl_hbox, False, False, 2)
         self.ssl_checkbox = gtk.CheckButton(_("Use SSL/TLS"))
@@ -131,6 +145,7 @@ class MailTabController(object):
         self._model.register_smtp_host_callback(self.smtp_host_changed)
         self._model.register_smtp_port_callback(self.smtp_port_changed)
         self._model.register_smtp_user_callback(self.smtp_user_changed)
+        self._model.register_sender_callback(self.sender_changed)
         self._model.register_smtp_use_ssl_callback(self.smtp_use_ssl_changed)
         self._model.register_smtp_use_starttls_callback(self.smtp_use_starttls_changed)
         
@@ -141,6 +156,7 @@ class MailTabController(object):
         self._view.port_adjustment.connect("value_changed", self.set_smtp_port)
         self._view.user_input.connect("changed", self.set_smtp_user)
         self._view.password_input.connect("changed", self.set_smtp_password)
+        self._view.sender_input.connect("changed", self.set_sender)
         self._view.ssl_checkbox.connect("toggled", self.set_smtp_use_ssl)
         self._view.starttls_checkbox.connect("toggled", self.set_smtp_use_starttls)
 
@@ -155,6 +171,9 @@ class MailTabController(object):
 
     def smtp_user_changed(self, username):
         self._view.user_input.set_text(username)
+
+    def sender_changed(self, sender):
+        self._view.sender_input.set_text(sender)
 
     def smtp_use_ssl_changed(self, enable):
         self._view.ssl_checkbox.set_active(enable)
@@ -173,6 +192,9 @@ class MailTabController(object):
 
     def set_smtp_password(self, widget):
         self._model.set_smtp_password(widget.get_text())
+
+    def set_sender(self, sender):
+        self._model.set_sender(sender.get_text())
 
     def set_smtp_use_ssl(self, widget):
         self._model.set_smtp_use_ssl(widget.get_active())

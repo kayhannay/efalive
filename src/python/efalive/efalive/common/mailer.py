@@ -39,7 +39,6 @@ class MailData(object):
 
     def __init__(self):
         self.recipients = None
-        self.sender = None
         self.subject = None
         self.body = None
         self.file_attachments = None
@@ -54,6 +53,7 @@ class MailerConfig(object):
         self.use_ssl = True
         self.user = None
         self.password = None
+        self.sender = None
 
 class Mailer(object):
 
@@ -72,7 +72,6 @@ class Mailer(object):
         else:
             msg = message_text
         msg["Subject"] = mail.subject
-        msg["From"] = mail.sender
         msg["To"] = ', '.join(mail.recipients)
         return msg
 
@@ -86,6 +85,7 @@ class Mailer(object):
                 sender.starttls()
         if config.user != None:
             sender.login(config.user, config.password)
+        mail["From"] = config.sender
         sender.sendmail(mail["From"], mail["To"], mail.as_string())
         sender.quit()
         self._logger.info("Sent mail to %s." % mail["To"])

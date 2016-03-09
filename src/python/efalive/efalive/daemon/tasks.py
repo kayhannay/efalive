@@ -20,9 +20,14 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import logging
 import os
+import shutil
+import gettext
 
 from efalive.common import common
 from efalive.common.mailer import Mailer, MailData, MailerConfig
+
+APP="efaLiveSetup"
+gettext.install(APP, common.LOCALEDIR, unicode=True)
 
 class Task(object):
     """Base class for all tasks
@@ -76,6 +81,8 @@ class BackupMailTask(Task):
 
         self._mail_data = MailData()
         self._mail_data.recipients = [ recipients ]
+        self._mail_data.subject = _("Backup efaLive today")
+        self._mail_data.body = _("Hi,\n\nattached to this mail you can find the latest backup of your efaLive system.\n\nregards\nefaLive")
 
         self._mailer_config = MailerConfig()
         self._mailer_config.smtp_host = efalive_settings.mailer_host.getData()
@@ -84,24 +91,33 @@ class BackupMailTask(Task):
         self._mailer_config.use_ssl = efalive_settings.mailer_use_ssl.getData()
         self._mailer_config.user = efalive_settings.mailer_user.getData()
         self._mailer_config.password = efalive_settings.mailer_password.getData()
+        self._mailer_config.sender = efalive_settings.mailer_sender.getData()
 
     def run(self, mailer = None):
         self._logger.info("Running automatic e-mail backup task.")
         directory = "/tmp/efalive_backup_mail"
-        backup_dir = os.path.dirname(directory)
-        if not os.path.exists(backup_dir):
-            os.mkdirs(backup_dir)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
         try:
             (returncode, output) = common.command_output(["/usr/bin/efalive-backup", directory])
             if returncode != 0:
                 self._logger.error("Could not create backup (%d): \n %s" % (returncode, output))
                 return
-            self._logger.debug("Backup finished (%d): \n %s", (returncode, output))
+            self._logger.debug("Backup finished (%d): \n %s" % (returncode, output))
         except OSError, exception:
             self._logger.error("Could not create backup: %s" % exception)
+            return
         
         if mailer == None:
             mailer = Mailer()
+        self._mail_data.file_attachments = self._get_backup_files(directory)
         msg = mailer.create_mail(self._mail_data)
         mailer.send_mail(self._mailer_config, msg)
+        shutil.rmtree(directory)
 
+    def _get_backup_files(self, directory):
+        backup_files = []
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                backup_files.append(os.path.join(root, file))
+        return backup_files

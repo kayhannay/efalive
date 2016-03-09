@@ -49,6 +49,7 @@ class EfaLiveSettings(object):
         self.mailer_use_starttls = Observable()
         self.mailer_user = Observable()
         self.mailer_password = Observable()
+        self.mailer_sender = Observable()
         self.backup_mail_recipient = Observable()
         self.hourly_tasks = Observable()
         self.daily_tasks = Observable()
@@ -64,6 +65,7 @@ class EfaLiveSettings(object):
         self.mailer_use_starttls.updateData(True)
         self.mailer_user.updateData("")
         self.mailer_password.updateData("")
+	self.mailer_sender.updateData("")
 
         if os.path.isfile(self._settingsFileName):
             self.settingsFile=open(self._settingsFileName, "r")
@@ -134,6 +136,10 @@ class EfaLiveSettings(object):
                 passStr=line[(line.index('=') + 1):].rstrip()
                 self.mailer_password.updateData(base64.b64decode(passStr))
                 self._logger.debug("Parsed efa mailer password setting: " + passStr)
+            elif line.startswith("MAILER_SENDER="):
+                senderStr=line[(line.index('=') + 2):].rstrip()[:-1]
+                self.mailer_sender.updateData(senderStr)
+                self._logger.debug("Parsed efa mailer sender setting: " + userStr)
             elif line.startswith("HOURLY_TASKS="):
                 valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
                 tasks = json.loads(valueStr)
@@ -217,6 +223,7 @@ class EfaLiveSettings(object):
             if password != None:
                 password = base64.b64encode(password)
             settingsFile.write("MAILER_PASSWORD=%s\n" % password)
+            settingsFile.write("MAILER_SENDER='%s'\n" % self.mailer_sender.getData())
             settingsFile.write("HOURLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.hourly_tasks)))
             settingsFile.write("DAILY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.daily_tasks)))
             settingsFile.write("WEEKLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.weekly_tasks)))
