@@ -155,6 +155,7 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
         self.assertEqual(1, common.command_output.call_count)
         self.assertEqual(call(["ps", "-Af"]), common.command_output.call_args)
+        self.assertEqual(3, class_under_test._restart_threshold)
 
     def test_run_checks__process_not_found(self):
         class_under_test = WatchDogModule()
@@ -165,7 +166,8 @@ class WatchDogModuleTestCase(unittest.TestCase):
         class_under_test.run_checks()
 
         expected_calls = [call(["ps", "-Af"]), call(["ps", "-Af"]), call(["ps", "-Af"]), call(["sudo", "/sbin/shutdown", "-r", "now"])]
-        self.assertEquals(expected_calls, common.command_output.call_args_list)
+        self.assertEqual(expected_calls, common.command_output.call_args_list)
+        self.assertEqual(3, class_under_test._restart_threshold)
 
 
 class TaskSchedulerModuleTestCase(unittest.TestCase):
@@ -187,7 +189,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
-        class_under_test.load_tasks(settings_mock)
+        class_under_test.update_settings(settings_mock)
         class_under_test.run_tasks()
 
         self.assertEqual(4, common.command_output.call_count)
@@ -218,7 +220,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
-        class_under_test.load_tasks(settings_mock)
+        class_under_test.update_settings(settings_mock)
         class_under_test.run_tasks()
 
         self.assertEqual(1, common.command_output.call_count)
@@ -256,7 +258,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
-        class_under_test.load_tasks(settings_mock)
+        class_under_test.update_settings(settings_mock)
         class_under_test.run_tasks()
 
         self.assertEqual(1, common.command_output.call_count)
@@ -269,7 +271,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
 
         settings_mock.daily_tasks.updateData({"1234" : ["SHELL", "ls /tmp2"]})
 
-        class_under_test.load_tasks(settings_mock)
+        class_under_test.update_settings(settings_mock)
         class_under_test.run_tasks()
 
         self.assertEqual(2, common.command_output.call_count)
@@ -300,7 +302,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         backup_mail_task_mock_instance.task_id = 12345
 
         class_under_test = TaskSchedulerModule()
-        class_under_test.load_tasks(settings_mock)
+        class_under_test.update_settings(settings_mock)
         class_under_test.run_tasks()
 
         self.assertEqual(0, len(class_under_test._hourly_markers))

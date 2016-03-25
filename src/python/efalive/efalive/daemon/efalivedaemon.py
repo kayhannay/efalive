@@ -40,14 +40,15 @@ class EfaLiveDaemon(object):
     These modules perform specific actions then.
     """
 
-    def __init__(self, argv, output="/dev/tty", pidfile="/tmp/efaLiveDaemon.pid"):
+    def __init__(self, argv, output="/dev/tty", stdout="/dev/tty", pidfile="/tmp/efaLiveDaemon.pid"):
         # These attributes are expected by the DaemonRunner
-        self.logfile = output
+        self.logfile = output   
         self.stdin_path = "/dev/null"
-        self.stdout_path = "/dev/tty"
-        self.stderr_path = "/dev/tty"
+        self.stdout_path = stdout
+        self.stderr_path = stdout
         self.pidfile_path = pidfile
         self.pidfile_timeout = 5
+        self.update_settings_counter = 0
 
 
         daemon_args = ["start", "stop", "restart"]
@@ -83,20 +84,42 @@ class EfaLiveDaemon(object):
         if self._settings.autoUsbBackup.getData():
             AutoBackupModule().start()
         scheduler = TaskSchedulerModule()
-        scheduler.load_tasks(self._settings)
+        scheduler.update_settings(self._settings)
         watchdog = WatchDogModule()
+        update_settings_modules = [ scheduler ]
 
         while True:
+            self._update_settings(update_settings_modules)
             watchdog.run_checks()
             scheduler.run_tasks()
             self._logger.debug("Running")
             time.sleep(10)
+
+    def _update_settings(self, modules):
+        if self.update_settings_counter == 30:
+            self.update_settings_counter = 0
+            self._settings.load_settings()
+            for update_module in modules:
+                update_module.update_settings(self._settings)
+        else:
+            self.update_settings_counter += 1
 
     def _print_usage_and_exit(self):
         print "ERROR: No proper arguments given"
         print "Usage of efaLive daemon:\n"
         print "\t%s [confDir] start|stop|restart" % sys.argv[0]
         sys.exit(1)
+
+class UpdateableModule(object):
+    """Base class for modules that can update their settings at runtime.
+
+    Make sure that each implementation of a module that need/can update their settings is a sub 
+    class of this class.
+    """
+
+    def update_settings(self, settings):
+        raise NotImplementedError( "The update_settings() method has to be implemented." )
+
 
 class WatchDogModule(object):
     """Watchdog that is triggered by the efaLive daemon.
@@ -121,6 +144,7 @@ class WatchDogModule(object):
             self._restart_threshold -= 1
             self._logger.warn("Process '%s' is not running, wait for %d more checks before restart!" % (process_name, self._restart_threshold))
             if self._restart_threshold < 1:
+                self._reset_restart_threshold()
                 self._logger.warn("Trigger restart now...")
                 common.command_output(["sudo", "/sbin/shutdown", "-r", "now"])
         else:
@@ -134,7 +158,7 @@ class WatchDogModule(object):
 
 
 class AutoBackupModule(object):
-    """Module to autmatically create a backup.
+    """Module to automatically create a backup.
 
     This module is used to automatically create a backup on any USB 
     stick that is plugged in. The implementation is based on UDEV and 
@@ -179,7 +203,7 @@ class AutoBackupModule(object):
         return 1
 
 
-class TaskSchedulerModule(object):
+class TaskSchedulerModule(UpdateableModule):
     """Module to run repeating tasks
 
     This module can be used to run repeating tasks. It supports hourly, 
@@ -192,7 +216,7 @@ class TaskSchedulerModule(object):
         self._weekly_markers = {}
         self._monthly_markers = {}
 
-    def load_tasks(self, settings):
+    def update_settings(self, settings):
         self._settings = settings
         self.hourly_tasks = self._create_task_list(self._settings.hourly_tasks.getData())
         self.daily_tasks = self._create_task_list(self._settings.daily_tasks.getData())

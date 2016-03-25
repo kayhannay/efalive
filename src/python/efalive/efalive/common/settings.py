@@ -65,12 +65,14 @@ class EfaLiveSettings(object):
         self.mailer_use_starttls.updateData(True)
         self.mailer_user.updateData("")
         self.mailer_password.updateData("")
-	self.mailer_sender.updateData("")
+        self.mailer_sender.updateData("")
+        self.load_settings()
 
+    def load_settings(self):
         if os.path.isfile(self._settingsFileName):
-            self.settingsFile=open(self._settingsFileName, "r")
-            self.parseSettingsFile(self.settingsFile)
-            self.settingsFile.close()
+            settingsFile=open(self._settingsFileName, "r")
+            self.parseSettingsFile(settingsFile)
+            settingsFile.close()
 
     def _checkPath(self, path):
         if not os.path.exists(path):
