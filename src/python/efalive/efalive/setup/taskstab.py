@@ -117,11 +117,11 @@ class TasksTabView(gtk.VBox):
 class TasksTabController(object):
     def __init__(self, settings):
         self._logger = logging.getLogger('TasksTabController')
-        
+
         self._view = TasksTabView()
         self._view.task_del_button.set_sensitive(False)
         self._view.task_edit_button.set_sensitive(False)
-        
+
         self._model = TasksTabModel(settings)
         self._init_events()
 
@@ -175,7 +175,7 @@ class TasksTabController(object):
         task_id = tree_model.get_value(tree_iter, 0)
         self._logger.info("Delete task %s" % task_id)
         self._model.delete_task(task_id)
-        
+
     def add_task(self, widget):
         editor = TaskEditor(self._view.get_toplevel())
         response = editor.run()
@@ -251,11 +251,11 @@ class TasksTabController(object):
 class TaskEditor(gtk.Dialog):
     def __init__(self, widget):
         gtk.Dialog.__init__(self, _("Task editor"), widget)
-        
+
         self.main_container_vbox = gtk.VBox()
         self.vbox.pack_start(self.main_container_vbox, False, False, 5)
         self.main_container_vbox.show()
-        
+
         self.task_type_select_hbox = gtk.HBox()
         self.main_container_vbox.pack_start(self.task_type_select_hbox, False, False, 2)
         self.task_type_select_hbox.show()

@@ -22,6 +22,7 @@ import os
 import sys
 import logging
 import smtplib
+import traceback
 # For guessing MIME type based on file name extension
 import mimetypes
 
@@ -76,19 +77,25 @@ class Mailer(object):
         return msg
 
     def send_mail(self, config, mail):
-        self._logger.debug("Send mail from %s to %s:\n%s" % (mail["From"], mail["To"], mail.as_string()))
-        if config.use_ssl:
-            sender = smtplib.SMTP_SSL(config.smtp_host, config.smtp_port)
-        else:
-            sender = smtplib.SMTP(config.smtp_host, config.smtp_port)
-            if config.use_starttls:
-                sender.starttls()
-        if config.user != None:
-            sender.login(config.user, config.password)
         mail["From"] = config.sender
-        sender.sendmail(mail["From"], mail["To"], mail.as_string())
-        sender.quit()
-        self._logger.info("Sent mail to %s." % mail["To"])
+        self._logger.debug("Send mail from %s to %s:\n%s" % (mail["From"], mail["To"], mail.as_string()))
+        sender = None
+        try:
+            if config.use_ssl:
+                sender = smtplib.SMTP_SSL(config.smtp_host, config.smtp_port)
+            else:
+                sender = smtplib.SMTP(config.smtp_host, config.smtp_port)
+                if config.use_starttls:
+                    sender.starttls()
+            if config.user != None:
+                sender.login(config.user, config.password)
+            sender.sendmail(mail["From"], mail["To"], mail.as_string())
+            self._logger.info("Sent mail to %s." % mail["To"])
+        except Exception as exception:
+            self._logger.error("Could not send mail: %s" % exception)
+            self._logger.debug("Details of the error: \n%s" % traceback.format_exc())
+        if sender != None:
+            sender.quit()
 
     def open_file(self, file_name):
         return open(file_name, "rb")

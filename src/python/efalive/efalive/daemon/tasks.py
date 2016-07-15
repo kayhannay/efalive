@@ -44,7 +44,8 @@ class Task(object):
 class ShellTask(Task):
     """Implementation of a shell task
 
-    This task type is used to execute shell commands
+    This task type is used to execute shell commands but it is not running in a shell, 
+    so you can not use shell built ins. Write a script instead.
     """
     def __init__(self, task_id, command):
         super(ShellTask, self).__init__(task_id)
@@ -107,7 +108,7 @@ class BackupMailTask(Task):
         except OSError, exception:
             self._logger.error("Could not create backup: %s" % exception)
             return
-        
+
         if mailer == None:
             mailer = Mailer()
         self._mail_data.file_attachments = self._get_backup_files(directory)

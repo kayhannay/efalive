@@ -79,7 +79,7 @@ class EfaLiveDaemon(object):
                 self._settings.initSettings()
 
     def run(self):
-        logging.basicConfig(filename=self.logfile, level=logging.DEBUG)
+        logging.basicConfig(filename=self.logfile, level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
         self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
         if self._settings.autoUsbBackup.getData():
             AutoBackupModule().start()
@@ -89,11 +89,14 @@ class EfaLiveDaemon(object):
         update_settings_modules = [ scheduler ]
 
         while True:
-            self._update_settings(update_settings_modules)
-            watchdog.run_checks()
-            scheduler.run_tasks()
-            self._logger.debug("Running")
-            time.sleep(10)
+            try:
+                self._update_settings(update_settings_modules)
+                watchdog.run_checks()
+                scheduler.run_tasks()
+                self._logger.debug("Running")
+                time.sleep(10)
+            except Exception as exception:
+                self._logger.exception("An error occured which was not handled in it's sub module:")
 
     def _update_settings(self, modules):
         if self.update_settings_counter == 30:
@@ -215,6 +218,7 @@ class TaskSchedulerModule(UpdateableModule):
         self._daily_markers = {}
         self._weekly_markers = {}
         self._monthly_markers = {}
+        self._logger.info("Initialization of efaLive daemon finished.")
 
     def update_settings(self, settings):
         self._settings = settings
@@ -285,7 +289,7 @@ class TaskSchedulerModule(UpdateableModule):
             if task.task_id in self._hourly_markers:
                 last_run = self._hourly_markers[task.task_id]
                 delta = datetime.now() - last_run
-                self._logger.info("Delta: %d" % delta.total_seconds())
+                self._logger.debug("Delta: %d" % delta.total_seconds())
                 if (delta.total_seconds() < 1 * 60 * 60):
                     return True
             return False
