@@ -43,7 +43,7 @@ then
 	exit 1
 fi
 
-/bin/cp /var/log/syslog /var/log/Xorg.0.log /var/log/mail.* /var/log/auth.log $1
+/bin/cp /var/log/syslog /var/log/Xorg.0.log /var/log/auth.log $1
 /bin/chown $2:users $1/*
 /bin/chmod 644 $1/*
 

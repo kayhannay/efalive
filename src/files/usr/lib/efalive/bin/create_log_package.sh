@@ -40,15 +40,23 @@ TIMESTAMP=`/bin/date +%Y%m%d_%H%M%S`
 ZIP_FILE="efaLive_logPackage_${TIMESTAMP}.zip"
 PWD=`/bin/pwd`
 USER=`/usr/bin/id -un`
+TMP_PATH=/tmp/log_package
 
-/bin/mkdir /tmp/log_package
-sudo /usr/lib/efalive/bin/copy_log_files.sh /tmp/log_package $USER
-/bin/dmesg > /tmp/log_package/dmesg.log
-cd /tmp/log_package
-/usr/bin/zip $ZIP_FILE *
+/bin/mkdir $TMP_PATH
+/bin/mkdir ${TMP_PATH}/system
+/bin/mkdir ${TMP_PATH}/efa
+/bin/mkdir ${TMP_PATH}/efalive
+
+sudo /usr/lib/efalive/bin/copy_log_files.sh ${TMP_PATH}/system $USER
+/bin/dmesg > ${TMP_PATH}/system/dmesg.log
+cp ~/*.log ${TMP_PATH}/efalive
+cp ~/efa2/log/*.log ${TMP_PATH}/efa
+
+cd $TMP_PATH
+/usr/bin/zip -r $ZIP_FILE *
 /bin/mv $ZIP_FILE $1
 cd $PWD
-/bin/rm -r /tmp/log_package/
+/bin/rm -r $TMP_PATH
 
 exit 0
 

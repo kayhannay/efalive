@@ -2,7 +2,7 @@
 '''
 Created on 16.02.2015
 
-Copyright (C) 2015 Kay Hannay
+Copyright (C) 2015-2016 Kay Hannay
 
 This file is part of efaLive.
 

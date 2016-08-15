@@ -2,7 +2,7 @@
 '''
 Created on 16.02.2015
 
-Copyright (C) 2015 Kay Hannay
+Copyright (C) 2015-2016 Kay Hannay
 
 This file is part of efaLive.
 
@@ -79,7 +79,7 @@ class EfaLiveDaemon(object):
                 self._settings.initSettings()
 
     def run(self):
-        logging.basicConfig(filename=self.logfile, level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
+        logging.basicConfig(filename=self.logfile, level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
         self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
         if self._settings.autoUsbBackup.getData():
             AutoBackupModule().start()

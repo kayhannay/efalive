@@ -1,7 +1,7 @@
 '''
 Created on 24.09.2015
 
-Copyright (C) 2015-2015 Kay Hannay
+Copyright (C) 2015-2016 Kay Hannay
 
 This file is part of efaLiveTools.
 
@@ -162,7 +162,7 @@ class TasksTabController(object):
         for task_id in tasks.keys():
             task = tasks.get(task_id)
             if task[0] == "BACKUP_MAIL":
-                task_type = _("Backup")
+                task_type = _("Backup e-mail")
             elif task[0] == "SHELL":
                 task_type = _("Shell")
             else:
@@ -267,7 +267,7 @@ class TaskEditor(gtk.Dialog):
         self.task_type_combo = gtk.combo_box_new_text()
         self.task_type_select_hbox.pack_end(self.task_type_combo, False, False, 2)
         self.task_type_combo.show()
-        self.task_type_combo.append_text(_("Backup"))
+        self.task_type_combo.append_text(_("Backup e-mail"))
         self.task_type_combo.append_text(_("Shell"))
         self.task_type_combo.connect("changed", self.task_type_changed)
 
