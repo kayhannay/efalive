@@ -27,7 +27,7 @@ manpage.1: manpage.sgml
   <!ENTITY dhemail     "<email>klinux@hannay.de</email>">
   <!ENTITY dhusername  "Kay Hannay">
   <!ENTITY dhucpackage "<refentrytitle>EFALIVE</refentrytitle>">
-  <!ENTITY dhpackage   "efalive-restore">
+  <!ENTITY dhpackage   "efalive-daemon">
 
   <!ENTITY debian      "<productname>Debian</productname>">
   <!ENTITY gnu         "<acronym>GNU</acronym>">
@@ -44,7 +44,7 @@ manpage.1: manpage.sgml
       &dhsurname;
     </author>
     <copyright>
-      <year>2013-2016</year>
+      <year>2016</year>
       <holder>&dhusername;</holder>
     </copyright>
     &dhdate;
@@ -57,14 +57,14 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>Restore an efaLive backup</refpurpose>
+    <refpurpose>Start and stop the efaLive daemon</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
-      <command>&dhpackage; &lt;FILE&gt;</command>
-<!--
-      <arg><option>&lt;FILE&gt;<replaceable>File name of the efaLive backup file that shall be restored.</replaceable></option></arg>
--->
+      <command>&dhpackage;</command>
+
+      <!-- <arg><option>&lt;PATH&gt;<replaceable>Path where to store the backup</replaceable></option></arg> -->
+
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
@@ -73,31 +73,42 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> is used to restore efaLive backups, which include a backup
-        of the efa data.</para>
+    <para>
+        The efaLive daemon works as a watchdog for the efaLive KIOSK system. It also is
+        able to perform tasks in the background with a configurable intervall. Such tasks 
+        can be configured in efaLive-Setup.
+    </para>
+
+    <para>
+        <command>&dhpackage; start</command> starts the efaLive daemon.
+        <command>&dhpackage; stop</command> stops the efaLive daemon.
+    </para>
 
   </refsect1>
+<!--
   <refsect1>
     <title>OPTIONS</title>
 
     <para>These programs follow the usual &gnu; command line syntax,
       with long options starting with two dashes (`-').  A summary of
-      options is included below.</para>
+      options is included below.  For a complete description, see the
+      <application>Info</application> files.</para>
 
     <variablelist>
       <varlistentry>
-        <term><option>&lt;FILE&gt;</option>
+        <term><option>&lt;PATH&gt;</option>
         </term>
         <listitem>
-          <para>File name of the efaLive backup file that shall be restored.</para>
+          <para>The path where the backup should be stored.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsect1>
+-->
   <refsect1>
     <title>SEE ALSO</title>
 
-    <para>efalive-backup (1), efalive-setup (1), efalive-daemon (1).</para>
+    <para>efalive-setup (1), efalive-backup (1), efalive-restore (1).</para>
 
     <para>There is also a detailed documentation in a PDF document provided with this software.</para>
   </refsect1>

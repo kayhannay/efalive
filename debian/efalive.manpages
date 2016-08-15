@@ -1,3 +1,4 @@
 debian/efalive-backup.1
 debian/efalive-restore.1
 debian/efalive-setup.1
+debian/efalive-daemon.1
