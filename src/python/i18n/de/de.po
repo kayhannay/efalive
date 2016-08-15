@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: efaLiveSetup 0.3\n"
+"Project-Id-Version: efaLiveSetup 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-28 22:58+0100\n"
+"POT-Creation-Date: 2016-08-14 10:24+0000\n"
 "PO-Revision-Date: 2010-09-07 10:18+0200\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -18,193 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: efalive/efalive/setup/screen/screensetup.py:43
-msgid "Screen setup"
-msgstr "Bildschirm-Setup"
+#: efalive/efalive/daemon/tasks.py:85
+msgid "Backup efaLive today"
+msgstr "Heutige Datensicherung von efaLive"
 
-#: efalive/efalive/setup/screen/screensetup.py:63
-#: efalive/efalive/setup/dttime/datetime.py:184
-#: efalive/efalive/setup/taskstab.py:317 efalive/efalive/setup/maingui.py:82
-msgid "Ok"
-msgstr "Ok"
-
-#: efalive/efalive/setup/screen/screensetup.py:68
-msgid "Apply"
-msgstr "Anwenden"
-
-#: efalive/efalive/setup/screen/screensetup.py:73
-#: efalive/efalive/setup/dttime/datetime.py:189
-#: efalive/efalive/setup/taskstab.py:316 efalive/efalive/setup/maingui.py:86
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: efalive/efalive/setup/backuptab.py:74
-msgid "Auto USB backup"
-msgstr "Automatische USB Datensicherung"
-
-#: efalive/efalive/setup/backuptab.py:90
-msgid "enable automatic USB backup"
-msgstr "Automatische Datensicherung auf USB einschalten"
-
-#: efalive/efalive/setup/backuptab.py:102
-msgid "show dialog after automatic backup"
-msgstr "Dialog nach automatischer Datensicherung anzeigen"
-
-#: efalive/efalive/setup/backuptab.py:110
-msgid "use password for automatic backup"
-msgstr "Passwort für automatische Datensicherung verwenden"
-
-#: efalive/efalive/setup/backuptab.py:118
-msgid "backup password"
-msgstr "Passwort zur Datensicherung"
-
-#: efalive/efalive/setup/mailtab.py:78
-msgid "SMTP host"
-msgstr "SMTP Server"
-
-#: efalive/efalive/setup/mailtab.py:86
-msgid "SMTP port"
-msgstr "SMTP Port"
-
-#: efalive/efalive/setup/mailtab.py:96
-msgid "User"
-msgstr "Benutzer"
-
-#: efalive/efalive/setup/mailtab.py:104
-msgid "Password"
-msgstr "Passwort"
-
-#: efalive/efalive/setup/mailtab.py:113
-msgid "Use SSL/TLS"
-msgstr "SSL/TLS nutzen"
-
-#: efalive/efalive/setup/mailtab.py:119
-msgid "Use startTLS"
-msgstr "StartTLS nutzen"
-
-#: efalive/efalive/setup/setupcommon/dialogs.py:49
-#: efalive/efalive/setup/setupcommon/dialogs.py:55
-msgid "Details"
-msgstr "Details"
-
-#: efalive/efalive/setup/setupcommon/dialogs.py:52
-msgid "Output"
-msgstr "Ausgaben"
-
-#: efalive/efalive/setup/setupcommon/dialogs.py:81
-#, python-format
-msgid "Please enter the password of user %s"
-msgstr "Bitte das Passwort für Benutzer %s eingeben"
-
-#: efalive/efalive/setup/setupcommon/dialogs.py:83
-msgid "The password you entered did not match!"
-msgstr "Das eingegebene Passwort war falsch!"
-
-#: efalive/efalive/setup/setupcommon/dialogs.py:113
-msgid "Internal error in PAM authentication module"
-msgstr "Interner Fehler im PAM Authentifizierungsmodul"
-
-#: efalive/efalive/setup/dttime/datetime.py:63
-#, python-format
-msgid "Could not check NTP service status: %s"
-msgstr "Konnte den Status des NTP Service nicht prüfen: %s"
-
-#: efalive/efalive/setup/dttime/datetime.py:97
-#, python-format
-msgid "Could not enable NTP service: %s"
-msgstr "Konnte den NTP service inicht einschalten: %s"
-
-#: efalive/efalive/setup/dttime/datetime.py:108
-#, python-format
-msgid "Could not disable NTP service: %s"
-msgstr "Konnte den NTP Service nicht ausschalten: %s"
-
-#: efalive/efalive/setup/dttime/datetime.py:114
-#, python-format
-msgid "Could not set time: %s"
-msgstr "Fehler beim setzen der Uhrzeit: %s"
-
-#: efalive/efalive/setup/dttime/datetime.py:123
-msgid "Date & Time"
-msgstr "Datum & Zeit"
-
-#: efalive/efalive/setup/dttime/datetime.py:146
-msgid "Time (h m s)"
-msgstr "Zeit (h m s)"
-
-#: efalive/efalive/setup/dttime/datetime.py:168
-msgid "Network time protocol"
-msgstr "Netzwerk-Zeit-Protokoll"
-
-#: efalive/efalive/setup/dttime/datetime.py:176
-msgid "Use network time protocol (NTP)"
-msgstr "Zeit über Internet synchronisieren (NTP)"
-
-#: efalive/efalive/setup/taskstab.py:73
-msgid "Task list"
-msgstr "Tasks"
-
-#: efalive/efalive/setup/taskstab.py:99
-msgid "Add a new task"
-msgstr "Task hinzufügen"
-
-#: efalive/efalive/setup/taskstab.py:106
-msgid "Edit task"
-msgstr "Task editieren"
-
-#: efalive/efalive/setup/taskstab.py:113
-msgid "Remove task"
-msgstr "Task entfernen"
-
-#: efalive/efalive/setup/taskstab.py:146 efalive/efalive/setup/taskstab.py:307
-msgid "Hourly"
-msgstr "Stündlich"
-
-#: efalive/efalive/setup/taskstab.py:147 efalive/efalive/setup/taskstab.py:308
-msgid "Daily"
-msgstr "Täglich"
-
-#: efalive/efalive/setup/taskstab.py:148 efalive/efalive/setup/taskstab.py:309
-msgid "Weekly"
-msgstr "Wöchentlich"
-
-#: efalive/efalive/setup/taskstab.py:149 efalive/efalive/setup/taskstab.py:310
-msgid "Monthly"
-msgstr "Monatlich"
-
-#: efalive/efalive/setup/taskstab.py:165 efalive/efalive/setup/taskstab.py:270
-#: efalive/efalive/setup/maingui.py:133 efalive/efalive/setup/toolstab.py:81
-#: efalive/efalive/setup/backup/backup.py:62
-msgid "Backup"
-msgstr "Datensicherung"
-
-#: efalive/efalive/setup/taskstab.py:167 efalive/efalive/setup/taskstab.py:271
-msgid "Shell"
-msgstr "Shell"
-
-#: efalive/efalive/setup/taskstab.py:253
-msgid "Task editor"
-msgstr "Task-Editor"
-
-#: efalive/efalive/setup/taskstab.py:263
-msgid "Type"
-msgstr "Typ"
-
-#: efalive/efalive/setup/taskstab.py:280
-msgid "Command"
-msgstr "Befehl"
-
-#: efalive/efalive/setup/taskstab.py:289
-msgid "Recipient"
-msgstr "Empfänger"
-
-#: efalive/efalive/setup/taskstab.py:300
-msgid "Interval"
-msgstr "Intervall"
+#: efalive/efalive/daemon/tasks.py:86
+msgid ""
+"Hi,\n"
+"\n"
+"attached to this mail you can find the latest backup of your efaLive "
+"system.\n"
+"\n"
+"regards\n"
+"efaLive"
+msgstr ""
+"Hallo,\n"
+"\n"
+"im Anhang findest Du die aktuelle Datensicherung von deinem efaLive "
+"System.\n"
+"\n"
+"Viele Grüße\n"
+"efaLive"
 
 #: efalive/efalive/setup/maingui.py:57
 msgid "efaLive setup"
 msgstr "efaLive Setup"
+
+#: efalive/efalive/setup/maingui.py:82
+#: efalive/efalive/setup/dttime/datetime.py:184
+#: efalive/efalive/setup/screen/screensetup.py:63
+#: efalive/efalive/setup/taskstab.py:317
+msgid "Ok"
+msgstr "Ok"
+
+#: efalive/efalive/setup/maingui.py:86
+#: efalive/efalive/setup/dttime/datetime.py:189
+#: efalive/efalive/setup/screen/screensetup.py:73
+#: efalive/efalive/setup/taskstab.py:316
+msgid "Cancel"
+msgstr "Abbrechen"
 
 #: efalive/efalive/setup/maingui.py:118
 msgid "Tools"
@@ -220,11 +72,16 @@ msgstr "System"
 
 #: efalive/efalive/setup/maingui.py:127
 msgid "Tasks"
-msgstr "Tasks"
+msgstr "Aufgaben"
 
 #: efalive/efalive/setup/maingui.py:130
 msgid "Efa settings"
 msgstr "Efa Einstellungen"
+
+#: efalive/efalive/setup/maingui.py:133 efalive/efalive/setup/toolstab.py:81
+#: efalive/efalive/setup/backup/backup.py:62
+msgid "Backup"
+msgstr "Datensicherung"
 
 #: efalive/efalive/setup/maingui.py:136
 msgid "Mail"
@@ -245,6 +102,72 @@ msgstr "Bitte überprüfe den angegebenen Pfad auf "
 #: efalive/efalive/setup/maingui.py:158
 msgid "user rights and existance."
 msgstr "Benutzerrechte und ob er existiert."
+
+#: efalive/efalive/setup/efasettingstab.py:66
+msgid "efa network port"
+msgstr "efa Netzwerk-Port"
+
+#: efalive/efalive/setup/efasettingstab.py:85
+msgid "efa shutdown action"
+msgstr "Aktion beim Beenden von efa"
+
+#: efalive/efalive/setup/efasettingstab.py:98
+msgid "shutdown pc"
+msgstr "PC herunterfahren"
+
+#: efalive/efalive/setup/efasettingstab.py:99
+msgid "restart pc"
+msgstr "PC neu starten"
+
+#: efalive/efalive/setup/efasettingstab.py:100
+msgid "restart efa"
+msgstr "efa neu starten"
+
+#: efalive/efalive/setup/efasettingstab.py:101
+msgid "stop efa"
+msgstr "efa beenden"
+
+#: efalive/efalive/setup/actionstab.py:48
+msgid "Shutdown PC"
+msgstr "PC herunterfahren"
+
+#: efalive/efalive/setup/actionstab.py:54
+msgid "Restart PC"
+msgstr "PC neu starten"
+
+#: efalive/efalive/setup/actionstab.py:79
+msgid "Really shut down PC ?"
+msgstr "PC wirklich herunterfahren ?"
+
+#: efalive/efalive/setup/actionstab.py:85
+#: efalive/efalive/setup/actionstab.py:96
+#, python-format
+msgid "Could not run /sbin/shutdown program: %s"
+msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
+
+#: efalive/efalive/setup/actionstab.py:90
+msgid "Really reboot PC ?"
+msgstr "PC wirklich neu starten ?"
+
+#: efalive/efalive/setup/backuptab.py:74
+msgid "Auto USB backup"
+msgstr "Automatische USB Datensicherung"
+
+#: efalive/efalive/setup/backuptab.py:90
+msgid "enable automatic USB backup"
+msgstr "Automatische Datensicherung auf USB einschalten"
+
+#: efalive/efalive/setup/backuptab.py:102
+msgid "show dialog after automatic backup"
+msgstr "Dialog nach automatischer Datensicherung anzeigen"
+
+#: efalive/efalive/setup/backuptab.py:110
+msgid "use password for automatic backup"
+msgstr "Passwort für automatische Datensicherung verwenden"
+
+#: efalive/efalive/setup/backuptab.py:118
+msgid "backup password"
+msgstr "Passwort zur Datensicherung"
 
 #: efalive/efalive/setup/toolstab.py:57
 msgid "Terminal"
@@ -295,29 +218,87 @@ msgstr "Konnte keine Logdateienpaket auf %s erstellen!"
 msgid "Created log file package in %s ."
 msgstr "Paket mit Logdateien in %s erstellt."
 
-#: efalive/efalive/setup/efasettingstab.py:66
-msgid "efa network port"
-msgstr "efa Netzwerk-Port"
+#: efalive/efalive/setup/systemtab.py:58
+msgid "Screen"
+msgstr "Bildschirm"
 
-#: efalive/efalive/setup/efasettingstab.py:85
-msgid "efa shutdown action"
-msgstr "Aktion beim Beenden von efa"
+#: efalive/efalive/setup/systemtab.py:64
+msgid "Network"
+msgstr "Netzwerk"
 
-#: efalive/efalive/setup/efasettingstab.py:98
-msgid "shutdown pc"
-msgstr "PC herunterfahren"
+#: efalive/efalive/setup/systemtab.py:70
+msgid "Hostname"
+msgstr "Hostname"
 
-#: efalive/efalive/setup/efasettingstab.py:99
-msgid "restart pc"
-msgstr "PC neu starten"
+#: efalive/efalive/setup/systemtab.py:76
+msgid "Screensaver"
+msgstr "Bildschirmschoner"
 
-#: efalive/efalive/setup/efasettingstab.py:100
-msgid "restart efa"
-msgstr "efa neu starten"
+#: efalive/efalive/setup/systemtab.py:82
+msgid "Power manager"
+msgstr "Energieverwaltung"
 
-#: efalive/efalive/setup/efasettingstab.py:101
-msgid "stop efa"
-msgstr "efa beenden"
+#: efalive/efalive/setup/systemtab.py:88
+msgid "Date & time"
+msgstr "Datum & Zeit"
+
+#: efalive/efalive/setup/systemtab.py:94
+msgid "Keyboard"
+msgstr "Tastatur"
+
+#: efalive/efalive/setup/systemtab.py:124
+#, python-format
+msgid "Could not open nm-connection-editor program: %s"
+msgstr "Konnte das Programm nm-connection-editor nicht starten: %s"
+
+#: efalive/efalive/setup/systemtab.py:135
+#, python-format
+msgid "Could not run keyboard setup: %s"
+msgstr "Konnte die Tastatureinstellungen nicht laden: %s"
+
+#: efalive/efalive/setup/systemtab.py:143
+#, python-format
+msgid "Could not run dynamic hostname setup: %s"
+msgstr ""
+"Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
+
+#: efalive/efalive/setup/systemtab.py:151
+#, python-format
+msgid "Could not open xscreensaver-demo program: %s"
+msgstr "Konnte das Programm xscreensaver-demo nicht starten: %s"
+
+#: efalive/efalive/setup/systemtab.py:159
+#, python-format
+msgid "Could not open xfce4-power-manager-settings program: %s"
+msgstr "Konnte das Programm xfce4-power-manager-settings nicht starten: %s"
+
+#: efalive/efalive/setup/mailtab.py:84
+msgid "SMTP host"
+msgstr "SMTP Server"
+
+#: efalive/efalive/setup/mailtab.py:92
+msgid "SMTP port"
+msgstr "SMTP Port"
+
+#: efalive/efalive/setup/mailtab.py:102
+msgid "User"
+msgstr "Benutzer"
+
+#: efalive/efalive/setup/mailtab.py:110
+msgid "Password"
+msgstr "Passwort"
+
+#: efalive/efalive/setup/mailtab.py:119
+msgid "Sender address"
+msgstr "Absender"
+
+#: efalive/efalive/setup/mailtab.py:127
+msgid "Use SSL/TLS"
+msgstr "SSL/TLS nutzen"
+
+#: efalive/efalive/setup/mailtab.py:133
+msgid "Use startTLS"
+msgstr "StartTLS nutzen"
 
 #: efalive/efalive/setup/backup/backup.py:51
 msgid "Backup & Restore"
@@ -498,78 +479,128 @@ msgstr ""
 msgid "Could not restore backup: %s"
 msgstr "Konnte keine Datensicherung erstellen: %s"
 
-#: efalive/efalive/setup/systemtab.py:58
-msgid "Screen"
-msgstr "Bildschirm"
+#: efalive/efalive/setup/dttime/datetime.py:63
+#, python-format
+msgid "Could not check NTP service status: %s"
+msgstr "Konnte den Status des NTP Service nicht prüfen: %s"
 
-#: efalive/efalive/setup/systemtab.py:64
-msgid "Network"
-msgstr "Netzwerk"
+#: efalive/efalive/setup/dttime/datetime.py:97
+#, python-format
+msgid "Could not enable NTP service: %s"
+msgstr "Konnte den NTP service inicht einschalten: %s"
 
-#: efalive/efalive/setup/systemtab.py:70
-msgid "Hostname"
-msgstr "Hostname"
+#: efalive/efalive/setup/dttime/datetime.py:108
+#, python-format
+msgid "Could not disable NTP service: %s"
+msgstr "Konnte den NTP Service nicht ausschalten: %s"
 
-#: efalive/efalive/setup/systemtab.py:76
-msgid "Screensaver"
-msgstr "Bildschirmschoner"
+#: efalive/efalive/setup/dttime/datetime.py:114
+#, python-format
+msgid "Could not set time: %s"
+msgstr "Fehler beim setzen der Uhrzeit: %s"
 
-#: efalive/efalive/setup/systemtab.py:82
-msgid "Power manager"
-msgstr "Energieverwaltung"
-
-#: efalive/efalive/setup/systemtab.py:88
-msgid "Date & time"
+#: efalive/efalive/setup/dttime/datetime.py:123
+msgid "Date & Time"
 msgstr "Datum & Zeit"
 
-#: efalive/efalive/setup/systemtab.py:94
-msgid "Keyboard"
-msgstr "Tastatur"
+#: efalive/efalive/setup/dttime/datetime.py:146
+msgid "Time (h m s)"
+msgstr "Zeit (h m s)"
 
-#: efalive/efalive/setup/systemtab.py:124
+#: efalive/efalive/setup/dttime/datetime.py:168
+msgid "Network time protocol"
+msgstr "Netzwerk-Zeit-Protokoll"
+
+#: efalive/efalive/setup/dttime/datetime.py:176
+msgid "Use network time protocol (NTP)"
+msgstr "Zeit über Internet synchronisieren (NTP)"
+
+#: efalive/efalive/setup/screen/screensetup.py:43
+msgid "Screen setup"
+msgstr "Bildschirm-Setup"
+
+#: efalive/efalive/setup/screen/screensetup.py:68
+msgid "Apply"
+msgstr "Anwenden"
+
+#: efalive/efalive/setup/setupcommon/dialogs.py:49
+#: efalive/efalive/setup/setupcommon/dialogs.py:55
+msgid "Details"
+msgstr "Details"
+
+#: efalive/efalive/setup/setupcommon/dialogs.py:52
+msgid "Output"
+msgstr "Ausgaben"
+
+#: efalive/efalive/setup/setupcommon/dialogs.py:81
 #, python-format
-msgid "Could not open nm-connection-editor program: %s"
-msgstr "Konnte das Programm nm-connection-editor nicht starten: %s"
+msgid "Please enter the password of user %s"
+msgstr "Bitte das Passwort für Benutzer %s eingeben"
 
-#: efalive/efalive/setup/systemtab.py:135
-#, python-format
-msgid "Could not run keyboard setup: %s"
-msgstr "Konnte die Tastatureinstellungen nicht laden: %s"
+#: efalive/efalive/setup/setupcommon/dialogs.py:83
+msgid "The password you entered did not match!"
+msgstr "Das eingegebene Passwort war falsch!"
 
-#: efalive/efalive/setup/systemtab.py:143
-#, python-format
-msgid "Could not run dynamic hostname setup: %s"
-msgstr ""
-"Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
+#: efalive/efalive/setup/setupcommon/dialogs.py:113
+msgid "Internal error in PAM authentication module"
+msgstr "Interner Fehler im PAM Authentifizierungsmodul"
 
-#: efalive/efalive/setup/systemtab.py:151
-#, python-format
-msgid "Could not open xscreensaver-demo program: %s"
-msgstr "Konnte das Programm xscreensaver-demo nicht starten: %s"
+#: efalive/efalive/setup/taskstab.py:73
+msgid "Task list"
+msgstr "Aufgaben"
 
-#: efalive/efalive/setup/systemtab.py:159
-#, python-format
-msgid "Could not open xfce4-power-manager-settings program: %s"
-msgstr "Konnte das Programm xfce4-power-manager-settings nicht starten: %s"
+#: efalive/efalive/setup/taskstab.py:99
+msgid "Add a new task"
+msgstr "Aufgabe hinzufügen"
 
-#: efalive/efalive/setup/actionstab.py:48
-msgid "Shutdown PC"
-msgstr "PC herunterfahren"
+#: efalive/efalive/setup/taskstab.py:106
+msgid "Edit task"
+msgstr "Aufgabe editieren"
 
-#: efalive/efalive/setup/actionstab.py:54
-msgid "Restart PC"
-msgstr "PC neu starten"
+#: efalive/efalive/setup/taskstab.py:113
+msgid "Remove task"
+msgstr "Aufgabe entfernen"
 
-#: efalive/efalive/setup/actionstab.py:79
-msgid "Really shut down PC ?"
-msgstr "PC wirklich herunterfahren ?"
+#: efalive/efalive/setup/taskstab.py:146 efalive/efalive/setup/taskstab.py:307
+msgid "Hourly"
+msgstr "Stündlich"
 
-#: efalive/efalive/setup/actionstab.py:85
-#: efalive/efalive/setup/actionstab.py:96
-#, python-format
-msgid "Could not run /sbin/shutdown program: %s"
-msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
+#: efalive/efalive/setup/taskstab.py:147 efalive/efalive/setup/taskstab.py:308
+msgid "Daily"
+msgstr "Täglich"
 
-#: efalive/efalive/setup/actionstab.py:90
-msgid "Really reboot PC ?"
-msgstr "PC wirklich neu starten ?"
+#: efalive/efalive/setup/taskstab.py:148 efalive/efalive/setup/taskstab.py:309
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#: efalive/efalive/setup/taskstab.py:149 efalive/efalive/setup/taskstab.py:310
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: efalive/efalive/setup/taskstab.py:165 efalive/efalive/setup/taskstab.py:270
+msgid "Backup e-mail"
+msgstr "E-Mail Datensicherung"
+
+#: efalive/efalive/setup/taskstab.py:167 efalive/efalive/setup/taskstab.py:271
+msgid "Shell"
+msgstr "Shell"
+
+#: efalive/efalive/setup/taskstab.py:253
+msgid "Task editor"
+msgstr "Aufgaben-Editor"
+
+#: efalive/efalive/setup/taskstab.py:263
+msgid "Type"
+msgstr "Typ"
+
+#: efalive/efalive/setup/taskstab.py:280
+msgid "Command"
+msgstr "Befehl"
+
+#: efalive/efalive/setup/taskstab.py:289
+msgid "Recipient"
+msgstr "Empfänger"
+
+#: efalive/efalive/setup/taskstab.py:300
+msgid "Interval"
+msgstr "Intervall"
