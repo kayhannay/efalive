@@ -30,6 +30,9 @@
 TEXTDOMAIN=efalive_autobackup
 TEXTDOMAINDIR=/usr/share/locale
 
+LOGFILE=~/autobackup.log
+exec 1>> $LOGFILE 2>&1
+
 /bin/date
 
 if [ "x$LANG" = "x" ]

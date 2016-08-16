@@ -185,7 +185,7 @@ class AutoBackupModule(object):
 
     def _run_autobackup(self, device_file):
         try:
-            (returncode, output) = common.command_output(["/usr/lib/efalive/bin/autobackup.sh", device_file, ">>", "~/autobackup.log", "2>&1"])
+            (returncode, output) = common.command_output(["/usr/lib/efalive/bin/autobackup.sh", device_file])
             if returncode != 0:
                 if returncode == 1 or returncode == 5:
                     message = "Backup failed! Please check that the efalive user is configured correctly in efa."
