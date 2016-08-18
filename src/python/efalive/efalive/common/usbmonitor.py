@@ -2,7 +2,7 @@
 '''
 Created on 08.03.2015
 
-Copyright (C) 2015 Kay Hannay
+Copyright (C) 2015-2016 Kay Hannay
 
 This file is part of efaLive.
 
@@ -72,7 +72,7 @@ class UsbStorageMonitor(object):
             wrapped_device = self._wrap_device(device)
             self._external_callback(wrapped_device)
         else:
-            self._logger.warn("Unhandled action: %s" % device.action)
+            self._logger.info("Unhandled action: %s" % device.action)
 
     def _debug_device(self, device):
         self._logger.debug("Device:")

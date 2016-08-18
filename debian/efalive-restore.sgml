@@ -20,7 +20,7 @@ manpage.1: manpage.sgml
   <!ENTITY dhfirstname "<firstname>Kay</firstname>">
   <!ENTITY dhsurname   "<surname>Hannay</surname>">
   <!-- Please adjust the date whenever revising the manpage. -->
-  <!ENTITY dhdate      "<date>April  25, 2013</date>">
+  <!ENTITY dhdate      "<date>August  14, 2016</date>">
   <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
        allowed: see man(7), man(1). -->
   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
@@ -44,7 +44,7 @@ manpage.1: manpage.sgml
       &dhsurname;
     </author>
     <copyright>
-      <year>2013</year>
+      <year>2013-2016</year>
       <holder>&dhusername;</holder>
     </copyright>
     &dhdate;
@@ -97,7 +97,7 @@ manpage.1: manpage.sgml
   <refsect1>
     <title>SEE ALSO</title>
 
-    <para>efalive-backup (1), efalive-setup (1).</para>
+    <para>efalive-backup (1), efalive-setup (1), efalive-daemon (1).</para>
 
     <para>There is also a detailed documentation in a PDF document provided with this software.</para>
   </refsect1>

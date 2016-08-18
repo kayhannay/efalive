@@ -2,7 +2,7 @@
 '''
 Created on 16.02.2015
 
-Copyright (C) 2015 Kay Hannay
+Copyright (C) 2015-2016 Kay Hannay
 
 This file is part of efaLive.
 
@@ -19,13 +19,16 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
-from mock import call, patch, MagicMock
+from mock import call, patch, MagicMock, Mock
 
 from efalive.common import common
-from efalivedaemon import EfaLiveDaemon,AutoBackupModule, WatchDogModule
+from efalivedaemon import EfaLiveDaemon,AutoBackupModule, WatchDogModule, TaskSchedulerModule
 from efalive.common.usbmonitor import UsbStorageDevice
-from efalive.common import settings
 from efalive.common.settings import EfaLiveSettings
+from efalive.common.observable import Observable
+from tasks import BackupMailTask
+#from efalive.common import settings
+#from efalive.common.settings import EfaLiveSettings
 
 class EfaLiveDaemonTestCase(unittest.TestCase):
 
@@ -104,7 +107,8 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._handle_usb_add_event(UsbStorageDevice("/dev/test1"))
 
-        common.command_output.assert_called_once_with(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1", ">>", "~/autobackup.log", "2>&1"])
+        self.assertEqual(call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1"]), common.command_output.call_args)
+        self.assertEqual(1, common.command_output.call_count)
 
     def test_run_autobackup__success(self):
         classUnderTest = AutoBackupModule()
@@ -112,7 +116,8 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
-        common.command_output.assert_called_once_with(['/usr/lib/efalive/bin/autobackup.sh', '/dev/test1', ">>", "~/autobackup.log", "2>&1"])
+        self.assertEqual(call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1"]), common.command_output.call_args)
+        self.assertEqual(1, common.command_output.call_count)
         self.assertEqual(0, result)
 
     def test_run_autobackup__fail_user(self):
@@ -121,7 +126,6 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
-        common.command_output.assert_not_called()
         self.assertEqual(1, result)
 
     def test_run_autobackup__fail_other(self):
@@ -130,7 +134,6 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
-        common.command_output.assert_not_called()
         self.assertEqual(1, result)
 
     def test_run_autobackup__fail_exception(self):
@@ -139,7 +142,6 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
-        common.command_output.assert_not_called()
         self.assertEqual(1, result)
 
 
@@ -151,7 +153,9 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
         class_under_test.run_checks()
 
-        common.command_output.assert_called_once_with(["ps", "-Af"])
+        self.assertEqual(1, common.command_output.call_count)
+        self.assertEqual(call(["ps", "-Af"]), common.command_output.call_args)
+        self.assertEqual(3, class_under_test._restart_threshold)
 
     def test_run_checks__process_not_found(self):
         class_under_test = WatchDogModule()
@@ -162,5 +166,164 @@ class WatchDogModuleTestCase(unittest.TestCase):
         class_under_test.run_checks()
 
         expected_calls = [call(["ps", "-Af"]), call(["ps", "-Af"]), call(["ps", "-Af"]), call(["sudo", "/sbin/shutdown", "-r", "now"])]
-        self.assertEquals(expected_calls, common.command_output.call_args_list)
+        self.assertEqual(expected_calls, common.command_output.call_args_list)
+        self.assertEqual(3, class_under_test._restart_threshold)
+
+
+class TaskSchedulerModuleTestCase(unittest.TestCase):
+
+    @patch("__builtin__.open")
+    def test_run_tasks(self, open_mock):
+        common.command_output = MagicMock(return_value = (0, "testfile.txt"))
+        fileStub = FileStub()
+        open_mock.return_value = fileStub
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData({"234" : ["SHELL", "ls /tmp2"]})
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData({"345" : ["SHELL", "ls /tmp3"]})
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData({"456" : ["SHELL", "ls /tmp4"]})
+        settings_mock.confPath = "/test"
+
+        class_under_test = TaskSchedulerModule()
+        class_under_test.update_settings(settings_mock)
+        class_under_test.run_tasks()
+
+        self.assertEqual(4, common.command_output.call_count)
+        self.assertEqual(call(["ls", "/tmp1"]), common.command_output.call_args_list[0])
+        self.assertEqual(call(["ls", "/tmp2"]), common.command_output.call_args_list[1])
+        self.assertEqual(call(["ls", "/tmp3"]), common.command_output.call_args_list[2])
+        self.assertEqual(call(["ls", "/tmp4"]), common.command_output.call_args_list[3])
+        self.assertEqual(1, len(class_under_test._hourly_markers))
+        self.assertEqual(1, len(class_under_test._daily_markers))
+        self.assertEqual(1, len(class_under_test._weekly_markers))
+        self.assertEqual(1, len(class_under_test._monthly_markers))
+        self.assertEqual(4, len(fileStub.data))
+
+    @patch("__builtin__.open")
+    def test_run_tasks__already_executed(self, open_mock):
+        common.command_output = MagicMock(return_value = (0, "testfile.txt"))
+        fileStub = FileStub()
+        open_mock.return_value = fileStub
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData({})
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData({})
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData({})
+        settings_mock.confPath = "/test"
+
+        class_under_test = TaskSchedulerModule()
+        class_under_test.update_settings(settings_mock)
+        class_under_test.run_tasks()
+
+        self.assertEqual(1, common.command_output.call_count)
+        self.assertEqual(call(["ls", "/tmp1"]), common.command_output.call_args_list[0])
+        self.assertEqual(1, len(class_under_test._hourly_markers))
+        self.assertEqual(0, len(class_under_test._daily_markers))
+        self.assertEqual(0, len(class_under_test._weekly_markers))
+        self.assertEqual(0, len(class_under_test._monthly_markers))
+        self.assertEqual(1, len(fileStub.data))
+
+        class_under_test.run_tasks()
+
+        self.assertEqual(1, common.command_output.call_count)
+        self.assertEqual(call(["ls", "/tmp1"]), common.command_output.call_args_list[0])
+        self.assertEqual(1, len(class_under_test._hourly_markers))
+        self.assertEqual(0, len(class_under_test._daily_markers))
+        self.assertEqual(0, len(class_under_test._weekly_markers))
+        self.assertEqual(0, len(class_under_test._monthly_markers))
+        self.assertEqual(1, len(fileStub.data))
+
+    @patch("__builtin__.open")
+    def test_run_tasks__new_task(self, open_mock):
+        common.command_output = MagicMock(return_value = (0, "testfile.txt"))
+        fileStub = FileStub()
+        open_mock.side_effect = [ fileStub, FileStub(), FileStub(), FileStub(), fileStub, fileStub, FileStub(), FileStub(), FileStub(), fileStub]
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData({})
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData({})
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData({})
+        settings_mock.confPath = "/test"
+
+        class_under_test = TaskSchedulerModule()
+        class_under_test.update_settings(settings_mock)
+        class_under_test.run_tasks()
+
+        self.assertEqual(1, common.command_output.call_count)
+        self.assertEqual(call(["ls", "/tmp1"]), common.command_output.call_args_list[0])
+        self.assertEqual(1, len(class_under_test._hourly_markers))
+        self.assertEqual(0, len(class_under_test._daily_markers))
+        self.assertEqual(0, len(class_under_test._weekly_markers))
+        self.assertEqual(0, len(class_under_test._monthly_markers))
+        self.assertEqual(1, len(fileStub.data))
+
+        settings_mock.daily_tasks.updateData({"1234" : ["SHELL", "ls /tmp2"]})
+
+        class_under_test.update_settings(settings_mock)
+        class_under_test.run_tasks()
+
+        self.assertEqual(2, common.command_output.call_count)
+        self.assertEqual(call(["ls", "/tmp1"]), common.command_output.call_args_list[0])
+        self.assertEqual(call(["ls", "/tmp2"]), common.command_output.call_args_list[1])
+        self.assertEqual(1, len(class_under_test._hourly_markers))
+        self.assertEqual(1, len(class_under_test._daily_markers))
+        self.assertEqual(0, len(class_under_test._weekly_markers))
+        self.assertEqual(0, len(class_under_test._monthly_markers))
+        self.assertEqual(2, len(fileStub.data))
+
+    @patch("__builtin__.open")
+    @patch("efalive.daemon.efalivedaemon.BackupMailTask")
+    def test_run_tasks__mail(self, backup_mail_task_mock, open_mock):
+        fileStub = FileStub()
+        open_mock.return_value = fileStub
+        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock.hourly_tasks = Observable()
+        settings_mock.hourly_tasks.updateData({})
+        settings_mock.daily_tasks = Observable()
+        settings_mock.daily_tasks.updateData({"123" : ["BACKUP_MAIL", ["user1@testsystem.local", "user2@testsystem.local"]]})
+        settings_mock.weekly_tasks = Observable()
+        settings_mock.weekly_tasks.updateData({})
+        settings_mock.monthly_tasks = Observable()
+        settings_mock.monthly_tasks.updateData({})
+        settings_mock.confPath = "/test"
+        backup_mail_task_mock_instance = backup_mail_task_mock.return_value
+        backup_mail_task_mock_instance.task_id = 12345
+
+        class_under_test = TaskSchedulerModule()
+        class_under_test.update_settings(settings_mock)
+        class_under_test.run_tasks()
+
+        self.assertEqual(0, len(class_under_test._hourly_markers))
+        self.assertEqual(1, len(class_under_test._daily_markers))
+        self.assertEqual(0, len(class_under_test._weekly_markers))
+        self.assertEqual(0, len(class_under_test._monthly_markers))
+        self.assertEqual(1, backup_mail_task_mock_instance.run.call_count)
+
+
+class FileStub(object):
+
+    def __init__(self):
+        self.data = []
+
+    def close(self):
+        pass
+
+    def __iter__(self):
+        return iter(self.data)
+
+    def write(self, d):
+        self.data.append(d)
+
 

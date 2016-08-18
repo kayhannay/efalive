@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-06 22:37+0100\n"
+"POT-Creation-Date: 2016-08-17 13:31+0200\n"
 "PO-Revision-Date: 2013-11-06 22:38+0100\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -17,91 +17,92 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:47
-#: src/files/usr/lib/efalive/bin/autobackup.sh:59
+#: src/files/usr/lib/efalive/bin/autobackup.sh:53
+#: src/files/usr/lib/efalive/bin/autobackup.sh:65
 msgid "Auto backup: $1"
 msgstr "Autobackup: $1"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:76
+#: src/files/usr/lib/efalive/bin/autobackup.sh:82
 msgid "Wrong password given for auto backup!"
 msgstr "Falsches Passwort eingegeben!"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:78
+#: src/files/usr/lib/efalive/bin/autobackup.sh:84
 #, sh-format
 msgid "Password for auto backup$ERROR"
-msgstr "Passwort fÃ¼r Autobackup$ERROR"
+msgstr "Passwort für Autobackup$ERROR"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:78
-msgid "Passwort"
+#: src/files/usr/lib/efalive/bin/autobackup.sh:84
+msgid "Password"
 msgstr "Passwort"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:81
+#: src/files/usr/lib/efalive/bin/autobackup.sh:87
 msgid "Backup aborted by user"
 msgstr "Datensicherung durch den Benutzer abgebrochen"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:84
+#: src/files/usr/lib/efalive/bin/autobackup.sh:90
 msgid "\\nWrong password!"
 msgstr "\\nFalsches Passwort!"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:105
+#: src/files/usr/lib/efalive/bin/autobackup.sh:111
 #, sh-format
 msgid "Wait for $OPTARG seconds ..."
-msgstr "Warte fÃ¼r $OPTARG Sekunden ..."
+msgstr "Warte für $OPTARG Sekunden ..."
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:108
+#: src/files/usr/lib/efalive/bin/autobackup.sh:114
 msgid "Error, specified delay (-d) is not a number!"
 msgstr "Fehler, angegebene Wartezeit (-d) ist keine Zahl!"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:113
+#: src/files/usr/lib/efalive/bin/autobackup.sh:119
 #, sh-format
 msgid "Unknown argument: -$OPTARG\\n"
 msgstr "Unbekanntes Argument: -$OPTARG\\n"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:114
+#: src/files/usr/lib/efalive/bin/autobackup.sh:120
 msgid "Usage: autobackup.sh [-q] [-d DELAY] <DEVICE>"
-msgstr "Benutzung: autobackup.sh [-q] [-d WARTEZEIT] <GERÃ„T>"
+msgstr "Benutzung: autobackup.sh [-q] [-d WARTEZEIT] <GERÄT>"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:118
+#: src/files/usr/lib/efalive/bin/autobackup.sh:124
 #, sh-format
 msgid "Unknown argument: -$OPTARG"
 msgstr "Unbekanntes Argument: -$OPTARG"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:127
-msgid "Error, no backup device specified!"
-msgstr "Fehler, kein GerÃ¤t fÃ¼r Datensicherung angegeben!"
-
 #: src/files/usr/lib/efalive/bin/autobackup.sh:133
+msgid "Error, no backup device specified!"
+msgstr "Fehler, kein Gerät für Datensicherung angegeben!"
+
+#: src/files/usr/lib/efalive/bin/autobackup.sh:139
 msgid "Error, specified device does not exist!"
-msgstr "Fehler, das angegebene GerÃ¤t existert nicht!"
+msgstr "Fehler, das angegebene Gerät existert nicht!"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:138
+#: src/files/usr/lib/efalive/bin/autobackup.sh:144
 msgid "Mounting $1 to /media/backup..."
-msgstr "HÃ¤nge $1 nach /media/backup ein..."
+msgstr "Hänge $1 nach /media/backup ein..."
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:140
+#: src/files/usr/lib/efalive/bin/autobackup.sh:146
 msgid "Creating backup to /media/backup..."
 msgstr "Erstelle Datensicherung in /media/backup..."
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:143
+#: src/files/usr/lib/efalive/bin/autobackup.sh:149
 msgid "Unmounting $1..."
-msgstr "HÃ¤nge $1 aus..."
+msgstr "Hänge $1 aus..."
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:150
+#: src/files/usr/lib/efalive/bin/autobackup.sh:156
 msgid ""
-"Login to efa2 server failed, please check that the efaLive administrator is "
-"created in efa2 configuration"
+"Login to efa server failed, please check that the efaLive administrator is "
+"created in efa configuration"
 msgstr ""
-"Login bei efa2 Server fehlgeschlagen, bitte prÃ¼fen, ob der efaLive Administrator "
-"in der efa2 Konfiguration erstellt wurde"
+"Login bei efa2 Server fehlgeschlagen, bitte prüfen, ob der efaLive "
+"Administrator in der efa2 Konfiguration erstellt wurde"
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:152
+#: src/files/usr/lib/efalive/bin/autobackup.sh:158
 #, sh-format
 msgid ""
 "Backup failed, error code: $BACKUP_RESULT !\\n\\nView autobackup.log for "
 "details."
 msgstr ""
-"Datensicherung fehlgeschlagen, Fehlercode: $BACKUP_RESULT !\\n\\nMehr Informationen in autobackp.log."
+"Datensicherung fehlgeschlagen, Fehlercode: $BACKUP_RESULT !\\n\\nMehr "
+"Informationen in autobackp.log."
 
-#: src/files/usr/lib/efalive/bin/autobackup.sh:154
+#: src/files/usr/lib/efalive/bin/autobackup.sh:160
 msgid "Backup successful."
 msgstr "Datensicherung erfolgreich."

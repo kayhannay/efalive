@@ -1,3 +1,12 @@
+efalive (2.4-1) stable; urgency=low
+
+  * Add mail backup support to efaLive daemon
+  * Add task scheduler to efaLive daemon
+  * Reduce dependencies of efaLive package
+
+ -- Kay Hannay <klinux@hannay.de>  Wed, 27 Jan 2016 12:25:53 +0100
+
+
 efalive (2.3-1) stable; urgency=low
 
   * Update for Debian Jessie
@@ -15,7 +24,7 @@ efalive (2.2-1) stable; urgency=low
   * Exchange su based password check by Python solution for efaLive Setup start
   * Add function to create a log file package
 
- -- Kay Hannay <klinux@hannay.de>  Wed, 08 Jan 2014 20:54:21 +0200
+ -- Kay Hannay <klinux@hannay.de>  Wed, 08 Jan 2014 20:54:21 +0100
 
 
 efalive (2.1-1) unstable; urgency=low

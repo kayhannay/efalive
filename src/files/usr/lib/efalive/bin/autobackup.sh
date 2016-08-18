@@ -30,6 +30,9 @@
 TEXTDOMAIN=efalive_autobackup
 TEXTDOMAINDIR=/usr/share/locale
 
+LOGFILE=~/autobackup.log
+exec 1>> $LOGFILE 2>&1
+
 /bin/date
 
 if [ "x$LANG" = "x" ]
@@ -78,7 +81,7 @@ function check_password {
 			then
 				/bin/echo $"Wrong password given for auto backup!"
 			fi
-   			PASS_INPUT=$(/usr/bin/zenity --entry --hide-text --text $"Password for auto backup$ERROR" --title $"Passwort");
+   			PASS_INPUT=$(/usr/bin/zenity --entry --hide-text --text $"Password for auto backup$ERROR" --title $"Password");
    			if [ $? != 0 ]
 			then 
                 		/bin/echo $"Backup aborted by user"

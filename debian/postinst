@@ -23,15 +23,7 @@ case "$1" in
         chown -R efa:efa /usr/lib/efa2
         chown -R efa:efa /home/efa/.config
         chown efa:efa /home/efa/.xinitrc
-        #chmod 440 /etc/sudoers
-        # update-rc.d efa start 99 2 3 4 5 . stop 01 0 1 6 .
-        #aptitude -y install fontconfig-config
-        #aptitude -y install plymouth
-        #plymouth-set-default-theme -R efa-live
-        #sed -i 's/START_DAEMON=yes/START_DAEMON=no/' /etc/default/halevt
-        echo "efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /usr/sbin/dpkg-reconfigure -fgnome ddclient, /bin/date, /sbin/insserv -d ntp, /sbin/insserv -r ntp, /usr/bin/nm-connection-editor, /usr/lib/efalive/bin/copy_log_files.sh /tmp/log_package efa" >> /etc/sudoers
-	#sed -i 's/allowed_users=.*/allowed_users=anybody/' /etc/X11/Xwrapper.config
-        #update-grub
+        echo "efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /usr/sbin/dpkg-reconfigure -fgnome ddclient, /bin/date, /sbin/insserv -d ntp, /sbin/insserv -r ntp, /usr/bin/nm-connection-editor, /usr/lib/efalive/bin/copy_log_files.sh /tmp/log_package/system efa" >> /etc/sudoers
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

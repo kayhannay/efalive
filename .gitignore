@@ -4,4 +4,6 @@ build
 *.pyc
 *.log
 *.pot
+.project
+.pydevproject
 

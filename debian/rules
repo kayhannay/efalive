@@ -16,12 +16,14 @@ export DH_VERBOSE=0
 	dh $@ 
 
 override_dh_install:
-	tar zx -C ../python -f ../python/efaLiveTools-1.1.tar.gz
-	cd ../python/efaLiveTools-1.1/; ./install.sh --prefix=../../efalive/debian/efalive/usr; cd ../../efalive/
+	tar zx -C ../python -f ../python/efaLiveTools-2.4.tar.gz
+	cd ../python/efaLiveTools-2.4/; ./install.sh --prefix=../../efalive/debian/efalive/usr; cd ../../efalive/
 	cp -r  ../../src/files/* debian/efalive/
+	msgfmt -o debian/efalive/usr/share/locale/de/LC_MESSAGES/efalive_autobackup.mo ../../i18n/de/efalive_autobackup.po
 
 override_dh_auto_build:
 	docbook-to-man debian/efalive-backup.sgml > debian/efalive-backup.1
 	docbook-to-man debian/efalive-restore.sgml > debian/efalive-restore.1
 	docbook-to-man debian/efalive-setup.sgml > debian/efalive-setup.1
+	docbook-to-man debian/efalive-daemon.sgml > debian/efalive-daemon.1
 	dh_auto_build

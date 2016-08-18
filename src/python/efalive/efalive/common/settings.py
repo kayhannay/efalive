@@ -2,7 +2,7 @@
 '''
 Created on 04.03.2015
 
-Copyright (C) 2015-2015 Kay Hannay
+Copyright (C) 2015-2016 Kay Hannay
 
 This file is part of efaLive.
 
@@ -20,35 +20,59 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import logging
 import os
+import json
+import base64
 
 from observable import Observable
+import md5
 
 class EfaLiveSettings(object):
 
     def __init__(self, confPath = os.path.join(os.path.expanduser('~'), ".efalive")):
         self._logger = logging.getLogger('efalive.common.EfaLiveSettings')
         self._checkPath(confPath)
-        self.confPath=confPath
+        self.confPath = confPath
         self._logger.info("Using configuration directory '%s'" % confPath)
         self._settingsFileName = os.path.join(self.confPath, "settings.conf")
         self._backupFileName = os.path.join(self.confPath, "backup.conf")
-        self.efaShutdownAction=Observable()
-        self.autoUsbBackup=Observable()
-        self.autoUsbBackupDialog=Observable()
-        self.efaBackupPaths="/usr/lib/efa/ausgabe/layout /usr/lib/efa/daten /home/efa/efa"
-        self.efaLiveBackupPaths="/home/efa/.efalive"
-        self.efaPort=Observable()
-        self.efaCredentialsFile="~/.efalive/.efacred"
-        self.auto_backup_use_password=Observable()
-        self.auto_backup_password=""
+        self.efaShutdownAction = Observable()
+        self.autoUsbBackup = Observable()
+        self.autoUsbBackupDialog = Observable()
+        self.efaLiveBackupPaths = "/home/efa/.efalive"
+        self.efaPort = Observable()
+        self.efaCredentialsFile = "~/.efalive/.efacred"
+        self.auto_backup_use_password = Observable()
+        self.auto_backup_password = ""
+        self.mailer_host = Observable()
+        self.mailer_port = Observable()
+        self.mailer_use_ssl = Observable()
+        self.mailer_use_starttls = Observable()
+        self.mailer_user = Observable()
+        self.mailer_password = Observable()
+        self.mailer_sender = Observable()
+        self.backup_mail_recipient = Observable()
+        self.hourly_tasks = Observable()
+        self.daily_tasks = Observable()
+        self.weekly_tasks = Observable()
+        self.monthly_tasks = Observable()
 
     def initSettings(self):
         self.efaShutdownAction.updateData("shutdown")
         self.efaPort.updateData(3834)
+        self.mailer_host.updateData("")
+        self.mailer_port.updateData(25)
+        self.mailer_use_ssl.updateData(False)
+        self.mailer_use_starttls.updateData(True)
+        self.mailer_user.updateData("")
+        self.mailer_password.updateData("")
+        self.mailer_sender.updateData("")
+        self.load_settings()
+
+    def load_settings(self):
         if os.path.isfile(self._settingsFileName):
-            self.settingsFile=open(self._settingsFileName, "r")
-            self.parseSettingsFile(self.settingsFile)
-            self.settingsFile.close()
+            settingsFile=open(self._settingsFileName, "r")
+            self.parseSettingsFile(settingsFile)
+            settingsFile.close()
 
     def _checkPath(self, path):
         if not os.path.exists(path):
@@ -64,22 +88,12 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed shutdown action: " + actionStr)
             elif line.startswith("AUTO_USB_BACKUP="):
                 enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.autoUsbBackup.updateData(True)
-                else:
-                    self.autoUsbBackup.updateData(False)
+                self.autoUsbBackup.updateData(enableStr == "\"TRUE\"")
                 self._logger.debug("Parsed auto USB backup setting: " + enableStr)
             elif line.startswith("AUTO_USB_BACKUP_DIALOG="):
                 enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.autoUsbBackupDialog.updateData(True)
-                else:
-                    self.autoUsbBackupDialog.updateData(False)
+                self.autoUsbBackupDialog.updateData(enableStr == "\"TRUE\"")
                 self._logger.debug("Parsed auto USB backup dialog setting: " + enableStr)
-            elif line.startswith("EFA_BACKUP_PATHS="):
-                backupStr=line[(line.index('=') + 1):].rstrip()
-                self.efaBackupPaths = backupStr.replace("\"", "")
-                self._logger.debug("Parsed efa backup paths: " + backupStr)
             elif line.startswith("EFALIVE_BACKUP_PATHS="):
                 backupStr=line[(line.index('=') + 1):].rstrip()
                 self.efaLiveBackupPaths = backupStr.replace("\"", "")
@@ -98,11 +112,82 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed efa auto backup password setting: " + pwdStr)
             elif line.startswith("AUTO_BACKUP_USE_PASSWORD="):
                 enableStr=line[(line.index('=') + 1):].rstrip()
-                if enableStr == "\"TRUE\"":
-                    self.auto_backup_use_password.updateData(True)
-                else:
-                    self.auto_backup_use_password.updateData(False)
+                self.auto_backup_use_password.updateData(enableStr == "\"TRUE\"")
                 self._logger.debug("Parsed auto backup enable password setting: " + enableStr)
+            elif line.startswith("MAILER_HOST="):
+                hostStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_host.updateData(hostStr)
+                self._logger.debug("Parsed efa mailer host setting: " + hostStr)
+            elif line.startswith("MAILER_PORT="):
+                portStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_port.updateData(int(portStr))
+                self._logger.debug("Parsed efa mailer port setting: " + portStr)
+            elif line.startswith("MAILER_USE_SSL="):
+                enableStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_use_ssl.updateData(enableStr == "\"TRUE\"")
+                self._logger.debug("Parsed efa mailer use SSL setting: " + enableStr)
+            elif line.startswith("MAILER_USE_STARTTLS="):
+                enableStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_use_starttls.updateData(enableStr == "\"TRUE\"")
+                self._logger.debug("Parsed efa mailer use StartTLS setting: " + enableStr)
+            elif line.startswith("MAILER_USER="):
+                userStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_user.updateData(userStr)
+                self._logger.debug("Parsed efa mailer user setting: " + userStr)
+            elif line.startswith("MAILER_PASSWORD="):
+                passStr=line[(line.index('=') + 1):].rstrip()
+                self.mailer_password.updateData(base64.b64decode(passStr))
+                self._logger.debug("Parsed efa mailer password setting: " + passStr)
+            elif line.startswith("MAILER_SENDER="):
+                senderStr=line[(line.index('=') + 2):].rstrip()[:-1]
+                self.mailer_sender.updateData(senderStr)
+                self._logger.debug("Parsed efa mailer sender setting: " + userStr)
+            elif line.startswith("HOURLY_TASKS="):
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.hourly_tasks.updateData(task_map)
+                self._logger.debug("Parsed hourly tasks setting: " + valueStr)
+            elif line.startswith("DAILY_TASKS="):
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.daily_tasks.updateData(task_map)
+                self._logger.debug("Parsed daily tasks setting: " + valueStr)
+            elif line.startswith("WEEKLY_TASKS="):
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.weekly_tasks.updateData(task_map)
+                self._logger.debug("Parsed weekly tasks setting: " + valueStr)
+            elif line.startswith("MONTHLY_TASKS="):
+                valueStr=line[(line.index('=') + 2):].rstrip()[:-1]
+                tasks = json.loads(valueStr)
+                if tasks != None:
+                    task_map = {}
+                    for task in tasks:
+                        task_id = self._create_id(task)
+                        task_map[task_id] = task
+                    self.monthly_tasks.updateData(task_map)
+                self._logger.debug("Parsed monthly tasks setting: " + valueStr)
+
+    def _create_id(self, task):
+        hasher = md5.new()
+        hasher.update(task[0])
+        hasher.update(str(task[1]))
+        return hasher.hexdigest()
 
     def save(self):
         self._logger.info("Saving settings to file: %s" % (self._settingsFileName))
@@ -117,7 +202,6 @@ class EfaLiveSettings(object):
                 settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"TRUE\"\n")
             else:
                 settingsFile.write("AUTO_USB_BACKUP_DIALOG=\"FALSE\"\n")
-            settingsFile.write("EFA_BACKUP_PATHS=\"%s\"\n" % self.efaBackupPaths)
             settingsFile.write("EFALIVE_BACKUP_PATHS=\"%s\"\n" % self.efaLiveBackupPaths)
             settingsFile.write("EFA_PORT=%d\n" % self.efaPort.getData())
             settingsFile.write("EFA_CREDENTIALS_FILE=%s\n" % self.efaCredentialsFile)
@@ -126,7 +210,94 @@ class EfaLiveSettings(object):
                 settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"TRUE\"\n")
             else:
                 settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"FALSE\"\n")
+            settingsFile.write("MAILER_HOST=%s\n" % self.mailer_host.getData())
+            settingsFile.write("MAILER_PORT=%d\n" % self.mailer_port.getData())
+            if self.mailer_use_ssl.getData() == True:
+                settingsFile.write("MAILER_USE_SSL=\"TRUE\"\n")
+            else:
+                settingsFile.write("MAILER_USE_SSL=\"FALSE\"\n")
+            if self.mailer_use_starttls.getData() == True:
+                settingsFile.write("MAILER_USE_STARTTLS=\"TRUE\"\n")
+            else:
+                settingsFile.write("MAILER_USE_STARTTLS=\"FALSE\"\n")
+            settingsFile.write("MAILER_USER=%s\n" % self.mailer_user.getData())
+            password = self.mailer_password.getData()
+            if password != None:
+                password = base64.b64encode(password)
+            settingsFile.write("MAILER_PASSWORD=%s\n" % password)
+            settingsFile.write("MAILER_SENDER='%s'\n" % self.mailer_sender.getData())
+            settingsFile.write("HOURLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.hourly_tasks)))
+            settingsFile.write("DAILY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.daily_tasks)))
+            settingsFile.write("WEEKLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.weekly_tasks)))
+            settingsFile.write("MONTHLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.monthly_tasks)))
             settingsFile.close()
         except IOError, exception:
             self._logger.error("Could not save files: %s" % exception)
             raise Exception("Could not save files")
+
+    def _get_tasks(self, tasks_data):
+        tasks = tasks_data.getData()
+        if tasks == None:
+            return None
+        else:
+            return tasks.values()
+
+    def delete_task(self, task_id):
+        tasks = self.hourly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.hourly_tasks.updateData(tasks)
+        tasks = self.daily_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.daily_tasks.updateData(tasks)
+        tasks = self.weekly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.weekly_tasks.updateData(tasks)
+        tasks = self.monthly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            del tasks[task_id]
+            self.monthly_tasks.updateData(tasks)
+
+    def add_task(self, task_type, task_data, task_interval):
+        task = [task_type, task_data]
+        if (task_interval == "HOURLY"):
+            tasks = self.hourly_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.hourly_tasks.updateData(tasks)
+        elif (task_interval == "DAILY"):
+            tasks = self.daily_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.daily_tasks.updateData(tasks)
+        elif (task_interval == "WEEKLY"):
+            tasks = self.weekly_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.weekly_tasks.updateData(tasks)
+        elif (task_interval == "MONTHLY"):
+            tasks = self.monthly_tasks.getData()
+            if tasks == None:
+                tasks = {}
+            tasks[self._create_id(task)] = task
+            self.monthly_tasks.updateData(tasks)
+
+    def get_task(self, task_id):
+        tasks = self.hourly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "HOURLY", tasks[task_id]
+        tasks = self.daily_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "DAILY", tasks[task_id]
+        tasks = self.weekly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "WEEKLY", tasks[task_id]
+        tasks = self.monthly_tasks.getData()
+        if tasks != None and task_id in tasks:
+            return "MONTHLY", tasks[task_id]
+

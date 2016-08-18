@@ -1,6 +1,6 @@
-find ./efalivesetup/ -iname "*.py" | xargs xgettext --from-code=UTF-8 -o i18n/de.pot
+find ./ -name "*.py" | xargs xgettext --from-code=UTF-8 -o i18n/messages.pot
 #xgettext -o i18n/messages.pot *.py
 #LANG=de_DE msginit -o i18n/de.po
-msgmerge i18n/de.po i18n/messages.pot > i18n/de_new.po
-msgfmt i18n/de.po -o locale/de/LC_MESSAGES/efaLiveSetup.mo
+msgmerge i18n/de/de.po i18n/messages.pot > i18n/de/de_new.po
+msgfmt i18n/de/de.po -o i18n/de/LC_MESSAGES/efaLiveSetup.mo
 
