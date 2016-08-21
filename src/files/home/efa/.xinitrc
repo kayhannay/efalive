@@ -36,6 +36,7 @@ start_efalive_daemon()
 stop_efalive_daemon()
 {
     /usr/bin/efalive-daemon stop
+    sudo /sbin/hwclock -w
 }
 
 start_efa()
