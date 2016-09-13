@@ -56,13 +56,16 @@ class MailerConfig(object):
         self.password = None
         self.sender = None
 
+class MailerError(Exception):
+    pass
+
 class Mailer(object):
 
     def __init__(self):
         self._logger = logging.getLogger('common.Mailer')
 
     def create_mail(self, mail):
-        message_text = MIMEText(mail.body)
+        message_text = MIMEText(mail.body.encode("utf-8"))
         message_text.set_charset("utf-8")
         if mail.file_attachments != None:
             msg = MIMEMultipart()
@@ -72,12 +75,16 @@ class Mailer(object):
                 msg.attach(attachment)
         else:
             msg = message_text
-        msg["Subject"] = mail.subject
-        msg["To"] = ', '.join(mail.recipients)
+        msg["Subject"] = mail.subject.encode("utf-8")
+        if mail.recipients == None:
+            raise MailerError("No recipient addresses provided.")
+        msg["To"] = ', '.join(mail.recipients).encode("utf-8")
         return msg
 
     def send_mail(self, config, mail):
-        mail["From"] = config.sender
+        if config.sender == None:
+            raise MailerError("No sender address configured in the settings.")
+        mail["From"] = config.sender.encode("utf-8")
         self._logger.debug("Send mail from %s to %s:\n%s" % (mail["From"], mail["To"], mail.as_string()))
         sender = None
         try:

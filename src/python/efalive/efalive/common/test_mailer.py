@@ -29,7 +29,6 @@ class MailerTestCase(unittest.TestCase):
     def test_create_mail__text(self):
         mail = MailData()
         mail.recipients = ["recipient@test.local"]
-        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
 
@@ -45,7 +44,6 @@ class MailerTestCase(unittest.TestCase):
     def test_create_mail__text_two_recipients(self):
         mail = MailData()
         mail.recipients = ["recipient1@test.local", "recipient2@test.local"]
-        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
 
@@ -61,7 +59,6 @@ class MailerTestCase(unittest.TestCase):
     def test_create_mail__attach_zip(self):
         mail = MailData()
         mail.recipients = ["recipient@test.local"]
-        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.zip"]
@@ -86,7 +83,6 @@ class MailerTestCase(unittest.TestCase):
     def test_create_mail__attach_text(self):
         mail = MailData()
         mail.recipients = ["recipient@test.local"]
-        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.txt"]
@@ -111,7 +107,6 @@ class MailerTestCase(unittest.TestCase):
     def test_create_mail__attach_image(self):
         mail = MailData()
         mail.recipients = ["recipient@test.local"]
-        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.png"]
@@ -136,7 +131,6 @@ class MailerTestCase(unittest.TestCase):
     def test_create_mail__attach_audio(self):
         mail = MailData()
         mail.recipients = ["recipient@test.local"]
-        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.wav"]
@@ -161,7 +155,6 @@ class MailerTestCase(unittest.TestCase):
     def test_create_mail__attach_text_and_zip(self):
         mail = MailData()
         mail.recipients = ["recipient@test.local"]
-        mail.sender = "sender@test.local"
         mail.subject = "Test mail"
         mail.body = "Test body"
         mail.file_attachments = ["test.txt", "test.zip"]
@@ -191,7 +184,6 @@ class MailerTestCase(unittest.TestCase):
     def test_send_mail__unencrypted_unauthorized(self, smtp_mock):
         mail_data = MailData()
         mail_data.recipients = ["recipient@test.local"]
-        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()
@@ -199,6 +191,7 @@ class MailerTestCase(unittest.TestCase):
         mailer_config.smtp_port = 25
         mailer_config.use_starttls = False
         mailer_config.use_ssl = False
+        mailer_config.sender = "sender@test.local"
 
         mailer = Mailer()
         mail = mailer.create_mail(mail_data)
@@ -216,7 +209,6 @@ class MailerTestCase(unittest.TestCase):
     def test_send_mail__starttls_unauthorized(self, smtp_mock):
         mail_data = MailData()
         mail_data.recipients = ["recipient@test.local"]
-        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()
@@ -224,6 +216,7 @@ class MailerTestCase(unittest.TestCase):
         mailer_config.smtp_port = 25
         mailer_config.use_starttls = True
         mailer_config.use_ssl = False
+        mailer_config.sender = "sender@test.local"
 
         mailer = Mailer()
         mail = mailer.create_mail(mail_data)
@@ -241,7 +234,6 @@ class MailerTestCase(unittest.TestCase):
     def test_send_mail__ssl_unauthorized(self, smtp_mock):
         mail_data = MailData()
         mail_data.recipients = ["recipient@test.local"]
-        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()
@@ -249,6 +241,7 @@ class MailerTestCase(unittest.TestCase):
         mailer_config.smtp_port = 25
         mailer_config.use_starttls = True
         mailer_config.use_ssl = True
+        mailer_config.sender = "sender@test.local"
 
         mailer = Mailer()
         mail = mailer.create_mail(mail_data)
@@ -266,7 +259,6 @@ class MailerTestCase(unittest.TestCase):
     def test_send_mail__unencrypted_authorized(self, smtp_mock):
         mail_data = MailData()
         mail_data.recipients = ["recipient@test.local"]
-        mail_data.sender = "sender@test.local"
         mail_data.subject = "Test mail"
         mail_data.body = "Test body"
         mailer_config = MailerConfig()
@@ -276,6 +268,7 @@ class MailerTestCase(unittest.TestCase):
         mailer_config.use_ssl = False
         mailer_config.user = "Tester"
         mailer_config.password = "Secret"
+        mailer_config.sender = "sender@test.local"
 
         mailer = Mailer()
         mail = mailer.create_mail(mail_data)
