@@ -23,7 +23,7 @@ case "$1" in
         chown -R efa:efa /usr/lib/efa2
         chown -R efa:efa /home/efa/.config
         chown efa:efa /home/efa/.xinitrc
-        echo "efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /usr/sbin/dpkg-reconfigure -fgnome ddclient, /bin/date, /sbin/insserv -d ntp, /sbin/insserv -r ntp, /usr/bin/nm-connection-editor, /usr/lib/efalive/bin/copy_log_files.sh /tmp/log_package/system efa, /sbin/hwclock -w" >> /etc/sudoers
+        echo "efa     ALL=NOPASSWD: /sbin/shutdown, /opt/efalive/bin/efalive_setup.sh, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /usr/sbin/dpkg-reconfigure -fgnome ddclient, /bin/date, /sbin/insserv -d ntp, /sbin/insserv -r ntp, /usr/bin/nm-connection-editor, /usr/lib/efalive/bin/copy_log_files.sh /tmp/log_package/system efa, /sbin/hwclock -w, raspi-config" >> /etc/sudoers
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

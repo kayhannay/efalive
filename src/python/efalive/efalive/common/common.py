@@ -29,6 +29,10 @@ import gtk
 LOCALES=os.path.join(os.path.dirname(sys.argv[0]), os.pardir, 'i18n')
 LOCALEDIR=os.path.realpath(LOCALES)
 
+class Platform(object):
+    PC = 1
+    RASPI = 2
+
 def get_icon_path(icon_name):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir, os.pardir, os.pardir)
     icon_path = os.path.join(path, 'icons', icon_name)
@@ -53,3 +57,15 @@ def get_button_label(icon_name, label):
     button_vbox.show_all()
     return button_vbox
 
+def get_efalive_platform():
+    os_id = None
+    os_release_file = os.path.join(os.sep, "etc", "os-release")
+    if os.path.exists(os_release_file):
+        os_release_content = open(os_release_file, "r")
+        for line in os_release_content:
+            if line.startswith("ID="):
+                os_id = line[(line.index('=') + 1):].rstrip()
+    if os_id == "raspbian":
+        return Platform.RASPI
+    else:
+        return Platform.PC

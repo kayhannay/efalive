@@ -96,6 +96,20 @@ class SystemTabView(gtk.VBox):
         self.systemGrid.attach(self.keyboardButton, 0, 1, 2, 3)
         self.keyboardButton.show()
 
+        self.raspi_config_button=gtk.Button()
+        if common.get_efalive_platform() is common.Platform.RASPI:
+            self.raspi_grid=gtk.Table(1, 3, True)
+            self.pack_start(self.raspi_grid, False, False, 5)
+            self.raspi_grid.set_row_spacings(2)
+            self.raspi_grid.set_col_spacings(2)
+            self.raspi_grid.show()
+
+            button_vbox = common.get_button_label("raspi-config.png", _("Raspi config"))
+            self.raspi_config_button.add(button_vbox)
+            self.raspi_grid.attach(self.raspi_config_button, 0, 1, 0, 1)
+            self.raspi_config_button.show()
+
+
 class SystemTabController(object):
     def __init__(self, settings):
         self._logger = logging.getLogger('SystemTabController')
@@ -113,6 +127,7 @@ class SystemTabController(object):
         self._view.screensaverButton.connect("clicked", self.runScreensaverSetup)
         self._view.powerManagerButton.connect("clicked", self.runPowerManagerSetup)
         self._view.datetimeButton.connect("clicked", self.runDateTimeSetup)
+        self._view.raspi_config_button.connect("clicked", self.run_raspi_config)
 
     def get_view(self):
         return self._view
@@ -162,4 +177,12 @@ class SystemTabController(object):
 
     def runDateTimeSetup(self, widget):
         DateTime(None, standalone=False)
+
+    def run_raspi_config(self, widget):
+        try:
+            subprocess.Popen(['sudo', 'raspi-config'])
+        except OSError as error:
+            message = _("Could not run raspi configuration tool: %s") % error
+            self._logger.error(message)
+            dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
 
