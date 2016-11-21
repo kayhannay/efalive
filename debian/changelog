@@ -1,3 +1,11 @@
+efalive (2.5-1) stable; urgency=low
+
+  * Fix mail encoding issue for backup e-mail
+  * Add support for raspi-config button in efaLive-Setup
+
+ -- Kay Hannay <klinux@hannay.de>  Sun, 18 Sep 2016 20:43:32 +0200
+
+
 efalive (2.4-1) stable; urgency=low
 
   * Add mail backup support to efaLive daemon
