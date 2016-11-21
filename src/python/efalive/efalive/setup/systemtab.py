@@ -180,7 +180,7 @@ class SystemTabController(object):
 
     def run_raspi_config(self, widget):
         try:
-            subprocess.Popen(['sudo', 'raspi-config'])
+            subprocess.Popen(['xterm', '-e', 'sudo', 'raspi-config'])
         except OSError as error:
             message = _("Could not run raspi configuration tool: %s") % error
             self._logger.error(message)
