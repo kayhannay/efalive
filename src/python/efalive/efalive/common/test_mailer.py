@@ -23,6 +23,7 @@ from mock import call, patch, MagicMock
 import base64
 
 from mailer import Mailer, MailData, MailerConfig
+import mimetypes
 
 class MailerTestCase(unittest.TestCase):
 
@@ -64,6 +65,7 @@ class MailerTestCase(unittest.TestCase):
         mail.file_attachments = ["test.zip"]
         return_file = FileStub("BINARY")
         Mailer.open_file = MagicMock(return_value = return_file)
+        mimetypes.guess_type = MagicMock(return_value = ("application/zip", None))
 
         mailer = Mailer()
         result = mailer.create_mail(mail)
@@ -88,6 +90,7 @@ class MailerTestCase(unittest.TestCase):
         mail.file_attachments = ["test.txt"]
         return_file = FileStub("This is text")
         Mailer.open_file = MagicMock(return_value = return_file)
+        mimetypes.guess_type = MagicMock(return_value = ("text/plain", None))
 
         mailer = Mailer()
         result = mailer.create_mail(mail)
@@ -112,6 +115,7 @@ class MailerTestCase(unittest.TestCase):
         mail.file_attachments = ["test.png"]
         return_file = FileStub("PNG IMAGE")
         Mailer.open_file = MagicMock(return_value = return_file)
+        mimetypes.guess_type = MagicMock(return_value = ("image/png", None))
 
         mailer = Mailer()
         result = mailer.create_mail(mail)
@@ -136,6 +140,7 @@ class MailerTestCase(unittest.TestCase):
         mail.file_attachments = ["test.wav"]
         return_file = FileStub("SOUND")
         Mailer.open_file = MagicMock(return_value = return_file)
+        mimetypes.guess_type = MagicMock(return_value = ("audio/x-wav", None))
 
         mailer = Mailer()
         result = mailer.create_mail(mail)
@@ -161,6 +166,7 @@ class MailerTestCase(unittest.TestCase):
         text_file = FileStub("TEXT")
         zip_file = FileStub("BINARY")
         Mailer.open_file = MagicMock(side_effect = [text_file, zip_file])
+        mimetypes.guess_type = MagicMock(side_effect = [("text/plain", None), ("application/zip", None)])
 
         mailer = Mailer()
         result = mailer.create_mail(mail)
