@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='efaLiveTools',
-      version='2.4',
+      version='2.6',
       description='Tools for efaLive',
       author='Kay Hannay',
       author_email='klinux@hannay.de',
