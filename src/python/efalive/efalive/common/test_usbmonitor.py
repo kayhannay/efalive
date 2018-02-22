@@ -36,40 +36,62 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
 
     def setUp(self):
         self._callback_device = None
-        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub = UdevDeviceStub()
 
     def test_handle_device_event__usb_storage_add(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
+
+        #when
         self._class_under_test._handle_device_event(self._udev_device_stub)
 
+        #then
         self.assertIsNotNone(self._callback_device)
         self.assertEqual("/dev/test1", self._callback_device.device_file)
 
     def test_handle_device_event__usb_storage_remove(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub.action = "remove"
 
+        #when
         self._class_under_test._handle_device_event(self._udev_device_stub)
 
+        #then
         self.assertIsNone(self._callback_device)
 
     def test_handle_device_event__non_usb(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub.bus_id = "scsi"
 
+        #when
         self._class_under_test._handle_device_event(self._udev_device_stub)
 
+        #then
         self.assertIsNone(self._callback_device)
 
     def _callback_stub(self, device):
         self._callback_device = device
 
     def test_wrap_device__none_device(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
+
+        #when
         wrapped_device = self._class_under_test._wrap_device(None)
 
+        #then
         self.assertIsNone(wrapped_device)
 
     def test_wrap_device__null_size(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
+
+        #when
         wrapped_device = self._class_under_test._wrap_device(self._udev_device_stub)
 
+        #then
         self.assertIsNotNone(wrapped_device)
         self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
         self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
@@ -80,9 +102,14 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
         self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__1kb_size(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub.size = 1024
+
+        #when
         wrapped_device = self._class_under_test._wrap_device(self._udev_device_stub)
 
+        #then
         self.assertIsNotNone(wrapped_device)
         self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
         self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
@@ -93,9 +120,14 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
         self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__3_1_mb_size(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub.size = 1024 * 1024 * 3.1
+
+        #when
         wrapped_device = self._class_under_test._wrap_device(self._udev_device_stub)
 
+        #then
         self.assertIsNotNone(wrapped_device)
         self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
         self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
@@ -106,9 +138,14 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
         self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__2_3_gb_size(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub.size = 1024 * 1024 * 1024 * 2.3
+
+        #when
         wrapped_device = self._class_under_test._wrap_device(self._udev_device_stub)
 
+        #then
         self.assertIsNotNone(wrapped_device)
         self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
         self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
@@ -119,9 +156,14 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
         self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__7_8_tb_size(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub.size = 1024 * 1024 * 1024 * 1024 * 7.8
+
+        #when
         wrapped_device = self._class_under_test._wrap_device(self._udev_device_stub)
 
+        #then
         self.assertIsNotNone(wrapped_device)
         self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
         self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
@@ -132,9 +174,14 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
         self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__2018_tb_size(self):
+        #given
+        self._class_under_test = UsbStorageMonitor(self._callback_stub)
         self._udev_device_stub.size = 1024 * 1024 * 1024 * 1024 * 2048
+
+        #when
         wrapped_device = self._class_under_test._wrap_device(self._udev_device_stub)
 
+        #then
         self.assertIsNotNone(wrapped_device)
         self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
         self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
@@ -159,8 +206,12 @@ class UdevDeviceStub(pyudev.Device):
     bus_id = "usb"
     size = 0
 
+    class LibUdev(object):
+        def udev_device_get_property_value(self, foo, bar):
+            return "SomeId"
+
     def __init__(self):
-        pass
+        self._libudev = self.LibUdev()
 
     def __del__(self):
         pass

@@ -21,20 +21,17 @@ along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 import pygtk
 pygtk.require('2.0')
 import gtk
-import gudev
-import glib
 import os
 import sys
-import subprocess
 import re
 import traceback
 import logging
 import locale
 import gettext
 
-from efalive.common.observable import Observable
 from ..setupcommon import dialogs
 from efalive.common import common
+from efalive.common.usbmonitor import UsbStorageDevice, UsbStorageMonitor
 
 APP="deviceManager"
 gettext.install(APP, common.LOCALEDIR, unicode=True)
@@ -79,25 +76,34 @@ class DeviceWidget(gtk.VBox):
         self.mount_button.show()
 
 
-class Device(object):
-    def __init__(self, device_file, vendor=None, model=None, size=0, fs_type=None, label=None, mounted=False, bus_id=None):
-        self.device_file = device_file
-        self.vendor = vendor
-        self.model = model
-        self.size = size
-        self.fs_type = fs_type
-        self.label = label
+class Device(UsbStorageDevice):
+    def __init__(self, usb_device, mounted=False):
+        super(Device, self).__init__(usb_device.device_file, usb_device.vendor, usb_device.model, usb_device.size, usb_device.fs_type, usb_device.label, usb_device.bus_id)
         self.mounted = mounted
-        self.bus_id = bus_id
 
 class DeviceManagerModel(object):
     def __init__(self):
         self._logger = logging.getLogger('devicemanager.DeviceManagerModel')
-        self.client = gudev.Client(['block'])
-        self.client.connect("uevent", self._handle_device_event)
         self._add_device_observers = []
         self._remove_device_observers = []
         self._change_device_observers = []
+        self._device_monitor = UsbStorageMonitor(self._device_add_event_callback, self._device_remove_event_callback, self._device_change_event_callback, for_gui=True)
+        self._device_monitor.start()
+
+    def _device_add_event_callback(self, usb_device):
+        mounted = self.check_mounted(usb_device)
+        device = Device(usb_device, mounted)
+        self._notify_add_observers(device)
+
+    def _device_remove_event_callback(self, usb_device):
+        mounted = self.check_mounted(usb_device)
+        device = Device(usb_device, mounted)
+        self._notify_remove_observers(device)
+
+    def _device_change_event_callback(self, usb_device):
+        mounted = self.check_mounted(usb_device)
+        device = Device(usb_device, mounted)
+        self._notify_change_observers(device)
 
     def register_add_observer(self, observer_cb):
         self._add_device_observers.append(observer_cb)
@@ -129,35 +135,6 @@ class DeviceManagerModel(object):
         for observer_cb in self._change_device_observers:
             observer_cb(device)
 
-    def _wrap_device(self, device):
-        wrapped_device = Device(device.get_device_file())
-        if device.has_property("ID_VENDOR"):
-            wrapped_device.vendor = device.get_property("ID_VENDOR")
-        if device.has_property("ID_MODEL"):
-            wrapped_device.model = device.get_property("ID_MODEL")
-        if device.has_property("UDISKS_PARTITION_SIZE"):
-            byte_size = float(device.get_property_as_uint64("UDISKS_PARTITION_SIZE"))
-            size = byte_size / 1024
-            unit = "KB"
-            if (size > 1024):
-                size = size / 1024
-                unit = "MB"
-            if (size > 1024):
-                size = size / 1024
-                unit = "GB"
-            if (size > 1024):
-                size = size / 1024
-                unit = "TB"
-            wrapped_device.size = "%.1f %s" % (size, unit)
-        if device.has_property("ID_FS_TYPE"):
-            wrapped_device.fs_type = device.get_property("ID_FS_TYPE")
-        if device.has_property("ID_FS_LABEL"):
-            wrapped_device.label = device.get_property("ID_FS_LABEL")
-        if device.has_property("ID_VENDOR_ID") and device.has_property("ID_MODEL_ID"):
-            wrapped_device.bus_id = "%s:%s" % (device.get_property("ID_VENDOR_ID"), device.get_property("ID_MODEL_ID"))
-        wrapped_device.mounted = self.check_mounted(wrapped_device)
-        return wrapped_device
-
     def check_mounted(self, device):
         self._logger.debug("Check if %s is mounted" % device.device_file)
         try:
@@ -173,25 +150,7 @@ class DeviceManagerModel(object):
 
     def search_devices(self):
         self._logger.info("Search for devices")
-        for device in self.client.query_by_subsystem("block"):
-            self._handle_device_event(self.client, "add", device)
-
-    def _handle_device_event(self, client, action, device):
-        self.debug_device(device)
-        if (device.get_devtype() != "partition"):
-            return
-        if (device.get_property("ID_BUS") != "usb"):
-            return
-        self._logger.info("Action %s for device %s" % (action, device.get_device_file()))
-        wrapped_device = self._wrap_device(device)
-        if action == "add":
-            self._notify_add_observers(wrapped_device)
-        elif action == "remove":
-            self._notify_remove_observers(wrapped_device)
-        elif action == "change":
-            self._notify_change_observers(wrapped_device)
-        else:
-            self._logger.warn("Unknown action: %s" % action)
+        self._device_monitor.search_for_usb_block_devices()
 
     def get_label(self, device):
         label_text = "Unknown"
@@ -217,28 +176,6 @@ class DeviceManagerModel(object):
     def restore_backup(self, file):
         self._logger.info("Restore backup from %s" % file)
         return common.command_output(["/usr/bin/efalive-restore", file])
-
-    def debug_device(self, device):
-        self._logger.debug("Device:")
-        self._logger.debug("\tSubsystem: %s" % device.get_subsystem())
-        self._logger.debug("\tType: %s" % device.get_devtype())
-        self._logger.debug("\tName: %s" % device.get_name())
-        self._logger.debug("\tNumber: %s" % device.get_number())
-        self._logger.debug("\tSYS-fs path: %s" % device.get_sysfs_path())
-        self._logger.debug("\tDriver: %s" % device.get_driver())
-        self._logger.debug("\tAction: %s" % device.get_action())
-        self._logger.debug("\tFile: %s" % device.get_device_file())
-        #self._logger.debug("\tLinks: %s" % device.get_device_file_symlinks())
-        #self._logger.debug("\tProperties: %s" % device.get_property_keys())
-        #self._logger.debug("\tSYBSYSTEM: %s" % device.get_property("SUBSYSTEM"))
-        self._logger.debug("\tDEVTYPE: %s" % device.get_property("DEVTYPE"))
-        self._logger.debug("\tID_VENDOR: %s" % device.get_property("ID_VENDOR"))
-        self._logger.debug("\tID_MODEL: %s" % device.get_property("ID_MODEL"))
-        #self._logger.debug("\tID_TYPE: %s" % device.get_property("ID_TYPE"))
-        self._logger.debug("\tID_BUS: %s" % device.get_property("ID_BUS"))
-        self._logger.debug("\tID_FS_LABEL: %s" % device.get_property("ID_FS_LABEL"))
-        self._logger.debug("\tID_FS_TYPE: %s" % device.get_property("ID_FS_TYPE"))
-        self._logger.debug("\tUDISKS_PARTITION_SIZE: %s" % device.get_property("UDISKS_PARTITION_SIZE"))
 
 
 class DeviceManagerView(gtk.Window):
@@ -455,4 +392,3 @@ if __name__ == '__main__':
     logging.basicConfig(filename='deviceManager.log',level=logging.INFO)
     controller = DeviceManagerController(sys.argv, True)
     gtk.main()
-

@@ -19,7 +19,8 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import logging
-from pyudev import Context, Monitor, MonitorObserver
+from pyudev import Context, Monitor, MonitorObserver as UdevObserver
+from pyudev.glib import MonitorObserver as UdevGuiObserver
 
 class UsbStorageDevice(object):
     """ Simple USB device inforamtion class
@@ -46,21 +47,37 @@ class UsbStorageMonitor(object):
     added to the system.
     """
 
-    def __init__(self, callback):
+    def __init__(self, add_callback, remove_callback = None, change_callback = None, for_gui = False):
         self._logger = logging.getLogger('efalive.UsbStorageMonitor')
 
-        self._external_callback = callback
+        self._external_add_callback = add_callback
+        self._external_remove_callback = remove_callback
+        self._external_change_callback = change_callback
 
-        udev_context = Context()
-        self._udev_monitor = Monitor.from_netlink(udev_context)
+        self._udev_context = Context()
+        self._udev_monitor = Monitor.from_netlink(self._udev_context)
         self._udev_monitor.filter_by('block', device_type='partition')
+        self._for_gui = for_gui
+        if for_gui:
+            self._udev_observer = UdevGuiObserver(self._udev_monitor)
+            self._udev_observer.connect('device-event', self._handle_gui_device_event)
+        else:
+            self._udev_observer = UdevObserver(self._udev_monitor, callback=self._handle_device_event, name='monitor-observer')
 
     def start(self):
-        self._udev_observer = MonitorObserver(self._udev_monitor, callback=self._handle_device_event, name='monitor-observer')
-        self._udev_observer.start()
+        if self._for_gui:
+            self._udev_monitor.start()
+        else:
+            self._udev_observer.start()
 
     def stop(self):
-        self._udev_observer.stop()
+        if self._for_gui:
+            self._udev_monitor.stop()
+        else:
+            self._udev_observer.stop()
+
+    def _handle_gui_device_event(self, observer, device):
+        self._handle_device_event(device)
 
     def _handle_device_event(self, device):
         self._debug_device(device)
@@ -68,9 +85,14 @@ class UsbStorageMonitor(object):
             return
         self._logger.info("Action %s for device %s" % (device.action, device.device_node))
         if device.action == "add":
-            self._logger.info("Calling external callback now.")
             wrapped_device = self._wrap_device(device)
-            self._external_callback(wrapped_device)
+            self._external_add_callback(wrapped_device)
+        elif device.action == "remove" and self._external_remove_callback != None:
+            wrapped_device = self._wrap_device(device)
+            self._external_remove_callback(wrapped_device)
+        elif device.action == "change" and self._external_change_callback != None:
+            wrapped_device = self._wrap_device(device)
+            self._external_change_callback(wrapped_device)
         else:
             self._logger.info("Unhandled action: %s" % device.action)
 
@@ -89,6 +111,7 @@ class UsbStorageMonitor(object):
         #self._logger.debug("\tSYBSYSTEM: %s" % device.get_property("SUBSYSTEM"))
         #self._logger.debug("\tDEVTYPE: %s" % device.get_property("DEVTYPE"))
         ##self._logger.debug("\tID_VENDOR: %s" % device.get("ID_VENDOR"))
+        self._logger.debug("\tID_SERIAL: %s" % device.properties.get("ID_SERIAL"))
         self._logger.debug("\tID_MODEL: %s" % device.get("ID_MODEL"))
         self._logger.debug("\tID_TYPE: %s" % device.get("ID_TYPE"))
         self._logger.debug("\tID_BUS: %s" % device.get("ID_BUS"))
@@ -131,3 +154,9 @@ class UsbStorageMonitor(object):
             wrapped_device.bus_id = "%s:%s" % (device.get("ID_VENDOR_ID"), device.get("ID_MODEL_ID"))
         return wrapped_device
 
+    def search_for_usb_block_devices(self):
+        for usb_device in self._udev_context.list_devices(subsystem='block', DEVTYPE='partition'):
+            if (usb_device.get("ID_BUS") != "usb"):
+                continue
+            wrapped_device = self._wrap_device(usb_device)
+            self._external_add_callback(wrapped_device)
