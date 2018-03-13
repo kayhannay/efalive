@@ -29,7 +29,7 @@ class UsbStorageDevice(object):
     it is used in efaLive.
     """
 
-    def __init__(self, device_file, vendor=None, model=None, size=0, fs_type=None, label=None, bus_id=None):
+    def __init__(self, device_file, vendor=None, model=None, size=0, fs_type=None, label=None, bus_id=None, serial=None):
         self.device_file = device_file
         self.vendor = vendor
         self.model = model
@@ -37,6 +37,7 @@ class UsbStorageDevice(object):
         self.fs_type = fs_type
         self.label = label
         self.bus_id = bus_id
+        self.serial = serial
 
 
 class UsbStorageMonitor(object):
@@ -152,6 +153,8 @@ class UsbStorageMonitor(object):
             wrapped_device.label = device.get("ID_FS_LABEL")
         if device.get("ID_VENDOR_ID") and device.get("ID_MODEL_ID"):
             wrapped_device.bus_id = "%s:%s" % (device.get("ID_VENDOR_ID"), device.get("ID_MODEL_ID"))
+        if device.properties.get("ID_SERIAL"):
+            wrapped_device.serial = device.properties.get("ID_SERIAL")
         return wrapped_device
 
     def search_for_usb_block_devices(self):

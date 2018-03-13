@@ -31,6 +31,7 @@ DEVICE_FS_TYPE = "vfat"
 DEVICE_FS_LABEL = "FsLabel"
 DEVICE_VENDOR_ID = "VID"
 DEVICE_MODEL_ID = "MID"
+DEVICE_SERIAL = "serial123"
 
 class UsbStorageMonitorTestCase(unittest.TestCase):
 
@@ -100,6 +101,7 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
         self.assertEquals(DEVICE_FS_TYPE, wrapped_device.fs_type)
         self.assertEquals(DEVICE_FS_LABEL, wrapped_device.label)
         self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
+        self.assertEquals(DEVICE_SERIAL, wrapped_device.serial)
 
     def test_wrap_device__1kb_size(self):
         #given
@@ -208,7 +210,7 @@ class UdevDeviceStub(pyudev.Device):
 
     class LibUdev(object):
         def udev_device_get_property_value(self, foo, bar):
-            return "SomeId"
+            return DEVICE_SERIAL
 
     def __init__(self):
         self._libudev = self.LibUdev()
