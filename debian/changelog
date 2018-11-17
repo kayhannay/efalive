@@ -1,5 +1,7 @@
 efalive (2.6-1) stable; urgency=low
 
+  * Refactor device manager to remove python-gudev dependency
+  * Supports Debian Stretch now
 
  -- Kay Hannay <klinux@hannay.de>  Sun, 18 Sep 2016 20:43:32 +0200
 
