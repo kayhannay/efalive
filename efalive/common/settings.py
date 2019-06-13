@@ -23,8 +23,8 @@ import os
 import json
 import base64
 
-from observable import Observable
-import md5
+from efalive.common.observable import Observable
+import hashlib
 
 class EfaLiveSettings(object):
 
@@ -77,7 +77,7 @@ class EfaLiveSettings(object):
     def _checkPath(self, path):
         if not os.path.exists(path):
             self._logger.debug("Creating directory: %s" % path)
-            os.makedirs(path, 0755)
+            os.makedirs(path, 0o0755)
 
     def parseSettingsFile(self, file):
         self._logger.info("Parsing settings file")
@@ -184,7 +184,8 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed monthly tasks setting: " + valueStr)
 
     def _create_id(self, task):
-        hasher = md5.new()
+        hasher = hashlib.md5()
+        #hasher = md5.new()
         hasher.update(task[0])
         hasher.update(str(task[1]))
         return hasher.hexdigest()
@@ -231,7 +232,7 @@ class EfaLiveSettings(object):
             settingsFile.write("WEEKLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.weekly_tasks)))
             settingsFile.write("MONTHLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.monthly_tasks)))
             settingsFile.close()
-        except IOError, exception:
+        except IOError as exception:
             self._logger.error("Could not save files: %s" % exception)
             raise Exception("Could not save files")
 

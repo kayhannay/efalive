@@ -17,16 +17,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import logging
 import gettext
 
-from ..common import common
+from efalive.common import common
 
 APP="EfaSettingsTab"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class EfaSettingsTabModel(object):
     def __init__(self, settings):
@@ -47,46 +48,47 @@ class EfaSettingsTabModel(object):
     def registerEfaPortCb(self, callback):
         self._settings.efaPort.registerObserverCb(callback)
 
-class EfaSettingsTabView(gtk.VBox):
+class EfaSettingsTabView(Gtk.VBox):
     def __init__(self):
-        super(gtk.VBox, self).__init__()
+        super(Gtk.VBox, self).__init__()
         self._logger = logging.getLogger('EfaSettingsTabView')
         self._init_components()
 
     def _init_components(self):
         # efa port field
-        self.portVBox=gtk.VBox(False, 0)
+        self.portVBox=Gtk.VBox(False, 0)
         self.pack_start(self.portVBox, False, False, 5)
         self.portVBox.show()
 
-        self.portHBox=gtk.HBox(False, 5)
+        self.portHBox=Gtk.HBox(False, 5)
         self.portVBox.pack_start(self.portHBox, True, True, 2)
         self.portHBox.show()
 
-        self.portLabel=gtk.Label(_("efa network port"))
+        self.portLabel=Gtk.Label(_("efa network port"))
         self.portHBox.pack_start(self.portLabel, False, False, 5)
         self.portLabel.show()
 
-        self.port_adjustment = gtk.Adjustment(0, 0, 65565, 1, 1000)
-        self.port_button = gtk.SpinButton(self.port_adjustment)
+        self.port_adjustment = Gtk.Adjustment(0, 0, 65565, 1, 1000)
+        self.port_button = Gtk.SpinButton()
+        self.port_button.set_adjustment(self.port_adjustment)
         self.port_button.set_wrap(True)
         self.portHBox.pack_end(self.port_button, False, False, 2)
         self.port_button.show()
 
         # shutdown box
-        self.shutdownVBox=gtk.VBox(False, 0)
+        self.shutdownVBox=Gtk.VBox(False, 0)
         self.pack_start(self.shutdownVBox, False, False, 2)
         self.shutdownVBox.show()
 
-        self.shutdownHBox=gtk.HBox(False, 5)
+        self.shutdownHBox=Gtk.HBox(False, 5)
         self.shutdownVBox.pack_start(self.shutdownHBox, True, True, 2)
         self.shutdownHBox.show()
 
-        self.shutdownLabel=gtk.Label(_("efa shutdown action"))
+        self.shutdownLabel=Gtk.Label(_("efa shutdown action"))
         self.shutdownHBox.pack_start(self.shutdownLabel, False, False, 5)
         self.shutdownLabel.show()
 
-        self.shutdownCombo=gtk.combo_box_new_text()
+        self.shutdownCombo=Gtk.ComboBoxText()
         self.shutdownHBox.pack_end(self.shutdownCombo, False, False, 2)
         self.shutdownCombo.show()
         

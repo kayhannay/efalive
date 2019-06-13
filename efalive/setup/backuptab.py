@@ -17,9 +17,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import logging
 import gettext
 import hashlib
@@ -27,7 +28,7 @@ import hashlib
 from ..common import common
 
 APP="BackupTab"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class BackupTabModel(object):
     def __init__(self, settings):
@@ -47,7 +48,7 @@ class BackupTabModel(object):
         self._logger.debug("auto backup password: %s" % enable)
 
     def setAutoBackupPassword(self, backupPassword):
-        passwordHash = hashlib.sha512(backupPassword).hexdigest()
+        passwordHash = hashlib.sha512(backupPassword.encode('utf-8')).hexdigest()
         self._settings.auto_backup_password = passwordHash
         self._logger.debug("efa auto backup password: %s, hash %s" % (backupPassword, passwordHash))
 
@@ -60,9 +61,9 @@ class BackupTabModel(object):
     def registerAutoBackupUsePasswordCb(self, callback):
         self._settings.auto_backup_use_password.registerObserverCb(callback)
 
-class BackupTabView(gtk.VBox):
+class BackupTabView(Gtk.VBox):
     def __init__(self):
-        super(gtk.VBox, self).__init__()
+        super(Gtk.VBox, self).__init__()
         self._logger = logging.getLogger('BackupTabView')
         self._init_components()
 
@@ -71,55 +72,56 @@ class BackupTabView(gtk.VBox):
 
     def _create_auto_usb_backup_components(self):
         # automatic usb backup box
-        self.usbBackupFrame=gtk.Frame(_("Auto USB backup"))
+        self.usbBackupFrame=Gtk.Frame.new(_("Auto USB backup"))
         self.pack_start(self.usbBackupFrame, False, False, 5)
         self.usbBackupFrame.show()
 
-        self.usbBackupSpaceBox=gtk.HBox(False, 5)
+        self.usbBackupSpaceBox=Gtk.HBox(False, 5)
         self.usbBackupFrame.add(self.usbBackupSpaceBox)
         self.usbBackupSpaceBox.show()
 
-        self.autoUsbBackupVBox=gtk.VBox(False, 2)
+        self.autoUsbBackupVBox=Gtk.VBox(False, 2)
         self.usbBackupSpaceBox.pack_start(self.autoUsbBackupVBox, True, True, 2)
         self.autoUsbBackupVBox.show()
 
-        self.autoUsbBackupHBox=gtk.HBox(False, 2)
+        self.autoUsbBackupHBox=Gtk.HBox(False, 2)
         self.autoUsbBackupVBox.pack_start(self.autoUsbBackupHBox, True, True, 2)
         self.autoUsbBackupHBox.show()
 
-        self.autoUsbBackupCbox = gtk.CheckButton(_("enable automatic USB backup"))
+        self.autoUsbBackupCbox = Gtk.CheckButton(_("enable automatic USB backup"))
         self.autoUsbBackupHBox.pack_start(self.autoUsbBackupCbox, False, True, 2)
         self.autoUsbBackupCbox.show()
 
-        self.autoUsbBackupEnabledVBox=gtk.VBox(False, 2)
+        self.autoUsbBackupEnabledVBox=Gtk.VBox(False, 2)
         self.autoUsbBackupVBox.pack_start(self.autoUsbBackupEnabledVBox, True, True, 2)
         self.autoUsbBackupEnabledVBox.show()
 
-        self.autoUsbBackupDialogHBox=gtk.HBox(False, 2)
+        self.autoUsbBackupDialogHBox=Gtk.HBox(False, 2)
         self.autoUsbBackupEnabledVBox.pack_start(self.autoUsbBackupDialogHBox, True, True, 2)
         self.autoUsbBackupDialogHBox.show()
 
-        self.autoUsbBackupDialogCbox = gtk.CheckButton(_("show dialog after automatic backup"))
+        self.autoUsbBackupDialogCbox = Gtk.CheckButton(_("show dialog after automatic backup"))
         self.autoUsbBackupDialogHBox.pack_start(self.autoUsbBackupDialogCbox, False, True, 20)
         self.autoUsbBackupDialogCbox.show()
 
-        self.autoBackupUsePasswordHBox=gtk.HBox(False, 2)
+        self.autoBackupUsePasswordHBox=Gtk.HBox(False, 2)
         self.autoUsbBackupEnabledVBox.pack_start(self.autoBackupUsePasswordHBox, True, True, 2)
         self.autoBackupUsePasswordHBox.show()
 
-        self.autoBackupUsePasswordCbox = gtk.CheckButton(_("use password for automatic backup"))
+        self.autoBackupUsePasswordCbox = Gtk.CheckButton(_("use password for automatic backup"))
         self.autoBackupUsePasswordHBox.pack_start(self.autoBackupUsePasswordCbox, False, True, 20)
         self.autoBackupUsePasswordCbox.show()
 
-        self.autoBackupPasswordHBox=gtk.HBox(False, 2)
+        self.autoBackupPasswordHBox=Gtk.HBox(False, 2)
         self.autoUsbBackupEnabledVBox.pack_start(self.autoBackupPasswordHBox, True, True, 2)
         self.autoBackupPasswordHBox.show()
 
-        self.autoBackupPasswordLabel=gtk.Label(_("backup password"))
+        self.autoBackupPasswordLabel=Gtk.Label(_("backup password"))
         self.autoBackupPasswordHBox.pack_start(self.autoBackupPasswordLabel, False, False, 40)
         self.autoBackupPasswordLabel.show()
 
-        self.autoBackupPasswordEntry = gtk.Entry(max=255)
+        self.autoBackupPasswordEntry = Gtk.Entry()
+        self.autoBackupPasswordEntry.set_max_length(255)
         self.autoBackupPasswordEntry.set_visibility(False)
         self.autoBackupPasswordHBox.pack_end(self.autoBackupPasswordEntry, True, True, 2)
         self.autoBackupPasswordEntry.show()

@@ -17,16 +17,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import logging
 import gettext
 
 from ..common import common
 
 APP="MailTab"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class MailTabModel(object):
     def __init__(self, settings):
@@ -72,65 +73,70 @@ class MailTabModel(object):
     def register_smtp_use_starttls_callback(self, callback):
         self._settings.mailer_use_starttls.registerObserverCb(callback)
 
-class MailTabView(gtk.VBox):
+class MailTabView(Gtk.VBox):
     def __init__(self):
-        super(gtk.VBox, self).__init__()
+        super(Gtk.VBox, self).__init__()
         self._logger = logging.getLogger('MailTabView')
         self._init_components()
 
     def _init_components(self):
-        self.host_hbox = gtk.HBox()
+        self.host_hbox = Gtk.HBox()
         self.pack_start(self.host_hbox, False, False, 5)
-        self.host_label = gtk.Label(_("SMTP host"))
+        self.host_label = Gtk.Label(_("SMTP host"))
         self.host_hbox.pack_start(self.host_label, False, False, 2)
-        self.host_input = gtk.Entry(max=255)
+        self.host_input = Gtk.Entry()
+        self.host_input.set_max_length(255)
         self.host_hbox.pack_end(self.host_input, False, False, 2)
         self.host_hbox.show_all()
         
-        self.port_hbox = gtk.HBox()
+        self.port_hbox = Gtk.HBox()
         self.pack_start(self.port_hbox, False, False, 2)
-        self.port_label = gtk.Label(_("SMTP port"))
+        self.port_label = Gtk.Label(_("SMTP port"))
         self.port_hbox.pack_start(self.port_label, False, False, 2)
-        self.port_adjustment = gtk.Adjustment(0, 0, 65565, 1, 1000)
-        self.port_button = gtk.SpinButton(self.port_adjustment)
+        self.port_adjustment = Gtk.Adjustment(0, 0, 65565, 1, 1000)
+        self.port_button = Gtk.SpinButton()
+        self.port_button.set_adjustment(self.port_adjustment)
         self.port_button.set_wrap(True)
         self.port_hbox.pack_end(self.port_button, False, False, 2)
         self.port_hbox.show_all()
         
-        self.user_hbox = gtk.HBox()
+        self.user_hbox = Gtk.HBox()
         self.pack_start(self.user_hbox, False, False, 2)
-        self.user_label = gtk.Label(_("User"))
+        self.user_label = Gtk.Label(_("User"))
         self.user_hbox.pack_start(self.user_label, False, False, 2)
-        self.user_input = gtk.Entry(max=255)
+        self.user_input = Gtk.Entry()
+        self.user_input.set_max_length(255)
         self.user_hbox.pack_end(self.user_input, False, False, 2)
         self.user_hbox.show_all()
         
-        self.password_hbox = gtk.HBox()
+        self.password_hbox = Gtk.HBox()
         self.pack_start(self.password_hbox, False, False, 2)
-        self.password_label = gtk.Label(_("Password"))
+        self.password_label = Gtk.Label(_("Password"))
         self.password_hbox.pack_start(self.password_label, False, False, 2)
-        self.password_input = gtk.Entry(max=255)
+        self.password_input = Gtk.Entry()
+        self.password_input.set_max_length(255)
         self.password_input.set_visibility(False)
         self.password_hbox.pack_end(self.password_input, False, False, 2)
         self.password_hbox.show_all()
         
-        self.sender_hbox = gtk.HBox()
+        self.sender_hbox = Gtk.HBox()
         self.pack_start(self.sender_hbox, False, False, 2)
-        self.sender_label = gtk.Label(_("Sender address"))
+        self.sender_label = Gtk.Label(_("Sender address"))
         self.sender_hbox.pack_start(self.sender_label, False, False, 2)
-        self.sender_input = gtk.Entry(max=255)
+        self.sender_input = Gtk.Entry()
+        self.sender_input.set_max_length(255)
         self.sender_hbox.pack_end(self.sender_input, False, False, 2)
         self.sender_hbox.show_all()
         
-        self.ssl_hbox = gtk.HBox()
+        self.ssl_hbox = Gtk.HBox()
         self.pack_start(self.ssl_hbox, False, False, 2)
-        self.ssl_checkbox = gtk.CheckButton(_("Use SSL/TLS"))
+        self.ssl_checkbox = Gtk.CheckButton(_("Use SSL/TLS"))
         self.ssl_hbox.pack_start(self.ssl_checkbox, False, False, 2)
         self.ssl_hbox.show_all()
         
-        self.starttls_hbox = gtk.HBox()
+        self.starttls_hbox = Gtk.HBox()
         self.pack_start(self.starttls_hbox, False, False, 2)
-        self.starttls_checkbox = gtk.CheckButton(_("Use startTLS"))
+        self.starttls_checkbox = Gtk.CheckButton(_("Use startTLS"))
         self.starttls_hbox.pack_start(self.starttls_checkbox, False, False, 2)
         self.starttls_hbox.show_all()
 

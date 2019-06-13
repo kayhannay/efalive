@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 Created on 26.08.2010
 
@@ -17,9 +18,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import logging
 import sys
 
@@ -28,5 +30,5 @@ from efalive.setup import maingui
 if __name__ == "__main__":
     logging.basicConfig(filename="efaLiveSetup.log", level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
     controller = maingui.SetupController(sys.argv)
-    gtk.main();
+    Gtk.main();
 

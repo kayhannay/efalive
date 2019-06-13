@@ -2,7 +2,7 @@
 '''
 Created on 08.03.2015
 
-Copyright (C) 2015-2016 Kay Hannay
+Copyright (C) 2015-2019 Kay Hannay
 
 This file is part of efaLive.
 
@@ -20,7 +20,7 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import logging
 from pyudev import Context, Monitor, MonitorObserver as UdevObserver
-from pyudev.glib import MonitorObserver as UdevGuiObserver
+
 
 class UsbStorageDevice(object):
     """ Simple USB device inforamtion class
@@ -48,7 +48,7 @@ class UsbStorageMonitor(object):
     added to the system.
     """
 
-    def __init__(self, add_callback, remove_callback = None, change_callback = None, for_gui = False):
+    def __init__(self, add_callback, remove_callback = None, change_callback = None):
         self._logger = logging.getLogger('efalive.UsbStorageMonitor')
 
         self._external_add_callback = add_callback
@@ -58,29 +58,19 @@ class UsbStorageMonitor(object):
         self._udev_context = Context()
         self._udev_monitor = Monitor.from_netlink(self._udev_context)
         self._udev_monitor.filter_by('block', device_type='partition')
-        self._for_gui = for_gui
-        if for_gui:
-            self._udev_observer = UdevGuiObserver(self._udev_monitor)
-            self._udev_observer.connect('device-event', self._handle_gui_device_event)
-        else:
-            self._udev_observer = UdevObserver(self._udev_monitor, callback=self._handle_device_event, name='monitor-observer')
+        self._udev_observer = UdevObserver(self._udev_monitor, callback=self._handle_device_event, name='monitor-observer')
 
     def start(self):
-        if self._for_gui:
-            self._udev_monitor.start()
-        else:
-            self._udev_observer.start()
+        self._udev_observer.start()
 
     def stop(self):
-        if self._for_gui:
-            self._udev_monitor.stop()
-        else:
-            self._udev_observer.stop()
+        self._udev_observer.stop()
 
     def _handle_gui_device_event(self, observer, device):
         self._handle_device_event(device)
 
     def _handle_device_event(self, device):
+        print(device)
         self._debug_device(device)
         if (device.get("ID_BUS") != "usb"):
             return
@@ -123,7 +113,8 @@ class UsbStorageMonitor(object):
         #for attrName in device.__iter__():
         #    self._logger.debug(attrName)
 
-    def _wrap_device(self, device):
+    @staticmethod
+    def _wrap_device(device):
         """ Convert a PyUdev device to an efaLive device
         """
         if device is None:

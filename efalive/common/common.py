@@ -22,9 +22,9 @@ import sys
 import subprocess
 import logging
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
 
 LOCALES=os.path.join(os.path.dirname(sys.argv[0]), os.pardir, 'i18n')
 LOCALEDIR=os.path.realpath(LOCALES)
@@ -49,11 +49,11 @@ def command_output(args):
     return (returncode, output)
 
 def get_button_label(icon_name, label):
-    button_vbox = gtk.VBox()
-    button_label = gtk.Label(label)
-    button_icon = gtk.image_new_from_file(get_icon_path(icon_name))
-    button_vbox.pack_start(button_icon)
-    button_vbox.pack_start(button_label)
+    button_vbox = Gtk.VBox()
+    button_label = Gtk.Label(label)
+    button_icon = Gtk.Image.new_from_file(get_icon_path(icon_name))
+    button_vbox.pack_start(button_icon, True, True, 0)
+    button_vbox.pack_start(button_label, True, True, 0)
     button_vbox.show_all()
     return button_vbox
 

@@ -17,17 +17,18 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-import gobject
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+from gi.repository import GObject
+
 import logging
 import gettext
 
 from ..common import common
 
 APP="TasksTab"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class TasksTabModel(object):
     def __init__(self, settings):
@@ -55,60 +56,60 @@ class TasksTabModel(object):
     def get_task(self, task_id):
         return self._settings.get_task(task_id)
 
-class TasksTabView(gtk.VBox):
+class TasksTabView(Gtk.VBox):
     def __init__(self):
-        super(gtk.VBox, self).__init__()
+        super(Gtk.VBox, self).__init__()
         self._logger = logging.getLogger('TasksTabView')
         self._init_components()
 
     def _init_components(self):
-        self.tasks_hbox = gtk.HBox()
+        self.tasks_hbox = Gtk.HBox()
         self.pack_start(self.tasks_hbox, True, True, 2)
         self.tasks_hbox.show()
 
-        self.task_list_store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.task_list_store = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING)
 
-        self.task_list_cell = gtk.CellRendererText()
-        self.task_list_cell.set_property('background-gdk', gtk.gdk.Color(red=50000, green=50000, blue=50000))
-        self.task_list_column = gtk.TreeViewColumn(_("Task list"), self.task_list_cell, markup=1)
+        self.task_list_cell = Gtk.CellRendererText()
+        #self.task_list_cell.set_property('background-gdk', Gtk.Color .gdk.Color(red=50000, green=50000, blue=50000))
+        self.task_list_column = Gtk.TreeViewColumn(_("Task list"), self.task_list_cell, markup=1)
 
-        self.task_list_id_cell = gtk.CellRendererText()
-        self.task_list_id_column = gtk.TreeViewColumn('Id', self.task_list_id_cell, markup=0)
+        self.task_list_id_cell = Gtk.CellRendererText()
+        self.task_list_id_column = Gtk.TreeViewColumn('Id', self.task_list_id_cell, markup=0)
         self.task_list_id_column.set_visible(False)
 
-        self.tasks_scoll_window = gtk.ScrolledWindow()
+        self.tasks_scoll_window = Gtk.ScrolledWindow()
         self.tasks_hbox.pack_start(self.tasks_scoll_window, True, True, 2)
-        self.tasks_scoll_window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        self.tasks_scoll_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.tasks_scoll_window.show()
 
-        self.task_list = gtk.TreeView(self.task_list_store)
+        self.task_list = Gtk.TreeView(self.task_list_store)
         selection = self.task_list.get_selection()
-        selection.set_mode(gtk.SELECTION_SINGLE)
+        selection.set_mode(Gtk.SelectionMode.SINGLE)
         self.tasks_scoll_window.add(self.task_list) # pack_start(self.task_list, True, True, 2)
         self.task_list.show()
         self.task_list.append_column(self.task_list_id_column)
         self.task_list.append_column(self.task_list_column)
 
-        self.task_button_vbox = gtk.VBox()
+        self.task_button_vbox = Gtk.VBox()
         self.tasks_hbox.pack_start(self.task_button_vbox, False, False, 2)
         self.task_button_vbox.show()
 
-        self.task_add_button = gtk.Button()
-        button_icon = gtk.image_new_from_file(common.get_icon_path("plus.png"))
+        self.task_add_button = Gtk.Button()
+        button_icon = Gtk.Image.new_from_file(common.get_icon_path("plus.png"))
         self.task_add_button.set_image(button_icon)
         self.task_add_button.set_tooltip_text(_("Add a new task"))
         self.task_button_vbox.pack_start(self.task_add_button, False, False, 2)
         self.task_add_button.show()
 
-        self.task_edit_button = gtk.Button()
-        button_icon = gtk.image_new_from_file(common.get_icon_path("settings.png"))
+        self.task_edit_button = Gtk.Button()
+        button_icon = Gtk.Image.new_from_file(common.get_icon_path("settings.png"))
         self.task_edit_button.set_image(button_icon)
         self.task_edit_button.set_tooltip_text(_("Edit task"))
         self.task_button_vbox.pack_start(self.task_edit_button, False, False, 2)
         self.task_edit_button.show()
 
-        self.task_del_button = gtk.Button()
-        button_icon = gtk.image_new_from_file(common.get_icon_path("minus.png"))
+        self.task_del_button = Gtk.Button()
+        button_icon = Gtk.Image.new_from_file(common.get_icon_path("minus.png"))
         self.task_del_button.set_image(button_icon)
         self.task_del_button.set_tooltip_text(_("Remove task"))
         self.task_button_vbox.pack_start(self.task_del_button, False, False, 2)
@@ -179,7 +180,7 @@ class TasksTabController(object):
     def add_task(self, widget):
         editor = TaskEditor(self._view.get_toplevel())
         response = editor.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             active_type = editor.task_type_combo.get_active()
             if active_type == 0:
                 task_type = "BACKUP_MAIL"
@@ -226,7 +227,7 @@ class TasksTabController(object):
         input_field.set_text(task[1])
         editor.task_interval_combo.set_active(interval_combo_index)
         response = editor.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.RESPONSE_OK:
             active_type = editor.task_type_combo.get_active()
             if active_type == 0:
                 task_type = "BACKUP_MAIL"
@@ -248,60 +249,62 @@ class TasksTabController(object):
             self._model.add_task(task_type, text, task_interval)
         editor.destroy()
 
-class TaskEditor(gtk.Dialog):
+class TaskEditor(Gtk.Dialog):
     def __init__(self, widget):
-        gtk.Dialog.__init__(self, _("Task editor"), widget)
+        Gtk.Dialog.__init__(self, _("Task editor"), widget)
 
-        self.main_container_vbox = gtk.VBox()
+        self.main_container_vbox = Gtk.VBox()
         self.vbox.pack_start(self.main_container_vbox, False, False, 5)
         self.main_container_vbox.show()
 
-        self.task_type_select_hbox = gtk.HBox()
+        self.task_type_select_hbox = Gtk.HBox()
         self.main_container_vbox.pack_start(self.task_type_select_hbox, False, False, 2)
         self.task_type_select_hbox.show()
 
-        self.task_type_label = gtk.Label(_("Type"))
+        self.task_type_label = Gtk.Label(_("Type"))
         self.task_type_select_hbox.pack_start(self.task_type_label, False, False, 2)
         self.task_type_label.show()
 
-        self.task_type_combo = gtk.combo_box_new_text()
+        self.task_type_combo = Gtk.ComboBoxText()
         self.task_type_select_hbox.pack_end(self.task_type_combo, False, False, 2)
         self.task_type_combo.show()
         self.task_type_combo.append_text(_("Backup e-mail"))
         self.task_type_combo.append_text(_("Shell"))
         self.task_type_combo.connect("changed", self.task_type_changed)
 
-        self.task_edit_vbox = gtk.VBox()
+        self.task_edit_vbox = Gtk.VBox()
         self.main_container_vbox.pack_start(self.task_edit_vbox, True, True, 2)
         self.task_edit_vbox.show()
 
-        self.script_task_hbox = gtk.HBox()
+        self.script_task_hbox = Gtk.HBox()
         self.task_edit_vbox.pack_start(self.script_task_hbox, True, True, 2)
-        self.script_task_label = gtk.Label(_("Command"))
+        self.script_task_label = Gtk.Label(_("Command"))
         self.script_task_hbox.pack_start(self.script_task_label, False, False, 2)
         self.script_task_label.show()
-        self.script_task_input = gtk.Entry(max=255)
+        self.script_task_input = Gtk.Entry()
+        self.script_task_input.set_max_length(255)
         self.script_task_hbox.pack_end(self.script_task_input, True, True, 2)
         self.script_task_input.show()
 
-        self.backup_task_hbox = gtk.HBox()
+        self.backup_task_hbox = Gtk.HBox()
         self.task_edit_vbox.pack_start(self.backup_task_hbox, True, True, 2)
-        self.backup_task_label = gtk.Label(_("Recipient"))
+        self.backup_task_label = Gtk.Label(_("Recipient"))
         self.backup_task_hbox.pack_start(self.backup_task_label, False, False, 2)
         self.backup_task_label.show()
-        self.backup_task_input = gtk.Entry(max=255)
+        self.backup_task_input = Gtk.Entry()
+        self.backup_task_input.set_max_length(255)
         self.backup_task_hbox.pack_end(self.backup_task_input, True, True, 2)
         self.backup_task_input.show()
 
-        self.task_interval_select_hbox = gtk.HBox()
+        self.task_interval_select_hbox = Gtk.HBox()
         self.main_container_vbox.pack_start(self.task_interval_select_hbox, False, False, 2)
         self.task_interval_select_hbox.show()
 
-        self.task_interval_label = gtk.Label(_("Interval"))
+        self.task_interval_label = Gtk.Label(_("Interval"))
         self.task_interval_select_hbox.pack_start(self.task_interval_label, False, False, 2)
         self.task_interval_label.show()
 
-        self.task_interval_combo = gtk.combo_box_new_text()
+        self.task_interval_combo = Gtk.ComboBoxText()
         self.task_interval_select_hbox.pack_end(self.task_interval_combo, False, False, 2)
         self.task_interval_combo.show()
         self.task_interval_combo.append_text(_("Hourly"))
@@ -313,8 +316,8 @@ class TaskEditor(gtk.Dialog):
         self.current_editor = self.backup_task_hbox
         self.task_type_combo.set_active(0)
 
-        self.add_button(_("Cancel"), gtk.RESPONSE_CANCEL)
-        self.add_button(_("Ok"), gtk.RESPONSE_OK)
+        self.add_button(_("Cancel"), Gtk.ResponseType.CANCEL)
+        self.add_button(_("Ok"), Gtk.ResponseType.OK)
 
     def task_type_changed(self, widget):
         task_type = widget.get_active()

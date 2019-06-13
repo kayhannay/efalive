@@ -17,46 +17,47 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import logging
 import gettext
 import subprocess
 import traceback
 
 from ..common import common
-from setupcommon import dialogs
+from efalive.setup.setupcommon import dialogs
 
 APP="ActionsTab"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
-class ActionsTabView(gtk.VBox):
+class ActionsTabView(Gtk.VBox):
     def __init__(self):
-        super(gtk.VBox, self).__init__()
+        super(Gtk.VBox, self).__init__()
         self._logger = logging.getLogger('ActionsTabView')
         self._init_components()
 
     def _init_components(self):
-        self.actionsGrid=gtk.Table(1, 3, True)
+        self.actionsGrid=Gtk.Table(1, 3, True)
         self.pack_start(self.actionsGrid, False, False, 5)
         self.actionsGrid.set_row_spacings(2)
         self.actionsGrid.set_col_spacings(2)
         self.actionsGrid.show()
 
-        self.shutdownButton=gtk.Button()
+        self.shutdownButton=Gtk.Button()
         button_vbox = common.get_button_label("power.png", _("Shutdown PC"))
         self.shutdownButton.add(button_vbox)
         self.actionsGrid.attach(self.shutdownButton, 0, 1, 0, 1)
         self.shutdownButton.show()
 
-        self.restartButton=gtk.Button()
+        self.restartButton=Gtk.Button()
         button_vbox = common.get_button_label("restart.png", _("Restart PC"))
         self.restartButton.add(button_vbox)
         self.actionsGrid.attach(self.restartButton, 1, 2, 0, 1)
         self.restartButton.show()
 
-        self.actionsDummy=gtk.Label()
+        self.actionsDummy=Gtk.Label()
         self.actionsGrid.attach(self.actionsDummy, 2, 3, 0, 1)
         self.actionsDummy.show()
 

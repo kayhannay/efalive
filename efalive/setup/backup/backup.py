@@ -18,7 +18,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import os
 import sys
 import subprocess
@@ -27,11 +30,11 @@ import logging
 import locale
 import gettext
 
-from ..setupcommon import dialogs
+from efalive.setup.setupcommon import dialogs
 from efalive.common import common
 
 APP="backup"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class BackupModel(object):
     def __init__(self):
@@ -44,10 +47,10 @@ class BackupModel(object):
         return common.command_output(["/usr/bin/efalive-restore", file])
 
 
-class BackupView(gtk.Window):
+class BackupView(Gtk.Window):
     def __init__(self, type, controller=None):
         self._logger = logging.getLogger('backup.BackupView')
-        gtk.Window.__init__(self, type)
+        Gtk.Window.__init__(self, type)
         self.set_title(_("Backup & Restore"))
         self.set_border_width(5)
         self._controller = controller
@@ -55,33 +58,33 @@ class BackupView(gtk.Window):
         self.initComponents()
 
     def initComponents(self):
-        main_box=gtk.VBox(False, 2)
+        main_box=Gtk.VBox(False, 2)
         self.add(main_box)
         main_box.show()
 
-        backup_button = gtk.Button(_("Backup"))
+        backup_button = Gtk.Button(_("Backup"))
         backup_button.set_size_request(150, -1)
-        backup_icon = gtk.image_new_from_file(common.get_icon_path("backup.png"))
+        backup_icon = Gtk.Image.new_from_file(common.get_icon_path("backup.png"))
         backup_button.set_image(backup_icon)
         main_box.pack_start(backup_button, False, False, 2)
         backup_button.show()
         backup_icon.show()
         backup_button.connect("clicked", self._controller.start_backup)
 
-        restore_button = gtk.Button(_("Restore"))
+        restore_button = Gtk.Button(_("Restore"))
         restore_button.set_size_request(150, -1)
-        restore_icon = gtk.image_new_from_file(common.get_icon_path("restore.png"))
+        restore_icon = Gtk.Image.new_from_file(common.get_icon_path("restore.png"))
         restore_button.set_image(restore_icon)
         main_box.pack_start(restore_button, False, False, 2)
         restore_button.show()
         restore_icon.show()
         restore_button.connect("clicked", self._controller.start_restore)
 
-        button_box = gtk.HBox(False, 2)
-        main_box.pack_end(button_box, False, False)
+        button_box = Gtk.HBox(False, 2)
+        main_box.pack_end(button_box, False, False, 0)
         button_box.show()
 
-        close_button = gtk.Button(_("Close"))
+        close_button = Gtk.Button(_("Close"))
         button_box.pack_end(close_button, False, False, 2)
         close_button.show()
         close_button.connect("clicked", self._controller.close)
@@ -97,7 +100,7 @@ class BackupController(object):
         else:
             self._model=model
         if(view==None):
-            self._view=BackupView(gtk.WINDOW_TOPLEVEL, self)
+            self._view=BackupView(Gtk.WindowType.TOPLEVEL, self)
         else:
             self._view=view
         self.init_events(standalone)
@@ -105,16 +108,16 @@ class BackupController(object):
 
     def init_events(self, standalone):
         if standalone:
-            self._view.connect('destroy', gtk.main_quit)
+            self._view.connect('destroy', Gtk.main_quit)
 
     def start_backup(self, widget):
         try:
-            file_chooser = gtk.FileChooserDialog(_("Select directory"), 
+            file_chooser = Gtk.FileChooserDialog(_("Select directory"), 
                                                  self._view, 
-                                                 gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, 
-                                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+                                                 Gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, 
+                                                 (Gtk.STOCK_CANCEL, Gtk.RESPONSE_CANCEL, Gtk.STOCK_OPEN, Gtk.RESPONSE_OK))
             result = file_chooser.run()
-            if result == gtk.RESPONSE_OK:
+            if result == Gtk.RESPONSE_OK:
                 file_chooser.hide()
                 directory = file_chooser.get_filename()
                 (returncode, output) = self._model.create_backup(directory)
@@ -143,12 +146,12 @@ class BackupController(object):
 
     def start_restore(self, widget):
         try:
-            file_chooser = gtk.FileChooserDialog(_("Select backup"), 
+            file_chooser = Gtk.FileChooserDialog(_("Select backup"), 
                                                  self._view, 
-                                                 gtk.FILE_CHOOSER_ACTION_OPEN, 
-                                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+                                                 Gtk.FILE_CHOOSER_ACTION_OPEN, 
+                                                 (Gtk.STOCK_CANCEL, Gtk.RESPONSE_CANCEL, Gtk.STOCK_OPEN, Gtk.RESPONSE_OK))
             result = file_chooser.run()
-            if result == gtk.RESPONSE_OK:
+            if result == Gtk.RESPONSE_OK:
                 file_chooser.hide()
                 filename = file_chooser.get_filename()
                 (returncode, output) = self._model.restore_backup(filename)
@@ -192,5 +195,5 @@ class BackupController(object):
 if __name__ == '__main__':
     logging.basicConfig(filename='screenSetup.log',level=logging.INFO)
     controller = BackupController(sys.argv)
-    gtk.main();
+    Gtk.main();
 

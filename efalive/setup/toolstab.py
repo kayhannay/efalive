@@ -17,21 +17,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import logging
 import gettext
 import subprocess
 import traceback
 
 from ..common import common
-from setupcommon import dialogs
-from devicemanager.devicemanager import DeviceManagerController as DeviceManager
-from backup.backup import BackupController as Backup
+from efalive.setup.setupcommon import dialogs
+from efalive.setup.devicemanager.devicemanager import DeviceManagerController as DeviceManager
+from efalive.setup.backup.backup import BackupController as Backup
 
 APP="ToolsTab"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class ToolsTabModel(object):
     def __init__(self):
@@ -40,50 +41,50 @@ class ToolsTabModel(object):
     def create_log_package(self, path):
         return common.command_output(["/usr/lib/efalive/bin/create_log_package.sh", path])
 
-class ToolsTabView(gtk.VBox):
+class ToolsTabView(Gtk.VBox):
     def __init__(self):
-        super(gtk.VBox, self).__init__()
+        super(Gtk.VBox, self).__init__()
         self._logger = logging.getLogger('ToolsTabView')
         self._init_components()
 
     def _init_components(self):
-        self.toolsGrid=gtk.Table(2, 3, True)
+        self.toolsGrid = Gtk.Table(2, 3, True)
         self.pack_start(self.toolsGrid, False, False, 5)
-        self.toolsGrid.set_row_spacings(2)
-        self.toolsGrid.set_col_spacings(2)
+        self.toolsGrid.set_row_spacings(5)
+        self.toolsGrid.set_col_spacings(5)
         self.toolsGrid.show()
 
-        self.terminalButton=gtk.Button()
+        self.terminalButton = Gtk.Button()
         button_vbox = common.get_button_label("terminal.png", _("Terminal"))
         self.terminalButton.add(button_vbox)
         self.toolsGrid.attach(self.terminalButton, 0, 1, 0, 1)
         self.terminalButton.show()
 
-        self.fileManagerButton=gtk.Button()
+        self.fileManagerButton=Gtk.Button()
         button_vbox = common.get_button_label("file-manager.png", _("File manager"))
         self.fileManagerButton.add(button_vbox)
         self.toolsGrid.attach(self.fileManagerButton, 1, 2, 0, 1)
         self.fileManagerButton.show()
 
-        self.deviceButton=gtk.Button()
+        self.deviceButton=Gtk.Button()
         button_vbox = common.get_button_label("devices.png", _("Devices"))
         self.deviceButton.add(button_vbox)
         self.toolsGrid.attach(self.deviceButton, 2, 3, 0, 1)
         self.deviceButton.show()
 
-        self.editorButton=gtk.Button()
+        self.editorButton=Gtk.Button()
         button_vbox = common.get_button_label("editor.png", _("Editor"))
         self.editorButton.add(button_vbox)
         self.toolsGrid.attach(self.editorButton, 0, 1, 1, 2)
         self.editorButton.show()
 
-        self.backupButton=gtk.Button()
+        self.backupButton=Gtk.Button()
         button_vbox = common.get_button_label("backup_tape.png", _("Backup"))
         self.backupButton.add(button_vbox)
         self.toolsGrid.attach(self.backupButton, 1, 2, 1, 2)
         self.backupButton.show()
 
-        self.log_button=gtk.Button()
+        self.log_button=Gtk.Button()
         button_vbox = common.get_button_label("logfiles.png", _("Logs"))
         self.log_button.add(button_vbox)
         self.toolsGrid.attach(self.log_button, 2, 3, 1, 2)
@@ -141,12 +142,12 @@ class ToolsTabController(object):
 
     def run_create_log(self, widget):
         try:
-            file_chooser = gtk.FileChooserDialog(_("Select directory to store log files"), 
+            file_chooser = Gtk.FileChooserDialog(_("Select directory to store log files"), 
                                                  self._view.get_toplevel(), 
-                                                 gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, 
-                                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+                                                 Gtk.FileChooserAction.SELECT_FOLDER,
+                                                 (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
             result = file_chooser.run()
-            if result == gtk.RESPONSE_OK:
+            if result == Gtk.ResponseType.OK:
                 file_chooser.hide()
                 directory = file_chooser.get_filename()
                 (returncode, output) = self._model.create_log_package(directory)

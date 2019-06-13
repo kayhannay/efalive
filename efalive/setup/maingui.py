@@ -17,26 +17,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-from efalive.setup.taskstab import TasksTabController
-from efalive.setup.mailtab import MailTabController
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import traceback
 import logging
 import gettext
 
-from setupcommon import dialogs
-from ..common import common
-from ..common.settings import EfaLiveSettings
+from efalive.setup.setupcommon import dialogs
+from efalive.common import common
+from efalive.common.settings import EfaLiveSettings
 from efalive.setup.efasettingstab import EfaSettingsTabController
 from efalive.setup.actionstab import ActionsTabController
 from efalive.setup.backuptab import BackupTabController
 from efalive.setup.toolstab import ToolsTabController
 from efalive.setup.systemtab import SystemTabController
+from efalive.setup.taskstab import TasksTabController
+from efalive.setup.mailtab import MailTabController
 
 APP="efaLiveSetup"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class SetupModel(object):
     def __init__(self, confPath):
@@ -50,40 +51,40 @@ class SetupModel(object):
         self._settings.save()
 
 
-class SetupView(gtk.Window):
+class SetupView(Gtk.Window):
     def __init__(self, type):
         self._logger = logging.getLogger('efalivesetup.maingui.SetupView')
-        gtk.Window.__init__(self, type)
+        Gtk.Window.__init__(self, type)
         self.set_title(_("efaLive setup"))
         self.set_border_width(5)
 
         self.initComponents()
 
     def add_tab(self, label, component):
-        tab_label = gtk.Label(_(label))
+        tab_label = Gtk.Label(_(label))
         self.tabpanel.append_page(component, tab_label)
         component.show()
         
     def initComponents(self):
         
-        self.mainBox=gtk.VBox(False, 2)
+        self.mainBox=Gtk.VBox(False, 2)
         self.add(self.mainBox)
         self.mainBox.show()
 
-        self.tabpanel = gtk.Notebook()
+        self.tabpanel = Gtk.Notebook()
         self.mainBox.pack_start(self.tabpanel, True, True, 2)
         self.tabpanel.show()
 
         # button box
-        self.buttonBox=gtk.HBox(False, 0)
+        self.buttonBox=Gtk.HBox(False, 0)
         self.mainBox.pack_start(self.buttonBox, False, False, 2)
         self.buttonBox.show()
 
-        self.okButton=gtk.Button(_("Ok"))
+        self.okButton=Gtk.Button(_("Ok"))
         self.buttonBox.pack_end(self.okButton, False, False, 2)
         self.okButton.show()
 
-        self.closeButton=gtk.Button(_("Cancel"))
+        self.closeButton=Gtk.Button(_("Cancel"))
         self.buttonBox.pack_end(self.closeButton, False, False, 2)
         self.closeButton.show()
 
@@ -106,7 +107,7 @@ class SetupController(object):
         else:
             self._model=model
         if(view==None):
-            self._view=SetupView(gtk.WINDOW_TOPLEVEL)
+            self._view=SetupView(Gtk.WindowType.TOPLEVEL)
         else:
             self._view=view
         if ask_for_password == True:
@@ -141,7 +142,7 @@ class SetupController(object):
         self._model.initModel()
 
     def destroy(self, widget):
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def initEvents(self):
         self._logger.debug("Initialize events")

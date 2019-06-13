@@ -18,9 +18,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
 import os
 import sys
 import re
@@ -29,22 +30,23 @@ import logging
 import locale
 import gettext
 
-from ..setupcommon import dialogs
+#import efalive.setup.setupcommon.dialogs
+from efalive.setup.setupcommon import dialogs
 from efalive.common import common
 from efalive.common.usbmonitor import UsbStorageDevice, UsbStorageMonitor
 
 APP="deviceManager"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
-class DeviceWidget(gtk.VBox):
+class DeviceWidget(Gtk.VBox):
     def __init__(self, device, homogeneous=False, spacing=2):
-        super(DeviceWidget, self).__init__(homogeneous, spacing)
+        super(DeviceWidget, self).__init__(homogeneous=homogeneous, spacing=spacing)
         self.device = device
-        separator = gtk.HSeparator()
+        separator = Gtk.HSeparator()
         self.add(separator)
         separator.show()
 
-        hBox = gtk.HBox(False, 5)
+        hBox = Gtk.HBox(homogeneous=False, spacing=5)
         self.add(hBox)
         hBox.show()
 
@@ -53,26 +55,26 @@ class DeviceWidget(gtk.VBox):
             label_text = self.device.label
         elif self.device.model:
             label_text = self.device.model
-        self.label = gtk.Label(label_text)
-        hBox.pack_start(self.label, True, True)
+        self.label = Gtk.Label(label=label_text)
+        hBox.pack_start(self.label, True, True, 0)
         self.label.show()
 
-        self.restore_button = gtk.Button()
-        restore_icon = gtk.image_new_from_file(common.get_icon_path("restore.png"))
+        self.restore_button = Gtk.Button()
+        restore_icon = Gtk.Image.new_from_file(common.get_icon_path("restore.png"))
         self.restore_button.set_image(restore_icon)
         self.restore_button.set_tooltip_text(_("Restore backup from device"))
-        hBox.pack_end(self.restore_button, False, False)
+        hBox.pack_end(self.restore_button, False, False, 0)
         self.restore_button.show()
 
-        self.backup_button = gtk.Button()
-        backup_icon = gtk.image_new_from_file(common.get_icon_path("backup.png"))
+        self.backup_button = Gtk.Button()
+        backup_icon = Gtk.Image.new_from_file(common.get_icon_path("backup.png"))
         self.backup_button.set_image(backup_icon)
         self.backup_button.set_tooltip_text(_("Create backup on device"))
-        hBox.pack_end(self.backup_button, False, False)
+        hBox.pack_end(self.backup_button, False, False, 0)
         self.backup_button.show()
 
-        self.mount_button = gtk.ToggleButton()
-        hBox.pack_end(self.mount_button, False, False)
+        self.mount_button = Gtk.ToggleButton()
+        hBox.pack_end(self.mount_button, False, False, 0)
         self.mount_button.show()
 
 
@@ -81,13 +83,14 @@ class Device(UsbStorageDevice):
         super(Device, self).__init__(usb_device.device_file, usb_device.vendor, usb_device.model, usb_device.size, usb_device.fs_type, usb_device.label, usb_device.bus_id)
         self.mounted = mounted
 
+
 class DeviceManagerModel(object):
     def __init__(self):
         self._logger = logging.getLogger('devicemanager.DeviceManagerModel')
         self._add_device_observers = []
         self._remove_device_observers = []
         self._change_device_observers = []
-        self._device_monitor = UsbStorageMonitor(self._device_add_event_callback, self._device_remove_event_callback, self._device_change_event_callback, for_gui=True)
+        self._device_monitor = UsbStorageMonitor(self._device_add_event_callback, self._device_remove_event_callback, self._device_change_event_callback)
         self._device_monitor.start()
 
     def _device_add_event_callback(self, usb_device):
@@ -139,10 +142,10 @@ class DeviceManagerModel(object):
         self._logger.debug("Check if %s is mounted" % device.device_file)
         try:
             (returncode, mount_output) = common.command_output(["mount"])
-        except OSError as (errno, strerror):
+        except OSError as strerror:
             self._logger.error("Could not execute mount command to check mount status: %s" % strerror)
             raise
-        mounted = re.search(device.device_file, mount_output)
+        mounted = re.search(device.device_file, str(mount_output))
         if mounted:
             return True
         else:
@@ -178,10 +181,10 @@ class DeviceManagerModel(object):
         return common.command_output(["/usr/bin/efalive-restore", file])
 
 
-class DeviceManagerView(gtk.Window):
+class DeviceManagerView(Gtk.Window):
     def __init__(self, type, controller=None):
         self._logger = logging.getLogger('devicemanager.DeviceManagerView')
-        gtk.Window.__init__(self, type)
+        Gtk.Window.__init__(self, type=type)
         self.set_title(_("Device Manager"))
         self.set_border_width(5)
         self._controller = controller
@@ -189,15 +192,15 @@ class DeviceManagerView(gtk.Window):
         self._init_components()
 
     def _init_components(self):
-        self.main_box=gtk.VBox(False, 2)
+        self.main_box=Gtk.VBox(homogeneous=False, spacing=2)
         self.add(self.main_box)
         self.main_box.show()
 
-        self.info_label = gtk.Label(_("USB storage devices"))
+        self.info_label = Gtk.Label(label=_("USB storage devices"))
         self.main_box.add(self.info_label)
         self.info_label.show()
 
-        self.no_device_label = gtk.Label(_("no devices found"))
+        self.no_device_label = Gtk.Label(label=_("no devices found"))
         self.main_box.add(self.no_device_label)
         self.no_device_label.show()
 
@@ -230,7 +233,7 @@ class DeviceManagerView(gtk.Window):
 
     def set_device_mounted(self, device_entry):
         if device_entry.device.mounted:
-            unmount_icon = gtk.image_new_from_file(common.get_icon_path("unmount.png"))
+            unmount_icon = Gtk.Image.new_from_file(common.get_icon_path("unmount.png"))
             device_entry.mount_button.set_image(unmount_icon)
             device_entry.mount_button.set_active(True)
             device_entry.mount_button.set_tooltip_text(_("Unmount USB device"))
@@ -242,7 +245,7 @@ class DeviceManagerView(gtk.Window):
                 _("USB-Id: %s") % device_entry.device.bus_id + "\n" +
                 _("Mouned to: %s") % "/media/" + device_entry.label.get_text())
         else:
-            mount_icon = gtk.image_new_from_file(common.get_icon_path("mount.png"))
+            mount_icon = Gtk.Image.new_from_file(common.get_icon_path("mount.png"))
             device_entry.mount_button.set_image(mount_icon)
             device_entry.mount_button.set_active(False)
             device_entry.mount_button.set_tooltip_text(_("Mount USB device"))
@@ -262,7 +265,7 @@ class DeviceManagerController(object):
         else:
             self._model=model
         if(view==None):
-            self._view=DeviceManagerView(gtk.WINDOW_TOPLEVEL, self)
+            self._view=DeviceManagerView(Gtk.WindowType.TOPLEVEL, self)
         else:
             self._view=view
         self._init_events(standalone)
@@ -277,7 +280,7 @@ class DeviceManagerController(object):
         self._model.register_change_observer(self.on_device_change)
 
     def _destroy(self, widget):
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def toggle_mount(self, button, device_entry):
         if button.get_active():
@@ -333,14 +336,14 @@ class DeviceManagerController(object):
             was_mounted = self._model.check_mounted(device)
             if not was_mounted:
                 self._model.toggle_mount(device, True)
-            file_chooser = gtk.FileChooserDialog(_("Select backup"), 
+            file_chooser = Gtk.FileChooserDialog(_("Select backup"),
                                                  self._view, 
-                                                 gtk.FILE_CHOOSER_ACTION_OPEN, 
-                                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_OPEN, gtk.RESPONSE_OK))
+                                                 Gtk.FILE_CHOOSER_ACTION_OPEN,
+                                                 (Gtk.STOCK_CANCEL, Gtk.RESPONSE_CANCEL, Gtk.STOCK_OPEN, Gtk.RESPONSE_OK))
             path = os.path.join("/media", self._model.get_label(device))
             file_chooser.set_current_folder(path)
             result = file_chooser.run()
-            if result == gtk.RESPONSE_OK:
+            if result == Gtk.RESPONSE_OK:
                 file_chooser.hide()
                 filename = file_chooser.get_filename()
                 (returncode, output) = self._model.restore_backup(filename)
@@ -391,4 +394,4 @@ class DeviceManagerController(object):
 if __name__ == '__main__':
     logging.basicConfig(filename='deviceManager.log',level=logging.INFO)
     controller = DeviceManagerController(sys.argv, True)
-    gtk.main()
+    Gtk.main()

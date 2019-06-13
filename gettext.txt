@@ -1,4 +1,6 @@
-xgettext -L shell -o efalive_autobackup.pot src/files/usr/lib/efalive/bin/autobackup.sh
-msginit -l de -i efalive_autobackup.pot -o i18n/de/efalive_autobackup.po
-msgfmt -o build/efalive/debian/efalive/usr/share/locale/de/LC_MESSAGES/efalive_autobackup.mo i18n/de/efalive_autobackup.po
-msgmerge -U i18n/de/efalive_autobackup.po efalive_autobackup.pot
+find ./ -name "*.py" | xargs xgettext --from-code=UTF-8 -o i18n/messages.pot
+#xgettext -o i18n/messages.pot *.py
+#LANG=de_DE msginit -o i18n/de.po
+msgmerge i18n/de/de.po i18n/messages.pot > i18n/de/de_new.po
+msgfmt i18n/de/de.po -o i18n/de/LC_MESSAGES/efaLiveSetup.mo
+
