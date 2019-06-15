@@ -22,7 +22,7 @@ import unittest
 from mock import MagicMock
 import pyudev
 
-from usbmonitor import UsbStorageMonitor, UsbStorageDevice
+from .usbmonitor import UsbStorageMonitor, UsbStorageDevice
 
 DEVICE_FILE = "/dev/test1"
 DEVICE_VENDOR = "Vendor"

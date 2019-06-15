@@ -22,7 +22,7 @@ import unittest
 from mock import call, patch, MagicMock
 import base64
 
-from mailer import Mailer, MailData, MailerConfig
+from .mailer import Mailer, MailData, MailerConfig
 import mimetypes
 
 class MailerTestCase(unittest.TestCase):
@@ -40,7 +40,7 @@ class MailerTestCase(unittest.TestCase):
         self.assertEqual(mail.subject, result["Subject"])
         self.assertFalse(result.is_multipart())
         self.assertEqual("text/plain", result.get_content_type())
-        self.assertEqual(mail.body, result.get_payload())
+        self.assertEqual(str.encode(mail.body), base64.b64decode(result.get_payload()))
 
     def test_create_mail__text_two_recipients(self):
         mail = MailData()
@@ -55,7 +55,7 @@ class MailerTestCase(unittest.TestCase):
         self.assertEqual(mail.subject, result["Subject"])
         self.assertFalse(result.is_multipart())
         self.assertEqual("text/plain", result.get_content_type())
-        self.assertEqual(mail.body, result.get_payload())
+        self.assertEqual(str.encode(mail.body), base64.b64decode(result.get_payload()))
 
     def test_create_mail__attach_zip(self):
         mail = MailData()
@@ -77,10 +77,10 @@ class MailerTestCase(unittest.TestCase):
         self.assertEqual(2, len(messages))
         text_message = messages[0]
         self.assertEqual("text/plain", text_message.get_content_type())
-        self.assertEqual(mail.body, text_message.get_payload())
+        self.assertEqual(str.encode(mail.body), base64.b64decode(text_message.get_payload()))
         attachment_message = messages[1]
         self.assertEqual("application/zip", attachment_message.get_content_type())
-        self.assertEqual(base64.b64encode("BINARY"), attachment_message.get_payload())
+        self.assertEqual(str.encode("BINARY"), base64.b64decode(attachment_message.get_payload()))
 
     def test_create_mail__attach_text(self):
         mail = MailData()
@@ -102,7 +102,7 @@ class MailerTestCase(unittest.TestCase):
         self.assertEqual(2, len(messages))
         text_message = messages[0]
         self.assertEqual("text/plain", text_message.get_content_type())
-        self.assertEqual(mail.body, text_message.get_payload())
+        self.assertEqual(str.encode(mail.body), base64.b64decode(text_message.get_payload()))
         attachment_message = messages[1]
         self.assertEqual("text/plain", attachment_message.get_content_type())
         self.assertEqual("This is text", attachment_message.get_payload())
@@ -127,10 +127,10 @@ class MailerTestCase(unittest.TestCase):
         self.assertEqual(2, len(messages))
         text_message = messages[0]
         self.assertEqual("text/plain", text_message.get_content_type())
-        self.assertEqual(mail.body, text_message.get_payload())
+        self.assertEqual(str.encode(mail.body), base64.b64decode(text_message.get_payload()))
         attachment_message = messages[1]
         self.assertEqual("image/png", attachment_message.get_content_type())
-        self.assertEqual(base64.b64encode("PNG IMAGE"), attachment_message.get_payload())
+        self.assertEqual(str.encode("PNG IMAGE"), base64.b64decode(attachment_message.get_payload()))
 
     def test_create_mail__attach_audio(self):
         mail = MailData()
@@ -152,10 +152,10 @@ class MailerTestCase(unittest.TestCase):
         self.assertEqual(2, len(messages))
         text_message = messages[0]
         self.assertEqual("text/plain", text_message.get_content_type())
-        self.assertEqual(mail.body, text_message.get_payload())
+        self.assertEqual(str.encode(mail.body), base64.b64decode(text_message.get_payload()))
         attachment_message = messages[1]
         self.assertEqual("audio/x-wav", attachment_message.get_content_type())
-        self.assertEqual(base64.b64encode("SOUND"), attachment_message.get_payload())
+        self.assertEqual(str.encode("SOUND"), base64.b64decode(attachment_message.get_payload()))
 
     def test_create_mail__attach_text_and_zip(self):
         mail = MailData()
@@ -178,13 +178,13 @@ class MailerTestCase(unittest.TestCase):
         self.assertEqual(3, len(messages))
         text_message = messages[0]
         self.assertEqual("text/plain", text_message.get_content_type())
-        self.assertEqual(mail.body, text_message.get_payload())
+        self.assertEqual(str.encode(mail.body), base64.b64decode(text_message.get_payload()))
         attachment1_message = messages[1]
         self.assertEqual("text/plain", attachment1_message.get_content_type())
         self.assertEqual("TEXT", attachment1_message.get_payload())
         attachment2_message = messages[2]
         self.assertEqual("application/zip", attachment2_message.get_content_type())
-        self.assertEqual(base64.b64encode("BINARY"), attachment2_message.get_payload())
+        self.assertEqual(str.encode("BINARY"), base64.b64decode(attachment2_message.get_payload()))
 
     @patch("efalive.common.mailer.smtplib.SMTP", autospec=True)
     def test_send_mail__unencrypted_unauthorized(self, smtp_mock):

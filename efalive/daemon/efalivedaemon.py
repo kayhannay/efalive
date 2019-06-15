@@ -22,7 +22,6 @@ import os
 import sys
 import time
 import logging
-import md5
 import dateutil.parser
 import json
 
@@ -31,7 +30,7 @@ from datetime import datetime
 from efalive.common import common
 from efalive.common.usbmonitor import UsbStorageMonitor
 from efalive.common.settings import EfaLiveSettings
-from tasks import ShellTask
+from .tasks import ShellTask
 from efalive.daemon.tasks import BackupMailTask
 
 class EfaLiveDaemon(object):
@@ -108,9 +107,9 @@ class EfaLiveDaemon(object):
             self.update_settings_counter += 1
 
     def _print_usage_and_exit(self):
-        print "ERROR: No proper arguments given"
-        print "Usage of efaLive daemon:\n"
-        print "\t%s [confDir] start|stop|restart" % sys.argv[0]
+        print("ERROR: No proper arguments given")
+        print("Usage of efaLive daemon:\n")
+        print("\t%s [confDir] start|stop|restart" % sys.argv[0])
         sys.exit(1)
 
 class UpdateableModule(object):
@@ -121,7 +120,7 @@ class UpdateableModule(object):
     """
 
     def update_settings(self, settings):
-        raise NotImplementedError( "The update_settings() method has to be implemented." )
+        raise NotImplementedError("The update_settings() method has to be implemented.")
 
 
 class WatchDogModule(object):
@@ -145,10 +144,10 @@ class WatchDogModule(object):
         process_count = self._check_for_process(process_name)
         if process_count < 1:
             self._restart_threshold -= 1
-            self._logger.warn("Process '%s' is not running, wait for %d more checks before restart!" % (process_name, self._restart_threshold))
+            self._logger.warning("Process '%s' is not running, wait for %d more checks before restart!" % (process_name, self._restart_threshold))
             if self._restart_threshold < 1:
                 self._reset_restart_threshold()
-                self._logger.warn("Trigger restart now...")
+                self._logger.warning("Trigger restart now...")
                 common.command_output(["sudo", "/sbin/shutdown", "-r", "now"])
         else:
             self._logger.debug("Found %d instances of the process '%s'." % (process_count, process_name))

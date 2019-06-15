@@ -1,5 +1,5 @@
 #!/bin/bash
 
-python -m unittest discover -s efalive
+pipenv run python -m unittest discover
 
 exit $?

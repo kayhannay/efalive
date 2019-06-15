@@ -27,7 +27,7 @@ from efalive.common import common
 from efalive.common.mailer import Mailer, MailData, MailerConfig
 
 APP="efaLiveSetup"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class Task(object):
     """Base class for all tasks
@@ -38,7 +38,7 @@ class Task(object):
         self.task_id = task_id
 
     def run(self):
-        raise NotImplementedError( "The run() method has to be implemented by every task." )
+        raise NotImplementedError("The run() method has to be implemented by every task.")
 
 
 class ShellTask(Task):
@@ -105,7 +105,7 @@ class BackupMailTask(Task):
                 self._logger.error("Could not create backup (%d): \n %s" % (returncode, output))
                 return
             self._logger.debug("Backup finished (%d): \n %s" % (returncode, output))
-        except OSError, exception:
+        except OSError as exception:
             self._logger.error("Could not create backup: %s" % exception)
             return
 

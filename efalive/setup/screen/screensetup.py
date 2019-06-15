@@ -18,8 +18,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
-import gtk
-from screenlayout import widget
+import gi
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
+from ..screenlayout import widget
 import os
 import sys 
 import logging
@@ -30,16 +33,16 @@ from ..setupcommon import dialogs
 from efalive.common import common
 
 APP="screenSetup"
-gettext.install(APP, common.LOCALEDIR, unicode=True)
+gettext.install(APP, common.LOCALEDIR)
 
 class ScreenSetupModel(object):
     def __init__(self):
         self._logger = logging.getLogger('screensetup.ScreenSetupModel')
 
-class ScreenSetupView(gtk.Window):
+class ScreenSetupView(Gtk.Window):
     def __init__(self, type, controller=None):
         self._logger = logging.getLogger('screensetup.ScreenSetupView')
-        gtk.Window.__init__(self, type)
+        Gtk.Window.__init__(self, type)
         self.set_title(_("Screen setup"))
         self.set_border_width(5)
         self._controller = controller
@@ -47,30 +50,30 @@ class ScreenSetupView(gtk.Window):
         self.initComponents()
 
     def initComponents(self):
-        main_box=gtk.VBox(False, 2)
+        main_box=Gtk.VBox(False, 2)
         self.add(main_box)
         main_box.show()
 
-        self.randr_widget = widget.ARandRWidget()
+        self.randr_widget = widget.ARandRWidget(self)
         self.randr_widget.load_from_x()
         main_box.pack_start(self.randr_widget, True, True, 2)
         self.randr_widget.show()
 
-        button_box = gtk.HBox(False, 2)
-        main_box.pack_end(button_box, False, False)
+        button_box = Gtk.HBox(False, 2)
+        main_box.pack_end(button_box, False, False, 0)
         button_box.show()
 
-        save_button = gtk.Button(_("Ok"))
+        save_button = Gtk.Button(_("Ok"))
         button_box.pack_end(save_button, False, False, 2)
         save_button.show()
         save_button.connect("clicked", self._controller.save)
 
-        apply_button = gtk.Button(_("Apply"))
+        apply_button = Gtk.Button(_("Apply"))
         button_box.pack_end(apply_button, False, False, 2)
         apply_button.show()
         apply_button.connect("clicked", self._controller.apply)
 
-        cancel_button = gtk.Button(_("Cancel"))
+        cancel_button = Gtk.Button(_("Cancel"))
         button_box.pack_end(cancel_button, False, False, 2)
         cancel_button.show()
         cancel_button.connect("clicked", self._controller.cancel)
@@ -86,7 +89,7 @@ class ScreenSetupController(object):
         else:
             self._model=model
         if(view==None):
-            self._view=ScreenSetupView(gtk.WINDOW_TOPLEVEL, self)
+            self._view=ScreenSetupView(Gtk.WindowType.TOPLEVEL, self)
         else:
             self._view=view
         self.init_events(standalone)
@@ -94,7 +97,7 @@ class ScreenSetupController(object):
 
     def init_events(self, standalone):
         if standalone:
-            self._view.connect('destroy', gtk.main_quit)
+            self._view.connect('destroy', Gtk.main_quit)
 
     def save(self, widget):
         script_file = 'screen_setup.sh'
@@ -113,5 +116,5 @@ class ScreenSetupController(object):
 if __name__ == '__main__':
     logging.basicConfig(filename='screenSetup.log',level=logging.INFO)
     controller = ScreenSetupController(sys.argv)
-    gtk.main();
+    Gtk.main();
 

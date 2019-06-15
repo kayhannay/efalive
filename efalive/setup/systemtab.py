@@ -28,7 +28,7 @@ import traceback
 
 from ..common import common
 from efalive.setup.setupcommon import dialogs
-#from screen.screensetup import ScreenSetupController as ScreenSetup
+from efalive.setup.screen.screensetup import ScreenSetupController as ScreenSetup
 from efalive.setup.dttime.datetime import DateTimeController as DateTime
 
 APP="SystemTab"
@@ -55,11 +55,11 @@ class SystemTabView(Gtk.VBox):
         self.systemGrid.set_col_spacings(2)
         self.systemGrid.show()
 
-        #self.screenButton=Gtk.Button()
-        #button_vbox = common.get_button_label("screen.png", _("Screen"))
-        #self.screenButton.add(button_vbox)
-        #self.systemGrid.attach(self.screenButton, 0, 1, 0, 1)
-        #self.screenButton.show()
+        self.screenButton=Gtk.Button()
+        button_vbox = common.get_button_label("screen.png", _("Screen"))
+        self.screenButton.add(button_vbox)
+        self.systemGrid.attach(self.screenButton, 0, 1, 0, 1)
+        self.screenButton.show()
 
         self.networkButton=Gtk.Button()
         button_vbox = common.get_button_label("network.png", _("Network"))
@@ -121,7 +121,7 @@ class SystemTabController(object):
         self._init_events()
 
     def _init_events(self):
-        #self._view.screenButton.connect("clicked", self.runScreenSetup)
+        self._view.screenButton.connect("clicked", self.runScreenSetup)
         self._view.networkButton.connect("clicked", self.runNetworkSettings)
         self._view.keyboardButton.connect("clicked", self.runKeyboardSetup)
         self._view.dyndnsButton.connect("clicked", self.runDyndnsSetup)
@@ -141,8 +141,8 @@ class SystemTabController(object):
             self._logger.error(message)
             dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
 
-    #def runScreenSetup(self, widget):
-    #    ScreenSetup(None, confPath=self._model.getConfigPath(), standalone=False)
+    def runScreenSetup(self, widget):
+        ScreenSetup(None, confPath=self._model.getConfigPath(), standalone=False)
 
     def runKeyboardSetup(self, widget):
         try:

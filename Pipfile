@@ -7,8 +7,11 @@ name = "pypi"
 pygobject = "*"
 python-pam = "*"
 pyudev = "*"
+python-dateutil = "*"
 
 [dev-packages]
+mock = "*"
+#efalive = {editable = true,version = "*"}
 
 [requires]
 python_version = "3.7"

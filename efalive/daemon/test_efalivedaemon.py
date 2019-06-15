@@ -19,14 +19,15 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
-from mock import call, patch, MagicMock, Mock
+import os
+from mock import call, patch, MagicMock, Mock, mock_open
 
 from efalive.common import common
-from efalivedaemon import EfaLiveDaemon,AutoBackupModule, WatchDogModule, TaskSchedulerModule
+from .efalivedaemon import EfaLiveDaemon, AutoBackupModule, WatchDogModule, TaskSchedulerModule
 from efalive.common.usbmonitor import UsbStorageDevice
 from efalive.common.settings import EfaLiveSettings
 from efalive.common.observable import Observable
-from tasks import BackupMailTask
+from .tasks import BackupMailTask
 #from efalive.common import settings
 #from efalive.common.settings import EfaLiveSettings
 
@@ -172,7 +173,7 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
 class TaskSchedulerModuleTestCase(unittest.TestCase):
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_run_tasks(self, open_mock):
         common.command_output = MagicMock(return_value = (0, "testfile.txt"))
         fileStub = FileStub()
@@ -203,7 +204,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(1, len(class_under_test._monthly_markers))
         self.assertEqual(4, len(fileStub.data))
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_run_tasks__already_executed(self, open_mock):
         common.command_output = MagicMock(return_value = (0, "testfile.txt"))
         fileStub = FileStub()
@@ -241,9 +242,10 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(0, len(class_under_test._monthly_markers))
         self.assertEqual(1, len(fileStub.data))
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_run_tasks__new_task(self, open_mock):
         common.command_output = MagicMock(return_value = (0, "testfile.txt"))
+        os.path.isfile = MagicMock(return_value = True)
         fileStub = FileStub()
         open_mock.side_effect = [ fileStub, FileStub(), FileStub(), FileStub(), fileStub, fileStub, FileStub(), FileStub(), FileStub(), fileStub]
         settings_mock = Mock(spec = EfaLiveSettings)
@@ -283,7 +285,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(0, len(class_under_test._monthly_markers))
         self.assertEqual(2, len(fileStub.data))
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     @patch("efalive.daemon.efalivedaemon.BackupMailTask")
     def test_run_tasks__mail(self, backup_mail_task_mock, open_mock):
         fileStub = FileStub()

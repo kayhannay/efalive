@@ -20,9 +20,9 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import os
 import unittest
-from mock import call, patch, MagicMock
+from mock import call, patch, MagicMock, mock_open
 
-from settings import EfaLiveSettings
+from .settings import EfaLiveSettings
 
 class EfaLiveSettingsTestCase(unittest.TestCase):
 
@@ -55,7 +55,7 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual(None, settings.weekly_tasks.getData())
         self.assertEqual(None, settings.monthly_tasks.getData())
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_initSettings__no_settings(self, open_mock):
         os.path.exists = MagicMock(return_value = True)
         os.path.isfile = MagicMock(return_value = True)
@@ -70,7 +70,7 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual(False, settings.mailer_use_ssl.getData())
         self.assertEqual(True, settings.mailer_use_starttls.getData())
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_initSettings__settings_filled(self, open_mock):
         os.path.exists = MagicMock(return_value = True)
         os.path.isfile = MagicMock(return_value = True)
@@ -92,14 +92,14 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual(True, settings.mailer_use_ssl.getData())
         self.assertEqual(False, settings.mailer_use_starttls.getData())
         self.assertEqual("testuser", settings.mailer_user.getData())
-        self.assertEqual("secret", settings.mailer_password.getData())
+        self.assertEqual("secret", str(settings.mailer_password.getData()))
         self.assertEqual("User <user@test.local>", settings.mailer_sender.getData())
-        self.assertEqual([["SHELL", "ls /tmp0"]], settings.hourly_tasks.getData().values())
-        self.assertEqual([["SHELL", "ls /tmp1"], ["BACKUP", ""]], settings.daily_tasks.getData().values())
-        self.assertEqual([["SHELL", "ls /tmp2"]], settings.weekly_tasks.getData().values())
-        self.assertEqual([["SHELL", "ls /tmp3"]], settings.monthly_tasks.getData().values())
+        self.assertEqual([["SHELL", "ls /tmp0"]], list(settings.hourly_tasks.getData().values()))
+        self.assertEqual(sorted([["SHELL", "ls /tmp1"], ["BACKUP", ""]]), sorted(list(settings.daily_tasks.getData().values())))
+        self.assertEqual([["SHELL", "ls /tmp2"]], list(settings.weekly_tasks.getData().values()))
+        self.assertEqual([["SHELL", "ls /tmp3"]], list(settings.monthly_tasks.getData().values()))
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_save__settings_filled(self, open_mock):
         os.path.exists = MagicMock(return_value = True)
         file_stub = FileStub(True)
@@ -140,7 +140,7 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual("MAILER_USE_SSL=\"TRUE\"\n", file_stub.settings_list[10])
         self.assertEqual("MAILER_USE_STARTTLS=\"FALSE\"\n", file_stub.settings_list[11])
         self.assertEqual("MAILER_USER=testuser\n", file_stub.settings_list[12])
-        self.assertEqual("MAILER_PASSWORD=c2VjcmV0\n", file_stub.settings_list[13])
+        self.assertEqual("MAILER_PASSWORD=b'c2VjcmV0'\n", file_stub.settings_list[13])
         self.assertEqual("MAILER_SENDER='User <user@test.local>'\n", file_stub.settings_list[14])
         self.assertEqual("HOURLY_TASKS='[[\"SHELL\", \"ls /tmp0\"]]'\n", file_stub.settings_list[15])
         self.assertEqual("DAILY_TASKS='[[\"BACKUP\", \"\"], [\"SHELL\", \"ls /tmp1\"]]'\n", file_stub.settings_list[16])

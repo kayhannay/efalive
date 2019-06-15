@@ -19,11 +19,12 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import os
+import shutil
 import unittest
 from mock import call, patch, MagicMock, Mock
 from email.mime.multipart import MIMEMultipart
 
-from tasks import ShellTask, BackupMailTask
+from .tasks import ShellTask, BackupMailTask
 from efalive.common import common
 from efalive.common.mailer import Mailer
 from efalive.common.observable import Observable
@@ -46,8 +47,7 @@ class BackupMailTaskTestCase(unittest.TestCase):
         common.command_output = MagicMock(return_value = (0, ""))
         os.path.exists = MagicMock(return_value = False)
         os.makedirs = MagicMock()
-        os.listdir = MagicMock()
-        os.rmdir = MagicMock()
+        shutil.rmtree = MagicMock()
         Mailer.create_mail = MagicMock(return_value = MIMEMultipart())
         Mailer.send_mail = MagicMock()
 
@@ -70,4 +70,5 @@ class BackupMailTaskTestCase(unittest.TestCase):
         self.assertEqual(call(["/usr/bin/efalive-backup", "/tmp/efalive_backup_mail"]), common.command_output.call_args)
         self.assertEqual(1, mailer_mock.create_mail.call_count)
         self.assertEqual(1, mailer_mock.send_mail.call_count)
+        self.assertEqual(1, shutil.rmtree.call_count)
 

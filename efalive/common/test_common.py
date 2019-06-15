@@ -5,14 +5,14 @@ Created on 12.09.2016
 '''
 import os
 import unittest
-from mock import call, patch, MagicMock
+from mock import call, patch, MagicMock, mock_open
 
-import common
+import efalive.common.common as common
 
 class Test(unittest.TestCase):
 
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def testGetEfaLivePlatformPc(self, open_mock):
         os.path.exists = MagicMock(return_value = True)
         open_mock.return_value = FileStub(common.Platform.PC)
@@ -21,7 +21,7 @@ class Test(unittest.TestCase):
 
         self.assertEqual(result, common.Platform.PC)
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def testGetEfaLivePlatformRaspi(self, open_mock):
         os.path.exists = MagicMock(return_value = True)
         open_mock.return_value = FileStub(common.Platform.RASPI)
@@ -30,7 +30,7 @@ class Test(unittest.TestCase):
 
         self.assertEqual(result, common.Platform.RASPI)
 
-    @patch("__builtin__.open")
+    @patch("builtins.open", new_callable=mock_open, read_data="data")
     def testGetEfaLivePlatformNoFile(self, open_mock):
         os.path.exists = MagicMock(return_value = False)
 
