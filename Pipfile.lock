@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5266c3553728cff161bbcccd09bebc6a5407708196e92b9030b279558cd950a5"
+            "sha256": "747c37e3cc1c3b149dd32cea2d390256d8b8eb28cef2108f2d4b72b7b06cdc0e"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.7"
+            "python_version": "3.5"
         },
         "sources": [
             {
@@ -18,7 +18,6 @@
     "default": {
         "pycairo": {
             "hashes": [
-                "sha256:6343bf6194ad7f785038b563aa724b799e51745b47ef678dd7b5f09c2382b518",
                 "sha256:70172e58b6bad7572a3518c26729b074acdde15e6fee6cbab6d3528ad552b786"
             ],
             "version": "==1.18.1"
