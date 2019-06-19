@@ -42,14 +42,14 @@ else
     local absprefix=$(get_abs_path ${prefix})
     sedprefix=$(echo ${absprefix} | sed -e 's/[\/&]/\\&/g')
 fi
-sed -i "s/LOCALES=os.path.join(os.path.dirname(sys.argv\[0\]), os.pardir, 'i18n')/LOCALES=os.path.join('${sedprefix}', 'share', 'locale')/" efalive/efalive/common/common.py
-sed -i "s/icon_path = os.path.join(path, 'icons', icon_name)/icon_path = os.path.join('${sedprefix}', 'share', 'pixmaps', 'efalive', icon_name)/" efalive/efalive/common/common.py
-sed -i "s/PYTHONPATH=.\/efalive:\$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/python2.7\/site-packages\/efalive\/:\$PYTHONPATH/" efalive-setup
-sed -i "s/PYTHONPATH=.\/efalive:\$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/python2.7\/site-packages\/efalive\/:\$PYTHONPATH/" efalive-daemon
+sed -i "s/LOCALES=os.path.join(os.path.dirname(sys.argv\[0\]), os.pardir, 'i18n')/LOCALES=os.path.join('${sedprefix}', 'share', 'locale')/" efalive/common/common.py
+sed -i "s/icon_path = os.path.join(path, 'icons', icon_name)/icon_path = os.path.join('${sedprefix}', 'share', 'pixmaps', 'efalive', icon_name)/" efalive/common/common.py
+sed -i "s/PYTHONPATH=.\/efalive:\$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/python3\/site-packages\/efalive\/:\$PYTHONPATH/" efalive-setup
+sed -i "s/PYTHONPATH=.\/efalive:\$PYTHONPATH/PYTHONPATH=$sedprefix\/lib\/python3\/site-packages\/efalive\/:\$PYTHONPATH/" efalive-daemon
 
 echo "Call Python setup with arguments: $args"
 
-python setup.py install $args
+python3 setup.py install $args
 mkdir -p ${prefix}/share/pixmaps/efalive
 cp icons/* ${prefix}/share/pixmaps/efalive/ 
 mkdir -p ${prefix}/share/locale
