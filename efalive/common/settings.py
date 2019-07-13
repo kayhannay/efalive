@@ -136,7 +136,8 @@ class EfaLiveSettings(object):
                 self._logger.debug("Parsed efa mailer user setting: " + userStr)
             elif line.startswith("MAILER_PASSWORD="):
                 passStr=line[(line.index('=') + 1):].rstrip()
-                self.mailer_password.updateData(base64.b64decode(passStr).decode())
+                passw=base64.b64decode(passStr)
+                self.mailer_password.updateData(passw.decode())
                 self._logger.debug("Parsed efa mailer password setting: " + passStr)
             elif line.startswith("MAILER_SENDER="):
                 senderStr=line[(line.index('=') + 2):].rstrip()[:-1]
@@ -224,7 +225,7 @@ class EfaLiveSettings(object):
             settingsFile.write("MAILER_USER=%s\n" % self.mailer_user.getData())
             password = self.mailer_password.getData()
             if password != None:
-                password = base64.b64encode(str.encode(password))
+                password = base64.b64encode(password.encode()).decode()
             settingsFile.write("MAILER_PASSWORD=%s\n" % password)
             settingsFile.write("MAILER_SENDER='%s'\n" % self.mailer_sender.getData())
             settingsFile.write("HOURLY_TASKS='%s'\n" % json.dumps(self._get_tasks(self.hourly_tasks)))

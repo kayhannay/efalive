@@ -33,16 +33,16 @@ DIR=os.path.realpath(LOCALEDIR)
 gettext.install(APP, DIR)
 
 def show_confirm_dialog(widget, message):
-    dialog = Gtk.MessageDialog(widget, Gtk.DIALOG_MODAL, Gtk.MESSAGE_QUESTION, Gtk.BUTTONS_YES_NO, message)
+    dialog = Gtk.MessageDialog(widget, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, message)
     response = dialog.run()
     dialog.destroy()
-    if response == Gtk.RESPONSE_YES:
+    if response == Gtk.ResponseType.YES:
         return True
     else:
         return False
 
 def show_error_dialog(widget, message):
-    dialog = Gtk.MessageDialog(widget, Gtk.DIALOG_MODAL, Gtk.MESSAGE_ERROR, Gtk.BUTTONS_CLOSE, message)
+    dialog = Gtk.MessageDialog(widget, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.CLOSE, message)
     dialog.run()
     dialog.destroy()
 
@@ -81,42 +81,33 @@ def show_details_dialog(widget, type, details_label, message, details):
     dialog.destroy()
 
 def get_password_dialog(widget, user, error):
-    dialog = Gtk.MessageDialog(widget, Gtk.DIALOG_MODAL, Gtk.MESSAGE_INFO, Gtk.BUTTONS_OK_CANCEL, None)
+    dialog = Gtk.MessageDialog(widget, Gtk.DialogFlags.MODAL, Gtk.MessageType.INFO, Gtk.ButtonsType.OK_CANCEL, None)
     dialog.set_markup(_("Please enter the password of user %s") % user)
     if error == True:
         dialog.format_secondary_markup("<span foreground='red'>" + _("The password you entered did not match!") + "</span>")
     dialog.set_resizable(False)
-    dialog.set_default_response(Gtk.RESPONSE_OK)
-    password_entry = Gtk.Entry(max=255)
+    dialog.set_default_response(Gtk.ResponseType.OK)
+    password_entry = Gtk.Entry()
+    password_entry.set_max_length(255)
     password_entry.set_visibility(False)
-    password_entry.set_activates_default(Gtk.TRUE)
+    password_entry.set_activates_default(True)
     dialog.vbox.pack_start(password_entry, False, False, 2)
     password_entry.show()
     response = dialog.run()
     password = None
-    if response == Gtk.RESPONSE_OK:
+    if response == Gtk.ResponseType.OK:
         password = password_entry.get_text()
     dialog.destroy()
     return password
 
 def authenticate(user, password):
-    def get_pass(authx, query_list, user_data):
-        resp = []
-        resp.append((password,0))
-        return resp
     auth = pam.pam()
-    auth.start('passwd')
-    auth.set_item(pam.PAM_USER, user)
-    auth.set_item(pam.PAM_CONV, get_pass)
     try:
-        auth.authenticate()
-        auth.acct_mgmt()
+        return auth.authenticate(user, password)
     except pam.error:
         return False
     except:
         raise(BaseException(_("Internal error in PAM authentication module")))
-    else:
-        return True
     return False
 
 def show_password_dialog(widget, user):

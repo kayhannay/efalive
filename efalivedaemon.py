@@ -20,7 +20,7 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import os
 import sys
-from daemon import runner
+from efalive.daemon.pythondaemon import runner
 
 from efalive.daemon.efalivedaemon import EfaLiveDaemon
 

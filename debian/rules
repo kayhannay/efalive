@@ -9,17 +9,23 @@
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=0
 
+%:
+	dh $@ --with python3
+
 #override_dh_build:
 #	cp -r ./etc ./debian/boo
 
 %:
-	dh $@ 
+	dh $@
 
 override_dh_install:
 	tar zx -C ../python -f ../python/efaLiveTools-3.0.tar.gz
-	cd ../python/efaLiveTools-3.0/; ./install.sh --prefix=../../efalive/debian/efalive/usr; cd ../../efalive/
-	cp -r  ../../src/files/* debian/efalive/
-	msgfmt -o debian/efalive/usr/share/locale/de/LC_MESSAGES/efalive_autobackup.mo ../../i18n/de/efalive_autobackup.po
+	cd ../python/efaLiveTools-3.0/; ./install.sh --prefix=../../efalive/debian/efalive/usr --install-lib=../../efalive/debian/efalive/usr/lib/python3/dist-packages; cd ../../efalive/
+	find -name __pycache__ -type d -exec rm -r "{}" \; || true
+#	pwd
+	cp -r ../../files/* debian/efalive/
+	dh_auto_install
+#	#msgfmt -o debian/efalive/usr/share/locale/de/LC_MESSAGES/efalive_autobackup.mo ../../i18n/po_files/efalive_autobackup.po
 
 override_dh_auto_build:
 	docbook-to-man debian/efalive-backup.sgml > debian/efalive-backup.1

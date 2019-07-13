@@ -114,10 +114,10 @@ class BackupController(object):
         try:
             file_chooser = Gtk.FileChooserDialog(_("Select directory"), 
                                                  self._view, 
-                                                 Gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, 
-                                                 (Gtk.STOCK_CANCEL, Gtk.RESPONSE_CANCEL, Gtk.STOCK_OPEN, Gtk.RESPONSE_OK))
+                                                 Gtk.FileChooserAction.SELECT_FOLDER,
+                                                 (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
             result = file_chooser.run()
-            if result == Gtk.RESPONSE_OK:
+            if result == Gtk.ResponseType.OK:
                 file_chooser.hide()
                 directory = file_chooser.get_filename()
                 (returncode, output) = self._model.create_backup(directory)
@@ -148,10 +148,10 @@ class BackupController(object):
         try:
             file_chooser = Gtk.FileChooserDialog(_("Select backup"), 
                                                  self._view, 
-                                                 Gtk.FILE_CHOOSER_ACTION_OPEN, 
-                                                 (Gtk.STOCK_CANCEL, Gtk.RESPONSE_CANCEL, Gtk.STOCK_OPEN, Gtk.RESPONSE_OK))
+                                                 Gtk.FileChooserAction.OPEN,
+                                                 (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
             result = file_chooser.run()
-            if result == Gtk.RESPONSE_OK:
+            if result == Gtk.ResponseType.OK:
                 file_chooser.hide()
                 filename = file_chooser.get_filename()
                 (returncode, output) = self._model.restore_backup(filename)

@@ -30,7 +30,7 @@ from gi.repository import GObject, Gtk, Pango, PangoCairo, Gdk, GLib
 from .snap import Snap
 from .xrandr import XRandR, Feature
 from .auxiliary import Position, NORMAL, ROTATIONS, InadequateConfiguration
-from .i18n import _
+from efalive.common.i18n import _
 
 
 class ARandRWidget(Gtk.DrawingArea):

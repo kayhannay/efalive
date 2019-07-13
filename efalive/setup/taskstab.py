@@ -227,7 +227,7 @@ class TasksTabController(object):
         input_field.set_text(task[1])
         editor.task_interval_combo.set_active(interval_combo_index)
         response = editor.run()
-        if response == Gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             active_type = editor.task_type_combo.get_active()
             if active_type == 0:
                 task_type = "BACKUP_MAIL"

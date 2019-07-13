@@ -61,14 +61,14 @@ class DateTimeModel(object):
 
     def _check_ntp(self):
         try:
-            (returncode, ntp_output) = common.command_output(["grep", "-l", "ntp", "/etc/init.d/.depend.start"])
+            (returncode, ntp_output) = common.command_output(["systemctl", "is-active", "ntp.service"])
         except OSError as error:
             message = _("Could not check NTP service status: %s") % error
             dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
-        if ntp_output == None or ntp_output == "":
-            return False
-        else:
+        if returncode == 0:
             return True
+        else:
+            return False
 
     def set_hour(self, hour):
         self.hour.updateData(hour)
@@ -95,7 +95,7 @@ class DateTimeModel(object):
         if self.ntp.getData() == True:
             self._logger.info("Enable NTP service")
             try:
-                subprocess.Popen(['sudo', 'insserv', '-d', 'ntp'])
+                subprocess.Popen(['sudo', 'systemctl', 'enable', 'ntp.service'])
             except OSError as error:
                 message = _("Could not enable NTP service: %s") % error
                 self._logger.error(message)
@@ -106,7 +106,7 @@ class DateTimeModel(object):
                     self.minute.getData(), self.year.getData(), self.second.getData())
             self._logger.info("Setting date to %s" % date)
             try:
-                subprocess.Popen(['sudo', 'insserv', '-r', 'ntp'])
+                subprocess.Popen(['sudo', 'systemctl', 'disable', 'ntp.service'])
             except OSError as error:
                 message = _("Could not disable NTP service: %s") % error
                 self._logger.error(message)

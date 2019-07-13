@@ -23,11 +23,10 @@ from gi.repository import Gtk
 
 import traceback
 import logging
-import gettext
 
 from efalive.setup.setupcommon import dialogs
-from efalive.common import common
 from efalive.common.settings import EfaLiveSettings
+from efalive.common.i18n import _
 from efalive.setup.efasettingstab import EfaSettingsTabController
 from efalive.setup.actionstab import ActionsTabController
 from efalive.setup.backuptab import BackupTabController
@@ -35,9 +34,6 @@ from efalive.setup.toolstab import ToolsTabController
 from efalive.setup.systemtab import SystemTabController
 from efalive.setup.taskstab import TasksTabController
 from efalive.setup.mailtab import MailTabController
-
-APP="efaLiveSetup"
-gettext.install(APP, common.LOCALEDIR)
 
 class SetupModel(object):
     def __init__(self, confPath):

@@ -1,3 +1,10 @@
+efalive (2.7-1) stable; urgency=low
+
+  * Port to Python 3
+
+ -- Kay Hannay <klinux@hannay.de>  Thu, 20 Jun 2019 21:24:15 +0200
+
+
 efalive (2.6-1) stable; urgency=low
 
   * Refactor device manager to remove python-gudev dependency

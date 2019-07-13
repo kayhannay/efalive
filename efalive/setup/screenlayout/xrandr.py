@@ -25,7 +25,7 @@ from .auxiliary import (
     BetterList, Size, Position, Geometry, FileLoadError, FileSyntaxError,
     InadequateConfiguration, Rotation, ROTATIONS, NORMAL, NamedSize,
 )
-from .i18n import _
+from efalive.common.i18n import _
 
 SHELLSHEBANG = '#!/bin/sh'
 

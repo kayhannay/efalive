@@ -30,6 +30,7 @@ then
     fi
 fi
 
-PYTHONPATH=./efalive:$PYTHONPATH
-PYTHONPATH=$PYTHONPATH python -m efalivesetup $PARAMS >> /dev/null
+#PYTHONPATH=./efalive:$PYTHONPATH
+#PYTHONPATH=$PYTHONPATH
+python3 -m efalivesetup $PARAMS >> /dev/null
 

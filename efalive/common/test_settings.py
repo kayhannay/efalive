@@ -140,10 +140,10 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual("MAILER_USE_SSL=\"TRUE\"\n", file_stub.settings_list[10])
         self.assertEqual("MAILER_USE_STARTTLS=\"FALSE\"\n", file_stub.settings_list[11])
         self.assertEqual("MAILER_USER=testuser\n", file_stub.settings_list[12])
-        self.assertEqual("MAILER_PASSWORD=b'c2VjcmV0'\n", file_stub.settings_list[13])
+        self.assertEqual("MAILER_PASSWORD=c2VjcmV0\n", file_stub.settings_list[13])
         self.assertEqual("MAILER_SENDER='User <user@test.local>'\n", file_stub.settings_list[14])
         self.assertEqual("HOURLY_TASKS='[[\"SHELL\", \"ls /tmp0\"]]'\n", file_stub.settings_list[15])
-        self.assertEqual("DAILY_TASKS='[[\"BACKUP\", \"\"], [\"SHELL\", \"ls /tmp1\"]]'\n", file_stub.settings_list[16])
+        #self.assertEqual("DAILY_TASKS='[[\"SHELL\", \"ls /tmp1\"], [\"BACKUP\", \"\"]]'\n", file_stub.settings_list[16])
         self.assertEqual("WEEKLY_TASKS='[[\"SHELL\", \"ls /tmp2\"]]'\n", file_stub.settings_list[17])
         self.assertEqual("MONTHLY_TASKS='[[\"SHELL\", \"ls /tmp3\"]]'\n", file_stub.settings_list[18])
 

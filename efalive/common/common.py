@@ -40,11 +40,15 @@ def get_icon_path(icon_name):
     logger.debug("Resolved icon path: %s" % icon_path)
     return icon_path
 
-def command_output(args):
+def command_output(args, withErrors=True):
     logger = logging.getLogger('common')
     logger.debug("Command to execute: '%s'" % args)
-    process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False)
-    output = process.communicate()[0]
+    if withErrors:
+        errorOutput = subprocess.STDOUT
+    else:
+        errorOutput = subprocess.PIPE
+    process = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=errorOutput, shell=False)
+    output = process.communicate()[0].decode()
     returncode = process.returncode
     return (returncode, output)
 
