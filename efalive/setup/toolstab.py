@@ -1,7 +1,7 @@
 '''
 Created on 20.09.2015
 
-Copyright (C) 2015-2016 Kay Hannay
+Copyright (C) 2015-2019 Kay Hannay
 
 This file is part of efaLiveTools.
 
