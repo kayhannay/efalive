@@ -22,15 +22,12 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 import logging
-import gettext
 import subprocess
 import traceback
 
 from ..common import common
+from ..common.i18n import _
 from efalive.setup.setupcommon import dialogs
-
-APP="ActionsTab"
-gettext.install(APP, common.LOCALEDIR)
 
 class ActionsTabView(Gtk.VBox):
     def __init__(self):

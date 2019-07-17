@@ -9,10 +9,7 @@ from distutils.core import setup
 from distutils.cmd import Command
 from distutils.log import info, warn
 from distutils.dep_util import newer
-from distutils.command.build import build as _build
-
-PO_DIR = 'i18n/po_files'
-POT_FILE = os.path.join('i18n', 'messages.pot')
+from distutils.command.sdist import sdist as _sdist
 
 PACKAGENAME = "efaLiveTools"
 PACKAGEVERSION = "3.0"
@@ -21,6 +18,8 @@ AUTHOR_MAIL = "klinux@hannay.de"
 URL = "https://www.hannay.de/efalive"
 LICENSE = "GNU GPL 3"
 DESCRIPTION = "Tools for efaLive"
+
+PO_DIR = 'i18n/efaLiveTools/po_files'
 
 class NoOptionCommand(Command):
     """Command that doesn't take any options"""
@@ -35,32 +34,49 @@ class UpdatePot(NoOptionCommand):
 
     def run(self):
         all_py_files = sorted(reduce(operator.add, [[os.path.join(dn, f) for f in fs if f.endswith('.py')] for (dn,ds,fs) in os.walk('.')])) # sort to make diffs easier
+        self.update_pot(all_py_files, PACKAGENAME, 'Python')
+        self.update_pot(os.path.join('files', 'usr', 'lib', 'efalive', 'bin', 'autobackup.sh'), 'autobackup', 'shell')
+
+    def update_pot(self, files, package, type):
         # not working around xgettext not substituting for PACKAGE everywhere in the header; it's just a template and usually worked on using tools that ignore much of it anyway
         if not self.dry_run:
-            info('Creating %s' % POT_FILE)
-            subprocess.check_call(['xgettext', '-LPython', '-o', POT_FILE, '--copyright-holder', AUTHOR, '--package-name', PACKAGENAME, '--package-version', PACKAGEVERSION, '--msgid-bugs-address', AUTHOR_MAIL, '--add-comments=#'] + all_py_files)
+            pot_file = os.path.join('i18n', package, 'messages.pot')
+            info('Creating %s' % pot_file)
+            subprocess.check_call(['xgettext', '-L' + type, '-o', pot_file, '--copyright-holder', AUTHOR, '--package-name', PACKAGENAME, '--package-version', PACKAGEVERSION, '--msgid-bugs-address', AUTHOR_MAIL, '--add-comments=#'] + files)
 
 
 class UpdatePo(NoOptionCommand):
     description = 'Update the .po translations from .pot translation template'
 
     def run(self):
+        self.update_po(PACKAGENAME)
+        self.update_po('autobackup')
+
+    def update_po(self, package):
+        po_dir = os.path.join('i18n', package, 'po_files')
+        pot_file = os.path.join('i18n', package, 'messages.pot')
         # msgmerge data/po/da.po data/po/messages.pot -U
-        for po in glob.glob(os.path.join(PO_DIR, '*.po')):
+        for po in glob.glob(os.path.join(po_dir, '*.po')):
             if not self.dry_run:
                 info('Updating %s' % po)
-                subprocess.check_call(['msgmerge', '-U', po, POT_FILE])
+                subprocess.check_call(['msgmerge', '-U', po, pot_file])
 
 
 class CompileLanguages(NoOptionCommand):
     description = 'Compile .po files into .mo files'
 
     def run(self):
-        self.mkpath(os.path.join("build", "locale")) # create directory even if there are no files, otherwise install would complain
-        for po in glob.glob(os.path.join(PO_DIR,'*.po')):
+        self.compile_mo(PACKAGENAME)
+        self.compile_mo('autobackup')
+
+    def compile_mo(self, package):
+        po_dir = os.path.join('i18n', package, 'po_files')
+        base_path = os.path.join("build", "python", PACKAGENAME + "-" + PACKAGEVERSION, "locale")
+        self.mkpath(base_path) # create directory even if there are no files, otherwise install would complain
+        for po in glob.glob(os.path.join(po_dir,'*.po')):
             info("Current po file: {}".format(po))
             lang = os.path.basename(po[:-3])
-            mo = os.path.join('build', 'locale', lang, 'LC_MESSAGES', '{}.mo'.format(PACKAGENAME))
+            mo = os.path.join(base_path, lang, 'LC_MESSAGES', '{}.mo'.format(package))
 
             directory = os.path.dirname(mo)
             self.mkpath(directory)
@@ -72,10 +88,10 @@ class CompileLanguages(NoOptionCommand):
                     subprocess.check_call(cmd)
 
 
-class build(_build):
-    sub_commands = _build.sub_commands + [('build_trans', None)]
+class sdist(_sdist):
+    sub_commands = _sdist.sub_commands + [('build_trans', None)]
     def run(self):
-        _build.run(self)
+        _sdist.run(self)
 
 
 setup(name=PACKAGENAME,
@@ -92,13 +108,11 @@ setup(name=PACKAGENAME,
                 'efalive.setup.setupcommon',
                 'efalive.setup.backup',
                 'efalive.setup.devicemanager',
-                'efalive.setup.screen',
-                'efalive.setup.screenlayout',
                 'efalive.setup.dttime',
                 'efalive.daemon',
                 'efalive.daemon.pythondaemon'],
       cmdclass={
-        'build': build,
+        'sdist': sdist,
         'build_trans': CompileLanguages,
         'update_pot': UpdatePot,
         'update_po': UpdatePo,

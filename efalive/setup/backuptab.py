@@ -22,13 +22,9 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 import logging
-import gettext
 import hashlib
 
-from ..common import common
-
-APP="BackupTab"
-gettext.install(APP, common.LOCALEDIR)
+from ..common.i18n import _
 
 class BackupTabModel(object):
     def __init__(self, settings):

@@ -22,19 +22,13 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-import os
 import sys
-import subprocess
 import traceback
 import logging
-import locale
-import gettext
 
 from efalive.setup.setupcommon import dialogs
 from efalive.common import common
-
-APP="backup"
-gettext.install(APP, common.LOCALEDIR)
+from efalive.common.i18n import _
 
 class BackupModel(object):
     def __init__(self):

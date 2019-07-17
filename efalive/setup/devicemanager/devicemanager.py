@@ -27,16 +27,11 @@ import sys
 import re
 import traceback
 import logging
-import locale
-import gettext
 
-#import efalive.setup.setupcommon.dialogs
 from efalive.setup.setupcommon import dialogs
 from efalive.common import common
+from efalive.common.i18n import _
 from efalive.common.usbmonitor import UsbStorageDevice, UsbStorageMonitor
-
-APP="deviceManager"
-gettext.install(APP, common.LOCALEDIR)
 
 class DeviceWidget(Gtk.VBox):
     def __init__(self, device, homogeneous=False, spacing=2):

@@ -26,12 +26,14 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-LOCALES=os.path.join(os.path.dirname(sys.argv[0]), os.pardir, 'i18n')
+LOCALES=os.path.join(os.path.dirname(sys.argv[0]), 'i18n')
 LOCALEDIR=os.path.realpath(LOCALES)
+
 
 class Platform(object):
     PC = 1
     RASPI = 2
+
 
 def get_icon_path(icon_name):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir, os.pardir)
@@ -39,6 +41,7 @@ def get_icon_path(icon_name):
     logger = logging.getLogger('common')
     logger.debug("Resolved icon path: %s" % icon_path)
     return icon_path
+
 
 def command_output(args, withErrors=True):
     logger = logging.getLogger('common')
@@ -52,6 +55,7 @@ def command_output(args, withErrors=True):
     returncode = process.returncode
     return (returncode, output)
 
+
 def get_button_label(icon_name, label):
     button_vbox = Gtk.VBox()
     button_label = Gtk.Label(label)
@@ -60,6 +64,7 @@ def get_button_label(icon_name, label):
     button_vbox.pack_start(button_label, True, True, 0)
     button_vbox.show_all()
     return button_vbox
+
 
 def get_efalive_platform():
     os_id = None

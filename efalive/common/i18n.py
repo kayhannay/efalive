@@ -19,7 +19,7 @@ along with efaLiveSetup.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import gettext
 
-TRANSLATION = gettext.translation('efaLiveSetup', fallback=True)
+TRANSLATION = gettext.translation('efaLiveTools', fallback=True)
 
 
 def _(msg: str) -> str:

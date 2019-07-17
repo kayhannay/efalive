@@ -21,13 +21,11 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 import os
 import shutil
-import gettext
 
 from efalive.common import common
+from efalive.common.i18n import _
 from efalive.common.mailer import Mailer, MailData, MailerConfig
 
-APP="efaLiveSetup"
-gettext.install(APP, common.LOCALEDIR)
 
 class Task(object):
     """Base class for all tasks

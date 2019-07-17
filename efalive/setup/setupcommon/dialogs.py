@@ -25,12 +25,10 @@ import os
 import sys
 import pam
 
-import locale
-import gettext
-APP="efaLiveSetup"
+from efalive.common.i18n import _
+
 LOCALEDIR=os.path.join(os.path.dirname(sys.argv[0]), "locale")
 DIR=os.path.realpath(LOCALEDIR)
-gettext.install(APP, DIR)
 
 def show_confirm_dialog(widget, message):
     dialog = Gtk.MessageDialog(widget, Gtk.DialogFlags.MODAL, Gtk.MessageType.QUESTION, Gtk.ButtonsType.YES_NO, message)

@@ -22,12 +22,8 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 import logging
-import gettext
 
-from ..common import common
-
-APP="MailTab"
-gettext.install(APP, common.LOCALEDIR)
+from ..common.i18n import _
 
 class MailTabModel(object):
     def __init__(self, settings):

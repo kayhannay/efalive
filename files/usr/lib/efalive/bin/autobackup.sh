@@ -27,7 +27,7 @@
 # beep sound that is normally played and the dialog for an error or success.
 #
 
-TEXTDOMAIN=efalive_autobackup
+TEXTDOMAIN=autobackup
 TEXTDOMAINDIR=/usr/share/locale
 
 LOGFILE=~/autobackup.log

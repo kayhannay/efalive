@@ -22,17 +22,13 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 import logging
-import gettext
 import subprocess
 import traceback
 
 from ..common import common
+from ..common.i18n import _
 from efalive.setup.setupcommon import dialogs
-from efalive.setup.screen.screensetup import ScreenSetupController as ScreenSetup
 from efalive.setup.dttime.datetime import DateTimeController as DateTime
-
-APP="SystemTab"
-gettext.install(APP, common.LOCALEDIR)
 
 class SystemTabModel(object):
     def __init__(self, settings):
@@ -142,7 +138,12 @@ class SystemTabController(object):
             dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
 
     def runScreenSetup(self, widget):
-        ScreenSetup(None, confPath=self._model.getConfigPath(), standalone=False)
+        try:
+            subprocess.Popen(['arandr'])
+        except OSError as error:
+            message = _("Could not run arandr tool: %s") % error
+            self._logger.error(message)
+            dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
 
     def runKeyboardSetup(self, widget):
         try:

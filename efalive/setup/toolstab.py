@@ -22,17 +22,14 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 import logging
-import gettext
 import subprocess
 import traceback
 
 from ..common import common
+from ..common.i18n import _
 from efalive.setup.setupcommon import dialogs
 from efalive.setup.devicemanager.devicemanager import DeviceManagerController as DeviceManager
 from efalive.setup.backup.backup import BackupController as Backup
-
-APP="ToolsTab"
-gettext.install(APP, common.LOCALEDIR)
 
 class ToolsTabModel(object):
     def __init__(self):
@@ -131,9 +128,9 @@ class ToolsTabController(object):
 
     def runEditor(self, widget):
         try:
-            subprocess.Popen(['leafpad'])
+            subprocess.Popen(['mousepad'])
         except OSError as error:
-            message = _("Could not open leafpad program: %s") % error
+            message = _("Could not open mousepad program: %s") % error
             self._logger.error(message)
             dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
 

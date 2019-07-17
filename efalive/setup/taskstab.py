@@ -23,12 +23,9 @@ from gi.repository import Gtk
 from gi.repository import GObject
 
 import logging
-import gettext
 
 from ..common import common
-
-APP="TasksTab"
-gettext.install(APP, common.LOCALEDIR)
+from ..common.i18n import _
 
 class TasksTabModel(object):
     def __init__(self, settings):

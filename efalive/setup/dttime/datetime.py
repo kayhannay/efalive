@@ -22,21 +22,16 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-import os
-import sys 
+import sys
 import subprocess
 import traceback
 import time
 import logging
-import locale
-import gettext
 
 from efalive.setup.setupcommon import dialogs
 from efalive.common import common
+from efalive.common.i18n import _
 from efalive.common.observable import Observable
-
-APP="dateTime"
-gettext.install(APP, common.LOCALEDIR)
 
 class DateTimeModel(object):
     def __init__(self):
@@ -96,8 +91,9 @@ class DateTimeModel(object):
             self._logger.info("Enable NTP service")
             try:
                 subprocess.Popen(['sudo', 'systemctl', 'enable', 'ntp.service'])
+                subprocess.Popen(['systemctl', 'start', 'ntp.service'])
             except OSError as error:
-                message = _("Could not enable NTP service: %s") % error
+                message = _("Could not enable and start NTP service: %s") % error
                 self._logger.error(message)
                 dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
         else:
@@ -107,8 +103,9 @@ class DateTimeModel(object):
             self._logger.info("Setting date to %s" % date)
             try:
                 subprocess.Popen(['sudo', 'systemctl', 'disable', 'ntp.service'])
+                subprocess.Popen(['systemctl', 'stop', 'ntp.service'])
             except OSError as error:
-                message = _("Could not disable NTP service: %s") % error
+                message = _("Could not disable and stop NTP service: %s") % error
                 self._logger.error(message)
                 dialogs.show_exception_dialog(self._view, message, traceback.format_exc())
             try:

@@ -51,7 +51,8 @@ python3 setup.py install $args
 mkdir -p ${prefix}/share/pixmaps/efalive
 cp icons/* ${prefix}/share/pixmaps/efalive/ 
 mkdir -p ${prefix}/share/locale
-cp -r ../../../i18n/* ${prefix}/share/locale/
+#cp -r ../../../i18n/* ${prefix}/share/locale/
+cp -r locale/* ${prefix}/share/locale/
 mkdir -p ${prefix}/bin
 cp efalive-setup ${prefix}/bin
 cp efalive-daemon ${prefix}/bin
