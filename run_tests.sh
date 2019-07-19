@@ -1,5 +1,5 @@
 #!/bin/bash
 
-pipenv run python -m unittest discover
+pipenv run nosetests --with-coverage --cover-inclusive --cover-erase --cover-package=. -w efalive
 
 exit $?

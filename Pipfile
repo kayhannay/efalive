@@ -11,6 +11,8 @@ python-dateutil = "*"
 
 [dev-packages]
 mock = "*"
+nose = "*"
+coverage = "*"
 #efalive = {editable = true,version = "*"}
 
 [requires]
