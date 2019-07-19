@@ -27,7 +27,7 @@ import traceback
 
 from ..common import common
 from ..common.i18n import _
-from efalive.setup.setupcommon import dialogs
+from efalive.setuptool.setupcommon import dialogs
 
 class ActionsTabView(Gtk.VBox):
     def __init__(self):

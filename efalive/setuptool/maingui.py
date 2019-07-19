@@ -24,16 +24,16 @@ from gi.repository import Gtk
 import traceback
 import logging
 
-from efalive.setup.setupcommon import dialogs
+from efalive.setuptool.setupcommon import dialogs
 from efalive.common.settings import EfaLiveSettings
 from efalive.common.i18n import _
-from efalive.setup.efasettingstab import EfaSettingsTabController
-from efalive.setup.actionstab import ActionsTabController
-from efalive.setup.backuptab import BackupTabController
-from efalive.setup.toolstab import ToolsTabController
-from efalive.setup.systemtab import SystemTabController
-from efalive.setup.taskstab import TasksTabController
-from efalive.setup.mailtab import MailTabController
+from efalive.setuptool.efasettingstab import EfaSettingsTabController
+from efalive.setuptool.actionstab import ActionsTabController
+from efalive.setuptool.backuptab import BackupTabController
+from efalive.setuptool.toolstab import ToolsTabController
+from efalive.setuptool.systemtab import SystemTabController
+from efalive.setuptool.taskstab import TasksTabController
+from efalive.setuptool.mailtab import MailTabController
 
 class SetupModel(object):
     def __init__(self, confPath):

@@ -27,9 +27,9 @@ import traceback
 
 from ..common import common
 from ..common.i18n import _
-from efalive.setup.setupcommon import dialogs
-from efalive.setup.devicemanager.devicemanager import DeviceManagerController as DeviceManager
-from efalive.setup.backup.backup import BackupController as Backup
+from efalive.setuptool.setupcommon import dialogs
+from efalive.setuptool.devicemanager.devicemanager import DeviceManagerController as DeviceManager
+from efalive.setuptool.backup.backup import BackupController as Backup
 
 class ToolsTabModel(object):
     def __init__(self):

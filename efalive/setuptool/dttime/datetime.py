@@ -28,7 +28,7 @@ import traceback
 import time
 import logging
 
-from efalive.setup.setupcommon import dialogs
+from efalive.setuptool.setupcommon import dialogs
 from efalive.common import common
 from efalive.common.i18n import _
 from efalive.common.observable import Observable

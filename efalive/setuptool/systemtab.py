@@ -27,8 +27,8 @@ import traceback
 
 from ..common import common
 from ..common.i18n import _
-from efalive.setup.setupcommon import dialogs
-from efalive.setup.dttime.datetime import DateTimeController as DateTime
+from efalive.setuptool.setupcommon import dialogs
+from efalive.setuptool.dttime.datetime import DateTimeController as DateTime
 
 class SystemTabModel(object):
     def __init__(self, settings):
