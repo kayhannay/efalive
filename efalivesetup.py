@@ -25,7 +25,7 @@ from gi.repository import Gtk
 import logging
 import sys
 
-from efalive.setup import maingui
+from efalive.setuptool import maingui
 
 if __name__ == "__main__":
     logging.basicConfig(filename="efaLiveSetup.log", level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
