@@ -85,7 +85,7 @@ class DeviceManagerModel(object):
         self._add_device_observers = []
         self._remove_device_observers = []
         self._change_device_observers = []
-        self._device_monitor = UsbStorageMonitor(self._device_add_event_callback, self._device_remove_event_callback, self._device_change_event_callback)
+        self._device_monitor = UsbStorageMonitor(self._device_add_event_callback, self._device_remove_event_callback, self._device_change_event_callback, for_gui=True)
         self._device_monitor.start()
 
     def _device_add_event_callback(self, usb_device):

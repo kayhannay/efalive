@@ -164,7 +164,7 @@ class AutoBackupModule(object):
 
     This module is used to automatically create a backup on any USB 
     stick that is plugged in. The implementation is based on UDEV and 
-    the pyudev library.
+    the GUdev library.
     """
 
     def __init__(self):
