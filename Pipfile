@@ -8,6 +8,7 @@ pygobject = "*"
 python-pam = "*"
 pyudev = "*"
 python-dateutil = "*"
+lockfile = "*"
 
 [dev-packages]
 mock = "*"

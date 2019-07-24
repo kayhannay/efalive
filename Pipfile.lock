@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "50911f80ffec3208373d7023f33db32b966d743ec4271442dca37e33541a57f8"
+            "sha256": "43be5398cf83dc73808aa8281f853188996655f8057fe97382b24536d93fd82f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,9 +16,18 @@
         ]
     },
     "default": {
+        "lockfile": {
+            "hashes": [
+                "sha256:6aed02de03cba24efabcd600b30540140634fc06cfa603822d508d5361e9f799",
+                "sha256:6c3cb24f344923d30b2785d5ad75182c8ea7ac1b6171b08657258ec7429d50fa"
+            ],
+            "index": "pypi",
+            "version": "==0.12.2"
+        },
         "pycairo": {
             "hashes": [
-                "sha256:70172e58b6bad7572a3518c26729b074acdde15e6fee6cbab6d3528ad552b786"
+                "sha256:70172e58b6bad7572a3518c26729b074acdde15e6fee6cbab6d3528ad552b786",
+                "sha256:cb433dcae10be08cf414c5b7f84b8c5a32b636380861657006bebc309bab9824"
             ],
             "version": "==1.18.1"
         },
