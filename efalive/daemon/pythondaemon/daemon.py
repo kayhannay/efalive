@@ -371,8 +371,8 @@ class DaemonContext:
         signal_handler_map = self._make_signal_handler_map()
         set_signal_handlers(signal_handler_map)
 
-        exclude_fds = self._get_exclude_file_descriptors()
-        close_all_open_files(exclude=exclude_fds)
+        #exclude_fds = self._get_exclude_file_descriptors()
+        #close_all_open_files(exclude=exclude_fds)
 
         redirect_stream(sys.stdin, self.stdin)
         redirect_stream(sys.stdout, self.stdout)

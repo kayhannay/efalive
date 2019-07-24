@@ -217,6 +217,7 @@ class DaemonRunner:
                     "Failed to terminate {pid:d}: {exc}".format(
                         pid=pid, exc=exc))
             raise error
+        os.kill(pid, signal.SIGKILL)
 
     def _stop(self):
         """ Exit the daemon process specified in the current PID file.

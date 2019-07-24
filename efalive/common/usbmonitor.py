@@ -94,7 +94,7 @@ class UsbStorageMonitor(object):
             wrapped_device = self._wrap_device(device)
             self._external_change_callback(wrapped_device)
         else:
-            self._logger.info("Unhandled action: %s" % device.action)
+            self._logger.info("Unhandled action: %s" % action)
 
     def _debug_device(self, device: GUdev.Device):
         self._logger.debug("Device:")

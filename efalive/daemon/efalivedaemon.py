@@ -39,15 +39,16 @@ class EfaLiveDaemon(object):
     These modules perform specific actions then.
     """
 
-    def __init__(self, argv, output="/dev/tty", stdout="/dev/tty", pidfile="/tmp/efaLiveDaemon.pid"):
+    def __init__(self, argv, output="/dev/tty", stdout="/dev/tty", stderr="/dev/tty", pidfile="/tmp/efaLiveDaemon.pid"):
         # These attributes are expected by the DaemonRunner
         self.logfile = output   
         self.stdin_path = "/dev/null"
         self.stdout_path = stdout
-        self.stderr_path = stdout
+        self.stderr_path = stderr
         self.pidfile_path = pidfile
         self.pidfile_timeout = 5
         self.update_settings_counter = 0
+        self._autobackup_module = None
 
 
         daemon_args = ["start", "stop", "restart"]
@@ -81,7 +82,8 @@ class EfaLiveDaemon(object):
         logging.basicConfig(filename=self.logfile, level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
         self._logger = logging.getLogger('efalivedaemon.EfaLiveDaemon')
         if self._settings.autoUsbBackup.getData():
-            AutoBackupModule().start()
+            self._autobackup_module = AutoBackupModule()
+            self._autobackup_module.start()
         scheduler = TaskSchedulerModule()
         scheduler.update_settings(self._settings)
         watchdog = WatchDogModule()
@@ -173,9 +175,11 @@ class AutoBackupModule(object):
         self._storage_monitor = UsbStorageMonitor(self._handle_usb_add_event)
 
     def start(self):
+        self._logger.info("Start AutoBackup module ...")
         self._storage_monitor.start()
 
     def stop(self):
+        self._logger.info("Stop AutoBackup module ...")
         self._storage_monitor.stop()
 
     def _handle_usb_add_event(self, device):

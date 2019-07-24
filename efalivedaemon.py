@@ -27,7 +27,8 @@ from efalive.daemon.efalivedaemon import EfaLiveDaemon
 if __name__ == "__main__":
     logfile = "efaLiveDaemon.log"
     stdout = "efaLiveDaemonStdOut.log"
-    daemon = EfaLiveDaemon(sys.argv, output=logfile, stdout=stdout)
+    stderr = "efaLiveDaemonStdErr.log"
+    daemon = EfaLiveDaemon(sys.argv, output=logfile, stdout=stdout, stderr=stderr)
     daemon_runner = runner.DaemonRunner(daemon)
     daemon_runner.daemon_context.working_directory = os.getcwd()
     daemon_runner.do_action()
