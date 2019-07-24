@@ -57,9 +57,9 @@ def show_details_dialog(widget, type, details_label, message, details):
     dialog = Gtk.MessageDialog(parent=widget, flags=Gtk.DialogFlags.MODAL, message_type=type, buttons=Gtk.ButtonsType.CLOSE, text=message)
     dialog.set_resizable(True)
 
-    expander = Gtk.Expander()
     scroll_area = Gtk.ScrolledWindow()
     details_area = Gtk.TextView()
+    details_area.set_editable(False)
 
     details_area.get_buffer().set_text(details)
     details_area.show()
@@ -69,11 +69,8 @@ def show_details_dialog(widget, type, details_label, message, details):
     scroll_area.add(details_area)
     scroll_area.show()
 
-    expander.add(scroll_area)
-    expander.show()
-
     dialog.vbox.pack_start(Gtk.Label(details_label), False, False, 0)
-    dialog.vbox.pack_start(expander, True, True, 0)
+    dialog.vbox.pack_start(scroll_area, True, True, 0)
 
     dialog.run()
     dialog.destroy()
