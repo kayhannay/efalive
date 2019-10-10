@@ -50,7 +50,7 @@ function inform_success {
 	/bin/echo "$1"
     	if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
     	then
-        	/usr/bin/zenity --info --text=$"Auto backup: $1"
+        	/usr/bin/zenity --info --no-wrap --text=$"Auto backup: $1"
     	fi
 	if [ "x$QUIET" = "xFALSE" ]
 	then
@@ -62,7 +62,7 @@ function inform_error {
 	/bin/echo "$1"
     	if [ "x$AUTO_USB_BACKUP_DIALOG" = "xTRUE" ]
     	then
-        	/usr/bin/zenity --error --text=$"Auto backup: $1"
+        	/usr/bin/zenity --error --no-wrap --text=$"Auto backup: $1"
     	fi
 	if [ "x$QUIET" = "xFALSE" ]
 	then
