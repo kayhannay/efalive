@@ -161,8 +161,9 @@ class UsbStorageMonitor(object):
         return wrapped_device
 
     def search_for_usb_block_devices(self):
-        for usb_device in self._gudev.query_by_subsystem("block/partition"):
-            if (usb_device.get_property("ID_BUS") != "usb"):
+        usb_devices = self._gudev.query_by_subsystem("block")
+        for usb_device in usb_devices:
+            if (usb_device.get_property("ID_BUS") != "usb") or (usb_device.get_devtype() != "partition"):
                 continue
             wrapped_device = self._wrap_device(usb_device)
             self._external_add_callback(wrapped_device)
