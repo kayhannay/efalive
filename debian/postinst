@@ -20,10 +20,10 @@ set -e
 
 case "$1" in
     configure)
-        chown -R efa:efa /usr/lib/efa2
-        chown -R efa:efa /home/efa/.config
+        chown efa:efa /home/efa/.config
+        chown efa:efa /home/efa/.config/openbox
+        chown efa:efa /home/efa/.config/openbox/rc.xml
         chown efa:efa /home/efa/.xinitrc
-        echo "efa     ALL=NOPASSWD: /sbin/shutdown, /usr/sbin/dpkg-reconfigure -fgnome keyboard-configuration, /usr/sbin/dpkg-reconfigure -fgnome ddclient, /bin/date, /bin/systemctl disable ntp.service, /bin/systemctl enable ntp.service, /bin/systemctl start ntp.service, /bin/systemctl stop ntp.service, /usr/bin/nm-connection-editor, /usr/lib/efalive/bin/copy_log_files.sh /tmp/log_package/system efa, /sbin/hwclock -w, /usr/bin/raspi-config" >> /etc/sudoers
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
