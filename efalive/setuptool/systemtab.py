@@ -29,6 +29,7 @@ from ..common import common
 from ..common.i18n import _
 from efalive.setuptool.setupcommon import dialogs
 from efalive.setuptool.dttime.datetime import DateTimeController as DateTime
+from efalive.setuptool.screen.screensetup import ScreenSetupController as ScreenSetup
 
 class SystemTabModel(object):
     def __init__(self, settings):
@@ -138,12 +139,7 @@ class SystemTabController(object):
             dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
 
     def runScreenSetup(self, widget):
-        try:
-            subprocess.Popen(['arandr'])
-        except OSError as error:
-            message = _("Could not run arandr tool: %s") % error
-            self._logger.error(message)
-            dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
+        ScreenSetup(None, confPath=self._model.getConfigPath(), standalone=False)
 
     def runKeyboardSetup(self, widget):
         try:
