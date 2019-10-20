@@ -10,7 +10,7 @@ Homepage: http://www.hannay.de/index.php?option=com_content&view=article&id=46&I
 
 Package: efalive
 Architecture: all
-Depends: efa2, xterm, sudo, zenity, zip, unzip, openbox, python3, python3-gi, pmount, feh, python3-pampy, python3-daemon, python3-pyudev, python3-dateutil, python3-gi-cairo, network-manager-gnome, thunar, xscreensaver, xfce4-power-manager, ntp, mousepad, libgtk2-perl, libgtk3-perl, ddclient, xserver-xorg, gir1.2-gudev-1.0, gir1.2-glib-2.0, gir1.2-gtk-3.0
+Depends: efa2, xterm, x11-xserver-utils, sudo, zenity, zip, unzip, openbox, python3, python3-gi, pmount, feh, python3-pampy, python3-daemon, python3-pyudev, python3-dateutil, python3-gi-cairo, network-manager-gnome, thunar, xscreensaver, xfce4-power-manager, ntp, mousepad, libgtk2-perl, libgtk3-perl, ddclient, xserver-xorg, gir1.2-gudev-1.0, gir1.2-glib-2.0, gir1.2-gtk-3.0
 Recommends: beep, mailutils, sharutils, ssh, anacron, less, vim, nano
 Description: KIOSK system for the rowing logbook efa
  This package creates a KIOSK system for the rowing logbook software efa

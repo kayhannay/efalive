@@ -139,7 +139,7 @@ class SystemTabController(object):
             dialogs.show_exception_dialog(self._view.get_toplevel(), message, traceback.format_exc())
 
     def runScreenSetup(self, widget):
-        ScreenSetup(None, confPath=self._model.getConfigPath(), standalone=False)
+        ScreenSetup(None, conf_path=self._model.getConfigPath(), standalone=False)
 
     def runKeyboardSetup(self, widget):
         try:

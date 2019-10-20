@@ -109,6 +109,8 @@ setup(name=PACKAGENAME,
                 'efalive.setuptool.backup',
                 'efalive.setuptool.devicemanager',
                 'efalive.setuptool.dttime',
+                'efalive.setuptool.screen',
+                'efalive.setuptool.screen.screenlayout',
                 'efalive.daemon',
                 'efalive.daemon.pythondaemon'],
       cmdclass={
