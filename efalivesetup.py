@@ -28,7 +28,7 @@ import sys
 from efalive.setuptool import maingui
 
 if __name__ == "__main__":
-    logging.basicConfig(filename="efaLiveSetup.log", level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
+    logging.basicConfig(filename="efaLiveSetup.log", level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
     controller = maingui.SetupController(sys.argv)
     Gtk.main()
 

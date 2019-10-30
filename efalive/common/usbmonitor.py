@@ -182,7 +182,7 @@ def change_callback(device: UsbStorageDevice):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(filename="usbmonitor.log", level=logging.DEBUG, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
+    logging.basicConfig(filename="usbmonitor.log", level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s: %(message)s')
 
     monitor = UsbStorageMonitor(add_callback, remove_callback, change_callback)
     monitor.start()
