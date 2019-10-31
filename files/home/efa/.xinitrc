@@ -50,7 +50,7 @@ start_efa()
     delta=$(($stop-$start))
     if [ $delta -lt 5 ]
     then
-        zenity --question --text="The electronic logbook efa was stopped unexpectedly quick. Should we continue with the configured action for efa shutdown?"
+        zenity --question --no-wrap --text="The electronic logbook efa was stopped unexpectedly quick. \nShould we continue with the configured action for efa shutdown?"
         if [ $? -ne 0 ]
         then
             exit 0
