@@ -24,7 +24,7 @@ import unittest
 from mock import call, patch, MagicMock, Mock
 from email.mime.multipart import MIMEMultipart
 
-from .tasks import ShellTask, BackupMailTask
+from efalive.daemon.tasks import ShellTask, BackupMailTask
 from efalive.common import common
 from efalive.common.mailer import Mailer
 from efalive.common.observable import Observable

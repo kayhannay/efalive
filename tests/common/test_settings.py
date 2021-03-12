@@ -22,7 +22,8 @@ import os
 import unittest
 from mock import call, patch, MagicMock, mock_open
 
-from .settings import EfaLiveSettings
+from efalive.common.settings import EfaLiveSettings
+
 
 class EfaLiveSettingsTestCase(unittest.TestCase):
 

@@ -19,14 +19,12 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
-from mock import MagicMock
-import pyudev
 
 import gi
 gi.require_version('GUdev', '1.0')
 from gi.repository import GUdev
 
-from .usbmonitor import UsbStorageMonitor, UsbStorageDevice
+from efalive.common.usbmonitor import UsbStorageMonitor, UsbStorageDevice
 
 DEVICE_FILE = "/dev/test1"
 DEVICE_VENDOR = "Vendor"

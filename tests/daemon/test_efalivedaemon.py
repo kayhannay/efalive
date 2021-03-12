@@ -23,11 +23,11 @@ import os
 from mock import call, patch, MagicMock, Mock, mock_open
 
 from efalive.common import common
-from .efalivedaemon import EfaLiveDaemon, AutoBackupModule, WatchDogModule, TaskSchedulerModule
+from efalive.daemon.efalivedaemon import EfaLiveDaemon, AutoBackupModule, WatchDogModule, TaskSchedulerModule
 from efalive.common.usbmonitor import UsbStorageDevice
 from efalive.common.settings import EfaLiveSettings
 from efalive.common.observable import Observable
-from .tasks import BackupMailTask
+from efalive.daemon.tasks import BackupMailTask
 #from efalive.common import settings
 #from efalive.common.settings import EfaLiveSettings
 

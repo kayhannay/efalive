@@ -22,7 +22,7 @@ import unittest
 from mock import call, patch, MagicMock
 import base64
 
-from .mailer import Mailer, MailData, MailerConfig
+from efalive.common.mailer import Mailer, MailData, MailerConfig
 import mimetypes
 
 class MailerTestCase(unittest.TestCase):
