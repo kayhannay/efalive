@@ -23,3 +23,6 @@ cd $BUILD_DIR
 debuild -uc -us -b
 
 cd $PROJECT_ROOT
+
+cp build/*.deb .
+
