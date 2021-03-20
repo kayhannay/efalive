@@ -1,3 +1,9 @@
+efalive (2.8.0-1) unstable; urgency=low
+
+  * feat: add function to run tasks from UI
+
+ -- Kay Hannay <klinux@hannay.de>  Sat, 20 Mar 2021 21:11:15 +0000
+
 efalive (2.7-1) stable; urgency=low
 
   * Port to Python 3
