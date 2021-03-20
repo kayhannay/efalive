@@ -96,14 +96,14 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
 
         #then
         self.assertIsNotNone(wrapped_device)
-        self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
-        self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
-        self.assertEquals(DEVICE_MODEL, wrapped_device.model)
-        self.assertEquals(0, wrapped_device.size)
-        self.assertEquals(DEVICE_FS_TYPE, wrapped_device.fs_type)
-        self.assertEquals(DEVICE_FS_LABEL, wrapped_device.label)
-        self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
-        self.assertEquals(DEVICE_SERIAL, wrapped_device.serial)
+        self.assertEqual(DEVICE_FILE, wrapped_device.device_file)
+        self.assertEqual(DEVICE_VENDOR, wrapped_device.vendor)
+        self.assertEqual(DEVICE_MODEL, wrapped_device.model)
+        self.assertEqual(0, wrapped_device.size)
+        self.assertEqual(DEVICE_FS_TYPE, wrapped_device.fs_type)
+        self.assertEqual(DEVICE_FS_LABEL, wrapped_device.label)
+        self.assertEqual(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
+        self.assertEqual(DEVICE_SERIAL, wrapped_device.serial)
 
     def test_wrap_device__1kb_size(self):
         #given
@@ -133,13 +133,13 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
 
         #then
         self.assertIsNotNone(wrapped_device)
-        self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
-        self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
-        self.assertEquals(DEVICE_MODEL, wrapped_device.model)
-        self.assertEquals("3.1 MB", wrapped_device.size)
-        self.assertEquals(DEVICE_FS_TYPE, wrapped_device.fs_type)
-        self.assertEquals(DEVICE_FS_LABEL, wrapped_device.label)
-        self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
+        self.assertEqual(DEVICE_FILE, wrapped_device.device_file)
+        self.assertEqual(DEVICE_VENDOR, wrapped_device.vendor)
+        self.assertEqual(DEVICE_MODEL, wrapped_device.model)
+        self.assertEqual("3.1 MB", wrapped_device.size)
+        self.assertEqual(DEVICE_FS_TYPE, wrapped_device.fs_type)
+        self.assertEqual(DEVICE_FS_LABEL, wrapped_device.label)
+        self.assertEqual(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__2_3_gb_size(self):
         #given
@@ -151,13 +151,13 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
 
         #then
         self.assertIsNotNone(wrapped_device)
-        self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
-        self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
-        self.assertEquals(DEVICE_MODEL, wrapped_device.model)
-        self.assertEquals("2.3 GB", wrapped_device.size)
-        self.assertEquals(DEVICE_FS_TYPE, wrapped_device.fs_type)
-        self.assertEquals(DEVICE_FS_LABEL, wrapped_device.label)
-        self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
+        self.assertEqual(DEVICE_FILE, wrapped_device.device_file)
+        self.assertEqual(DEVICE_VENDOR, wrapped_device.vendor)
+        self.assertEqual(DEVICE_MODEL, wrapped_device.model)
+        self.assertEqual("2.3 GB", wrapped_device.size)
+        self.assertEqual(DEVICE_FS_TYPE, wrapped_device.fs_type)
+        self.assertEqual(DEVICE_FS_LABEL, wrapped_device.label)
+        self.assertEqual(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__7_8_tb_size(self):
         #given
@@ -169,13 +169,13 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
 
         #then
         self.assertIsNotNone(wrapped_device)
-        self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
-        self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
-        self.assertEquals(DEVICE_MODEL, wrapped_device.model)
-        self.assertEquals("7.8 TB", wrapped_device.size)
-        self.assertEquals(DEVICE_FS_TYPE, wrapped_device.fs_type)
-        self.assertEquals(DEVICE_FS_LABEL, wrapped_device.label)
-        self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
+        self.assertEqual(DEVICE_FILE, wrapped_device.device_file)
+        self.assertEqual(DEVICE_VENDOR, wrapped_device.vendor)
+        self.assertEqual(DEVICE_MODEL, wrapped_device.model)
+        self.assertEqual("7.8 TB", wrapped_device.size)
+        self.assertEqual(DEVICE_FS_TYPE, wrapped_device.fs_type)
+        self.assertEqual(DEVICE_FS_LABEL, wrapped_device.label)
+        self.assertEqual(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
     def test_wrap_device__2018_tb_size(self):
         #given
@@ -187,13 +187,13 @@ class UsbStorageMonitorTestCase(unittest.TestCase):
 
         #then
         self.assertIsNotNone(wrapped_device)
-        self.assertEquals(DEVICE_FILE, wrapped_device.device_file)
-        self.assertEquals(DEVICE_VENDOR, wrapped_device.vendor)
-        self.assertEquals(DEVICE_MODEL, wrapped_device.model)
-        self.assertEquals("2048.0 TB", wrapped_device.size)
-        self.assertEquals(DEVICE_FS_TYPE, wrapped_device.fs_type)
-        self.assertEquals(DEVICE_FS_LABEL, wrapped_device.label)
-        self.assertEquals(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
+        self.assertEqual(DEVICE_FILE, wrapped_device.device_file)
+        self.assertEqual(DEVICE_VENDOR, wrapped_device.vendor)
+        self.assertEqual(DEVICE_MODEL, wrapped_device.model)
+        self.assertEqual("2048.0 TB", wrapped_device.size)
+        self.assertEqual(DEVICE_FS_TYPE, wrapped_device.fs_type)
+        self.assertEqual(DEVICE_FS_LABEL, wrapped_device.label)
+        self.assertEqual(DEVICE_VENDOR_ID + ":" + DEVICE_MODEL_ID, wrapped_device.bus_id)
 
 
 class GUdevDeviceStub(GUdev.Device):
