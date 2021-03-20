@@ -30,8 +30,7 @@ from datetime import datetime
 from efalive.common import common
 from efalive.common.usbmonitor import UsbStorageMonitor
 from efalive.common.settings import EfaLiveSettings
-from .tasks import ShellTask
-from efalive.daemon.tasks import BackupMailTask
+from efalive.common.tasks import ShellTask, BackupMailTask
 
 class EfaLiveDaemon(object):
     """efaLive daemon main class which controls several modules. 

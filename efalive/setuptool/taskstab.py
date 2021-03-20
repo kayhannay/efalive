@@ -1,7 +1,7 @@
 '''
 Created on 24.09.2015
 
-Copyright (C) 2015-2019 Kay Hannay
+Copyright (C) 2015-2021 Kay Hannay
 
 This file is part of efaLiveTools.
 
@@ -24,8 +24,10 @@ from gi.repository import GObject
 
 import logging
 
-from ..common import common
-from ..common.i18n import _
+from efalive.common.tasks import BackupMailTask
+
+from efalive.common import common
+from efalive.common.i18n import _
 
 class TasksTabModel(object):
     def __init__(self, settings):
@@ -112,13 +114,23 @@ class TasksTabView(Gtk.VBox):
         self.task_button_vbox.pack_start(self.task_del_button, False, False, 2)
         self.task_del_button.show()
 
+        self.task_run_button = Gtk.Button()
+        button_icon = Gtk.Image.new_from_file(common.get_icon_path("play.png"))
+        self.task_run_button.set_image(button_icon)
+        self.task_run_button.set_tooltip_text(_("Remove task"))
+        self.task_button_vbox.pack_start(self.task_run_button, False, False, 2)
+        self.task_run_button.show()
+
 class TasksTabController(object):
     def __init__(self, settings):
         self._logger = logging.getLogger('TasksTabController')
 
+        self._settings = settings
+
         self._view = TasksTabView()
         self._view.task_del_button.set_sensitive(False)
         self._view.task_edit_button.set_sensitive(False)
+        self._view.task_run_button.set_sensitive(False)
 
         self._model = TasksTabModel(settings)
         self._init_events()
@@ -131,6 +143,7 @@ class TasksTabController(object):
         self._view.task_add_button.connect("clicked", self.add_task)
         self._view.task_edit_button.connect("clicked", self.edit_task)
         self._view.task_del_button.connect("clicked", self.delete_task)
+        self._view.task_run_button.connect("clicked", self.run_task)
         self._view.task_list.get_selection().connect("changed", self.task_selection_changed)
 
     def get_view(self):
@@ -150,9 +163,11 @@ class TasksTabController(object):
         if selection.count_selected_rows() < 1:
             self._view.task_del_button.set_sensitive(False)
             self._view.task_edit_button.set_sensitive(False)
+            self._view.task_run_button.set_sensitive(False)
         else:
             self._view.task_del_button.set_sensitive(True)
             self._view.task_edit_button.set_sensitive(True)
+            self._view.task_run_button.set_sensitive(True)
 
     def _process_task_list(self, task_frequency, tasks):
         if tasks == None:
@@ -245,6 +260,22 @@ class TasksTabController(object):
             self._model.delete_task(task_id)
             self._model.add_task(task_type, text, task_interval)
         editor.destroy()
+
+    def run_task(self, widget):
+        selection = self._view.task_list.get_selection()
+        tree_model, tree_iter = selection.get_selected()
+        task_id = tree_model.get_value(tree_iter, 0)
+        task_interval, task = self._model.get_task(task_id)
+
+        if task[0] == "SHELL":
+            self._logger.info(f'Run shell command: {task[1]}')
+            (returncode, output) = common.command_output(task[1].split(' '))
+            self._logger.info(f'Return code: {returncode}')
+            self._logger.info(f'Output: {output}')
+        elif task[0] == 'BACKUP_MAIL':
+            task = BackupMailTask('0', task[1], self._settings)
+            task.run()
+
 
 class TaskEditor(Gtk.Dialog):
     def __init__(self, widget):

@@ -27,7 +27,7 @@ from efalive.daemon.efalivedaemon import EfaLiveDaemon, AutoBackupModule, WatchD
 from efalive.common.usbmonitor import UsbStorageDevice
 from efalive.common.settings import EfaLiveSettings
 from efalive.common.observable import Observable
-from efalive.daemon.tasks import BackupMailTask
+from efalive.common.tasks import BackupMailTask
 #from efalive.common import settings
 #from efalive.common.settings import EfaLiveSettings
 
