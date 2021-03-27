@@ -35,7 +35,7 @@ class EfaSettingsTabModel(object):
         self._logger.debug("efa shutdown action: %s" % action)
 
     def setEfaPort(self, port):
-        self._settings.efaPort.updateData(port)
+        self._settings.efaPort.updateData(int(port))
         self._logger.debug("efa port: %d" % port)
 
     def registerEfaShutdownActionCb(self, callback):

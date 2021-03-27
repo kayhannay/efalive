@@ -37,7 +37,7 @@ class MailTabModel(object):
         self._settings.mailer_host.registerObserverCb(callback)
 
     def set_smtp_port(self, port):
-        self._settings.mailer_port.updateData(port)
+        self._settings.mailer_port.updateData(int(port))
 
     def register_smtp_port_callback(self, callback):
         self._settings.mailer_port.registerObserverCb(callback)
