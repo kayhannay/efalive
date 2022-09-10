@@ -33,5 +33,5 @@ jobs:
           echo "${{ secrets.GPG_PUBLIC_KEY }}" | gpg --batch --import
           echo "${{ secrets.GPG_KEY }}" | gpg --batch --import
           #gpg --list-secret-keys --keyid-format LONG
-          /usr/bin/deploy_registry.sh "${{ secrets.SSH_USER }}" "${{ secrets.SSH_HOST }}" buster efalive
+          /usr/bin/deploy_registry.sh "${{ secrets.SSH_USER }}" "${{ secrets.SSH_HOST }}" bullseye efalive
 
