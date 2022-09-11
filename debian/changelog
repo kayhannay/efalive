@@ -1,3 +1,9 @@
+efalive (2.8.2-1) unstable; urgency=low
+
+  * fix: minor update
+
+ -- Kay Hannay <klinux@hannay.de>  Sun, 11 Sep 2022 13:43:39 +0000
+
 efalive (2.8.1-1) unstable; urgency=low
 
   * fix: update to Debian bullseye
