@@ -1,5 +1,5 @@
 #efaLive project
-This project holds the content of the efaLive Debian package and contains most of the files and scripts that form the glue between the Debian system and the efa software in an efaLive system.
+This project contains the efaLive Debian package and most of the files and scripts that form the glue between the Debian system and the efa software in an efaLive system.
 
 efaLive is a live CD that runs the rowing and canoeing log book software [efa](http://efa.nmichael.de/) on a Linux system in a so called KIOSK mode. This means that the system, where efaLive is started on, will directly boot into the efa software. So a user in front of the system can use the efa software only. There is no direct access to other software.
 
