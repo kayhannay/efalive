@@ -1,3 +1,9 @@
+efalive (2.8.3-1) unstable; urgency=low
+
+  * fix: update version files on new release
+
+ -- Kay Hannay <klinux@hannay.de>  Fri, 16 Sep 2022 16:55:13 +0000
+
 efalive (2.8.2-1) unstable; urgency=low
 
   * fix: minor update
