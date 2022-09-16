@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
       - name: Create release
         run: |
-          python3 -m create_release.create_release --path ./ --package efalive
+          python3 -m create_release.create_release --path ./ --package efalive --efalive
       - name: Build debian package
         run: |
           ./build_deb.sh
