@@ -1,3 +1,9 @@
+efalive (2.8.4-1) unstable; urgency=low
+
+  * fix: set proper access rights for efa2 installtion directory
+
+ -- Kay Hannay <klinux@hannay.de>  Thu, 26 Jan 2023 09:46:21 +0000
+
 efalive (2.8.3-1) unstable; urgency=low
 
   * fix: update version files on new release
