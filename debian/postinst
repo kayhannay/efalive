@@ -24,6 +24,7 @@ case "$1" in
         chown efa:efa /home/efa/.config/openbox
         chown efa:efa /home/efa/.config/openbox/rc.xml
         chown efa:efa /home/efa/.xinitrc
+        chown -R efa:efa /usr/lib/efa2
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
