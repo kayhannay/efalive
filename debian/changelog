@@ -1,3 +1,9 @@
+efalive (2.8.5-1) unstable; urgency=low
+
+  * fix: update Python dependenies
+
+ -- Kay Hannay <klinux@hannay.de>  Thu, 26 Jan 2023 10:02:44 +0000
+
 efalive (2.8.4-1) unstable; urgency=low
 
   * fix: set proper access rights for efa2 installtion directory
