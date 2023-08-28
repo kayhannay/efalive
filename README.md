@@ -59,4 +59,3 @@ To run the tests execute
 ```shell
 poetry run pytest
 ```
-
