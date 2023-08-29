@@ -18,6 +18,7 @@ jobs:
           fetch-depth: 0
       - name: Create release
         run: |
+          git config --global --add safe.directory /__w/efalive/efalive
           python3 -m create_release.create_release --path ./ --package efalive --efalive
       - name: Build debian package
         run: |
