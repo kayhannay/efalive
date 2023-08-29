@@ -1,3 +1,10 @@
+efalive (2.8.6-1) unstable; urgency=low
+
+  * fix: update checkout action
+  * fix: update dependencies
+
+ -- Kay Hannay <klinux@hannay.de>  Tue, 29 Aug 2023 19:46:50 +0000
+
 efalive (2.8.5-1) unstable; urgency=low
 
   * fix: update Python dependenies
