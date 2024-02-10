@@ -1,0 +1,8 @@
+Xcursor.theme: default
+Xcursor.size: 48
+Xft.hinting: 0
+Xft.hintstyle: hintslight
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.lcdFilter: lcddefault
+

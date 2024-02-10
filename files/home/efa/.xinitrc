@@ -8,6 +8,10 @@ if [ -x $XRANDR_CONFIG ]
 then
     $XRANDR_CONFIG
 fi
+
+#Run xsettingsd for font antialiasing etc.
+exec xsettingsd &
+
 #Set the background image
 feh --bg-fill /usr/share/plymouth/themes/efa-live/efaLive.png
 #Start the screensaver

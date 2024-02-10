@@ -21,7 +21,7 @@ The efaLive project consists mainly of Bash shell scripts, a small Python GUI fo
 * Python 3
 * [Poetry](https://python-poetry.org/)
 
-To build the Debian package, you need to have [dpkg-dev](http://packages.debian.org/bullseye/dpkg-dev) installed.
+To build the Debian package, you need to have [dpkg-dev](http://packages.debian.org/bookworm/dpkg-dev) installed.
 
 ## How to build
 To build the debian package, there is a script for convenience:
