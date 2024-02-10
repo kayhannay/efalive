@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "efalive"
-version = "2.8.6"
+version = "2.8.7"
 description = ""
 authors = ["Kay Hannay <klinux@hannay.de>"]
 

@@ -1,3 +1,9 @@
+efalive (2.8.7-1) unstable; urgency=low
+
+  * fix: add settings for smoother font handling
+
+ -- Kay Hannay <klinux@hannay.de>  Sat, 10 Feb 2024 13:22:09 +0000
+
 efalive (2.8.6-1) unstable; urgency=low
 
   * fix: update checkout action
