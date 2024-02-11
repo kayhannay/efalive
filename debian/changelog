@@ -1,3 +1,9 @@
+efalive (2.8.8-1) unstable; urgency=low
+
+  * fix: run efaLive tools with full path
+
+ -- Kay Hannay <klinux@hannay.de>  Sun, 11 Feb 2024 17:01:28 +0000
+
 efalive (2.8.7-1) unstable; urgency=low
 
   * fix: add settings for smoother font handling
