@@ -32,5 +32,5 @@ fi
 
 #PYTHONPATH=./efalive:$PYTHONPATH
 #PYTHONPATH=$PYTHONPATH
-python3 -m efalivesetup $PARAMS >> /dev/null
+python3 /usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalivesetup.py $PARAMS >> /dev/null
 

@@ -8,6 +8,7 @@
 
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=0
+export PYTHONPATH=/usr/lib/python3/dist-packages:$PYTHONPATH
 
 %:
 	dh $@ --with python3

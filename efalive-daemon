@@ -2,5 +2,5 @@
 
 #PYTHONPATH=./efalive:$PYTHONPATH
 #PYTHONPATH=$PYTHONPATH
-python3 -m efalivedaemon $@
+python3 /usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalivedaemon.py $@
 
