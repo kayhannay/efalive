@@ -1,3 +1,11 @@
+efalive (2.9.0-1) unstable; urgency=low
+
+  * fix: add some configuration to improve look and feel
+  * feat: backup files can get encrypted now
+  * fix: add date field to mails
+
+ -- Kay Hannay <klinux@hannay.de>  Mon, 12 Feb 2024 22:02:22 +0000
+
 efalive (2.8.8-1) unstable; urgency=low
 
   * fix: run efaLive tools with full path
