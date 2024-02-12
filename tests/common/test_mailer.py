@@ -41,6 +41,7 @@ class MailerTestCase(unittest.TestCase):
         self.assertFalse(result.is_multipart())
         self.assertEqual("text/plain", result.get_content_type())
         self.assertEqual(str.encode(mail.body), base64.b64decode(result.get_payload()))
+        self.assertIsNotNone(result["Date"])
 
     def test_create_mail__text_two_recipients(self):
         mail = MailData()

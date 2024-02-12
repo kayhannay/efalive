@@ -25,6 +25,7 @@ import smtplib
 import traceback
 # For guessing MIME type based on file name extension
 import mimetypes
+from email.utils import formatdate
 
 from optparse import OptionParser
 
@@ -78,6 +79,7 @@ class Mailer(object):
         if mail.recipients == None:
             raise MailerError("No recipient addresses provided.")
         msg["To"] = (', '.join(mail.recipients).encode("utf-8")).decode()
+        msg["Date"] = formatdate(localtime=True)
         return msg
 
     def send_mail(self, config, mail):
