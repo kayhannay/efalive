@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2015 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2024 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -74,3 +74,15 @@ then
     exit 243
 fi
 
+if [ "x$AUTO_BACKUP_USE_ENCRYPTION" = "xTRUE" ]
+then
+    /usr/bin/gpg --symmetric --yes --batch --passphrase "$AUTO_BACKUP_ENCRYPTION_PASSWORD" "$EFA_BACKUP_FILE"
+    /usr/bin/gpg --symmetric --yes --batch --passphrase "$AUTO_BACKUP_ENCRYPTION_PASSWORD" "$EFALIVE_BACKUP_FILE"
+    if [ ! -e $EFALIVE_BACKUP_FILE ] || [ ! -e $EFA_BACKUP_FILE ]
+    then
+        /bin/echo "Error, could not encrypt efaLive backup"
+        exit 243
+    fi
+    rm "$EFA_BACKUP_FILE"
+    rm "$EFALIVE_BACKUP_FILE"
+fi

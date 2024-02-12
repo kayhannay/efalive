@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2015 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2024 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -75,8 +75,23 @@ else
     BACKUP_FILE=`pwd`"/$1"
 fi
 
+function try_decrypt {
+    GIVEN_BACKUP_FILE=$1
+    ENCRYPTED_BACKUP_FILE="${GIVEN_BACKUP_FILE}.gpg"
+    if [ -f $ENCRYPTED_BACKUP_FILE ]
+    then
+        if [ "x${AUTO_BACKUP_ENCRYPTION_PASSWORD}" == "x" ]
+        then
+            /bin/echo "Error, specified file is is encrypted, but no password is set in the settings!"
+            exit 246
+        else
+            gpg -d --yes --batch --passphrase "${AUTO_BACKUP_ENCRYPTION_PASSWORD}" -o "${GIVEN_BACKUP_FILE}" "${ENCRYPTED_BACKUP_FILE}"
+        fi
+    fi
+}
+
 ### Remove old data
-#check if an efa or an efaLive backup file was selected and try to find the coresponding other file
+#check if an efa or an efaLive backup file was selected and try to find the corresponding other file
 if [[ "$BACKUP_FILE" =~ .*/efaLive_backup_[0-9]{8}_[0-9]{6}\.zip ]]
 then
     #Remove "efaLive_backup_" (and parent directory, if required)
@@ -86,10 +101,12 @@ then
     BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP%".zip"*}
     BACKUP_DIR=${BACKUP_FILE%"efaLive_backup_${BACKUP_TIMESTAMP}.zip"*}
     EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
+    try_decrypt "${EFA_BACKUP_FILE}"
     EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
-if [ ! -f $EFA_BACKUP_FILE ]
+    try_decrypt "${EFALIVE_BACKUP_FILE}"
+    if [ ! -f $EFA_BACKUP_FILE ]
     then
-    EFA_BACKUP_FILE="NONE"
+        EFA_BACKUP_FILE="NONE"
         /bin/echo "Warning, restoring efaLive backup only! Did not find matching efa backup file."
         WARNING_CODE=244
     fi
@@ -102,8 +119,10 @@ then
     BACKUP_TIMESTAMP=${BACKUP_TIMESTAMP%".zip"*}
     BACKUP_DIR=${BACKUP_FILE%"efa_backup_${BACKUP_TIMESTAMP}.zip"*}
     EFA_BACKUP_FILE=${BACKUP_DIR}efa_backup_${BACKUP_TIMESTAMP}.zip
+    try_decrypt "${EFA_BACKUP_FILE}"
     EFALIVE_BACKUP_FILE=${BACKUP_DIR}efaLive_backup_${BACKUP_TIMESTAMP}.zip
-if [ ! -f $EFALIVE_BACKUP_FILE ]
+    try_decrypt "${EFALIVE_BACKUP_FILE}"
+    if [ ! -f $EFALIVE_BACKUP_FILE ]
     then
     EFALIVE_BACKUP_FILE="NONE"
         /bin/echo "Warning, restoring efa backup only! Did not find matching efaLive backup file."

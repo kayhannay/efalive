@@ -11,3 +11,5 @@ build
 .idea
 .coverage
 efaLiveTools.egg-info
+dist
+tmp
