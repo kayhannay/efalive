@@ -4,9 +4,8 @@ Priority: optional
 Maintainer: Kay Hannay <klinux@hannay.de>
 Build-Depends: debhelper (>= 7.0.50~)
 Standards-Version: 3.9.4
-Homepage: http://www.hannay.de/index.php?option=com_content&view=article&id=46&Itemid=46
-#Vcs-Git: git://git.debian.org/collab-maint/efalive.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/efalive.git;a=summary
+Homepage: https://www.hannay.de/efalive
+Vcs-Git: https://github.com/kayhannay/efalive.git
 
 Package: efalive
 Architecture: all
