@@ -115,6 +115,8 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         settings.efaCredentialsFile = "/tmp/cred.txt"
         settings.auto_backup_password = "secret"
         settings.auto_backup_use_password.updateData(True)
+        settings.backup_use_encryption.updateData(True)
+        settings.backup_encryption_password = "secret"
         settings.mailer_host.updateData("smtp.testserver.local")
         settings.mailer_port.updateData(465)
         settings.mailer_use_ssl.updateData(True)
@@ -136,17 +138,19 @@ class EfaLiveSettingsTestCase(unittest.TestCase):
         self.assertEqual("EFA_CREDENTIALS_FILE=/tmp/cred.txt\n", file_stub.settings_list[5])
         self.assertEqual("AUTO_BACKUP_PASSWORD=secret\n", file_stub.settings_list[6])
         self.assertEqual("AUTO_BACKUP_USE_PASSWORD=\"TRUE\"\n", file_stub.settings_list[7])
-        self.assertEqual("MAILER_HOST=smtp.testserver.local\n", file_stub.settings_list[8])
-        self.assertEqual("MAILER_PORT=465\n", file_stub.settings_list[9])
-        self.assertEqual("MAILER_USE_SSL=\"TRUE\"\n", file_stub.settings_list[10])
-        self.assertEqual("MAILER_USE_STARTTLS=\"FALSE\"\n", file_stub.settings_list[11])
-        self.assertEqual("MAILER_USER=testuser\n", file_stub.settings_list[12])
-        self.assertEqual("MAILER_PASSWORD=c2VjcmV0\n", file_stub.settings_list[13])
-        self.assertEqual("MAILER_SENDER='User <user@test.local>'\n", file_stub.settings_list[14])
-        self.assertEqual("HOURLY_TASKS='[[\"SHELL\", \"ls /tmp0\"]]'\n", file_stub.settings_list[15])
+        self.assertEqual("BACKUP_ENCRYPTION_PASSWORD=secret\n", file_stub.settings_list[8])
+        self.assertEqual("BACKUP_USE_ENCRYPTION=\"TRUE\"\n", file_stub.settings_list[9])
+        self.assertEqual("MAILER_HOST=smtp.testserver.local\n", file_stub.settings_list[10])
+        self.assertEqual("MAILER_PORT=465\n", file_stub.settings_list[11])
+        self.assertEqual("MAILER_USE_SSL=\"TRUE\"\n", file_stub.settings_list[12])
+        self.assertEqual("MAILER_USE_STARTTLS=\"FALSE\"\n", file_stub.settings_list[13])
+        self.assertEqual("MAILER_USER=testuser\n", file_stub.settings_list[14])
+        self.assertEqual("MAILER_PASSWORD=c2VjcmV0\n", file_stub.settings_list[15])
+        self.assertEqual("MAILER_SENDER='User <user@test.local>'\n", file_stub.settings_list[16])
+        self.assertEqual("HOURLY_TASKS='[[\"SHELL\", \"ls /tmp0\"]]'\n", file_stub.settings_list[17])
         #self.assertEqual("DAILY_TASKS='[[\"SHELL\", \"ls /tmp1\"], [\"BACKUP\", \"\"]]'\n", file_stub.settings_list[16])
-        self.assertEqual("WEEKLY_TASKS='[[\"SHELL\", \"ls /tmp2\"]]'\n", file_stub.settings_list[17])
-        self.assertEqual("MONTHLY_TASKS='[[\"SHELL\", \"ls /tmp3\"]]'\n", file_stub.settings_list[18])
+        self.assertEqual("WEEKLY_TASKS='[[\"SHELL\", \"ls /tmp2\"]]'\n", file_stub.settings_list[19])
+        self.assertEqual("MONTHLY_TASKS='[[\"SHELL\", \"ls /tmp3\"]]'\n", file_stub.settings_list[20])
 
 
 class FileStub(object):

@@ -43,8 +43,8 @@ class EfaLiveSettings(object):
         self.efaCredentialsFile = "~/.efalive/.efacred"
         self.auto_backup_use_password = Observable()
         self.auto_backup_password = ""
-        self.auto_backup_use_encryption = Observable()
-        self.auto_backup_encryption_password = ""
+        self.backup_use_encryption = Observable()
+        self.backup_encryption_password = ""
         self.mailer_host = Observable()
         self.mailer_port = Observable()
         self.mailer_use_ssl = Observable()
@@ -116,14 +116,14 @@ class EfaLiveSettings(object):
                 enableStr=line[(line.index('=') + 1):].rstrip()
                 self.auto_backup_use_password.updateData(enableStr == "\"TRUE\"")
                 self._logger.debug("Parsed auto backup enable password setting: " + enableStr)
-            elif line.startswith("AUTO_BACKUP_ENCRYPTION_PASSWORD="):
+            elif line.startswith("BACKUP_ENCRYPTION_PASSWORD="):
                 pwdStr = line[(line.index('=') + 1):].rstrip()
-                self.auto_backup_encryption_password = pwdStr
+                self.backup_encryption_password = pwdStr
                 self._logger.debug("Parsed efa auto backup encryption password setting: " + pwdStr)
-            elif line.startswith("AUTO_BACKUP_USE_ENCRYPTION="):
+            elif line.startswith("BACKUP_USE_ENCRYPTION="):
                 enableStr = line[(line.index('=') + 1):].rstrip()
-                self.auto_backup_use_encryption.updateData(enableStr == "\"TRUE\"")
-                self._logger.debug("Parsed auto backup enable encryption setting: " + enableStr)
+                self.backup_use_encryption.updateData(enableStr == "\"TRUE\"")
+                self._logger.debug("Parsed backup enable encryption setting: " + enableStr)
             elif line.startswith("MAILER_HOST="):
                 hostStr=line[(line.index('=') + 1):].rstrip()
                 self.mailer_host.updateData(hostStr)
@@ -222,11 +222,11 @@ class EfaLiveSettings(object):
                 settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"TRUE\"\n")
             else:
                 settingsFile.write("AUTO_BACKUP_USE_PASSWORD=\"FALSE\"\n")
-            settingsFile.write("AUTO_BACKUP_ENCRYPTION_PASSWORD=%s\n" % self.auto_backup_encryption_password)
-            if self.auto_backup_use_encryption._data == True:
-                settingsFile.write("AUTO_BACKUP_USE_ENCRYPTION=\"TRUE\"\n")
+            settingsFile.write("BACKUP_ENCRYPTION_PASSWORD=%s\n" % self.backup_encryption_password)
+            if self.backup_use_encryption._data == True:
+                settingsFile.write("BACKUP_USE_ENCRYPTION=\"TRUE\"\n")
             else:
-                settingsFile.write("AUTO_BACKUP_USE_ENCRYPTION=\"FALSE\"\n")
+                settingsFile.write("BACKUP_USE_ENCRYPTION=\"FALSE\"\n")
             settingsFile.write("MAILER_HOST=%s\n" % self.mailer_host.getData())
             settingsFile.write("MAILER_PORT=%d\n" % self.mailer_port.getData())
             if self.mailer_use_ssl.getData() == True:

@@ -17,6 +17,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with efaLiveTools.  If not, see <http://www.gnu.org/licenses/>.
 '''
+import base64
+
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
@@ -48,14 +50,14 @@ class BackupTabModel(object):
         self._settings.auto_backup_password = passwordHash
         self._logger.debug("efa auto backup password: %s, hash %s" % (backupPassword, passwordHash))
 
-    def enableAutoBackupEncryption(self, enable):
-        self._settings.auto_backup_use_encryption.updateData(enable)
-        self._logger.debug("auto backup use encryption: %s" % enable)
+    def enableBackupEncryption(self, enable):
+        self._settings.backup_use_encryption.updateData(enable)
+        self._logger.debug("backup use encryption: %s" % enable)
 
-    def setAutoBackupEncryptionPassword(self, encryptionPassword):
-        passwordHash = hashlib.sha512(encryptionPassword.encode('utf-8')).hexdigest()
-        self._settings.auto_backup_encryption_password = passwordHash
-        self._logger.debug("efa auto backup encryption password: %s, hash %s" % (encryptionPassword, passwordHash))
+    def setBackupEncryptionPassword(self, encryptionPassword):
+        encodedPassword = base64.b64encode(encryptionPassword.encode('utf-8')).decode()
+        self._settings.backup_encryption_password = encodedPassword
+        self._logger.debug("efa backup encryption password: %s, encoded %s" % (encryptionPassword, encodedPassword))
 
     def registerAutoUsbBackupCb(self, callback):
         self._settings.autoUsbBackup.registerObserverCb(callback)
@@ -66,8 +68,8 @@ class BackupTabModel(object):
     def registerAutoBackupUsePasswordCb(self, callback):
         self._settings.auto_backup_use_password.registerObserverCb(callback)
 
-    def registerAutoBackupUseEncryptionCb(self, callback):
-        self._settings.auto_backup_use_encryption.registerObserverCb(callback)
+    def registerBackupUseEncryptionCb(self, callback):
+        self._settings.backup_use_encryption.registerObserverCb(callback)
 
 class BackupTabView(Gtk.VBox):
     def __init__(self):
@@ -76,7 +78,39 @@ class BackupTabView(Gtk.VBox):
         self._init_components()
 
     def _init_components(self):
+        self._create_backup_components()
         self._create_auto_usb_backup_components()
+
+    def _create_backup_components(self):
+        self.backupSettingsFrame=Gtk.Frame.new(_("General backup settings"))
+        self.pack_start(self.backupSettingsFrame, False, False, 5)
+        self.backupSettingsFrame.show()
+
+        self.backupSettingsVBox=Gtk.VBox(False, 2)
+        self.backupSettingsFrame.add(self.backupSettingsVBox)
+        self.backupSettingsVBox.show()
+
+        self.backupUseEncryptionHBox=Gtk.HBox(False, 2)
+        self.backupSettingsVBox.pack_start(self.backupUseEncryptionHBox, False, False, 2)
+        self.backupUseEncryptionHBox.show()
+
+        self.backupUseEncryptionCbox = Gtk.CheckButton(_("use encryption for backup"))
+        self.backupSettingsVBox.pack_start(self.backupUseEncryptionCbox, False, True, 2)
+        self.backupUseEncryptionCbox.show()
+
+        self.backupEncryptionPasswordHBox=Gtk.HBox(False, 2)
+        self.backupSettingsVBox.pack_start(self.backupEncryptionPasswordHBox, True, True, 2)
+        self.backupEncryptionPasswordHBox.show()
+
+        self.backupEncryptionPasswordLabel=Gtk.Label(_("encryption password"))
+        self.backupEncryptionPasswordHBox.pack_start(self.backupEncryptionPasswordLabel, False, False, 40)
+        self.backupEncryptionPasswordLabel.show()
+
+        self.backupEncryptionPasswordEntry = Gtk.Entry()
+        self.backupEncryptionPasswordEntry.set_max_length(255)
+        self.backupEncryptionPasswordEntry.set_visibility(False)
+        self.backupEncryptionPasswordHBox.pack_end(self.backupEncryptionPasswordEntry, True, True, 2)
+        self.backupEncryptionPasswordEntry.show()
 
     def _create_auto_usb_backup_components(self):
         # automatic usb backup box
@@ -84,12 +118,8 @@ class BackupTabView(Gtk.VBox):
         self.pack_start(self.usbBackupFrame, False, False, 5)
         self.usbBackupFrame.show()
 
-        self.usbBackupSpaceBox=Gtk.HBox(False, 5)
-        self.usbBackupFrame.add(self.usbBackupSpaceBox)
-        self.usbBackupSpaceBox.show()
-
         self.autoUsbBackupVBox=Gtk.VBox(False, 2)
-        self.usbBackupSpaceBox.pack_start(self.autoUsbBackupVBox, True, True, 2)
+        self.usbBackupFrame.add(self.autoUsbBackupVBox)
         self.autoUsbBackupVBox.show()
 
         self.autoUsbBackupHBox=Gtk.HBox(False, 2)
@@ -134,27 +164,6 @@ class BackupTabView(Gtk.VBox):
         self.autoBackupPasswordHBox.pack_end(self.autoBackupPasswordEntry, True, True, 2)
         self.autoBackupPasswordEntry.show()
 
-        self.autoBackupUseEncryptionHBox=Gtk.HBox(False, 2)
-        self.autoUsbBackupEnabledVBox.pack_start(self.autoBackupUseEncryptionHBox, True, True, 2)
-        self.autoBackupUseEncryptionHBox.show()
-
-        self.autoBackupUseEncryptionCbox = Gtk.CheckButton(_("use encryption for automatic backup"))
-        self.autoBackupUseEncryptionHBox.pack_start(self.autoBackupUseEncryptionCbox, False, True, 20)
-        self.autoBackupUseEncryptionCbox.show()
-
-        self.autoBackupEncryptionPasswordHBox=Gtk.HBox(False, 2)
-        self.autoUsbBackupEnabledVBox.pack_start(self.autoBackupEncryptionPasswordHBox, True, True, 2)
-        self.autoBackupEncryptionPasswordHBox.show()
-
-        self.autoBackupEncryptionPasswordLabel=Gtk.Label(_("encryption password"))
-        self.autoBackupEncryptionPasswordHBox.pack_start(self.autoBackupEncryptionPasswordLabel, False, False, 40)
-        self.autoBackupEncryptionPasswordLabel.show()
-
-        self.autoBackupEncryptionPasswordEntry = Gtk.Entry()
-        self.autoBackupEncryptionPasswordEntry.set_max_length(255)
-        self.autoBackupEncryptionPasswordEntry.set_visibility(False)
-        self.autoBackupEncryptionPasswordHBox.pack_end(self.autoBackupEncryptionPasswordEntry, True, True, 2)
-        self.autoBackupEncryptionPasswordEntry.show()
 
 class BackupTabController(object):
     def __init__(self, settings):
@@ -168,7 +177,7 @@ class BackupTabController(object):
         self._model.registerAutoUsbBackupCb(self.autoUsbBackupChanged)
         self._model.registerAutoUsbBackupDialogCb(self.autoUsbBackupDialogChanged)
         self._model.registerAutoBackupUsePasswordCb(self.autoBackupUsePasswordChanged)
-        self._model.registerAutoBackupUseEncryptionCb(self.autoBackupUseEncryptionChanged)
+        self._model.registerBackupUseEncryptionCb(self.backupUseEncryptionChanged)
 
         self._init_events()
 
@@ -177,8 +186,8 @@ class BackupTabController(object):
         self._view.autoUsbBackupDialogCbox.connect("toggled", self.setAutoUsbBackupDialog)
         self._view.autoBackupUsePasswordCbox.connect("toggled", self.setAutoBackupUsePassword)
         self._view.autoBackupPasswordEntry.connect("changed", self.setAutoBackupPassword)
-        self._view.autoBackupUseEncryptionCbox.connect("toggled", self.setAutoBackupUseEncryption)
-        self._view.autoBackupEncryptionPasswordEntry.connect("changed", self.setAutoBackupEncryptionPassword)
+        self._view.backupUseEncryptionCbox.connect("toggled", self.setBackupUseEncryption)
+        self._view.backupEncryptionPasswordEntry.connect("changed", self.setBackupEncryptionPassword)
 
     def get_view(self):
         return self._view
@@ -197,12 +206,11 @@ class BackupTabController(object):
     def autoBackupPasswordChanged(self, pwd):
         self._view.autoBackupPasswordEntry.set_text(pwd)
 
-    def autoBackupUseEncryptionChanged(self, enable):
-        self._view.autoBackupPasswordHBox.set_sensitive(enable)
-        self._view.autoBackupUsePasswordCbox.set_active(enable)
+    def backupUseEncryptionChanged(self, enable):
+        self._view.backupEncryptionPasswordHBox.set_sensitive(enable)
 
-    def autoBackupEncryptionPasswordChanged(self, pwd):
-        self._view.autoBackupPasswordEntry.set_text(pwd)
+    def backupEncryptionPasswordChanged(self, pwd):
+        self._view.backupPasswordEntry.set_text(pwd)
 
     def setAutoUsbBackup(self, widget):
         self._model.enableAutoUsbBackup(widget.get_active())
@@ -216,8 +224,8 @@ class BackupTabController(object):
     def setAutoBackupPassword(self, widget):
         self._model.setAutoBackupPassword(widget.get_text())
 
-    def setAutoBackupUseEncryption(self, widget):
-        self._model.enableAutoBackupPassword(widget.get_active())
+    def setBackupUseEncryption(self, widget):
+        self._model.enableBackupEncryption(widget.get_active())
 
-    def setAutoBackupEncryptionPassword(self, widget):
-        self._model.setAutoBackupPassword(widget.get_text())
+    def setBackupEncryptionPassword(self, widget):
+        self._model.setBackupEncryptionPassword(widget.get_text())

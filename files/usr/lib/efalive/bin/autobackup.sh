@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2008-2015 Kay Hannay <klinux@hannay.de>
+# Copyright 2008-2024 Kay Hannay <klinux@hannay.de>
 #
 ###
 #
@@ -83,7 +83,7 @@ function check_password {
 			fi
    			PASS_INPUT=$(/usr/bin/zenity --entry --hide-text --text $"Password for auto backup$ERROR" --title $"Password");
    			if [ $? != 0 ]
-			then 
+			  then
                 		/bin/echo $"Backup aborted by user"
 				exit 0
 			fi

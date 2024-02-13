@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: efaLiveSetup 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-14 10:24+0000\n"
+"POT-Creation-Date: 2024-02-13 14:26+0100\n"
 "PO-Revision-Date: 2010-09-07 10:18+0200\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -18,11 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: efalive/efalive/daemon/tasks.py:85
+#: efalive/common/tasks.py:83 tmp/efaLiveTools-3.0/efalive/common/tasks.py:83
+#: tmp/efaLiveTools-3.0/build/lib/efalive/common/tasks.py:83
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/common/tasks.py:83
+#: dist/efalive-2.8.6/efalive/common/tasks.py:83
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/common/tasks.py:83
+#: build/python/efaLiveTools-3.0/efalive/common/tasks.py:83
+#: build/python/efaLiveTools-3.0/build/lib/efalive/common/tasks.py:83
 msgid "Backup efaLive today"
 msgstr "Heutige Datensicherung von efaLive"
 
-#: efalive/efalive/daemon/tasks.py:86
+#: efalive/common/tasks.py:84 tmp/efaLiveTools-3.0/efalive/common/tasks.py:84
+#: tmp/efaLiveTools-3.0/build/lib/efalive/common/tasks.py:84
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/common/tasks.py:84
+#: dist/efalive-2.8.6/efalive/common/tasks.py:84
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/common/tasks.py:84
+#: build/python/efaLiveTools-3.0/efalive/common/tasks.py:84
+#: build/python/efaLiveTools-3.0/build/lib/efalive/common/tasks.py:84
 msgid ""
 "Hi,\n"
 "\n"
@@ -34,290 +46,97 @@ msgid ""
 msgstr ""
 "Hallo,\n"
 "\n"
-"im Anhang findest Du die aktuelle Datensicherung von deinem efaLive "
-"System.\n"
+"im Anhang findest Du die aktuelle Datensicherung von deinem efaLive System.\n"
 "\n"
 "Viele Grüße\n"
 "efaLive"
 
-#: efalive/efalive/setup/maingui.py:57
-msgid "efaLive setup"
-msgstr "efaLive Setup"
-
-#: efalive/efalive/setup/maingui.py:82
-#: efalive/efalive/setup/dttime/datetime.py:184
-#: efalive/efalive/setup/screen/screensetup.py:63
-#: efalive/efalive/setup/taskstab.py:317
-msgid "Ok"
-msgstr "Ok"
-
-#: efalive/efalive/setup/maingui.py:86
-#: efalive/efalive/setup/dttime/datetime.py:189
-#: efalive/efalive/setup/screen/screensetup.py:73
-#: efalive/efalive/setup/taskstab.py:316
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: efalive/efalive/setup/maingui.py:118
-msgid "Tools"
-msgstr "Werkzeuge"
-
-#: efalive/efalive/setup/maingui.py:121
-msgid "Actions"
-msgstr "Aktionen"
-
-#: efalive/efalive/setup/maingui.py:124
-msgid "System"
-msgstr "System"
-
-#: efalive/efalive/setup/maingui.py:127
-msgid "Tasks"
-msgstr "Aufgaben"
-
-#: efalive/efalive/setup/maingui.py:130
-msgid "Efa settings"
-msgstr "Efa Einstellungen"
-
-#: efalive/efalive/setup/maingui.py:133 efalive/efalive/setup/toolstab.py:81
-#: efalive/efalive/setup/backup/backup.py:62
-msgid "Backup"
-msgstr "Datensicherung"
-
-#: efalive/efalive/setup/maingui.py:136
-msgid "Mail"
-msgstr "E-Mail"
-
-#: efalive/efalive/setup/maingui.py:156
-msgid ""
-"Could not save files!\n"
-"\n"
-msgstr ""
-"Die Einstellungen konnten nicht gespeichert werden!\n"
-"\n"
-
-#: efalive/efalive/setup/maingui.py:157
-msgid "Please check the path you provided for "
-msgstr "Bitte überprüfe den angegebenen Pfad auf "
-
-#: efalive/efalive/setup/maingui.py:158
-msgid "user rights and existance."
-msgstr "Benutzerrechte und ob er existiert."
-
-#: efalive/efalive/setup/efasettingstab.py:66
-msgid "efa network port"
-msgstr "efa Netzwerk-Port"
-
-#: efalive/efalive/setup/efasettingstab.py:85
-msgid "efa shutdown action"
-msgstr "Aktion beim Beenden von efa"
-
-#: efalive/efalive/setup/efasettingstab.py:98
-msgid "shutdown pc"
-msgstr "PC herunterfahren"
-
-#: efalive/efalive/setup/efasettingstab.py:99
-msgid "restart pc"
-msgstr "PC neu starten"
-
-#: efalive/efalive/setup/efasettingstab.py:100
-msgid "restart efa"
-msgstr "efa neu starten"
-
-#: efalive/efalive/setup/efasettingstab.py:101
-msgid "stop efa"
-msgstr "efa beenden"
-
-#: efalive/efalive/setup/actionstab.py:48
-msgid "Shutdown PC"
-msgstr "PC herunterfahren"
-
-#: efalive/efalive/setup/actionstab.py:54
-msgid "Restart PC"
-msgstr "PC neu starten"
-
-#: efalive/efalive/setup/actionstab.py:79
-msgid "Really shut down PC ?"
-msgstr "PC wirklich herunterfahren ?"
-
-#: efalive/efalive/setup/actionstab.py:85
-#: efalive/efalive/setup/actionstab.py:96
-#, python-format
-msgid "Could not run /sbin/shutdown program: %s"
-msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
-
-#: efalive/efalive/setup/actionstab.py:90
-msgid "Really reboot PC ?"
-msgstr "PC wirklich neu starten ?"
-
-#: efalive/efalive/setup/backuptab.py:74
-msgid "Auto USB backup"
-msgstr "Automatische USB Datensicherung"
-
-#: efalive/efalive/setup/backuptab.py:90
-msgid "enable automatic USB backup"
-msgstr "Automatische Datensicherung auf USB einschalten"
-
-#: efalive/efalive/setup/backuptab.py:102
-msgid "show dialog after automatic backup"
-msgstr "Dialog nach automatischer Datensicherung anzeigen"
-
-#: efalive/efalive/setup/backuptab.py:110
-msgid "use password for automatic backup"
-msgstr "Passwort für automatische Datensicherung verwenden"
-
-#: efalive/efalive/setup/backuptab.py:118
-msgid "backup password"
-msgstr "Passwort zur Datensicherung"
-
-#: efalive/efalive/setup/toolstab.py:57
-msgid "Terminal"
-msgstr "Kommandozeile"
-
-#: efalive/efalive/setup/toolstab.py:63
-msgid "File manager"
-msgstr "Dateimanager"
-
-#: efalive/efalive/setup/toolstab.py:69
-msgid "Devices"
-msgstr "Speichermedien"
-
-#: efalive/efalive/setup/toolstab.py:75
-msgid "Editor"
-msgstr "Editor"
-
-#: efalive/efalive/setup/toolstab.py:87
-msgid "Logs"
-msgstr "Logdateien"
-
-#: efalive/efalive/setup/toolstab.py:116
-#, python-format
-msgid "Could not open xterm program: %s"
-msgstr "Konnte das Programm xterm nicht starten: %s"
-
-#: efalive/efalive/setup/toolstab.py:124
-#, python-format
-msgid "Could not open thunar program: %s"
-msgstr "Konnte das Programm thunar nicht starten: %s"
-
-#: efalive/efalive/setup/toolstab.py:135
-#, python-format
-msgid "Could not open leafpad program: %s"
-msgstr "Konnte das Programm leafpad nicht starten: %s"
-
-#: efalive/efalive/setup/toolstab.py:144
-msgid "Select directory to store log files"
-msgstr "Verzeichnis für Logdateien auswählen"
-
-#: efalive/efalive/setup/toolstab.py:154
-#, python-format
-msgid "Could not create log file package in %s !"
-msgstr "Konnte keine Logdateienpaket auf %s erstellen!"
-
-#: efalive/efalive/setup/toolstab.py:159
-#, python-format
-msgid "Created log file package in %s ."
-msgstr "Paket mit Logdateien in %s erstellt."
-
-#: efalive/efalive/setup/systemtab.py:58
-msgid "Screen"
-msgstr "Bildschirm"
-
-#: efalive/efalive/setup/systemtab.py:64
-msgid "Network"
-msgstr "Netzwerk"
-
-#: efalive/efalive/setup/systemtab.py:70
-msgid "Hostname"
-msgstr "Hostname"
-
-#: efalive/efalive/setup/systemtab.py:76
-msgid "Screensaver"
-msgstr "Bildschirmschoner"
-
-#: efalive/efalive/setup/systemtab.py:82
-msgid "Power manager"
-msgstr "Energieverwaltung"
-
-#: efalive/efalive/setup/systemtab.py:88
-msgid "Date & time"
-msgstr "Datum & Zeit"
-
-#: efalive/efalive/setup/systemtab.py:94
-msgid "Keyboard"
-msgstr "Tastatur"
-
-#: efalive/efalive/setup/systemtab.py:124
-#, python-format
-msgid "Could not open nm-connection-editor program: %s"
-msgstr "Konnte das Programm nm-connection-editor nicht starten: %s"
-
-#: efalive/efalive/setup/systemtab.py:135
-#, python-format
-msgid "Could not run keyboard setup: %s"
-msgstr "Konnte die Tastatureinstellungen nicht laden: %s"
-
-#: efalive/efalive/setup/systemtab.py:143
-#, python-format
-msgid "Could not run dynamic hostname setup: %s"
-msgstr ""
-"Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
-
-#: efalive/efalive/setup/systemtab.py:151
-#, python-format
-msgid "Could not open xscreensaver-demo program: %s"
-msgstr "Konnte das Programm xscreensaver-demo nicht starten: %s"
-
-#: efalive/efalive/setup/systemtab.py:159
-#, python-format
-msgid "Could not open xfce4-power-manager-settings program: %s"
-msgstr "Konnte das Programm xfce4-power-manager-settings nicht starten: %s"
-
-#: efalive/efalive/setup/mailtab.py:84
-msgid "SMTP host"
-msgstr "SMTP Server"
-
-#: efalive/efalive/setup/mailtab.py:92
-msgid "SMTP port"
-msgstr "SMTP Port"
-
-#: efalive/efalive/setup/mailtab.py:102
-msgid "User"
-msgstr "Benutzer"
-
-#: efalive/efalive/setup/mailtab.py:110
-msgid "Password"
-msgstr "Passwort"
-
-#: efalive/efalive/setup/mailtab.py:119
-msgid "Sender address"
-msgstr "Absender"
-
-#: efalive/efalive/setup/mailtab.py:127
-msgid "Use SSL/TLS"
-msgstr "SSL/TLS nutzen"
-
-#: efalive/efalive/setup/mailtab.py:133
-msgid "Use startTLS"
-msgstr "StartTLS nutzen"
-
-#: efalive/efalive/setup/backup/backup.py:51
+#: efalive/setuptool/backup/backup.py:48
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:48
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:48
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:48
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:48
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:48
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:48
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:48
 msgid "Backup & Restore"
 msgstr "Datensicherung"
 
-#: efalive/efalive/setup/backup/backup.py:71
+#: efalive/setuptool/backup/backup.py:59 efalive/setuptool/maingui.py:130
+#: efalive/setuptool/toolstab.py:79
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:59
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:130
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:79
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:130
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:79
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:59
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:130
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:79
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:59
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:59
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:130
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:79
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:130
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:79
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:59
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:59
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:130
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:79
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:130
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:79
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:59
+msgid "Backup"
+msgstr "Datensicherung"
+
+#: efalive/setuptool/backup/backup.py:68
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:68
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:68
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:68
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:68
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:68
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:68
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:68
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: efalive/efalive/setup/backup/backup.py:84
+#: efalive/setuptool/backup/backup.py:81
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:81
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:81
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:81
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:81
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:81
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:81
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:81
 msgid "Close"
 msgstr "Schließen"
 
-#: efalive/efalive/setup/backup/backup.py:112
+#: efalive/setuptool/backup/backup.py:109
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:109
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:109
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:109
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:109
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:109
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:109
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:109
 msgid "Select directory"
 msgstr "Verzeichnis auswählen"
 
-#: efalive/efalive/setup/backup/backup.py:123
-#: efalive/efalive/setup/devicemanager/devicemanager.py:374
+#: efalive/setuptool/backup/backup.py:120
+#: efalive/setuptool/devicemanager/devicemanager.py:309
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:120
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:309
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:120
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:309
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:120
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:309
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:120
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:309
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:120
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:309
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:120
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:309
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:120
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:309
 msgid ""
 "Backup failed! Please check that the efalive user is configured correctly in "
 "efa."
@@ -325,25 +144,81 @@ msgstr ""
 "Datensicherung fehlgeschlagen! Bitte die Konfiguration des efalive Benutzers "
 "in efa prüfen."
 
-#: efalive/efalive/setup/backup/backup.py:128
-#: efalive/efalive/setup/devicemanager/devicemanager.py:379
+#: efalive/setuptool/backup/backup.py:125
+#: efalive/setuptool/devicemanager/devicemanager.py:314
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:125
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:314
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:125
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:314
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:125
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:314
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:125
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:314
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:125
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:314
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:125
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:314
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:125
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:314
 #, python-format
 msgid "Backup to %s failed!"
 msgstr "Datensicherung nach %s fehlgeschlagen!"
 
-#: efalive/efalive/setup/backup/backup.py:133
-#: efalive/efalive/setup/devicemanager/devicemanager.py:384
+#: efalive/setuptool/backup/backup.py:130
+#: efalive/setuptool/devicemanager/devicemanager.py:319
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:130
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:319
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:130
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:319
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:130
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:319
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:130
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:319
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:130
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:319
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:130
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:319
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:130
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:319
 #, python-format
 msgid "Backup to %s finished."
 msgstr "Datensicherung nach %s erfolgreich."
 
-#: efalive/efalive/setup/backup/backup.py:146
-#: efalive/efalive/setup/devicemanager/devicemanager.py:399
+#: efalive/setuptool/backup/backup.py:143
+#: efalive/setuptool/devicemanager/devicemanager.py:334
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:143
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:334
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:143
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:334
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:143
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:334
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:143
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:334
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:143
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:334
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:143
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:334
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:143
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:334
 msgid "Select backup"
 msgstr "Sicherungsdatei auswählen"
 
-#: efalive/efalive/setup/backup/backup.py:157
-#: efalive/efalive/setup/devicemanager/devicemanager.py:412
+#: efalive/setuptool/backup/backup.py:154
+#: efalive/setuptool/devicemanager/devicemanager.py:347
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:154
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:347
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:154
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:347
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:154
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:347
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:154
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:347
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:154
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:347
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:154
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:347
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:154
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:347
 msgid ""
 "Restore failed! Please check that the efalive user is configured correctly "
 "in efa."
@@ -351,7 +226,14 @@ msgstr ""
 "Wiederherstellen fehlgeschlagen! Bitte die Konfiguration des efalive "
 "Benutzers in efa prüfen."
 
-#: efalive/efalive/setup/backup/backup.py:162
+#: efalive/setuptool/backup/backup.py:159
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:159
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:159
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:159
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:159
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:159
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:159
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:159
 #, python-format
 msgid ""
 "Restore of backup finished, but only restored efaLive backup from file %s."
@@ -359,248 +241,1587 @@ msgstr ""
 "Wiederherstellung erfolgreich, es wurde allerdings nur ein efaLive Backup "
 "bearbeitet"
 
-#: efalive/efalive/setup/backup/backup.py:167
+#: efalive/setuptool/backup/backup.py:164
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:164
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:164
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:164
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:164
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:164
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:164
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:164
 #, python-format
 msgid "Restore of backup finished, but only restored efa backup from file %s."
 msgstr ""
 "Wiederherstellung erfolgreich, es wurde allerdings nur ein efa Backup "
 "bearbeitet"
 
-#: efalive/efalive/setup/backup/backup.py:172
-#: efalive/efalive/setup/devicemanager/devicemanager.py:427
+#: efalive/setuptool/backup/backup.py:169
+#: efalive/setuptool/devicemanager/devicemanager.py:362
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:169
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:362
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:169
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:362
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:169
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:362
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:169
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:362
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:169
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:362
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:169
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:362
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:169
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:362
 #, python-format
 msgid "Restore of backup %s failed!"
 msgstr "Wiederherstellen der Datensicherung %s fehlgeschlagen"
 
-#: efalive/efalive/setup/backup/backup.py:177
-#: efalive/efalive/setup/devicemanager/devicemanager.py:432
+#: efalive/setuptool/backup/backup.py:174
+#: efalive/setuptool/devicemanager/devicemanager.py:367
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:174
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:367
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:174
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:367
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:174
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:367
+#: dist/efalive-2.8.6/efalive/setuptool/backup/backup.py:174
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:367
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backup/backup.py:174
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:367
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backup/backup.py:174
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:367
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backup/backup.py:174
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:367
 #, python-format
 msgid "Restore of backup %s finished."
 msgstr "Wiederherstellen der Datensicherung %s erfolgreich"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:66
+#: efalive/setuptool/devicemanager/devicemanager.py:60
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:60
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:60
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:60
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:60
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:60
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:60
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:60
 msgid "Restore backup from device"
 msgstr "Wiederherstellen einer Datensicherung von diesem Gerät"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:73
+#: efalive/setuptool/devicemanager/devicemanager.py:67
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:67
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:67
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:67
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:67
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:67
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:67
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:67
 msgid "Create backup on device"
 msgstr "Datensicherung auf diesem Gerät erstellen"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:248
+#: efalive/setuptool/devicemanager/devicemanager.py:183
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:183
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:183
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:183
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:183
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:183
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:183
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:183
 msgid "Device Manager"
 msgstr "Speichermedien"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:259
+#: efalive/setuptool/devicemanager/devicemanager.py:194
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:194
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:194
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:194
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:194
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:194
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:194
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:194
 msgid "USB storage devices"
 msgstr "USB Speichermedien"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:263
+#: efalive/setuptool/devicemanager/devicemanager.py:198
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:198
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:198
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:198
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:198
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:198
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:198
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:198
 msgid "no devices found"
 msgstr "Kein Gerät gefunden"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:299
+#: efalive/setuptool/devicemanager/devicemanager.py:234
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:234
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:234
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:234
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:234
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:234
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:234
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:234
 msgid "Unmount USB device"
 msgstr "USB Gerät aushängen"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:300
-#: efalive/efalive/setup/devicemanager/devicemanager.py:312
+#: efalive/setuptool/devicemanager/devicemanager.py:235
+#: efalive/setuptool/devicemanager/devicemanager.py:247
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:235
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:247
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:235
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:247
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:235
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:247
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:235
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:247
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:235
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:247
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:235
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:247
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:235
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:247
 #, python-format
 msgid "Vendor: %s"
 msgstr "Hersteller: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:301
-#: efalive/efalive/setup/devicemanager/devicemanager.py:313
+#: efalive/setuptool/devicemanager/devicemanager.py:236
+#: efalive/setuptool/devicemanager/devicemanager.py:248
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:236
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:248
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:236
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:248
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:236
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:248
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:236
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:248
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:236
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:248
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:236
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:248
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:236
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:248
 #, python-format
 msgid "Model: %s"
 msgstr "Modell: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:302
-#: efalive/efalive/setup/devicemanager/devicemanager.py:314
+#: efalive/setuptool/devicemanager/devicemanager.py:237
+#: efalive/setuptool/devicemanager/devicemanager.py:249
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:237
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:249
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:237
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:249
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:237
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:249
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:237
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:249
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:237
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:249
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:237
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:249
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:237
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:249
 #, python-format
 msgid "Device: %s"
 msgstr "Gerät: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:303
-#: efalive/efalive/setup/devicemanager/devicemanager.py:315
+#: efalive/setuptool/devicemanager/devicemanager.py:238
+#: efalive/setuptool/devicemanager/devicemanager.py:250
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:238
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:250
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:238
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:250
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:238
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:250
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:238
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:250
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:238
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:250
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:238
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:250
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:238
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:250
 #, python-format
 msgid "Size: %s"
 msgstr "Größe: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:304
-#: efalive/efalive/setup/devicemanager/devicemanager.py:316
+#: efalive/setuptool/devicemanager/devicemanager.py:239
+#: efalive/setuptool/devicemanager/devicemanager.py:251
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:239
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:251
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:239
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:251
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:239
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:251
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:239
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:251
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:239
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:251
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:239
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:251
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:239
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:251
 #, python-format
 msgid "Filesystem: %s"
 msgstr "Dateisystem: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:305
-#: efalive/efalive/setup/devicemanager/devicemanager.py:317
+#: efalive/setuptool/devicemanager/devicemanager.py:240
+#: efalive/setuptool/devicemanager/devicemanager.py:252
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:240
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:252
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:240
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:252
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:240
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:252
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:240
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:252
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:240
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:252
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:240
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:252
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:240
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:252
 #, python-format
 msgid "USB-Id: %s"
 msgstr "USB-Id: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:306
+#: efalive/setuptool/devicemanager/devicemanager.py:241
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:241
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:241
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:241
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:241
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:241
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:241
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:241
 #, python-format
 msgid "Mouned to: %s"
 msgstr "Einhängepunkt: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:311
+#: efalive/setuptool/devicemanager/devicemanager.py:246
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:246
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:246
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:246
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:246
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:246
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:246
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:246
 msgid "Mount USB device"
 msgstr "USB Gerät einhängen"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:352
+#: efalive/setuptool/devicemanager/devicemanager.py:287
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:287
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:287
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:287
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:287
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:287
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:287
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:287
 #, python-format
 msgid "Could not mount device: %s"
 msgstr "Konnte Gerät nicht einhängen: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:361
+#: efalive/setuptool/devicemanager/devicemanager.py:296
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:296
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:296
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:296
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:296
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:296
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:296
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:296
 #, python-format
 msgid "Could not unmount device: %s"
 msgstr "Konnte Gerät nicht aushängen: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:391
+#: efalive/setuptool/devicemanager/devicemanager.py:326
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:326
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:326
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:326
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:326
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:326
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:326
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:326
 #, python-format
 msgid "Could not create backup: %s"
 msgstr "Konnte keine Datensicherung erstellen: %s"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:417
+#: efalive/setuptool/devicemanager/devicemanager.py:352
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:352
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:352
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:352
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:352
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:352
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:352
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:352
 msgid "Restore of backup finished, but only restored efaLive backup."
 msgstr ""
 "Wiederherstellung erfolgreich, es wurde allerdings nur ein efaLive Backup "
 "bearbeitet"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:422
+#: efalive/setuptool/devicemanager/devicemanager.py:357
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:357
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:357
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:357
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:357
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:357
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:357
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:357
 msgid "Restore of backup finished, but only restored efa backup."
 msgstr ""
 "Wiederherstellung erfolgreich, es wurde allerdings nur ein efa Backup "
 "bearbeitet"
 
-#: efalive/efalive/setup/devicemanager/devicemanager.py:439
+#: efalive/setuptool/devicemanager/devicemanager.py:374
+#: tmp/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:374
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:374
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:374
+#: dist/efalive-2.8.6/efalive/setuptool/devicemanager/devicemanager.py:374
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/devicemanager/devicemanager.py:374
+#: build/python/efaLiveTools-3.0/efalive/setuptool/devicemanager/devicemanager.py:374
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/devicemanager/devicemanager.py:374
 #, python-format
 msgid "Could not restore backup: %s"
 msgstr "Konnte keine Datensicherung erstellen: %s"
 
-#: efalive/efalive/setup/dttime/datetime.py:63
+#: efalive/setuptool/dttime/datetime.py:61
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:61
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:61
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:61
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:61
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:61
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:61
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:61
 #, python-format
 msgid "Could not check NTP service status: %s"
 msgstr "Konnte den Status des NTP Service nicht prüfen: %s"
 
-#: efalive/efalive/setup/dttime/datetime.py:97
+#: efalive/setuptool/dttime/datetime.py:96
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:96
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:96
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:96
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:96
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:96
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:96
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:96
 #, python-format
-msgid "Could not enable NTP service: %s"
-msgstr "Konnte den NTP service inicht einschalten: %s"
+msgid "Could not enable and start NTP service: %s"
+msgstr "Konnte den NTP service nicht einschalten: %s"
 
-#: efalive/efalive/setup/dttime/datetime.py:108
+#: efalive/setuptool/dttime/datetime.py:108
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:108
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:108
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:108
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:108
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:108
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:108
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:108
 #, python-format
-msgid "Could not disable NTP service: %s"
+msgid "Could not disable and stop NTP service: %s"
 msgstr "Konnte den NTP Service nicht ausschalten: %s"
 
-#: efalive/efalive/setup/dttime/datetime.py:114
+#: efalive/setuptool/dttime/datetime.py:114
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:114
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:114
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:114
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:114
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:114
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:114
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:114
 #, python-format
 msgid "Could not set time: %s"
 msgstr "Fehler beim setzen der Uhrzeit: %s"
 
-#: efalive/efalive/setup/dttime/datetime.py:123
+#: efalive/setuptool/dttime/datetime.py:123
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:123
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:123
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:123
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:123
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:123
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:123
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:123
 msgid "Date & Time"
 msgstr "Datum & Zeit"
 
-#: efalive/efalive/setup/dttime/datetime.py:146
+#: efalive/setuptool/dttime/datetime.py:146
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:146
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:146
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:146
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:146
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:146
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:146
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:146
 msgid "Time (h m s)"
 msgstr "Zeit (h m s)"
 
-#: efalive/efalive/setup/dttime/datetime.py:168
+#: efalive/setuptool/dttime/datetime.py:172
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:172
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:172
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:172
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:172
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:172
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:172
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:172
 msgid "Network time protocol"
 msgstr "Netzwerk-Zeit-Protokoll"
 
-#: efalive/efalive/setup/dttime/datetime.py:176
+#: efalive/setuptool/dttime/datetime.py:180
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:180
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:180
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:180
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:180
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:180
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:180
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:180
 msgid "Use network time protocol (NTP)"
 msgstr "Zeit über Internet synchronisieren (NTP)"
 
-#: efalive/efalive/setup/screen/screensetup.py:43
+#: efalive/setuptool/dttime/datetime.py:188
+#: efalive/setuptool/screen/screensetup.py:62 efalive/setuptool/maingui.py:79
+#: efalive/setuptool/taskstab.py:348
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:188
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:79
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:62
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:348
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:79
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:348
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:188
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:62
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:79
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:348
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:188
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:62
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:188
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:79
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screensetup.py:62
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:348
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:79
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:348
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:188
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:62
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:188
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:79
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:62
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:348
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:79
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:348
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:188
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:62
+msgid "Ok"
+msgstr "Ok"
+
+#: efalive/setuptool/dttime/datetime.py:193
+#: efalive/setuptool/screen/screensetup.py:72 efalive/setuptool/maingui.py:83
+#: efalive/setuptool/taskstab.py:347
+#: tmp/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:193
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:83
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:72
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:347
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:83
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:347
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:193
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:72
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:83
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:347
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:193
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:72
+#: dist/efalive-2.8.6/efalive/setuptool/dttime/datetime.py:193
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:83
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screensetup.py:72
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:347
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:83
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:347
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/dttime/datetime.py:193
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:72
+#: build/python/efaLiveTools-3.0/efalive/setuptool/dttime/datetime.py:193
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:83
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:72
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:347
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:83
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:347
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/dttime/datetime.py:193
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:72
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: efalive/setuptool/screen/screenlayout/widget.py:82
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:82
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:82
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:82
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/widget.py:82
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:82
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:82
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:82
+msgid ""
+"Your configuration does not include an active monitor. Do you want to apply "
+"the configuration?"
+msgstr ""
+"Die Konfiguration enthält keinen aktiven Bildschirm. Soll die Konfiguration "
+"engewendet werden?"
+
+#: efalive/setuptool/screen/screenlayout/widget.py:380
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:380
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:380
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:380
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/widget.py:380
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:380
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:380
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:380
+msgid "Active"
+msgstr "Aktionen"
+
+#: efalive/setuptool/screen/screenlayout/widget.py:389
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:389
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:389
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:389
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/widget.py:389
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:389
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:389
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:389
+msgid "Primary"
+msgstr "Hauptbildschirm"
+
+#: efalive/setuptool/screen/screenlayout/widget.py:406
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:406
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:406
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:406
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/widget.py:406
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:406
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:406
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:406
+#, python-format
+msgid "Setting this resolution is not possible here: %s"
+msgstr "Die Auflösung kann nicht eingestellt werden: %s"
+
+#: efalive/setuptool/screen/screenlayout/widget.py:422
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:422
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:422
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:422
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/widget.py:422
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:422
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:422
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:422
+#, python-format
+msgid "This orientation is not possible here: %s"
+msgstr "Diese Aktion ist hier nicht möglich: %s"
+
+#: efalive/setuptool/screen/screenlayout/widget.py:429
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:429
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:429
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:429
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/widget.py:429
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:429
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:429
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:429
+msgid "Resolution"
+msgstr "Auflösung"
+
+#: efalive/setuptool/screen/screenlayout/widget.py:431
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:431
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:431
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:431
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/widget.py:431
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/widget.py:431
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/widget.py:431
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/widget.py:431
+msgid "Orientation"
+msgstr "Orientierung"
+
+#: efalive/setuptool/screen/screenlayout/xrandr.py:323
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/xrandr.py:323
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/xrandr.py:323
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/xrandr.py:323
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/xrandr.py:323
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/xrandr.py:323
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/xrandr.py:323
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/xrandr.py:323
+msgid "A part of an output is outside the virtual screen."
+msgstr "Ein Teil der Ausgabe ist außerhalt des Bildschirms."
+
+#: efalive/setuptool/screen/screenlayout/xrandr.py:327
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/xrandr.py:327
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/xrandr.py:327
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/xrandr.py:327
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screenlayout/xrandr.py:327
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screenlayout/xrandr.py:327
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screenlayout/xrandr.py:327
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screenlayout/xrandr.py:327
+msgid "An output is outside the virtual screen."
+msgstr "Eine Ausgabe ist außerhalb des Bildschirms"
+
+#: efalive/setuptool/screen/screensetup.py:42
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:42
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:42
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:42
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screensetup.py:42
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:42
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:42
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:42
 msgid "Screen setup"
 msgstr "Bildschirm-Setup"
 
-#: efalive/efalive/setup/screen/screensetup.py:68
+#: efalive/setuptool/screen/screensetup.py:67
+#: tmp/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:67
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:67
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:67
+#: dist/efalive-2.8.6/efalive/setuptool/screen/screensetup.py:67
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/screen/screensetup.py:67
+#: build/python/efaLiveTools-3.0/efalive/setuptool/screen/screensetup.py:67
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/screen/screensetup.py:67
 msgid "Apply"
 msgstr "Anwenden"
 
-#: efalive/efalive/setup/setupcommon/dialogs.py:49
-#: efalive/efalive/setup/setupcommon/dialogs.py:55
+#: efalive/setuptool/setupcommon/dialogs.py:48
+#: efalive/setuptool/setupcommon/dialogs.py:54
+#: tmp/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:48
+#: tmp/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:54
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:48
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:54
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:48
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:54
+#: dist/efalive-2.8.6/efalive/setuptool/setupcommon/dialogs.py:48
+#: dist/efalive-2.8.6/efalive/setuptool/setupcommon/dialogs.py:54
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:48
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:54
+#: build/python/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:48
+#: build/python/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:54
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:48
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:54
 msgid "Details"
 msgstr "Details"
 
-#: efalive/efalive/setup/setupcommon/dialogs.py:52
+#: efalive/setuptool/setupcommon/dialogs.py:51
+#: tmp/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:51
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:51
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:51
+#: dist/efalive-2.8.6/efalive/setuptool/setupcommon/dialogs.py:51
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:51
+#: build/python/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:51
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:51
 msgid "Output"
 msgstr "Ausgaben"
 
-#: efalive/efalive/setup/setupcommon/dialogs.py:81
+#: efalive/setuptool/setupcommon/dialogs.py:80
+#: tmp/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:80
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:80
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:80
+#: dist/efalive-2.8.6/efalive/setuptool/setupcommon/dialogs.py:80
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:80
+#: build/python/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:80
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:80
 #, python-format
 msgid "Please enter the password of user %s"
 msgstr "Bitte das Passwort für Benutzer %s eingeben"
 
-#: efalive/efalive/setup/setupcommon/dialogs.py:83
+#: efalive/setuptool/setupcommon/dialogs.py:82
+#: tmp/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:82
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:82
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:82
+#: dist/efalive-2.8.6/efalive/setuptool/setupcommon/dialogs.py:82
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:82
+#: build/python/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:82
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:82
 msgid "The password you entered did not match!"
 msgstr "Das eingegebene Passwort war falsch!"
 
-#: efalive/efalive/setup/setupcommon/dialogs.py:113
+#: efalive/setuptool/setupcommon/dialogs.py:105
+#: tmp/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:105
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:105
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:105
+#: dist/efalive-2.8.6/efalive/setuptool/setupcommon/dialogs.py:105
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/setupcommon/dialogs.py:105
+#: build/python/efaLiveTools-3.0/efalive/setuptool/setupcommon/dialogs.py:105
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/setupcommon/dialogs.py:105
 msgid "Internal error in PAM authentication module"
 msgstr "Interner Fehler im PAM Authentifizierungsmodul"
 
-#: efalive/efalive/setup/taskstab.py:73
+#: efalive/setuptool/actionstab.py:46
+#: tmp/efaLiveTools-3.0/efalive/setuptool/actionstab.py:46
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:46
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:46
+#: dist/efalive-2.8.6/efalive/setuptool/actionstab.py:46
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:46
+#: build/python/efaLiveTools-3.0/efalive/setuptool/actionstab.py:46
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:46
+msgid "Shutdown PC"
+msgstr "PC herunterfahren"
+
+#: efalive/setuptool/actionstab.py:52
+#: tmp/efaLiveTools-3.0/efalive/setuptool/actionstab.py:52
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:52
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:52
+#: dist/efalive-2.8.6/efalive/setuptool/actionstab.py:52
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:52
+#: build/python/efaLiveTools-3.0/efalive/setuptool/actionstab.py:52
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:52
+msgid "Restart PC"
+msgstr "PC neu starten"
+
+#: efalive/setuptool/actionstab.py:77
+#: tmp/efaLiveTools-3.0/efalive/setuptool/actionstab.py:77
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:77
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:77
+#: dist/efalive-2.8.6/efalive/setuptool/actionstab.py:77
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:77
+#: build/python/efaLiveTools-3.0/efalive/setuptool/actionstab.py:77
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:77
+msgid "Really shut down PC ?"
+msgstr "PC wirklich herunterfahren ?"
+
+#: efalive/setuptool/actionstab.py:83 efalive/setuptool/actionstab.py:94
+#: tmp/efaLiveTools-3.0/efalive/setuptool/actionstab.py:83
+#: tmp/efaLiveTools-3.0/efalive/setuptool/actionstab.py:94
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:83
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:94
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:83
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:94
+#: dist/efalive-2.8.6/efalive/setuptool/actionstab.py:83
+#: dist/efalive-2.8.6/efalive/setuptool/actionstab.py:94
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:83
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:94
+#: build/python/efaLiveTools-3.0/efalive/setuptool/actionstab.py:83
+#: build/python/efaLiveTools-3.0/efalive/setuptool/actionstab.py:94
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:83
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:94
+#, python-format
+msgid "Could not run /sbin/shutdown program: %s"
+msgstr "Konnte /sbin/shutdown nicht aufrufen: %s"
+
+#: efalive/setuptool/actionstab.py:88
+#: tmp/efaLiveTools-3.0/efalive/setuptool/actionstab.py:88
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:88
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:88
+#: dist/efalive-2.8.6/efalive/setuptool/actionstab.py:88
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/actionstab.py:88
+#: build/python/efaLiveTools-3.0/efalive/setuptool/actionstab.py:88
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/actionstab.py:88
+msgid "Really reboot PC ?"
+msgstr "PC wirklich neu starten ?"
+
+#: efalive/setuptool/efasettingstab.py:63
+#: tmp/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:63
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:63
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:63
+#: dist/efalive-2.8.6/efalive/setuptool/efasettingstab.py:63
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:63
+#: build/python/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:63
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:63
+msgid "efa network port"
+msgstr "efa Netzwerk-Port"
+
+#: efalive/setuptool/efasettingstab.py:83
+#: tmp/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:83
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:83
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:83
+#: dist/efalive-2.8.6/efalive/setuptool/efasettingstab.py:83
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:83
+#: build/python/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:83
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:83
+msgid "efa shutdown action"
+msgstr "Aktion beim Beenden von efa"
+
+#: efalive/setuptool/efasettingstab.py:96
+#: tmp/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:96
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:96
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:96
+#: dist/efalive-2.8.6/efalive/setuptool/efasettingstab.py:96
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:96
+#: build/python/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:96
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:96
+msgid "shutdown pc"
+msgstr "PC herunterfahren"
+
+#: efalive/setuptool/efasettingstab.py:97
+#: tmp/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:97
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:97
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:97
+#: dist/efalive-2.8.6/efalive/setuptool/efasettingstab.py:97
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:97
+#: build/python/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:97
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:97
+msgid "restart pc"
+msgstr "PC neu starten"
+
+#: efalive/setuptool/efasettingstab.py:98
+#: tmp/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:98
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:98
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:98
+#: dist/efalive-2.8.6/efalive/setuptool/efasettingstab.py:98
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:98
+#: build/python/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:98
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:98
+msgid "restart efa"
+msgstr "efa neu starten"
+
+#: efalive/setuptool/efasettingstab.py:99
+#: tmp/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:99
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:99
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:99
+#: dist/efalive-2.8.6/efalive/setuptool/efasettingstab.py:99
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/efasettingstab.py:99
+#: build/python/efaLiveTools-3.0/efalive/setuptool/efasettingstab.py:99
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/efasettingstab.py:99
+msgid "stop efa"
+msgstr "efa beenden"
+
+#: efalive/setuptool/mailtab.py:81
+#: tmp/efaLiveTools-3.0/efalive/setuptool/mailtab.py:81
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:81
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:81
+#: dist/efalive-2.8.6/efalive/setuptool/mailtab.py:81
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:81
+#: build/python/efaLiveTools-3.0/efalive/setuptool/mailtab.py:81
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:81
+msgid "SMTP host"
+msgstr "SMTP Server"
+
+#: efalive/setuptool/mailtab.py:90
+#: tmp/efaLiveTools-3.0/efalive/setuptool/mailtab.py:90
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:90
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:90
+#: dist/efalive-2.8.6/efalive/setuptool/mailtab.py:90
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:90
+#: build/python/efaLiveTools-3.0/efalive/setuptool/mailtab.py:90
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:90
+msgid "SMTP port"
+msgstr "SMTP Port"
+
+#: efalive/setuptool/mailtab.py:101
+#: tmp/efaLiveTools-3.0/efalive/setuptool/mailtab.py:101
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:101
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:101
+#: dist/efalive-2.8.6/efalive/setuptool/mailtab.py:101
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:101
+#: build/python/efaLiveTools-3.0/efalive/setuptool/mailtab.py:101
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:101
+msgid "User"
+msgstr "Benutzer"
+
+#: efalive/setuptool/mailtab.py:110
+#: tmp/efaLiveTools-3.0/efalive/setuptool/mailtab.py:110
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:110
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:110
+#: dist/efalive-2.8.6/efalive/setuptool/mailtab.py:110
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:110
+#: build/python/efaLiveTools-3.0/efalive/setuptool/mailtab.py:110
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:110
+msgid "Password"
+msgstr "Passwort"
+
+#: efalive/setuptool/mailtab.py:120
+#: tmp/efaLiveTools-3.0/efalive/setuptool/mailtab.py:120
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:120
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:120
+#: dist/efalive-2.8.6/efalive/setuptool/mailtab.py:120
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:120
+#: build/python/efaLiveTools-3.0/efalive/setuptool/mailtab.py:120
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:120
+msgid "Sender address"
+msgstr "Absender"
+
+#: efalive/setuptool/mailtab.py:129
+#: tmp/efaLiveTools-3.0/efalive/setuptool/mailtab.py:129
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:129
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:129
+#: dist/efalive-2.8.6/efalive/setuptool/mailtab.py:129
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:129
+#: build/python/efaLiveTools-3.0/efalive/setuptool/mailtab.py:129
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:129
+msgid "Use SSL/TLS"
+msgstr "SSL/TLS nutzen"
+
+#: efalive/setuptool/mailtab.py:135
+#: tmp/efaLiveTools-3.0/efalive/setuptool/mailtab.py:135
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:135
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:135
+#: dist/efalive-2.8.6/efalive/setuptool/mailtab.py:135
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/mailtab.py:135
+#: build/python/efaLiveTools-3.0/efalive/setuptool/mailtab.py:135
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/mailtab.py:135
+msgid "Use startTLS"
+msgstr "StartTLS nutzen"
+
+#: efalive/setuptool/maingui.py:54
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:54
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:54
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:54
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:54
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:54
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:54
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:54
+msgid "efaLive setup"
+msgstr "efaLive Setup"
+
+#: efalive/setuptool/maingui.py:115
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:115
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:115
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:115
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:115
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:115
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:115
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:115
+msgid "Tools"
+msgstr "Werkzeuge"
+
+#: efalive/setuptool/maingui.py:118
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:118
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:118
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:118
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:118
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:118
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:118
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:118
+msgid "Actions"
+msgstr "Aktionen"
+
+#: efalive/setuptool/maingui.py:121
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:121
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:121
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:121
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:121
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:121
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:121
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:121
+msgid "System"
+msgstr "System"
+
+#: efalive/setuptool/maingui.py:124
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:124
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:124
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:124
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:124
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:124
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:124
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:124
+msgid "Tasks"
+msgstr "Aufgaben"
+
+#: efalive/setuptool/maingui.py:127
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:127
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:127
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:127
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:127
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:127
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:127
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:127
+msgid "Efa settings"
+msgstr "Efa Einstellungen"
+
+#: efalive/setuptool/maingui.py:133
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:133
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:133
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:133
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:133
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:133
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:133
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:133
+msgid "Mail"
+msgstr "E-Mail"
+
+#: efalive/setuptool/maingui.py:153
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:153
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:153
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:153
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:153
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:153
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:153
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:153
+msgid ""
+"Could not save files!\n"
+"\n"
+msgstr ""
+"Die Einstellungen konnten nicht gespeichert werden!\n"
+"\n"
+
+#: efalive/setuptool/maingui.py:154
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:154
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:154
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:154
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:154
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:154
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:154
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:154
+msgid "Please check the path you provided for "
+msgstr "Bitte überprüfe den angegebenen Pfad auf "
+
+#: efalive/setuptool/maingui.py:155
+#: tmp/efaLiveTools-3.0/efalive/setuptool/maingui.py:155
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:155
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:155
+#: dist/efalive-2.8.6/efalive/setuptool/maingui.py:155
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/maingui.py:155
+#: build/python/efaLiveTools-3.0/efalive/setuptool/maingui.py:155
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/maingui.py:155
+msgid "user rights and existance."
+msgstr "Benutzerrechte und ob er existiert."
+
+#: efalive/setuptool/systemtab.py:56
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:56
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:56
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:56
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:56
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:56
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:56
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:56
+msgid "Screen"
+msgstr "Bildschirm"
+
+#: efalive/setuptool/systemtab.py:62
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:62
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:62
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:62
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:62
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:62
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:62
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:62
+msgid "Network"
+msgstr "Netzwerk"
+
+#: efalive/setuptool/systemtab.py:68
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:68
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:68
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:68
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:68
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:68
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:68
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:68
+msgid "Hostname"
+msgstr "Hostname"
+
+#: efalive/setuptool/systemtab.py:74
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:74
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:74
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:74
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:74
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:74
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:74
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:74
+msgid "Screensaver"
+msgstr "Bildschirmschoner"
+
+#: efalive/setuptool/systemtab.py:80
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:80
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:80
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:80
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:80
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:80
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:80
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:80
+msgid "Power manager"
+msgstr "Energieverwaltung"
+
+#: efalive/setuptool/systemtab.py:86
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:86
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:86
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:86
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:86
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:86
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:86
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:86
+msgid "Date & time"
+msgstr "Datum & Zeit"
+
+#: efalive/setuptool/systemtab.py:92
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:92
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:92
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:92
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:92
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:92
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:92
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:92
+msgid "Keyboard"
+msgstr "Tastatur"
+
+#: efalive/setuptool/systemtab.py:105
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:105
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:105
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:105
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:105
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:105
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:105
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:105
+msgid "Raspi config"
+msgstr ""
+
+#: efalive/setuptool/systemtab.py:137
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:137
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:137
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:137
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:137
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:137
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:137
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:137
+#, python-format
+msgid "Could not open nm-connection-editor program: %s"
+msgstr "Konnte das Programm nm-connection-editor nicht starten: %s"
+
+#: efalive/setuptool/systemtab.py:148
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:148
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:148
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:148
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:148
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:148
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:148
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:148
+#, python-format
+msgid "Could not run keyboard setup: %s"
+msgstr "Konnte die Tastatureinstellungen nicht laden: %s"
+
+#: efalive/setuptool/systemtab.py:156
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:156
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:156
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:156
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:156
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:156
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:156
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:156
+#, python-format
+msgid "Could not run dynamic hostname setup: %s"
+msgstr ""
+"Konnte das Konfigurationstool für den dynamischen DNS Eintrag nicht laden: %s"
+
+#: efalive/setuptool/systemtab.py:164
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:164
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:164
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:164
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:164
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:164
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:164
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:164
+#, python-format
+msgid "Could not open xscreensaver-demo program: %s"
+msgstr "Konnte das Programm xscreensaver-demo nicht starten: %s"
+
+#: efalive/setuptool/systemtab.py:172
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:172
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:172
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:172
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:172
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:172
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:172
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:172
+#, python-format
+msgid "Could not open xfce4-power-manager-settings program: %s"
+msgstr "Konnte das Programm xfce4-power-manager-settings nicht starten: %s"
+
+#: efalive/setuptool/systemtab.py:183
+#: tmp/efaLiveTools-3.0/efalive/setuptool/systemtab.py:183
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:183
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:183
+#: dist/efalive-2.8.6/efalive/setuptool/systemtab.py:183
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/systemtab.py:183
+#: build/python/efaLiveTools-3.0/efalive/setuptool/systemtab.py:183
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:183
+#, python-format
+msgid "Could not run raspi configuration tool: %s"
+msgstr "Das Raspberry Pi Konfigurationsprogramm konnte nicht gestertet werden: %s"
+
+#: efalive/setuptool/taskstab.py:73
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:73
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:73
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:73
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:73
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:73
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:73
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:73
 msgid "Task list"
 msgstr "Aufgaben"
 
-#: efalive/efalive/setup/taskstab.py:99
+#: efalive/setuptool/taskstab.py:99
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:99
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:99
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:99
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:99
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:99
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:99
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:99
 msgid "Add a new task"
 msgstr "Aufgabe hinzufügen"
 
-#: efalive/efalive/setup/taskstab.py:106
+#: efalive/setuptool/taskstab.py:106
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:106
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:106
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:106
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:106
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:106
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:106
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:106
 msgid "Edit task"
 msgstr "Aufgabe editieren"
 
-#: efalive/efalive/setup/taskstab.py:113
+#: efalive/setuptool/taskstab.py:113 efalive/setuptool/taskstab.py:120
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:113
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:120
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:113
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:120
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:113
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:120
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:113
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:120
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:113
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:120
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:113
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:120
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:113
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:120
 msgid "Remove task"
 msgstr "Aufgabe entfernen"
 
-#: efalive/efalive/setup/taskstab.py:146 efalive/efalive/setup/taskstab.py:307
+#: efalive/setuptool/taskstab.py:157 efalive/setuptool/taskstab.py:338
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:157
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:338
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:157
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:338
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:157
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:338
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:157
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:338
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:157
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:338
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:157
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:338
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:157
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:338
 msgid "Hourly"
 msgstr "Stündlich"
 
-#: efalive/efalive/setup/taskstab.py:147 efalive/efalive/setup/taskstab.py:308
+#: efalive/setuptool/taskstab.py:158 efalive/setuptool/taskstab.py:339
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:158
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:339
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:158
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:339
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:158
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:339
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:158
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:339
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:158
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:339
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:158
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:339
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:158
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:339
 msgid "Daily"
 msgstr "Täglich"
 
-#: efalive/efalive/setup/taskstab.py:148 efalive/efalive/setup/taskstab.py:309
+#: efalive/setuptool/taskstab.py:159 efalive/setuptool/taskstab.py:340
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:159
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:340
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:159
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:340
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:159
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:340
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:159
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:340
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:159
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:340
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:159
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:340
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:159
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:340
 msgid "Weekly"
 msgstr "Wöchentlich"
 
-#: efalive/efalive/setup/taskstab.py:149 efalive/efalive/setup/taskstab.py:310
+#: efalive/setuptool/taskstab.py:160 efalive/setuptool/taskstab.py:341
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:160
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:341
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:160
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:341
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:160
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:341
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:160
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:341
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:160
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:341
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:160
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:341
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:160
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:341
 msgid "Monthly"
 msgstr "Monatlich"
 
-#: efalive/efalive/setup/taskstab.py:165 efalive/efalive/setup/taskstab.py:270
+#: efalive/setuptool/taskstab.py:178 efalive/setuptool/taskstab.py:299
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:178
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:299
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:178
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:299
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:178
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:299
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:178
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:299
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:178
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:299
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:178
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:299
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:178
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:299
 msgid "Backup e-mail"
 msgstr "E-Mail Datensicherung"
 
-#: efalive/efalive/setup/taskstab.py:167 efalive/efalive/setup/taskstab.py:271
+#: efalive/setuptool/taskstab.py:180 efalive/setuptool/taskstab.py:300
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:180
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:300
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:180
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:300
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:180
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:300
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:180
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:300
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:180
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:300
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:180
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:300
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:180
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:300
 msgid "Shell"
 msgstr "Shell"
 
-#: efalive/efalive/setup/taskstab.py:253
+#: efalive/setuptool/taskstab.py:282
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:282
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:282
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:282
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:282
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:282
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:282
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:282
 msgid "Task editor"
 msgstr "Aufgaben-Editor"
 
-#: efalive/efalive/setup/taskstab.py:263
+#: efalive/setuptool/taskstab.py:292
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:292
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:292
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:292
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:292
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:292
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:292
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:292
 msgid "Type"
 msgstr "Typ"
 
-#: efalive/efalive/setup/taskstab.py:280
+#: efalive/setuptool/taskstab.py:309
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:309
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:309
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:309
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:309
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:309
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:309
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:309
 msgid "Command"
 msgstr "Befehl"
 
-#: efalive/efalive/setup/taskstab.py:289
+#: efalive/setuptool/taskstab.py:319
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:319
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:319
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:319
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:319
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:319
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:319
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:319
 msgid "Recipient"
 msgstr "Empfänger"
 
-#: efalive/efalive/setup/taskstab.py:300
+#: efalive/setuptool/taskstab.py:331
+#: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:331
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:331
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:331
+#: dist/efalive-2.8.6/efalive/setuptool/taskstab.py:331
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/taskstab.py:331
+#: build/python/efaLiveTools-3.0/efalive/setuptool/taskstab.py:331
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:331
 msgid "Interval"
 msgstr "Intervall"
+
+#: efalive/setuptool/toolstab.py:55
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:55
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:55
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:55
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:55
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:55
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:55
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:55
+msgid "Terminal"
+msgstr "Kommandozeile"
+
+#: efalive/setuptool/toolstab.py:61
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:61
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:61
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:61
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:61
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:61
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:61
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:61
+msgid "File manager"
+msgstr "Dateimanager"
+
+#: efalive/setuptool/toolstab.py:67
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:67
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:67
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:67
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:67
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:67
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:67
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:67
+msgid "Devices"
+msgstr "Speichermedien"
+
+#: efalive/setuptool/toolstab.py:73
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:73
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:73
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:73
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:73
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:73
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:73
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:73
+msgid "Editor"
+msgstr "Editor"
+
+#: efalive/setuptool/toolstab.py:85
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:85
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:85
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:85
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:85
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:85
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:85
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:85
+msgid "Logs"
+msgstr "Logdateien"
+
+#: efalive/setuptool/toolstab.py:114
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:114
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:114
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:114
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:114
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:114
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:114
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:114
+#, python-format
+msgid "Could not open xterm program: %s"
+msgstr "Konnte das Programm xterm nicht starten: %s"
+
+#: efalive/setuptool/toolstab.py:122
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:122
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:122
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:122
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:122
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:122
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:122
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:122
+#, python-format
+msgid "Could not open thunar program: %s"
+msgstr "Konnte das Programm thunar nicht starten: %s"
+
+#: efalive/setuptool/toolstab.py:133
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:133
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:133
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:133
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:133
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:133
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:133
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:133
+#, python-format
+msgid "Could not open mousepad program: %s"
+msgstr "Konnte das Programm mauspad nicht starten: %s"
+
+#: efalive/setuptool/toolstab.py:142
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:142
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:142
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:142
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:142
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:142
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:142
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:142
+msgid "Select directory to store log files"
+msgstr "Verzeichnis für Logdateien auswählen"
+
+#: efalive/setuptool/toolstab.py:152
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:152
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:152
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:152
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:152
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:152
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:152
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:152
+#, python-format
+msgid "Could not create log file package in %s !"
+msgstr "Konnte keine Logdateienpaket auf %s erstellen!"
+
+#: efalive/setuptool/toolstab.py:157
+#: tmp/efaLiveTools-3.0/efalive/setuptool/toolstab.py:157
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:157
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:157
+#: dist/efalive-2.8.6/efalive/setuptool/toolstab.py:157
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/toolstab.py:157
+#: build/python/efaLiveTools-3.0/efalive/setuptool/toolstab.py:157
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/toolstab.py:157
+#, python-format
+msgid "Created log file package in %s ."
+msgstr "Paket mit Logdateien in %s erstellt."
+
+#: efalive/setuptool/backuptab.py:85
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:85
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:85
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:85
+msgid "General backup settings"
+msgstr "Allgemeine Backup Einstellungen"
+
+#: efalive/setuptool/backuptab.py:97
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:97
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:97
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:97
+msgid "use encryption for backup"
+msgstr "Backup verschlüsseln"
+
+#: efalive/setuptool/backuptab.py:105
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:105
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:105
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:105
+msgid "encryption password"
+msgstr "Passwort zur Verschlüsselung"
+
+#: efalive/setuptool/backuptab.py:117
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:71
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:71
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:71
+#: dist/efalive-2.8.6/efalive/setuptool/backuptab.py:71
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:117
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:117
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:117
+msgid "Auto USB backup"
+msgstr "Automatische USB Datensicherung"
+
+#: efalive/setuptool/backuptab.py:129
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:87
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:87
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:87
+#: dist/efalive-2.8.6/efalive/setuptool/backuptab.py:87
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:129
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:129
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:129
+msgid "enable automatic USB backup"
+msgstr "Automatische Datensicherung auf USB einschalten"
+
+#: efalive/setuptool/backuptab.py:141
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:99
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:99
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:99
+#: dist/efalive-2.8.6/efalive/setuptool/backuptab.py:99
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:141
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:141
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:141
+msgid "show dialog after automatic backup"
+msgstr "Dialog nach automatischer Datensicherung anzeigen"
+
+#: efalive/setuptool/backuptab.py:149
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:107
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:107
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:107
+#: dist/efalive-2.8.6/efalive/setuptool/backuptab.py:107
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:149
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:149
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:149
+msgid "use password for automatic backup"
+msgstr "Passwort für automatische Datensicherung verwenden"
+
+#: efalive/setuptool/backuptab.py:157
+#: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:115
+#: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:115
+#: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:115
+#: dist/efalive-2.8.6/efalive/setuptool/backuptab.py:115
+#: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:157
+#: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:157
+#: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:157
+msgid "backup password"
+msgstr "Passwort zur Datensicherung"

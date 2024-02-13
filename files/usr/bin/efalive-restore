@@ -78,14 +78,15 @@ fi
 function try_decrypt {
     GIVEN_BACKUP_FILE=$1
     ENCRYPTED_BACKUP_FILE="${GIVEN_BACKUP_FILE}.gpg"
-    if [ -f $ENCRYPTED_BACKUP_FILE ]
+    if [ -f "$ENCRYPTED_BACKUP_FILE" ]
     then
-        if [ "x${AUTO_BACKUP_ENCRYPTION_PASSWORD}" == "x" ]
+        if [ "x${BACKUP_ENCRYPTION_PASSWORD}" == "x" ]
         then
             /bin/echo "Error, specified file is is encrypted, but no password is set in the settings!"
             exit 246
         else
-            gpg -d --yes --batch --passphrase "${AUTO_BACKUP_ENCRYPTION_PASSWORD}" -o "${GIVEN_BACKUP_FILE}" "${ENCRYPTED_BACKUP_FILE}"
+            DECODED_PASSWORD=$(echo -n "${BACKUP_ENCRYPTION_PASSWORD}" | base64 -d -)
+            gpg -d --yes --batch --passphrase "${DECODED_PASSWORD}" -o "${GIVEN_BACKUP_FILE}" "${ENCRYPTED_BACKUP_FILE}"
         fi
     fi
 }
@@ -152,16 +153,16 @@ if [ "x$EFALIVE_BACKUP_FILE" != "xNONE" ]
 then
     /bin/echo "Restoring efaLive backup from $EFALIVE_BACKUP_FILE ..."
     cd /
-    /bin/rm -Rf $EFALIVE_BACKUP_PATHS
-    /usr/bin/unzip -o $EFALIVE_BACKUP_FILE 
-    /bin/chown -R $EFA_USER:$EFA_GROUP $EFALIVE_BACKUP_PATHS
+    /bin/rm -Rf "$EFALIVE_BACKUP_PATHS"
+    /usr/bin/unzip -o "$EFALIVE_BACKUP_FILE"
+    /bin/chown -R "$EFA_USER:$EFA_GROUP" "$EFALIVE_BACKUP_PATHS"
     RETURNCODE=0
     /bin/echo "efaLive restore finished."
 fi
 if [ "x$EFA_BACKUP_FILE" != "xNONE" ]
 then
     /bin/echo "Restoring efa backup from $EFA_BACKUP_FILE ..."
-    EFA_CRED=$EFA_CREDENTIALS_FILE efacli efalive@localhost:$EFA_PORT -cmd "backup restore $EFA_BACKUP_FILE"
+    EFA_CRED="$EFA_CREDENTIALS_FILE" efacli "efalive@localhost:$EFA_PORT" -cmd "backup restore $EFA_BACKUP_FILE"
     RETURNCODE=$?
     if [ $RETURNCODE -ne 0 ]
     then
@@ -171,8 +172,8 @@ then
     fi
 fi
 
-#Check if restore was successfull, but only efa or efaLive backup was restored
-if [ $RETURNCODE -eq 0 -a $WARNING_CODE -ne 0 ]
+#Check if restore was successful, but only efa or efaLive backup was restored
+if [ $RETURNCODE -eq 0 ] && [ $WARNING_CODE -ne 0 ]
 then
     RETURNCODE=$WARNING_CODE
 fi

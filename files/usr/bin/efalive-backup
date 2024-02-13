@@ -67,20 +67,21 @@ fi
 cd /
 EFALIVE_BACKUP_FILE="$BACKUP_DIR/efaLive_backup_${BACKUP_TIMESTAMP}.zip"
 /bin/echo "Create efaLive backup to $EFALIVE_BACKUP_FILE ..."
-/usr/bin/zip -r $EFALIVE_BACKUP_FILE $EFALIVE_BACKUP_PATHS
-if [ ! -e $EFALIVE_BACKUP_FILE ]
+/usr/bin/zip -r "$EFALIVE_BACKUP_FILE" "$EFALIVE_BACKUP_PATHS"
+if [ ! -e "$EFALIVE_BACKUP_FILE" ]
 then
     /bin/echo "Error, efaLive backup file has not been created"
     exit 243
 fi
 
-if [ "x$AUTO_BACKUP_USE_ENCRYPTION" = "xTRUE" ]
+if [ "x$BACKUP_USE_ENCRYPTION" = "xTRUE" ]
 then
-    /usr/bin/gpg --symmetric --yes --batch --passphrase "$AUTO_BACKUP_ENCRYPTION_PASSWORD" "$EFA_BACKUP_FILE"
-    /usr/bin/gpg --symmetric --yes --batch --passphrase "$AUTO_BACKUP_ENCRYPTION_PASSWORD" "$EFALIVE_BACKUP_FILE"
-    if [ ! -e $EFALIVE_BACKUP_FILE ] || [ ! -e $EFA_BACKUP_FILE ]
+    DECODED_PASSWORD=$(echo -n "${BACKUP_ENCRYPTION_PASSWORD}" | base64 -d -)
+    /usr/bin/gpg --symmetric --yes --batch --passphrase "$DECODED_PASSWORD" "$EFA_BACKUP_FILE"
+    /usr/bin/gpg --symmetric --yes --batch --passphrase "$DECODED_PASSWORD" "$EFALIVE_BACKUP_FILE"
+    if [ ! -e "$EFALIVE_BACKUP_FILE" ] || [ ! -e "$EFA_BACKUP_FILE" ]
     then
-        /bin/echo "Error, could not encrypt efaLive backup"
+        /bin/echo "Error, could not encrypt backup"
         exit 243
     fi
     rm "$EFA_BACKUP_FILE"
