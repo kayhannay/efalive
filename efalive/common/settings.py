@@ -119,7 +119,7 @@ class EfaLiveSettings(object):
             elif line.startswith("BACKUP_ENCRYPTION_PASSWORD="):
                 pwdStr = line[(line.index('=') + 1):].rstrip()
                 self.backup_encryption_password = pwdStr
-                self._logger.debug("Parsed efa auto backup encryption password setting: " + pwdStr)
+                self._logger.debug("Parsed efa backup encryption password setting: " + pwdStr)
             elif line.startswith("BACKUP_USE_ENCRYPTION="):
                 enableStr = line[(line.index('=') + 1):].rstrip()
                 self.backup_use_encryption.updateData(enableStr == "\"TRUE\"")

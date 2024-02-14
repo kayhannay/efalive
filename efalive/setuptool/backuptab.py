@@ -71,6 +71,7 @@ class BackupTabModel(object):
     def registerBackupUseEncryptionCb(self, callback):
         self._settings.backup_use_encryption.registerObserverCb(callback)
 
+
 class BackupTabView(Gtk.VBox):
     def __init__(self):
         super(Gtk.VBox, self).__init__()
@@ -82,7 +83,7 @@ class BackupTabView(Gtk.VBox):
         self._create_auto_usb_backup_components()
 
     def _create_backup_components(self):
-        self.backupSettingsFrame=Gtk.Frame.new(_("General backup settings"))
+        self.backupSettingsFrame = Gtk.Frame.new(_("General backup settings"))
         self.pack_start(self.backupSettingsFrame, False, False, 5)
         self.backupSettingsFrame.show()
 
@@ -207,7 +208,7 @@ class BackupTabController(object):
         self._view.autoBackupPasswordEntry.set_text(pwd)
 
     def backupUseEncryptionChanged(self, enable):
-        self._view.backupEncryptionPasswordHBox.set_sensitive(enable)
+        self._view.backupUseEncryptionCbox.set_active(enable)
 
     def backupEncryptionPasswordChanged(self, pwd):
         self._view.backupPasswordEntry.set_text(pwd)
