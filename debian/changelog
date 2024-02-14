@@ -1,3 +1,9 @@
+efalive (2.10.1-1) unstable; urgency=low
+
+  * fix: broken update mechanism of use encryption field in efaLive setup
+
+ -- Kay Hannay <klinux@hannay.de>  Wed, 14 Feb 2024 15:41:11 +0000
+
 efalive (2.10.0-1) unstable; urgency=low
 
   * feat: add encryption functionality for backups
