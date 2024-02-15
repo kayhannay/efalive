@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: efaLiveSetup 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 14:26+0100\n"
+"POT-Creation-Date: 2024-02-15 11:06+0100\n"
 "PO-Revision-Date: 2010-09-07 10:18+0200\n"
 "Last-Translator: Kay Hannay <klinux@hannay.de>\n"
 "Language-Team: German\n"
@@ -1408,7 +1408,8 @@ msgstr "Konnte das Programm xfce4-power-manager-settings nicht starten: %s"
 #: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/systemtab.py:183
 #, python-format
 msgid "Could not run raspi configuration tool: %s"
-msgstr "Das Raspberry Pi Konfigurationsprogramm konnte nicht gestertet werden: %s"
+msgstr ""
+"Das Raspberry Pi Konfigurationsprogramm konnte nicht gestertet werden: %s"
 
 #: efalive/setuptool/taskstab.py:73
 #: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:73
@@ -1443,7 +1444,7 @@ msgstr "Aufgabe hinzufügen"
 msgid "Edit task"
 msgstr "Aufgabe editieren"
 
-#: efalive/setuptool/taskstab.py:113 efalive/setuptool/taskstab.py:120
+#: efalive/setuptool/taskstab.py:113
 #: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:113
 #: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:120
 #: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:113
@@ -1460,6 +1461,10 @@ msgstr "Aufgabe editieren"
 #: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/taskstab.py:120
 msgid "Remove task"
 msgstr "Aufgabe entfernen"
+
+#: efalive/setuptool/taskstab.py:120
+msgid "Run task"
+msgstr "Ausfgabe starten"
 
 #: efalive/setuptool/taskstab.py:157 efalive/setuptool/taskstab.py:338
 #: tmp/efaLiveTools-3.0/efalive/setuptool/taskstab.py:157
@@ -1750,28 +1755,28 @@ msgstr "Konnte keine Logdateienpaket auf %s erstellen!"
 msgid "Created log file package in %s ."
 msgstr "Paket mit Logdateien in %s erstellt."
 
-#: efalive/setuptool/backuptab.py:85
+#: efalive/setuptool/backuptab.py:86
 #: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:85
 #: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:85
 #: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:85
 msgid "General backup settings"
 msgstr "Allgemeine Backup Einstellungen"
 
-#: efalive/setuptool/backuptab.py:97
+#: efalive/setuptool/backuptab.py:98
 #: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:97
 #: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:97
 #: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:97
 msgid "use encryption for backup"
 msgstr "Backup verschlüsseln"
 
-#: efalive/setuptool/backuptab.py:105
+#: efalive/setuptool/backuptab.py:106
 #: build/efalive/debian/efalive/usr/lib/python3/dist-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:105
 #: build/python/efaLiveTools-3.0/efalive/setuptool/backuptab.py:105
 #: build/python/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:105
 msgid "encryption password"
 msgstr "Passwort zur Verschlüsselung"
 
-#: efalive/setuptool/backuptab.py:117
+#: efalive/setuptool/backuptab.py:118
 #: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:71
 #: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:71
 #: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:71
@@ -1782,7 +1787,7 @@ msgstr "Passwort zur Verschlüsselung"
 msgid "Auto USB backup"
 msgstr "Automatische USB Datensicherung"
 
-#: efalive/setuptool/backuptab.py:129
+#: efalive/setuptool/backuptab.py:130
 #: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:87
 #: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:87
 #: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:87
@@ -1793,7 +1798,7 @@ msgstr "Automatische USB Datensicherung"
 msgid "enable automatic USB backup"
 msgstr "Automatische Datensicherung auf USB einschalten"
 
-#: efalive/setuptool/backuptab.py:141
+#: efalive/setuptool/backuptab.py:142
 #: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:99
 #: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:99
 #: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:99
@@ -1804,7 +1809,7 @@ msgstr "Automatische Datensicherung auf USB einschalten"
 msgid "show dialog after automatic backup"
 msgstr "Dialog nach automatischer Datensicherung anzeigen"
 
-#: efalive/setuptool/backuptab.py:149
+#: efalive/setuptool/backuptab.py:150
 #: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:107
 #: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:107
 #: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:107
@@ -1815,7 +1820,7 @@ msgstr "Dialog nach automatischer Datensicherung anzeigen"
 msgid "use password for automatic backup"
 msgstr "Passwort für automatische Datensicherung verwenden"
 
-#: efalive/setuptool/backuptab.py:157
+#: efalive/setuptool/backuptab.py:158
 #: tmp/efaLiveTools-3.0/efalive/setuptool/backuptab.py:115
 #: tmp/efaLiveTools-3.0/build/lib/efalive/setuptool/backuptab.py:115
 #: tmp/packages/lib/python3.11/site-packages/efaLiveTools-3.0-py3.11.egg/efalive/setuptool/backuptab.py:115

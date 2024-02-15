@@ -117,7 +117,7 @@ class TasksTabView(Gtk.VBox):
         self.task_run_button = Gtk.Button()
         button_icon = Gtk.Image.new_from_file(common.get_icon_path("play.png"))
         self.task_run_button.set_image(button_icon)
-        self.task_run_button.set_tooltip_text(_("Remove task"))
+        self.task_run_button.set_tooltip_text(_("Run task"))
         self.task_button_vbox.pack_start(self.task_run_button, False, False, 2)
         self.task_run_button.show()
 
