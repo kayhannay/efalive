@@ -1,3 +1,10 @@
+efalive (2.10.2-1) unstable; urgency=low
+
+  * fix: use correct tooltip for run task button
+  * fix: disable encryption password field if encryption is disabled
+
+ -- Kay Hannay <klinux@hannay.de>  Thu, 15 Feb 2024 10:20:59 +0000
+
 efalive (2.10.1-1) unstable; urgency=low
 
   * fix: broken update mechanism of use encryption field in efaLive setup
