@@ -209,6 +209,7 @@ class BackupTabController(object):
 
     def backupUseEncryptionChanged(self, enable):
         self._view.backupUseEncryptionCbox.set_active(enable)
+        self._view.backupEncryptionPasswordHBox.set_sensitive(enable)
 
     def backupEncryptionPasswordChanged(self, pwd):
         self._view.backupPasswordEntry.set_text(pwd)
