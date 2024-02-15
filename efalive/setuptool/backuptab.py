@@ -175,6 +175,7 @@ class BackupTabController(object):
         self._model = BackupTabModel(settings)
         self._view.autoUsbBackupEnabledVBox.set_sensitive(False)
         self._view.autoBackupPasswordHBox.set_sensitive(False)
+        self._view.backupEncryptionPasswordHBox.set_sensitive(False)
         self._model.registerAutoUsbBackupCb(self.autoUsbBackupChanged)
         self._model.registerAutoUsbBackupDialogCb(self.autoUsbBackupDialogChanged)
         self._model.registerAutoBackupUsePasswordCb(self.autoBackupUsePasswordChanged)
