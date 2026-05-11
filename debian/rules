@@ -20,8 +20,8 @@ export PYTHONPATH=/usr/lib/python3/dist-packages:$PYTHONPATH
 	dh $@
 
 override_dh_install:
-	tar zx -C ../python -f ../python/efaLiveTools-3.0.tar.gz
-	cd ../python/efaLiveTools-3.0/; ./install.sh --prefix=../../efalive/debian/efalive/usr --install-lib=../../efalive/debian/efalive/usr/lib/python3/dist-packages; cd ../../efalive/
+	tar zx -C ../python -f ../python/efalivetools-3.0.tar.gz
+	cd ../python/efalivetools-3.0/; ./install.sh --prefix=../../efalive/debian/efalive/usr --install-lib=../../efalive/debian/efalive/usr/lib/python3/dist-packages; cd ../../efalive/
 	find -name __pycache__ -type d -exec rm -r "{}" \; || true
 #	pwd
 	cp -r ../../files/* debian/efalive/

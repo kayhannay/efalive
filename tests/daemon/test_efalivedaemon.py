@@ -20,7 +20,7 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
 import os
-from mock import call, patch, MagicMock, Mock, mock_open
+from unittest.mock import call, patch, MagicMock, Mock, mock_open
 
 from efalive.common import common
 from efalive.daemon.efalivedaemon import EfaLiveDaemon, AutoBackupModule, WatchDogModule, TaskSchedulerModule

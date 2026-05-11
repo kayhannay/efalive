@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import unittest
-from mock import call, patch, MagicMock
+from unittest.mock import call, patch, MagicMock
 import base64
 
 from efalive.common.mailer import Mailer, MailData, MailerConfig

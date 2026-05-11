@@ -45,9 +45,24 @@ fi
 sed -i "s/LOCALES=os.path.join(os.path.dirname(sys.argv\[0\]), os.pardir, 'i18n')/LOCALES=os.path.join('${sedprefix}', 'share', 'locale')/" efalive/common/common.py
 sed -i "s/icon_path = os.path.join(path, 'icons', icon_name)/icon_path = os.path.join('${sedprefix}', 'share', 'pixmaps', 'efalive', icon_name)/" efalive/common/common.py
 
-echo "Call Python setup with arguments: $args"
+echo "Build translations ..."
+python3 build_translations.py
 
-python3 setup.py install $args
+echo "Install Python package ..."
+
+# Extract --install-lib if provided (for debian packaging)
+install_lib=""
+for arg in $args; do
+    case $arg in
+        --install-lib=*) install_lib="${arg#*=}" ;;
+    esac
+done
+
+if [ -n "$install_lib" ]; then
+    pip3 install --no-deps --target="$install_lib" .
+else
+    pip3 install --no-deps --prefix="${prefix}" .
+fi
 mkdir -p ${prefix}/share/pixmaps/efalive
 cp icons/* ${prefix}/share/pixmaps/efalive/ 
 mkdir -p ${prefix}/share/locale

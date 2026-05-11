@@ -21,7 +21,7 @@ along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
 import os
 import shutil
 import unittest
-from mock import call, patch, MagicMock, Mock
+from unittest.mock import call, patch, MagicMock, Mock
 from email.mime.multipart import MIMEMultipart
 
 from efalive.common.tasks import ShellTask, BackupMailTask

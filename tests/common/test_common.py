@@ -5,7 +5,7 @@ Created on 12.09.2016
 '''
 import os
 import unittest
-from mock import call, patch, MagicMock, mock_open
+from unittest.mock import call, patch, MagicMock, mock_open
 
 import efalive.common.common as common
 
