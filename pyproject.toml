@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "efaLiveTools"
-version = "3.0"
+version = "2.11.0"
 authors = [{ name = "Kay Hannay", email = "klinux@hannay.de" }]
 description = "Tools for efaLive"
 requires-python = ">=3.12"
