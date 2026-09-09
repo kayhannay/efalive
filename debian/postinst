@@ -22,6 +22,10 @@ case "$1" in
     configure)
         chown -R efa:efa /home/efa
         chown -R efa:efa /usr/lib/efa2
+	
+	# Disable panel and desktop management
+	#sed -i 's/\/usr\/bin\/lwrespawn \/usr\/bin\/pcmanfm-pi/#\/usr\/bin\/lwrespawn \/usr\/bin\/pcmanfm-pi/' /etc/xdg/labwc/autostart
+	#sed -i 's/\/usr\/bin\/lwrespawn \/usr\/bin\/wf-panel-pi/#\/usr\/bin\/lwrespawn \/usr\/bin\/wf-panel-pi/' /etc/xdg/labwc/autostart
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

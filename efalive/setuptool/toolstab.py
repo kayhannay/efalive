@@ -109,7 +109,7 @@ class ToolsTabController(object):
 
     def runTerminal(self, widget):
         try:
-            subprocess.Popen(['xterm'])
+            subprocess.Popen(['foot'])
         except OSError as error:
             message = _("Could not open xterm program: %s") % error
             self._logger.error(message)

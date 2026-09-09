@@ -11,6 +11,7 @@ OUTPUT_DIR = "locale"
 
 
 def compile_translations():
+    print(f"Building locales in: {os.getcwd()}")
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     for package in PACKAGES:
         po_dir = os.path.join("i18n", package, "po_files")

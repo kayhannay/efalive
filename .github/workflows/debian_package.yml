@@ -2,12 +2,12 @@ name: Debian package
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: docker://docker.pkg.github.com/${{ github.actor }}/efalive_docker/efalive-development:latest
       credentials:
         username: ${{ github.actor }}
@@ -35,5 +35,4 @@ jobs:
           echo "${{ secrets.GPG_KEY }}" | gpg --batch --import
           #gpg --list-secret-keys --keyid-format LONG
           export GPG_TTY=$(tty)
-          /usr/bin/deploy_registry.sh "${{ secrets.SSH_USER }}" "${{ secrets.SSH_HOST }}" bookworm efalive
-
+          /usr/bin/deploy_registry.sh "${{ secrets.SSH_USER }}" "${{ secrets.SSH_HOST }}" trixie efalive

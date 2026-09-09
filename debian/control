@@ -9,7 +9,7 @@ Vcs-Git: https://github.com/kayhannay/efalive.git
 
 Package: efalive
 Architecture: all
-Depends: efa2, foot, sudo, zenity, zip, unzip, labwc, python3, python3-gi, pmount, feh, python3-pampy, python3-daemon, python3-pyudev, python3-dateutil, python3-gi-cairo, network-manager-gnome, thunar, xfce4-power-manager, ntp, mousepad, libgtk3-perl, ddclient, gir1.2-gudev-1.0, gir1.2-glib-2.0, gir1.2-gtk-3.0
+Depends: efa2, foot, sudo, zenity, zip, unzip, labwc, wlr-randr, kanshi, python3, python3-gi, pmount, feh, python3-pampy, python3-daemon, python3-pyudev, python3-dateutil, python3-gi-cairo, network-manager-gnome, thunar, xfce4-power-manager, mousepad, libgtk3-perl, ddclient, gir1.2-gudev-1.0, gir1.2-glib-2.0, gir1.2-gtk-3.0, ntpsec
 Recommends: beep, mailutils, sharutils, ssh, anacron, less, vim, nano
 Description: KIOSK system for the rowing logbook efa
  This package creates a KIOSK system for the rowing logbook software efa

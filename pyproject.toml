@@ -1,29 +1,24 @@
 [build-system]
-requires = ["setuptools>=68.0"]
+requires = ["setuptools>=82.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "efaLiveTools"
 version = "3.0"
-authors = [
-    {name = "Kay Hannay", email = "klinux@hannay.de"},
-]
+authors = [{ name = "Kay Hannay", email = "klinux@hannay.de" }]
 description = "Tools for efaLive"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 license = "GPL-3.0-only"
 dependencies = [
-    "PyGObject>=3.50.0",
-    "python-pam>=2.0.2",
-    "pyudev>=0.24.3",
-    "python-dateutil>=2.9.0",
-    "lockfile>=0.12.2",
+  "PyGObject>=3.58.0",
+  "python-pam>=2.0.2",
+  "pyudev>=0.24.4",
+  "python-dateutil>=2.9.0",
+  "lockfile>=0.12.2",
 ]
 
 [project.optional-dependencies]
-dev = [
-    "coverage>=7.6.12",
-    "pytest>=8.3.4",
-]
+dev = ["coverage>=7.16.0", "pytest>=9.1.1"]
 
 [project.urls]
 Homepage = "https://www.hannay.de/efalive"

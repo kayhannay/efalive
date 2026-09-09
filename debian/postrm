@@ -21,7 +21,11 @@ set -e
 
 case "$1" in
     purge|remove|abort-install)
-        userdel efa;
+        userdel efa
+
+        # Disable panel and desktop management
+        #sed -i 's/#\/usr\/bin\/lwrespawn \/usr\/bin\/pcmanfm-pi/\/usr\/bin\/lwrespawn \/usr\/bin\/pcmanfm-pi/' /etc/xdg/labwc/autostart
+        #sed -i 's/#\/usr\/bin\/lwrespawn \/usr\/bin\/wf-panel-pi/\/usr\/bin\/lwrespawn \/usr\/bin\/wf-panel-pi/' /etc/xdg/labwc/autostart
     ;;
     upgrade|failed-upgrade|abort-upgrade|disappear)
     ;;

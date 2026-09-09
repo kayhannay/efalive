@@ -2,7 +2,10 @@ include install.sh
 include setup.py
 include efalive-setup
 include efalive-daemon
-recursive-include i18n *.mo
+include efalivesetup.py
+include efalivedaemon.py
+include build_translations.py
+recursive-include i18n *.po
 recursive-include icons *
 recursive-include efalive *.py
 

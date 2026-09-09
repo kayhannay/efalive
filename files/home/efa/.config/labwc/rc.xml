@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<labwc_config>
+  <keyboard>
+    <default/>
+    <!-- The W- prefix refers to the Super key -->
+    <keybind key="W-e">
+      <action name="Execute" command="/usr/bin/x-terminal-emulator"/>
+    </keybind>
+    <keybind key="W-z">
+      <action name="Execute" command="wofi --show drun"/>
+    </keybind>
+    <keybind key="C-F12">
+      <action name="Execute" command="efalive-setup -p"/>
+    </keybind>
+  </keyboard>
+  <windowRules>
+    <windowRule title="efa - elektronisches Fahrtenbuch">
+      <skipTaskbar>yes</skipTaskbar>
+      <!-- <skipWindowSwitcher>yes</skipWindowSwitcher> -->
+      <fixedPosition>yes</fixedPosition>
+      <action name="MoveTo" x="0" y="0"/>
+      <!-- <action name="ToggleAlwaysOnBottom"/> -->
+      <action name="SetDecorations" decorations="none" forceSSD="yes"/>
+      <action name="ToggleFullscreen"/>
+      <action name="Raise"/>
+    </windowRule>
+  </windowRules>
+</labwc_config>

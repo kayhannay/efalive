@@ -1,5 +1,5 @@
 #!/usr/bin/python
-'''
+"""
 Created on 16.02.2015
 
 Copyright (C) 2015-2019 Kay Hannay
@@ -17,33 +17,39 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with efaLive.  If not, see <http://www.gnu.org/licenses/>.
-'''
+"""
+
 import unittest
 import os
 from unittest.mock import call, patch, MagicMock, Mock, mock_open
 
 from efalive.common import common
-from efalive.daemon.efalivedaemon import EfaLiveDaemon, AutoBackupModule, WatchDogModule, TaskSchedulerModule
+from efalive.daemon.efalivedaemon import (
+    EfaLiveDaemon,
+    AutoBackupModule,
+    WatchDogModule,
+    TaskSchedulerModule,
+)
 from efalive.common.usbmonitor import UsbStorageDevice
 from efalive.common.settings import EfaLiveSettings
 from efalive.common.observable import Observable
 from efalive.common.tasks import BackupMailTask
-#from efalive.common import settings
-#from efalive.common.settings import EfaLiveSettings
+# from efalive.common import settings
+# from efalive.common.settings import EfaLiveSettings
+
 
 class EfaLiveDaemonTestCase(unittest.TestCase):
-
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__start(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "start"])
         assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__restart(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "restart"])
         assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__stop(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "stop"])
         assert settingsMock.return_value.initSettings.call_count == 0
@@ -63,37 +69,37 @@ class EfaLiveDaemonTestCase(unittest.TestCase):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "start", "/tmp", "test"])
         assert EfaLiveDaemon._print_usage_and_exit.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__start_with_conf_path_first(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "start"])
         assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__start_with_conf_path_last(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "start", "/tmp"])
         assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__restart_with_conf_path_first(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "restart"])
         assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__restart_with_conf_path_last(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "restart", "/tmp"])
         assert settingsMock.return_value.initSettings.call_count == 1
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autoepec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autoepec=True)
     def test_init__stop_with_conf_path_first(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "/tmp", "stop"])
         assert settingsMock.return_value.initSettings.call_count == 0
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__stop_with_conf_path_last(self, settingsMock):
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "stop", "/tmp"])
         assert settingsMock.return_value.initSettings.call_count == 0
 
-    @patch('efalive.daemon.efalivedaemon.EfaLiveSettings', autospec=True)
+    @patch("efalive.daemon.efalivedaemon.EfaLiveSettings", autospec=True)
     def test_init__unknown_with_conf_path(self, settingsMock):
         EfaLiveDaemon._print_usage_and_exit = MagicMock()
         classUnderTest = EfaLiveDaemon(["efalivedaemon", "unknown"])
@@ -101,14 +107,16 @@ class EfaLiveDaemonTestCase(unittest.TestCase):
 
 
 class AutoBackupModuleTestCase(unittest.TestCase):
-
     def test_handle_usb_add_device(self):
         classUnderTest = AutoBackupModule()
         common.command_output = MagicMock(return_value=(0, "Test output"))
 
         result = classUnderTest._handle_usb_add_event(UsbStorageDevice("/dev/test1"))
 
-        self.assertEqual(call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1"]), common.command_output.call_args)
+        self.assertEqual(
+            call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1"]),
+            common.command_output.call_args,
+        )
         self.assertEqual(1, common.command_output.call_count)
 
     def test_run_autobackup__success(self):
@@ -117,7 +125,10 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
-        self.assertEqual(call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1"]), common.command_output.call_args)
+        self.assertEqual(
+            call(["/usr/lib/efalive/bin/autobackup.sh", "/dev/test1"]),
+            common.command_output.call_args,
+        )
         self.assertEqual(1, common.command_output.call_count)
         self.assertEqual(0, result)
 
@@ -139,7 +150,7 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
     def test_run_autobackup__fail_exception(self):
         classUnderTest = AutoBackupModule()
-        common.command_output = MagicMock(side_effect = OSError())
+        common.command_output = MagicMock(side_effect=OSError())
 
         result = classUnderTest._run_autobackup("/dev/test1")
 
@@ -147,10 +158,11 @@ class AutoBackupModuleTestCase(unittest.TestCase):
 
 
 class WatchDogModuleTestCase(unittest.TestCase):
-
     def test_run_checks__process_found(self):
         class_under_test = WatchDogModule()
-        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 openbox"))
+        common.command_output = MagicMock(
+            return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 labwc")
+        )
 
         class_under_test.run_checks()
 
@@ -160,33 +172,42 @@ class WatchDogModuleTestCase(unittest.TestCase):
 
     def test_run_checks__process_not_found(self):
         class_under_test = WatchDogModule()
-        common.command_output = MagicMock(return_value=(0, "root       792   707  2 19:03 tty7     00:01:03 AnotherProcess -foo"))
+        common.command_output = MagicMock(
+            return_value=(
+                0,
+                "root       792   707  2 19:03 tty7     00:01:03 AnotherProcess -foo",
+            )
+        )
 
         class_under_test.run_checks()
         class_under_test.run_checks()
         class_under_test.run_checks()
 
-        expected_calls = [call(["ps", "-Af"]), call(["ps", "-Af"]), call(["ps", "-Af"]), call(["sudo", "/sbin/shutdown", "-r", "now"])]
+        expected_calls = [
+            call(["ps", "-Af"]),
+            call(["ps", "-Af"]),
+            call(["ps", "-Af"]),
+            call(["sudo", "/sbin/shutdown", "-r", "now"]),
+        ]
         self.assertEqual(expected_calls, common.command_output.call_args_list)
         self.assertEqual(3, class_under_test._restart_threshold)
 
 
 class TaskSchedulerModuleTestCase(unittest.TestCase):
-
     @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_run_tasks(self, open_mock):
-        common.command_output = MagicMock(return_value = (0, "testfile.txt"))
+        common.command_output = MagicMock(return_value=(0, "testfile.txt"))
         fileStub = FileStub()
         open_mock.return_value = fileStub
-        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock = Mock(spec=EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
-        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
+        settings_mock.hourly_tasks.updateData({"123": ["SHELL", "ls /tmp1"]})
         settings_mock.daily_tasks = Observable()
-        settings_mock.daily_tasks.updateData({"234" : ["SHELL", "ls /tmp2"]})
+        settings_mock.daily_tasks.updateData({"234": ["SHELL", "ls /tmp2"]})
         settings_mock.weekly_tasks = Observable()
-        settings_mock.weekly_tasks.updateData({"345" : ["SHELL", "ls /tmp3"]})
+        settings_mock.weekly_tasks.updateData({"345": ["SHELL", "ls /tmp3"]})
         settings_mock.monthly_tasks = Observable()
-        settings_mock.monthly_tasks.updateData({"456" : ["SHELL", "ls /tmp4"]})
+        settings_mock.monthly_tasks.updateData({"456": ["SHELL", "ls /tmp4"]})
         settings_mock.confPath = "/test"
 
         class_under_test = TaskSchedulerModule()
@@ -206,12 +227,12 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
 
     @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_run_tasks__already_executed(self, open_mock):
-        common.command_output = MagicMock(return_value = (0, "testfile.txt"))
+        common.command_output = MagicMock(return_value=(0, "testfile.txt"))
         fileStub = FileStub()
         open_mock.return_value = fileStub
-        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock = Mock(spec=EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
-        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
+        settings_mock.hourly_tasks.updateData({"123": ["SHELL", "ls /tmp1"]})
         settings_mock.daily_tasks = Observable()
         settings_mock.daily_tasks.updateData({})
         settings_mock.weekly_tasks = Observable()
@@ -244,13 +265,24 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
 
     @patch("builtins.open", new_callable=mock_open, read_data="data")
     def test_run_tasks__new_task(self, open_mock):
-        common.command_output = MagicMock(return_value = (0, "testfile.txt"))
-        os.path.isfile = MagicMock(return_value = True)
+        common.command_output = MagicMock(return_value=(0, "testfile.txt"))
+        os.path.isfile = MagicMock(return_value=True)
         fileStub = FileStub()
-        open_mock.side_effect = [ fileStub, FileStub(), FileStub(), FileStub(), fileStub, fileStub, FileStub(), FileStub(), FileStub(), fileStub]
-        settings_mock = Mock(spec = EfaLiveSettings)
+        open_mock.side_effect = [
+            fileStub,
+            FileStub(),
+            FileStub(),
+            FileStub(),
+            fileStub,
+            fileStub,
+            FileStub(),
+            FileStub(),
+            FileStub(),
+            fileStub,
+        ]
+        settings_mock = Mock(spec=EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
-        settings_mock.hourly_tasks.updateData({"123" : ["SHELL", "ls /tmp1"]})
+        settings_mock.hourly_tasks.updateData({"123": ["SHELL", "ls /tmp1"]})
         settings_mock.daily_tasks = Observable()
         settings_mock.daily_tasks.updateData({})
         settings_mock.weekly_tasks = Observable()
@@ -271,7 +303,7 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
         self.assertEqual(0, len(class_under_test._monthly_markers))
         self.assertEqual(1, len(fileStub.data))
 
-        settings_mock.daily_tasks.updateData({"1234" : ["SHELL", "ls /tmp2"]})
+        settings_mock.daily_tasks.updateData({"1234": ["SHELL", "ls /tmp2"]})
 
         class_under_test.update_settings(settings_mock)
         class_under_test.run_tasks()
@@ -290,11 +322,18 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
     def test_run_tasks__mail(self, backup_mail_task_mock, open_mock):
         fileStub = FileStub()
         open_mock.return_value = fileStub
-        settings_mock = Mock(spec = EfaLiveSettings)
+        settings_mock = Mock(spec=EfaLiveSettings)
         settings_mock.hourly_tasks = Observable()
         settings_mock.hourly_tasks.updateData({})
         settings_mock.daily_tasks = Observable()
-        settings_mock.daily_tasks.updateData({"123" : ["BACKUP_MAIL", ["user1@testsystem.local", "user2@testsystem.local"]]})
+        settings_mock.daily_tasks.updateData(
+            {
+                "123": [
+                    "BACKUP_MAIL",
+                    ["user1@testsystem.local", "user2@testsystem.local"],
+                ]
+            }
+        )
         settings_mock.weekly_tasks = Observable()
         settings_mock.weekly_tasks.updateData({})
         settings_mock.monthly_tasks = Observable()
@@ -315,7 +354,6 @@ class TaskSchedulerModuleTestCase(unittest.TestCase):
 
 
 class FileStub(object):
-
     def __init__(self):
         self.data = []
 
@@ -327,5 +365,3 @@ class FileStub(object):
 
     def write(self, d):
         self.data.append(d)
-
-
