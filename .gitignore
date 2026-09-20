@@ -5,6 +5,7 @@ build
 *.log
 *.pot
 *.old
+*.deb
 *~
 .project
 .pydevproject
@@ -12,4 +13,6 @@ build
 .coverage
 efaLiveTools.egg-info
 dist
+deb_dist
+locale
 tmp
