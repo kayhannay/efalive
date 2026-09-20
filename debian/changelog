@@ -1,3 +1,9 @@
+efalive (2.11.1-1) unstable; urgency=low
+
+  * fix: change way to detect Raspbeery Pi
+
+ -- Kay Hannay <klinux@hannay.de>  Sun, 20 Sep 2026 13:25:04 +0000
+
 efalive (2.11.0-1) unstable; urgency=low
 
   * feat: update efalive to Debian Trixie and Wayland
