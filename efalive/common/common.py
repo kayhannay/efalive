@@ -28,7 +28,7 @@ import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
-LOCALES = os.path.join(os.path.dirname(sys.argv[0]), "i18n")
+LOCALES = os.path.join(os.path.dirname(sys.argv[0]), 'i18n')
 LOCALEDIR = os.path.realpath(LOCALES)
 
 
@@ -41,7 +41,7 @@ def get_icon_path(icon_name):
     path = os.path.join(
         os.path.dirname(os.path.abspath(__file__)), os.pardir, os.pardir
     )
-    icon_path = os.path.join(path, "icons", icon_name)
+    icon_path = os.path.join(path, 'icons', icon_name)
     logger = logging.getLogger("common")
     logger.debug("Resolved icon path: %s" % icon_path)
     return icon_path
