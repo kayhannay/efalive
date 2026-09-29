@@ -1,3 +1,10 @@
+efalive (2.11.3-1) unstable; urgency=low
+
+  * fix: use correct path for hwclock tool
+  * fix: use other formatting for paths to allow replacement by install script
+
+ -- Kay Hannay <klinux@hannay.de>  Tue, 29 Sep 2026 13:20:32 +0000
+
 efalive (2.11.2-1) unstable; urgency=low
 
   * fix: adapt test for new platform mechanism
